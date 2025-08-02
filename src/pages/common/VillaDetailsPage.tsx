@@ -46,7 +46,27 @@ const VillaDetailsPage: React.FC = () => {
     setSelectedEndDate(endDate);
   };
 
-  // Calculate total price
+  // Get price for a specific date with custom pricing priority
+  const getPriceForDate = (date: Date) => {
+    // Format date as ISO string (YYYY-MM-DD) for comparison
+    const dateStr = date.toISOString().split('T')[0];
+    
+    // First, check if there's a custom price for this specific date
+    const customPrice = villa.customPricing?.find(cp => cp.date === dateStr);
+    if (customPrice) {
+      return customPrice.price;
+    }
+    
+    // If no custom price, fall back to standard pricing logic
+    const dayOfWeek = date.getDay();
+    // Weekend is Friday (5) and Saturday (6) in UAE
+    if (dayOfWeek === 5 || dayOfWeek === 6) {
+      return villa.pricing.weekend;
+    }
+    return villa.pricing.weekday;
+  };
+
+  // Calculate total price using custom pricing logic
   const calculateTotalPrice = () => {
     if (!selectedStartDate || !selectedEndDate) return 0;
     
@@ -54,13 +74,7 @@ const VillaDetailsPage: React.FC = () => {
     const currentDate = new Date(selectedStartDate);
     
     while (currentDate < selectedEndDate) {
-      const dayOfWeek = currentDate.getDay();
-      // Weekend is Friday (5) and Saturday (6) in UAE
-      if (dayOfWeek === 5 || dayOfWeek === 6) {
-        total += villa.pricing.weekend;
-      } else {
-        total += villa.pricing.weekday;
-      }
+      total += getPriceForDate(currentDate);
       currentDate.setDate(currentDate.getDate() + 1);
     }
     
@@ -263,6 +277,7 @@ const VillaDetailsPage: React.FC = () => {
             <h3 style={sectionTitleStyle}>Select Dates</h3>
             <BookingCalendar
               pricing={villa.pricing}
+              customPricing={villa.customPricing}
               unavailableDates={unavailableDates}
               onDateRangeSelect={handleDateRangeSelect}
             />

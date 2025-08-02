@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
 import { motion, AnimatePresence } from 'framer-motion';
 import { colors } from '../../utils/colors';
+import type { CustomPricing } from '../../types';
 
 interface BookingCalendarProps {
   pricing: {
@@ -9,6 +10,7 @@ interface BookingCalendarProps {
     weekend: number;
     halfDay: number;
   };
+  customPricing?: CustomPricing[];
   unavailableDates?: Date[];
   onDateRangeSelect?: (startDate: Date | null, endDate: Date | null) => void;
 }
@@ -17,6 +19,7 @@ type ViewMode = 'month' | 'year' | 'decade';
 
 const BookingCalendar: React.FC<BookingCalendarProps> = ({
   pricing,
+  customPricing = [],
   unavailableDates = [],
   onDateRangeSelect
 }) => {
@@ -47,14 +50,30 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({
     return date < today;
   };
 
-  // Get price for a specific date
+  // Get price for a specific date with custom pricing priority
   const getPriceForDate = (date: Date) => {
+    // Format date as ISO string (YYYY-MM-DD) for comparison
+    const dateStr = date.toISOString().split('T')[0];
+    
+    // First, check if there's a custom price for this specific date
+    const customPrice = customPricing.find(cp => cp.date === dateStr);
+    if (customPrice) {
+      return customPrice.price;
+    }
+    
+    // If no custom price, fall back to standard pricing logic
     const dayOfWeek = date.getDay();
     // Weekend is Friday (5) and Saturday (6) in UAE
     if (dayOfWeek === 5 || dayOfWeek === 6) {
       return pricing.weekend;
     }
     return pricing.weekday;
+  };
+
+  // Get custom pricing info for a specific date (including label)
+  const getCustomPricingInfo = (date: Date) => {
+    const dateStr = date.toISOString().split('T')[0];
+    return customPricing.find(cp => cp.date === dateStr);
   };
 
   // Check if date is in selection range
@@ -384,6 +403,7 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({
               {calendarDays.map((date, index) => {
                 const isCurrentMonth = date.getMonth() === currentDate.getMonth();
                 const isUnavailable = isDateUnavailable(date) || isDatePast(date);
+                const customPricingInfo = getCustomPricingInfo(date);
                 
                 return (
                   <motion.div
@@ -394,10 +414,24 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({
                     onMouseLeave={() => setHoveredDate(null)}
                     whileHover={!isUnavailable ? { scale: 1.05 } : {}}
                     whileTap={!isUnavailable ? { scale: 0.95 } : {}}
+                    title={customPricingInfo?.label || undefined} // Show label as tooltip
                   >
                     <div style={dayNumberStyle}>{date.getDate()}</div>
                     {isCurrentMonth && !isUnavailable && (
                       <div style={priceStyle(date)}>{getPriceForDate(date)}</div>
+                    )}
+                    {/* Show special indicator for custom pricing */}
+                    {customPricingInfo && isCurrentMonth && !isUnavailable && (
+                      <div style={{
+                        position: 'absolute',
+                        top: '2px',
+                        right: '2px',
+                        width: '6px',
+                        height: '6px',
+                        borderRadius: '50%',
+                        backgroundColor: colors.warning,
+                        fontSize: '8px',
+                      }} />
                     )}
                   </motion.div>
                 );

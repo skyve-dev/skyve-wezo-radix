@@ -18,6 +18,23 @@ export const mockVillas: Villa[] = [
       weekend: 2000,
       halfDay: 800,
     },
+    customPricing: [
+      {
+        date: '2025-02-14', // Valentine's Day
+        price: 3500,
+        label: "Valentine's Day Special"
+      },
+      {
+        date: '2025-03-31', // UAE National Day
+        price: 4000,
+        label: 'UAE National Day'
+      },
+      {
+        date: '2025-08-20', // New Year's Day
+        price: 5000,
+        label: "New Year's Day"
+      }
+    ],
     isActive: true,
     isFeatured: true,
   },
@@ -78,6 +95,28 @@ export const mockVillas: Villa[] = [
       weekend: 3500,
       halfDay: 1200,
     },
+    customPricing: [
+      {
+        date: '2025-02-10', // Early February discount
+        price: 2000,
+        label: 'Early February Discount'
+      },
+      {
+        date: '2025-02-11',
+        price: 2000,
+        label: 'Early February Discount'
+      },
+      {
+        date: '2025-02-12',
+        price: 2000,
+        label: 'Early February Discount'
+      },
+      {
+        date: '2025-04-15', // Spring Premium
+        price: 4500,
+        label: 'Spring Premium'
+      }
+    ],
     isActive: true,
     isFeatured: true,
   },

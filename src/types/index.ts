@@ -9,6 +9,12 @@ export interface User {
   isActive: boolean;
 }
 
+export interface CustomPricing {
+  date: string; // ISO date string (YYYY-MM-DD)
+  price: number;
+  label?: string; // Optional label for special occasions (e.g., "New Year's Eve", "Christmas")
+}
+
 export interface Villa {
   id: string;
   name: string;
@@ -23,6 +29,7 @@ export interface Villa {
     weekend: number;
     halfDay: number;
   };
+  customPricing?: CustomPricing[]; // Array of date-specific custom prices
   isActive: boolean;
   isFeatured: boolean;
 }
