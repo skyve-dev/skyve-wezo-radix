@@ -11,6 +11,8 @@ import {
     MixerHorizontalIcon,
     PersonIcon,
     QuestionMarkCircledIcon,
+    MagnifyingGlassIcon,
+    EnterIcon,
 } from '@radix-ui/react-icons';
 import {useAuth} from '../../contexts/AuthContext';
 import {useNavigate} from 'react-router-dom';
@@ -27,7 +29,7 @@ interface MenuItem {
 }
 
 const DrawerMenu: React.FC<DrawerMenuProps> = ({isOpen, onClose}) => {
-    const {user, logout} = useAuth();
+    const {user, logout, isAuthenticated} = useAuth();
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -36,87 +38,127 @@ const DrawerMenu: React.FC<DrawerMenuProps> = ({isOpen, onClose}) => {
         onClose();
     };
 
-    const commonMenuItems: MenuItem[] = [
-        {
-            label: 'User Profile',
-            icon: <PersonIcon/>,
-            onClick: () => {
-                navigate('/profile');
-                onClose();
-            },
-        },
-        {
-            label: 'Settings',
-            icon: <GearIcon/>,
-            onClick: () => {
-                navigate('/settings');
-                onClose();
-            },
-        },
-        {
-            label: 'Notifications',
-            icon: <BellIcon/>,
-            onClick: () => {
-                navigate('/notifications');
-                onClose();
-            },
-        },
-        {
-            label: 'Help & Support',
-            icon: <QuestionMarkCircledIcon/>,
-            onClick: () => {
-                navigate('/help');
-                onClose();
-            },
-        },
-    ];
+    const handleLogin = () => {
+        navigate('/login');
+        onClose();
+    };
 
-    const roleSpecificItems: MenuItem[] = [];
+    const getMenuItems = (): MenuItem[] => {
+        if (!isAuthenticated) {
+            // Anonymous user menu items
+            return [
+                {
+                    label: 'Explore Villas',
+                    icon: <HomeIcon/>,
+                    onClick: () => {
+                        navigate('/');
+                        onClose();
+                    },
+                },
+                {
+                    label: 'Villa Listings',
+                    icon: <MagnifyingGlassIcon/>,
+                    onClick: () => {
+                        navigate('/listings');
+                        onClose();
+                    },
+                },
+                {
+                    label: 'Help & Support',
+                    icon: <QuestionMarkCircledIcon/>,
+                    onClick: () => {
+                        navigate('/help');
+                        onClose();
+                    },
+                },
+            ];
+        }
 
-    if (user?.role === 'tenant' || user?.role === 'homeowner') {
-        roleSpecificItems.push({
-            label: 'Payment Methods',
-            icon: <IdCardIcon/>,
-            onClick: () => {
-                navigate('/payment-methods');
-                onClose();
-            },
-        });
-    }
-
-    if (user?.role === 'homeowner') {
-        roleSpecificItems.push({
-            label: 'Villa Management',
-            icon: <HomeIcon/>,
-            onClick: () => {
-                navigate('/villa-management');
-                onClose();
-            },
-        });
-    }
-
-    if (user?.role === 'admin') {
-        roleSpecificItems.push(
+        // Authenticated user menu items
+        const commonMenuItems: MenuItem[] = [
             {
-                label: 'User & Property Admin',
+                label: 'User Profile',
                 icon: <PersonIcon/>,
                 onClick: () => {
-                    navigate('/admin/management');
+                    navigate('/profile');
                     onClose();
                 },
             },
             {
-                label: 'App Configuration',
-                icon: <MixerHorizontalIcon/>,
+                label: 'Settings',
+                icon: <GearIcon/>,
                 onClick: () => {
-                    navigate('/admin/config');
+                    navigate('/settings');
                     onClose();
                 },
-            }
-        );
-    }
+            },
+            {
+                label: 'Notifications',
+                icon: <BellIcon/>,
+                onClick: () => {
+                    navigate('/notifications');
+                    onClose();
+                },
+            },
+            {
+                label: 'Help & Support',
+                icon: <QuestionMarkCircledIcon/>,
+                onClick: () => {
+                    navigate('/help');
+                    onClose();
+                },
+            },
+        ];
 
-    const allMenuItems = [...commonMenuItems, ...roleSpecificItems];
+        const roleSpecificItems: MenuItem[] = [];
+
+        if (user?.role === 'tenant' || user?.role === 'homeowner') {
+            roleSpecificItems.push({
+                label: 'Payment Methods',
+                icon: <IdCardIcon/>,
+                onClick: () => {
+                    navigate('/payment-methods');
+                    onClose();
+                },
+            });
+        }
+
+        if (user?.role === 'homeowner') {
+            roleSpecificItems.push({
+                label: 'Villa Management',
+                icon: <HomeIcon/>,
+                onClick: () => {
+                    navigate('/villa-management');
+                    onClose();
+                },
+            });
+        }
+
+        if (user?.role === 'admin') {
+            roleSpecificItems.push(
+                {
+                    label: 'User & Property Admin',
+                    icon: <PersonIcon/>,
+                    onClick: () => {
+                        navigate('/admin/management');
+                        onClose();
+                    },
+                },
+                {
+                    label: 'App Configuration',
+                    icon: <MixerHorizontalIcon/>,
+                    onClick: () => {
+                        navigate('/admin/config');
+                        onClose();
+                    },
+                }
+            );
+        }
+
+        return [...commonMenuItems, ...roleSpecificItems];
+    };
+
+    const allMenuItems = getMenuItems();
 
     const overlayStyle: React.CSSProperties = {
         position: 'fixed',
@@ -260,15 +302,27 @@ const DrawerMenu: React.FC<DrawerMenuProps> = ({isOpen, onClose}) => {
                                     </motion.button>
                                 ))}
 
-                                <motion.button
-                                    style={logoutButtonStyle}
-                                    onClick={handleLogout}
-                                    whileHover={{backgroundColor: '#FEF2F2'}}
-                                    whileTap={{scale: 0.98}}
-                                >
-                                    <ExitIcon style={{...iconStyle, color: '#EF4444'}}/>
-                                    <span>Logout</span>
-                                </motion.button>
+                                {isAuthenticated ? (
+                                    <motion.button
+                                        style={logoutButtonStyle}
+                                        onClick={handleLogout}
+                                        whileHover={{backgroundColor: '#FEF2F2'}}
+                                        whileTap={{scale: 0.98}}
+                                    >
+                                        <ExitIcon style={{...iconStyle, color: '#EF4444'}}/>
+                                        <span>Logout</span>
+                                    </motion.button>
+                                ) : (
+                                    <motion.button
+                                        style={{...logoutButtonStyle, color: '#059669'}}
+                                        onClick={handleLogin}
+                                        whileHover={{backgroundColor: '#F0FDF4'}}
+                                        whileTap={{scale: 0.98}}
+                                    >
+                                        <EnterIcon style={{...iconStyle, color: '#059669'}}/>
+                                        <span>Sign In</span>
+                                    </motion.button>
+                                )}
                             </motion.div>
                         </Dialog.Content>
                     </Dialog.Portal>

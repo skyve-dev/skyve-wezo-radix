@@ -314,7 +314,7 @@ const HomeownerDashboard: React.FC = () => {
           </button>
         </div>
         <div style={recentBookingsStyle}>
-          {ownerBookings.slice(0, 5).map((booking, index) => {
+          {ownerBookings.slice(0, 5).map((booking) => {
             const villa = ownerVillas.find(v => v.id === booking.villaId);
             return (
               <div key={booking.id} style={bookingItemStyle}>

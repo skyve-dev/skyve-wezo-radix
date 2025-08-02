@@ -1,7 +1,7 @@
 import React from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import {motion} from 'framer-motion';
-import {BarChartIcon, CalendarIcon, ChatBubbleIcon, DashboardIcon, HomeIcon, PersonIcon,} from '@radix-ui/react-icons';
+import {BarChartIcon, CalendarIcon, ChatBubbleIcon, DashboardIcon, HomeIcon, PersonIcon, MagnifyingGlassIcon, EnterIcon} from '@radix-ui/react-icons';
 import {useAuth} from '../../contexts/AuthContext';
 
 interface TabItem {
@@ -14,6 +14,12 @@ const BottomTabNavigation: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useAuth();
+
+  const anonymousTabs: TabItem[] = [
+    { path: '/', label: 'Explore', icon: <HomeIcon /> },
+    { path: '/listings', label: 'Listings', icon: <MagnifyingGlassIcon /> },
+    { path: '/login', label: 'Login', icon: <EnterIcon /> },
+  ];
 
   const tenantTabs: TabItem[] = [
     { path: '/', label: 'Explore', icon: <HomeIcon /> },
@@ -39,7 +45,7 @@ const BottomTabNavigation: React.FC = () => {
   ];
 
   const getTabs = (): TabItem[] => {
-    if (!user) return tenantTabs;
+    if (!user) return anonymousTabs;
     
     switch (user.role) {
       case 'homeowner':

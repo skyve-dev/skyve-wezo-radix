@@ -4,6 +4,8 @@ import {AuthProvider, useAuth} from './contexts/AuthContext';
 import LoginPage from './pages/auth/LoginPage';
 import MainLayout from './components/layout/MainLayout';
 import HomePage from './pages/common/HomePage';
+import ListingsPage from './pages/common/ListingsPage';
+import VillaDetailsPage from './pages/common/VillaDetailsPage';
 import TenantDashboard from './pages/tenant/TenantDashboard';
 import HomeownerDashboard from './pages/homeowner/HomeownerDashboard';
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -86,48 +88,128 @@ const AppContent: React.FC = () => {
         element={isAuthenticated ? <Navigate to="/" /> : <LoginPage />} 
       />
       
-      {/* Protected Routes */}
-      <Route path="/" element={
-        <ProtectedRoute>
-          <MainLayout />
-        </ProtectedRoute>
-      }>
-        {/* Home page - accessible to all authenticated users */}
+      {/* Main Layout - accessible to all users (anonymous and authenticated) */}
+      <Route path="/" element={<MainLayout />}>
+        {/* Home page - accessible to all users */}
         <Route index element={<HomePage />} />
         
-        {/* Role-specific dashboard */}
-        <Route path="dashboard" element={<DashboardRoute />} />
+        {/* Listings page - accessible to all users */}
+        <Route path="listings" element={<ListingsPage />} />
         
-        {/* Common routes */}
-        <Route path="profile" element={<PlaceholderPage title="Profile" />} />
-        <Route path="settings" element={<PlaceholderPage title="Settings" />} />
-        <Route path="notifications" element={<PlaceholderPage title="Notifications" />} />
-        <Route path="help" element={<PlaceholderPage title="Help & Support" />} />
-        <Route path="messages" element={<PlaceholderPage title="Messages" />} />
-        <Route path="bookings" element={<PlaceholderPage title="Bookings" />} />
+        {/* Villa details - accessible to all users */}
+        <Route path="villas/:id" element={<VillaDetailsPage />} />
         
-        {/* Tenant/Homeowner routes */}
-        <Route path="payment-methods" element={<PlaceholderPage title="Payment Methods" />} />
+        {/* Protected Routes - require authentication */}
+        <Route path="dashboard" element={
+          <ProtectedRoute>
+            <DashboardRoute />
+          </ProtectedRoute>
+        } />
         
-        {/* Homeowner routes */}
-        <Route path="my-villas" element={<PlaceholderPage title="My Villas" />} />
-        <Route path="villa-management" element={<PlaceholderPage title="Villa Management" />} />
-        <Route path="villas/add" element={<PlaceholderPage title="Add Villa" />} />
-        <Route path="villas/:id/manage" element={<PlaceholderPage title="Manage Villa" />} />
+        {/* Protected Common routes */}
+        <Route path="profile" element={
+          <ProtectedRoute>
+            <PlaceholderPage title="Profile" />
+          </ProtectedRoute>
+        } />
+        <Route path="settings" element={
+          <ProtectedRoute>
+            <PlaceholderPage title="Settings" />
+          </ProtectedRoute>
+        } />
+        <Route path="notifications" element={
+          <ProtectedRoute>
+            <PlaceholderPage title="Notifications" />
+          </ProtectedRoute>
+        } />
+        <Route path="help" element={
+          <ProtectedRoute>
+            <PlaceholderPage title="Help & Support" />
+          </ProtectedRoute>
+        } />
+        <Route path="messages" element={
+          <ProtectedRoute>
+            <PlaceholderPage title="Messages" />
+          </ProtectedRoute>
+        } />
+        <Route path="bookings" element={
+          <ProtectedRoute>
+            <PlaceholderPage title="Bookings" />
+          </ProtectedRoute>
+        } />
         
-        {/* Admin routes */}
-        <Route path="properties" element={<PlaceholderPage title="Properties Management" />} />
-        <Route path="users" element={<PlaceholderPage title="Users Management" />} />
-        <Route path="reports" element={<PlaceholderPage title="Reports" />} />
-        <Route path="admin/management" element={<PlaceholderPage title="User & Property Admin" />} />
-        <Route path="admin/config" element={<PlaceholderPage title="App Configuration" />} />
-        <Route path="admin/promotions" element={<PlaceholderPage title="Promotions Management" />} />
-        <Route path="admin/featured-villas" element={<PlaceholderPage title="Featured Villas Management" />} />
+        {/* Protected Tenant/Homeowner routes */}
+        <Route path="payment-methods" element={
+          <ProtectedRoute>
+            <PlaceholderPage title="Payment Methods" />
+          </ProtectedRoute>
+        } />
         
-        {/* Villa details and booking */}
-        <Route path="villas" element={<PlaceholderPage title="Villa Listings" />} />
-        <Route path="villas/:id" element={<PlaceholderPage title="Villa Details" />} />
-        <Route path="bookings/new" element={<PlaceholderPage title="New Booking" />} />
+        {/* Protected Homeowner routes */}
+        <Route path="my-villas" element={
+          <ProtectedRoute>
+            <PlaceholderPage title="My Villas" />
+          </ProtectedRoute>
+        } />
+        <Route path="villa-management" element={
+          <ProtectedRoute>
+            <PlaceholderPage title="Villa Management" />
+          </ProtectedRoute>
+        } />
+        <Route path="villas/add" element={
+          <ProtectedRoute>
+            <PlaceholderPage title="Add Villa" />
+          </ProtectedRoute>
+        } />
+        <Route path="villas/:id/manage" element={
+          <ProtectedRoute>
+            <PlaceholderPage title="Manage Villa" />
+          </ProtectedRoute>
+        } />
+        
+        {/* Protected Admin routes */}
+        <Route path="properties" element={
+          <ProtectedRoute>
+            <PlaceholderPage title="Properties Management" />
+          </ProtectedRoute>
+        } />
+        <Route path="users" element={
+          <ProtectedRoute>
+            <PlaceholderPage title="Users Management" />
+          </ProtectedRoute>
+        } />
+        <Route path="reports" element={
+          <ProtectedRoute>
+            <PlaceholderPage title="Reports" />
+          </ProtectedRoute>
+        } />
+        <Route path="admin/management" element={
+          <ProtectedRoute>
+            <PlaceholderPage title="User & Property Admin" />
+          </ProtectedRoute>
+        } />
+        <Route path="admin/config" element={
+          <ProtectedRoute>
+            <PlaceholderPage title="App Configuration" />
+          </ProtectedRoute>
+        } />
+        <Route path="admin/promotions" element={
+          <ProtectedRoute>
+            <PlaceholderPage title="Promotions Management" />
+          </ProtectedRoute>
+        } />
+        <Route path="admin/featured-villas" element={
+          <ProtectedRoute>
+            <PlaceholderPage title="Featured Villas Management" />
+          </ProtectedRoute>
+        } />
+        
+        {/* Protected Booking routes */}
+        <Route path="bookings/new" element={
+          <ProtectedRoute>
+            <PlaceholderPage title="New Booking" />
+          </ProtectedRoute>
+        } />
         
         {/* Catch all route */}
         <Route path="*" element={<Navigate to="/" />} />

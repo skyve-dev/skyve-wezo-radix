@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useLocation} from 'react-router-dom';
 import {motion} from 'framer-motion';
 import {useAuth} from '../../contexts/AuthContext';
 
@@ -9,6 +9,7 @@ const LoginPage: React.FC = () => {
   const [error, setError] = useState('');
   const { login } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,8 +17,10 @@ const LoginPage: React.FC = () => {
     
     try {
       await login(email, password);
-      navigate('/');
-    } catch (err) {
+      // Check if user was redirected from a specific page
+      const from = location.state?.from || '/';
+      navigate(from);
+    } catch {
       setError('Invalid email or password');
     }
   };
