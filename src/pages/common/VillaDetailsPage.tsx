@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import {motion} from 'framer-motion';
-import {mockVillas} from '../../data/mockData';
+import {mockVillas} from '../../data/data';
 import {useAuth} from '../../contexts/AuthContext';
 import {colors} from '../../utils/colors';
 import BookingCalendar from '../../components/common/BookingCalendar';

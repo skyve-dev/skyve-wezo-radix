@@ -3,7 +3,8 @@ import {motion} from 'framer-motion';
 import {useNavigate} from 'react-router-dom';
 import {CalendarIcon, HomeIcon, PersonIcon, PlusIcon} from '@radix-ui/react-icons';
 import {useAuth} from '../../contexts/AuthContext';
-import {mockBookings, mockVillas} from '../../data/mockData';
+import {mockBookings} from '../../data/mockData';
+import {mockVillas} from "../../data/data.ts";
 import {colors} from '../../utils/colors';
 
 const HomeownerDashboard: React.FC = () => {

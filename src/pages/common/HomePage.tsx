@@ -1,7 +1,8 @@
 import React from 'react';
 import {motion} from 'framer-motion';
 import {useNavigate} from 'react-router-dom';
-import {mockPromotion, mockVillas} from '../../data/mockData';
+import {mockPromotion} from '../../data/mockData';
+import {mockVillas} from '../../data/data';
 import type {Villa} from '../../types';
 import {colors} from '../../utils/colors';
 

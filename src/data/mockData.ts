@@ -1,6 +1,6 @@
 import type {Booking, Notification, Promotion, Villa} from '../types';
 
-export const mockVillas: Villa[] = [
+export const _mockVillas: Villa[] = [
   {
     id: '1',
     name: 'Sunset Beach Villa',

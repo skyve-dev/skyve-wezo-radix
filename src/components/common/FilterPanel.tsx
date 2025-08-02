@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Cross2Icon, TrashIcon, CheckIcon } from '@radix-ui/react-icons';
 import { colors } from '../../utils/colors';
 import type { VillaFilters } from '../../types/filters';
-import { mockVillas } from '../../data/mockData';
+import { mockVillas } from '../../data/data';
 
 interface FilterPanelProps {
   isOpen: boolean;

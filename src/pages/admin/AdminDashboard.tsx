@@ -2,7 +2,8 @@ import React from 'react';
 import {motion} from 'framer-motion';
 import {useNavigate} from 'react-router-dom';
 import {BarChartIcon, GearIcon, HomeIcon, PersonIcon} from '@radix-ui/react-icons';
-import {mockBookings, mockPromotion, mockVillas} from '../../data/mockData';
+import {mockBookings, mockPromotion} from '../../data/mockData';
+import {mockVillas} from '../../data/data';
 import {unused} from "../../utils/unused.ts";
 import {colors} from '../../utils/colors';
 
