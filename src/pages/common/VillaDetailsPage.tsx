@@ -27,6 +27,48 @@ const VillaDetailsPage: React.FC = () => {
     return categoryNames[category] || category;
   };
 
+  // Helper function to get icon for amenity
+  const getAmenityIcon = (amenity: string): string => {
+    const amenityIcons: { [key: string]: string } = {
+      'Air conditioning': '❄️',
+      'Wi-Fi': '📶',
+      'Linens and towels': '🛏️',
+      'Parking': '🚗',
+      'Heating': '🔥',
+      'Washing machine': '🧺',
+      'Kitchen essentials': '🍳',
+      'Coffee maker': '☕',
+      'Dishwasher': '🧽',
+      'Private pool': '🏊',
+      'Beach access': '🏖️',
+      'BBQ grill': '🔥',
+      'Private terrace': '🌿',
+      'Outdoor seating': '🪑',
+      'Garden': '🌱',
+      'Balcony': '🏡',
+      'Ocean view': '🌊',
+      'Mountain view': '⛰️',
+      'City view': '🏙️',
+      'TV': '📺',
+      'Sound system': '🔊',
+      'Netflix': '📱',
+      'Gaming console': '🎮',
+      'Projector': '📽️',
+      'Spa facilities': '🧖',
+      'Gym access': '💪',
+      'Concierge service': '🛎️',
+      'Private chef': '👨‍🍳',
+      'Butler service': '🤵',
+      'Security': '🔒',
+      'Fire safety': '🚨',
+      'First aid kit': '🩹',
+      'Safe': '🔐',
+      'Smoke detector': '💨',
+      'Carbon monoxide detector': '⚠️'
+    };
+    return amenityIcons[amenity] || '✓';
+  };
+
   if (!villa) {
     return (
       <div style={{ padding: '40px', textAlign: 'center' }}>
@@ -143,39 +185,49 @@ const VillaDetailsPage: React.FC = () => {
     marginBottom: '20px',
   };
 
-  const amenitiesStyle: React.CSSProperties = {
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: '10px',
-    marginBottom: '15px',
-  };
-
-  const amenityTagStyle: React.CSSProperties = {
-    fontSize: '14px',
-    padding: '8px 12px',
-    backgroundColor: '#f3f4f6',
-    color: '#374151',
-    borderRadius: '8px',
-  };
-
   const amenitiesCategoriesStyle: React.CSSProperties = {
-    display: 'grid',
-    gridTemplateColumns: window.innerWidth < 768 ? '1fr' : 'repeat(2, 1fr)',
-    gap: '24px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '32px',
   };
 
   const amenityCategoryStyle: React.CSSProperties = {
-    backgroundColor: 'white',
-    borderRadius: '12px',
-    padding: '20px',
-    border: '1px solid #e5e7eb',
+    marginBottom: '0',
   };
 
   const amenityCategoryTitleStyle: React.CSSProperties = {
-    fontSize: '16px',
+    fontSize: '18px',
     fontWeight: '600',
     color: '#1a1a1a',
-    marginBottom: '12px',
+    marginBottom: '16px',
+  };
+
+  const amenityListStyle: React.CSSProperties = {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '12px',
+  };
+
+  const amenityItemStyle: React.CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '12px',
+    fontSize: '15px',
+    color: '#374151',
+    lineHeight: '1.5',
+  };
+
+  const amenityIconStyle: React.CSSProperties = {
+    fontSize: '18px',
+    width: '20px',
+    flexShrink: 0,
+  };
+
+  const categorySeparatorStyle: React.CSSProperties = {
+    height: '1px',
+    backgroundColor: '#f3f4f6',
+    border: 'none',
+    margin: '0',
   };
 
   const buttonStyle: React.CSSProperties = {
@@ -295,36 +347,38 @@ const VillaDetailsPage: React.FC = () => {
     color: '#1a1a1a',
   };
 
-  const houseRulesGridStyle: React.CSSProperties = {
-    display: 'grid',
-    gridTemplateColumns: window.innerWidth < 768 ? '1fr' : 'repeat(2, 1fr)',
-    gap: '16px',
+  const houseRulesListStyle: React.CSSProperties = {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '20px',
   };
 
-  const houseRuleCardStyle: React.CSSProperties = {
+  const houseRuleItemStyle: React.CSSProperties = {
     display: 'flex',
-    gap: '16px',
-    padding: '20px',
-    backgroundColor: 'white',
-    borderRadius: '12px',
-    border: '1px solid #e5e7eb',
     alignItems: 'flex-start',
+    gap: '16px',
   };
 
   const houseRuleIconStyle: React.CSSProperties = {
-    fontSize: '28px',
+    fontSize: '20px',
+    width: '24px',
     flexShrink: 0,
+    marginTop: '2px',
+  };
+
+  const houseRuleContentStyle: React.CSSProperties = {
+    flex: 1,
   };
 
   const houseRuleLabelStyle: React.CSSProperties = {
-    fontSize: '14px',
+    fontSize: '16px',
     fontWeight: '600',
-    color: '#374151',
+    color: '#1a1a1a',
     marginBottom: '4px',
   };
 
   const houseRuleValueStyle: React.CSSProperties = {
-    fontSize: '14px',
+    fontSize: '15px',
     color: '#6b7280',
     lineHeight: '1.5',
   };
@@ -366,22 +420,30 @@ const VillaDetailsPage: React.FC = () => {
         </div>
 
         {/* Amenities Section */}
-        <div style={{ marginBottom: '30px' }}>
+        <div style={{ marginBottom: '40px' }}>
           <h3 style={sectionTitleStyle}>Amenities</h3>
           <div style={amenitiesCategoriesStyle}>
-            {Object.entries(villa.amenities).map(([category, items]) => (
+            {Object.entries(villa.amenities).map(([category, items], categoryIndex) => (
               items && items.length > 0 && (
-                <div key={category} style={amenityCategoryStyle}>
-                  <h4 style={amenityCategoryTitleStyle}>
-                    {getCategoryDisplayName(category)}
-                  </h4>
-                  <div style={amenitiesStyle}>
-                    {items.map((amenity: string, index: number) => (
-                      <span key={index} style={amenityTagStyle}>
-                        {amenity}
-                      </span>
-                    ))}
+                <div key={category}>
+                  <div style={amenityCategoryStyle}>
+                    <h4 style={amenityCategoryTitleStyle}>
+                      {getCategoryDisplayName(category)}
+                    </h4>
+                    <div style={amenityListStyle}>
+                      {items.map((amenity: string, index: number) => (
+                        <div key={index} style={amenityItemStyle}>
+                          <span style={amenityIconStyle}>
+                            {getAmenityIcon(amenity)}
+                          </span>
+                          <span>{amenity}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
+                  {categoryIndex < Object.entries(villa.amenities).filter(([, items]) => items && items.length > 0).length - 1 && (
+                    <hr style={categorySeparatorStyle} />
+                  )}
                 </div>
               )
             ))}
@@ -411,23 +473,22 @@ const VillaDetailsPage: React.FC = () => {
         {/* House Rules Section */}
         <div style={houseRulesContainerStyle}>
           <h3 style={houseRulesTitleStyle}>House Rules</h3>
-          <div style={houseRulesGridStyle}>
+          <div style={houseRulesListStyle}>
             {/* Check-in/Check-out Times */}
-            <div style={houseRuleCardStyle}>
+            <div style={houseRuleItemStyle}>
               <div style={houseRuleIconStyle}>🕐</div>
-              <div>
+              <div style={houseRuleContentStyle}>
                 <div style={houseRuleLabelStyle}>Check-in / Check-out</div>
                 <div style={houseRuleValueStyle}>
-                  Check-in: {villa.houseRules.checkInTime}<br />
-                  Check-out: {villa.houseRules.checkOutTime}
+                  Check-in: {villa.houseRules.checkInTime} • Check-out: {villa.houseRules.checkOutTime}
                 </div>
               </div>
             </div>
 
             {/* Maximum Occupancy */}
-            <div style={houseRuleCardStyle}>
+            <div style={houseRuleItemStyle}>
               <div style={houseRuleIconStyle}>👥</div>
-              <div>
+              <div style={houseRuleContentStyle}>
                 <div style={houseRuleLabelStyle}>Maximum Occupancy</div>
                 <div style={houseRuleValueStyle}>
                   {villa.maxVisitors} guests maximum
@@ -436,9 +497,9 @@ const VillaDetailsPage: React.FC = () => {
             </div>
 
             {/* Pets Policy */}
-            <div style={houseRuleCardStyle}>
+            <div style={houseRuleItemStyle}>
               <div style={houseRuleIconStyle}>🐾</div>
-              <div>
+              <div style={houseRuleContentStyle}>
                 <div style={houseRuleLabelStyle}>Pets Policy</div>
                 <div style={houseRuleValueStyle}>
                   {villa.houseRules.petsAllowed ? 'Pets are welcome' : 'No pets allowed'}
@@ -447,9 +508,9 @@ const VillaDetailsPage: React.FC = () => {
             </div>
 
             {/* Parties/Events */}
-            <div style={houseRuleCardStyle}>
+            <div style={houseRuleItemStyle}>
               <div style={houseRuleIconStyle}>🎉</div>
-              <div>
+              <div style={houseRuleContentStyle}>
                 <div style={houseRuleLabelStyle}>Parties & Events</div>
                 <div style={houseRuleValueStyle}>
                   {villa.houseRules.partiesAllowed ? 'Events allowed (with prior approval)' : 'No parties or events'}
@@ -458,9 +519,9 @@ const VillaDetailsPage: React.FC = () => {
             </div>
 
             {/* Photography */}
-            <div style={houseRuleCardStyle}>
+            <div style={houseRuleItemStyle}>
               <div style={houseRuleIconStyle}>📷</div>
-              <div>
+              <div style={houseRuleContentStyle}>
                 <div style={houseRuleLabelStyle}>Commercial Photography</div>
                 <div style={houseRuleValueStyle}>
                   {villa.houseRules.commercialPhotographyAllowed ? 'Allowed with permission' : 'Not permitted'}
@@ -469,9 +530,9 @@ const VillaDetailsPage: React.FC = () => {
             </div>
 
             {/* Smoking */}
-            <div style={houseRuleCardStyle}>
+            <div style={houseRuleItemStyle}>
               <div style={houseRuleIconStyle}>🚭</div>
-              <div>
+              <div style={houseRuleContentStyle}>
                 <div style={houseRuleLabelStyle}>Smoking Policy</div>
                 <div style={houseRuleValueStyle}>
                   {villa.houseRules.smokingAllowed ? 'Smoking allowed in designated areas' : 'No smoking indoors'}
@@ -481,9 +542,9 @@ const VillaDetailsPage: React.FC = () => {
 
             {/* Quiet Hours */}
             {villa.houseRules.quietHours && (
-              <div style={houseRuleCardStyle}>
+              <div style={houseRuleItemStyle}>
                 <div style={houseRuleIconStyle}>🤫</div>
-                <div>
+                <div style={houseRuleContentStyle}>
                   <div style={houseRuleLabelStyle}>Quiet Hours</div>
                   <div style={houseRuleValueStyle}>
                     {villa.houseRules.quietHours}
@@ -494,9 +555,9 @@ const VillaDetailsPage: React.FC = () => {
 
             {/* Pool Rules */}
             {villa.houseRules.poolRules && (
-              <div style={houseRuleCardStyle}>
+              <div style={houseRuleItemStyle}>
                 <div style={houseRuleIconStyle}>🏊</div>
-                <div>
+                <div style={houseRuleContentStyle}>
                   <div style={houseRuleLabelStyle}>Pool Rules</div>
                   <div style={houseRuleValueStyle}>
                     {villa.houseRules.poolRules}
@@ -507,9 +568,9 @@ const VillaDetailsPage: React.FC = () => {
 
             {/* Cleaning Fee */}
             {villa.houseRules.cleaningFee && (
-              <div style={houseRuleCardStyle}>
+              <div style={houseRuleItemStyle}>
                 <div style={houseRuleIconStyle}>🧹</div>
-                <div>
+                <div style={houseRuleContentStyle}>
                   <div style={houseRuleLabelStyle}>Cleaning Fee</div>
                   <div style={houseRuleValueStyle}>
                     {villa.houseRules.cleaningFee}
