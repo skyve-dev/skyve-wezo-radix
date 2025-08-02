@@ -15,6 +15,18 @@ const VillaDetailsPage: React.FC = () => {
   
   const villa = mockVillas.find(v => v.id === id);
 
+  // Helper function to get display name for amenity categories
+  const getCategoryDisplayName = (category: string): string => {
+    const categoryNames: { [key: string]: string } = {
+      generalComfort: 'General Comfort',
+      outdoorRecreation: 'Outdoor & Recreation',
+      kitchenDining: 'Kitchen & Dining',
+      technologyEntertainment: 'Technology & Entertainment',
+      specialFeatures: 'Special Features'
+    };
+    return categoryNames[category] || category;
+  };
+
   if (!villa) {
     return (
       <div style={{ padding: '40px', textAlign: 'center' }}>
@@ -135,7 +147,7 @@ const VillaDetailsPage: React.FC = () => {
     display: 'flex',
     flexWrap: 'wrap',
     gap: '10px',
-    marginBottom: '30px',
+    marginBottom: '15px',
   };
 
   const amenityTagStyle: React.CSSProperties = {
@@ -144,6 +156,26 @@ const VillaDetailsPage: React.FC = () => {
     backgroundColor: '#f3f4f6',
     color: '#374151',
     borderRadius: '8px',
+  };
+
+  const amenitiesCategoriesStyle: React.CSSProperties = {
+    display: 'grid',
+    gridTemplateColumns: window.innerWidth < 768 ? '1fr' : 'repeat(2, 1fr)',
+    gap: '24px',
+  };
+
+  const amenityCategoryStyle: React.CSSProperties = {
+    backgroundColor: 'white',
+    borderRadius: '12px',
+    padding: '20px',
+    border: '1px solid #e5e7eb',
+  };
+
+  const amenityCategoryTitleStyle: React.CSSProperties = {
+    fontSize: '16px',
+    fontWeight: '600',
+    color: '#1a1a1a',
+    marginBottom: '12px',
   };
 
   const buttonStyle: React.CSSProperties = {
@@ -333,12 +365,27 @@ const VillaDetailsPage: React.FC = () => {
           Weekday: AED {villa.pricing.weekday}/night • Weekend: AED {villa.pricing.weekend}/night
         </div>
 
-        <div style={amenitiesStyle}>
-          {villa.amenities.map((amenity, index) => (
-            <span key={index} style={amenityTagStyle}>
-              {amenity}
-            </span>
-          ))}
+        {/* Amenities Section */}
+        <div style={{ marginBottom: '30px' }}>
+          <h3 style={sectionTitleStyle}>Amenities</h3>
+          <div style={amenitiesCategoriesStyle}>
+            {Object.entries(villa.amenities).map(([category, items]) => (
+              items && items.length > 0 && (
+                <div key={category} style={amenityCategoryStyle}>
+                  <h4 style={amenityCategoryTitleStyle}>
+                    {getCategoryDisplayName(category)}
+                  </h4>
+                  <div style={amenitiesStyle}>
+                    {items.map((amenity: string, index: number) => (
+                      <span key={index} style={amenityTagStyle}>
+                        {amenity}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )
+            ))}
+          </div>
         </div>
 
         {/* Property Details */}

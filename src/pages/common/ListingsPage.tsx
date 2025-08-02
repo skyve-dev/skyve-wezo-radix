@@ -13,6 +13,17 @@ const ListingsPage: React.FC = () => {
   const [locationFilter, setLocationFilter] = useState('');
   const [maxPriceFilter, setMaxPriceFilter] = useState('');
 
+  // Helper function to get a flat array of amenities for display in villa cards
+  const getFlatAmenities = (amenities: Villa['amenities']): string[] => {
+    const flatAmenities: string[] = [];
+    Object.values(amenities).forEach(categoryItems => {
+      if (categoryItems) {
+        flatAmenities.push(...categoryItems);
+      }
+    });
+    return flatAmenities;
+  };
+
   const handleSearch = () => {
     let filtered = mockVillas;
 
@@ -242,16 +253,23 @@ const ListingsPage: React.FC = () => {
               <p style={descriptionStyle}>{villa.description}</p>
               
               <div style={amenitiesStyle}>
-                {villa.amenities.slice(0, 4).map((amenity, index) => (
-                  <span key={index} style={amenityTagStyle}>
-                    {amenity}
-                  </span>
-                ))}
-                {villa.amenities.length > 4 && (
-                  <span style={amenityTagStyle}>
-                    +{villa.amenities.length - 4} more
-                  </span>
-                )}
+                {(() => {
+                  const flatAmenities = getFlatAmenities(villa.amenities);
+                  return (
+                    <>
+                      {flatAmenities.slice(0, 4).map((amenity, index) => (
+                        <span key={index} style={amenityTagStyle}>
+                          {amenity}
+                        </span>
+                      ))}
+                      {flatAmenities.length > 4 && (
+                        <span style={amenityTagStyle}>
+                          +{flatAmenities.length - 4} more
+                        </span>
+                      )}
+                    </>
+                  );
+                })()}
               </div>
 
               <div style={priceInfoStyle}>

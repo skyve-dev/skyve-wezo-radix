@@ -11,7 +11,13 @@ export const mockVillas: Villa[] = [
       'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800',
     ],
     location: 'Al Hamra, Ras Al Khaimah',
-    amenities: ['Swimming Pool', 'Beach Access', 'BBQ Area', 'WiFi', 'Parking'],
+    amenities: {
+      generalComfort: ['Air conditioning', 'Wi-Fi', 'Linens and towels', 'Parking'],
+      outdoorRecreation: ['Private pool', 'Beach access', 'BBQ grill', 'Private terrace'],
+      kitchenDining: ['Fully equipped kitchen', 'Refrigerator', 'Coffee maker', 'Dining table'],
+      technologyEntertainment: ['Smart TV', 'Sound system', 'Netflix'],
+      specialFeatures: ['Ocean view', 'Sunset terrace', 'Beach umbrellas']
+    },
     maxVisitors: 10,
     numberOfBedrooms: 4,
     numberOfBeds: 6,
@@ -62,7 +68,13 @@ export const mockVillas: Villa[] = [
       'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800',
     ],
     location: 'Jebel Jais, Ras Al Khaimah',
-    amenities: ['Mountain View', 'Garden', 'BBQ Area', 'WiFi', 'Parking'],
+    amenities: {
+      generalComfort: ['Air conditioning', 'Wi-Fi', 'Heating', 'Linens and towels', 'Parking'],
+      outdoorRecreation: ['Private garden', 'BBQ grill', 'Mountain hiking trails', 'Outdoor seating'],
+      kitchenDining: ['Fully equipped kitchen', 'Refrigerator', 'Coffee maker', 'Microwave'],
+      technologyEntertainment: ['Smart TV', 'Board games', 'Book collection'],
+      specialFeatures: ['Mountain view', 'Fireplace', 'Stargazing deck']
+    },
     maxVisitors: 8,
     numberOfBedrooms: 3,
     numberOfBeds: 5,
@@ -95,7 +107,13 @@ export const mockVillas: Villa[] = [
       'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800',
     ],
     location: 'Al Wadi, Ras Al Khaimah',
-    amenities: ['Desert View', 'Traditional Design', 'Pool', 'WiFi', 'Parking'],
+    amenities: {
+      generalComfort: ['Air conditioning', 'Wi-Fi', 'Linens and towels', 'Parking', 'Traditional Arabic décor'],
+      outdoorRecreation: ['Private pool', 'Desert view terrace', 'BBQ grill', 'Sand dune access'],
+      kitchenDining: ['Traditional Arabic kitchen', 'Refrigerator', 'Tea and coffee station', 'Majlis dining area'],
+      technologyEntertainment: ['Smart TV', 'Traditional music system', 'Arabic entertainment'],
+      specialFeatures: ['Majlis', 'Private courtyard', 'Desert sunset views', 'Traditional architecture']
+    },
     maxVisitors: 12,
     numberOfBedrooms: 5,
     numberOfBeds: 8,
@@ -129,7 +147,13 @@ export const mockVillas: Villa[] = [
       'https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800',
     ],
     location: 'Al Marjan Island, Ras Al Khaimah',
-    amenities: ['Marina View', 'Yacht Access', 'Pool', 'Gym', 'WiFi'],
+    amenities: {
+      generalComfort: ['Air conditioning', 'Wi-Fi', 'Linens and towels', 'Valet parking', 'Concierge service'],
+      outdoorRecreation: ['Infinity pool', 'Private yacht berth', 'Marina access', 'Waterfront terrace'],
+      kitchenDining: ['Gourmet kitchen', 'Wine refrigerator', 'Espresso machine', 'Formal dining room'],
+      technologyEntertainment: ['Premium smart TV', 'Home theater system', 'Streaming services', 'High-speed internet'],
+      specialFeatures: ['Marina view', 'Yacht access', 'Private gym', 'Luxury finishes', 'Butler service']
+    },
     maxVisitors: 15,
     numberOfBedrooms: 6,
     numberOfBeds: 10,

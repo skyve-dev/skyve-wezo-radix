@@ -27,6 +27,14 @@ export interface HouseRules {
   cleaningFee?: string;
 }
 
+export interface VillaAmenities {
+  generalComfort?: string[];
+  outdoorRecreation?: string[];
+  kitchenDining?: string[];
+  technologyEntertainment?: string[];
+  specialFeatures?: string[];
+}
+
 export interface Villa {
   id: string;
   name: string;
@@ -34,7 +42,7 @@ export interface Villa {
   description: string;
   images: string[];
   location: string;
-  amenities: string[];
+  amenities: VillaAmenities;
   maxVisitors: number;
   numberOfBedrooms: number;
   numberOfBeds: number;

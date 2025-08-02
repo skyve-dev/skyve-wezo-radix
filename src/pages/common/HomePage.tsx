@@ -121,40 +121,55 @@ const HomePage: React.FC = () => {
     color: '#4B5563',
   };
 
-  const VillaCard: React.FC<{ villa: Villa }> = ({ villa }) => (
-    <motion.div
-      style={villaCardStyle}
-      whileHover={{ 
-        transform: 'translateY(-4px)',
-        boxShadow: '0 4px 16px rgba(0,0,0,0.15)'
-      }}
-      whileTap={{ scale: 0.98 }}
-      onClick={() => navigate(`/villas/${villa.id}`)}
-    >
-      <img
-        src={villa.images[0]}
-        alt={villa.name}
-        style={villaImageStyle}
-      />
-      <div style={villaContentStyle}>
-        <h3 style={villaNameStyle}>{villa.name}</h3>
-        <p style={villaLocationStyle}>{villa.location}</p>
-        <p style={villaPriceStyle}>
-          AED {villa.pricing.weekday}/day
-        </p>
-        <div style={amenitiesStyle}>
-          {villa.amenities.slice(0, 3).map((amenity, index) => (
-            <span key={index} style={amenityTagStyle}>
-              {amenity}
-            </span>
-          ))}
-          {villa.amenities.length > 3 && (
-            <span style={amenityTagStyle}>+{villa.amenities.length - 3}</span>
-          )}
+  // Helper function to get a flat array of amenities for display
+  const getFlatAmenities = (amenities: Villa['amenities']): string[] => {
+    const flatAmenities: string[] = [];
+    Object.values(amenities).forEach(categoryItems => {
+      if (categoryItems) {
+        flatAmenities.push(...categoryItems);
+      }
+    });
+    return flatAmenities;
+  };
+
+  const VillaCard: React.FC<{ villa: Villa }> = ({ villa }) => {
+    const flatAmenities = getFlatAmenities(villa.amenities);
+    
+    return (
+      <motion.div
+        style={villaCardStyle}
+        whileHover={{ 
+          transform: 'translateY(-4px)',
+          boxShadow: '0 4px 16px rgba(0,0,0,0.15)'
+        }}
+        whileTap={{ scale: 0.98 }}
+        onClick={() => navigate(`/villas/${villa.id}`)}
+      >
+        <img
+          src={villa.images[0]}
+          alt={villa.name}
+          style={villaImageStyle}
+        />
+        <div style={villaContentStyle}>
+          <h3 style={villaNameStyle}>{villa.name}</h3>
+          <p style={villaLocationStyle}>{villa.location}</p>
+          <p style={villaPriceStyle}>
+            AED {villa.pricing.weekday}/day
+          </p>
+          <div style={amenitiesStyle}>
+            {flatAmenities.slice(0, 3).map((amenity: string, index: number) => (
+              <span key={index} style={amenityTagStyle}>
+                {amenity}
+              </span>
+            ))}
+            {flatAmenities.length > 3 && (
+              <span style={amenityTagStyle}>+{flatAmenities.length - 3}</span>
+            )}
+          </div>
         </div>
-      </div>
-    </motion.div>
-  );
+      </motion.div>
+    );
+  };
 
   return (
     <motion.div
