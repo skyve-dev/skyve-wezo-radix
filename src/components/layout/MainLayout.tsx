@@ -7,7 +7,6 @@ import {colors} from "../../utils/colors.ts";
 import {useScrollDirection} from '../../hooks/useScrollDirection';
 import '../../styles/layout.css';
 import {unused} from "../../utils/unused.ts";
-
 const MainLayout: React.FC = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const { isHeaderVisible, isBottomNavVisible } = useScrollDirection();
@@ -22,8 +21,8 @@ const MainLayout: React.FC = () => {
     top: 0,
     left: 0,
     right: 0,
-    backgroundColor: 'white',
-    borderBottom: '1px solid #e5e7eb',
+    backgroundColor: colors.primary,
+    borderBottom: '1px solid rgba(0,0,0,0.2)',
     padding: '16px',
     display: 'flex',
     alignItems: 'center',
@@ -34,6 +33,7 @@ const MainLayout: React.FC = () => {
     willChange: 'transform',
     height: '60px', // Fixed height for consistent spacing
     boxSizing: 'border-box', // Include border in height calculation
+
   };
 
   const menuButtonStyle: React.CSSProperties = {
@@ -49,7 +49,7 @@ const MainLayout: React.FC = () => {
   const logoStyle: React.CSSProperties = {
     fontSize: '24px',
     fontWeight: 'bold',
-    color: colors.primary,
+    color: colors.white,
   };
 
   const contentStyle: React.CSSProperties = {
@@ -67,14 +67,16 @@ const MainLayout: React.FC = () => {
   return (
     <div style={containerStyle} className="main-layout-container">
       <header style={headerStyle} className="main-layout-header">
-        <div style={{ width: '40px' }} /> {/* Spacer for balance */}
-        <div style={logoStyle}>Wezo</div>
+        <div style={{ width: '40px',display:"flex",alignItems:'center' }} >
+          <svg viewBox="0 0 40.917 30.807"><path fill="#fff" d="M.427 6.768S1.805.645 7.01 1.18c5.664.765 3.368 11.097 3.368 11.097S16.882-.732 23.617.032c6.429 1.99 3.75 10.18 3.75 10.18S35.863-1.651 39.995 1.64c2.985 2.296-1.99 7.424-4.898 12.781-5.357 11.097-6.123 13.24-11.71 12.475-5.164-1.811-4.285-10.485-4.285-10.485s-4.67 14.771-10.868 14.388C-2.184 31.027.12 8.91.427 6.768z"/></svg>
+        </div> {/* Spacer for balance */}
+        <div style={logoStyle}></div>
         <button
             style={menuButtonStyle}
             onClick={() => setIsDrawerOpen(true)}
             aria-label="Open menu"
         >
-          <HamburgerMenuIcon style={{ width: '24px', height: '24px' }} />
+          <HamburgerMenuIcon style={{ width: '24px', height: '24px' ,color:colors.white}} />
         </button>
       </header>
       
