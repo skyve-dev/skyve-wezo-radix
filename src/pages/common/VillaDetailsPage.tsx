@@ -5,6 +5,7 @@ import { mockVillas } from '../../data/mockData';
 import { useAuth } from '../../contexts/AuthContext';
 import { colors } from '../../utils/colors';
 import BookingCalendar from '../../components/common/BookingCalendar';
+import VillaImageGallery from '../../components/common/VillaImageGallery';
 
 const VillaDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -150,13 +151,6 @@ const VillaDetailsPage: React.FC = () => {
     margin: '0 auto',
   };
 
-  const imageStyle: React.CSSProperties = {
-    width: '100%',
-    height: '400px',
-    objectFit: 'cover',
-    borderRadius: '12px',
-    marginBottom: '30px',
-  };
 
   const titleStyle: React.CSSProperties = {
     fontSize: '32px',
@@ -397,14 +391,13 @@ const VillaDetailsPage: React.FC = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <motion.img
-        src={villa.images[0]}
-        alt={villa.name}
-        style={imageStyle}
+      <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.1, duration: 0.5 }}
-      />
+      >
+        <VillaImageGallery images={villa.images} villaName={villa.name} />
+      </motion.div>
 
       <motion.div
         initial={{ y: 20, opacity: 0 }}
