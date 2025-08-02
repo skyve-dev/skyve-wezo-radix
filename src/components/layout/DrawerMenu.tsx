@@ -78,6 +78,14 @@ const DrawerMenu: React.FC<DrawerMenuProps> = ({isOpen, onClose}) => {
         // Authenticated user menu items
         const commonMenuItems: MenuItem[] = [
             {
+                label: 'Villa Listings',
+                icon: <MagnifyingGlassIcon/>,
+                onClick: () => {
+                    navigate('/listings');
+                    onClose();
+                },
+            },
+            {
                 label: 'User Profile',
                 icon: <PersonIcon/>,
                 onClick: () => {
