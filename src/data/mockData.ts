@@ -13,6 +13,9 @@ export const mockVillas: Villa[] = [
     location: 'Al Hamra, Ras Al Khaimah',
     amenities: ['Swimming Pool', 'Beach Access', 'BBQ Area', 'WiFi', 'Parking'],
     maxVisitors: 10,
+    numberOfBedrooms: 4,
+    numberOfBeds: 6,
+    numberOfBathrooms: 3,
     pricing: {
       weekday: 1500,
       weekend: 2000,
@@ -50,6 +53,9 @@ export const mockVillas: Villa[] = [
     location: 'Jebel Jais, Ras Al Khaimah',
     amenities: ['Mountain View', 'Garden', 'BBQ Area', 'WiFi', 'Parking'],
     maxVisitors: 8,
+    numberOfBedrooms: 3,
+    numberOfBeds: 5,
+    numberOfBathrooms: 2,
     pricing: {
       weekday: 1200,
       weekend: 1600,
@@ -70,6 +76,9 @@ export const mockVillas: Villa[] = [
     location: 'Al Wadi, Ras Al Khaimah',
     amenities: ['Desert View', 'Traditional Design', 'Pool', 'WiFi', 'Parking'],
     maxVisitors: 12,
+    numberOfBedrooms: 5,
+    numberOfBeds: 8,
+    numberOfBathrooms: 4,
     pricing: {
       weekday: 1800,
       weekend: 2400,
@@ -90,6 +99,9 @@ export const mockVillas: Villa[] = [
     location: 'Al Marjan Island, Ras Al Khaimah',
     amenities: ['Marina View', 'Yacht Access', 'Pool', 'Gym', 'WiFi'],
     maxVisitors: 15,
+    numberOfBedrooms: 6,
+    numberOfBeds: 10,
+    numberOfBathrooms: 5,
     pricing: {
       weekday: 2500,
       weekend: 3500,

@@ -259,7 +259,7 @@ const ListingsPage: React.FC = () => {
                   From AED {villa.pricing.weekday}/night
                 </div>
                 <div style={capacityStyle}>
-                  Up to {villa.maxVisitors} guests
+                  {villa.numberOfBedrooms} Bed • {villa.numberOfBathrooms} Bath • Up to {villa.maxVisitors} guests
                 </div>
               </div>
 

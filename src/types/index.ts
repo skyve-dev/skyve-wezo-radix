@@ -24,6 +24,9 @@ export interface Villa {
   location: string;
   amenities: string[];
   maxVisitors: number;
+  numberOfBedrooms: number;
+  numberOfBeds: number;
+  numberOfBathrooms: number;
   pricing: {
     weekday: number;
     weekend: number;

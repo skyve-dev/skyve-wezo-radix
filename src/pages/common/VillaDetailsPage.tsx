@@ -226,6 +226,32 @@ const VillaDetailsPage: React.FC = () => {
     color: '#1a1a1a',
   };
 
+  const propertyDetailsStyle: React.CSSProperties = {
+    display: 'grid',
+    gridTemplateColumns: window.innerWidth < 640 ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)',
+    gap: '20px',
+    marginBottom: '30px',
+    padding: '24px',
+    backgroundColor: '#f9fafb',
+    borderRadius: '12px',
+  };
+
+  const propertyDetailItemStyle: React.CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+  };
+
+  const propertyDetailIconStyle: React.CSSProperties = {
+    fontSize: '24px',
+  };
+
+  const propertyDetailTextStyle: React.CSSProperties = {
+    fontSize: '16px',
+    fontWeight: '500',
+    color: '#374151',
+  };
+
   const nights = selectedStartDate && selectedEndDate
     ? Math.ceil((selectedEndDate.getTime() - selectedStartDate.getTime()) / (1000 * 60 * 60 * 24))
     : 0;
@@ -268,6 +294,26 @@ const VillaDetailsPage: React.FC = () => {
               {amenity}
             </span>
           ))}
+        </div>
+
+        {/* Property Details */}
+        <div style={propertyDetailsStyle}>
+          <div style={propertyDetailItemStyle}>
+            <span style={propertyDetailIconStyle}>🛏️</span>
+            <span style={propertyDetailTextStyle}>{villa.numberOfBedrooms} Bedrooms</span>
+          </div>
+          <div style={propertyDetailItemStyle}>
+            <span style={propertyDetailIconStyle}>🛋️</span>
+            <span style={propertyDetailTextStyle}>{villa.numberOfBeds} Beds</span>
+          </div>
+          <div style={propertyDetailItemStyle}>
+            <span style={propertyDetailIconStyle}>🚿</span>
+            <span style={propertyDetailTextStyle}>{villa.numberOfBathrooms} Bathrooms</span>
+          </div>
+          <div style={propertyDetailItemStyle}>
+            <span style={propertyDetailIconStyle}>👥</span>
+            <span style={propertyDetailTextStyle}>Max {villa.maxVisitors} Guests</span>
+          </div>
         </div>
 
         {/* Two Column Layout */}
