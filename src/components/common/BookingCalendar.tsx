@@ -136,10 +136,10 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({
   const containerStyle: React.CSSProperties = {
     backgroundColor: 'white',
     borderRadius: '12px',
-    padding: '24px',
+    padding: window.innerWidth < 640 ? '16px' : '24px',
     boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
     width: '100%',
-    maxWidth: '400px',
+    boxSizing: 'border-box',
   };
 
   const headerStyle: React.CSSProperties = {
@@ -171,9 +171,9 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({
     background: 'none',
     border: 'none',
     cursor: 'pointer',
-    padding: '4px 8px',
+    padding: window.innerWidth < 640 ? '2px 4px' : '4px 8px',
     borderRadius: '6px',
-    fontSize: '18px',
+    fontSize: window.innerWidth < 640 ? '14px' : '18px',
     fontWeight: '600',
     transition: 'background-color 0.2s',
   };
@@ -181,22 +181,22 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({
   const weekDaysStyle: React.CSSProperties = {
     display: 'grid',
     gridTemplateColumns: 'repeat(7, 1fr)',
-    gap: '4px',
+    gap: window.innerWidth < 640 ? '2px' : '4px',
     marginBottom: '8px',
   };
 
   const weekDayStyle: React.CSSProperties = {
     textAlign: 'center',
-    fontSize: '12px',
+    fontSize: window.innerWidth < 640 ? '10px' : '12px',
     fontWeight: '600',
     color: '#6b7280',
-    padding: '4px',
+    padding: window.innerWidth < 640 ? '2px' : '4px',
   };
 
   const daysGridStyle: React.CSSProperties = {
     display: 'grid',
     gridTemplateColumns: 'repeat(7, 1fr)',
-    gap: '4px',
+    gap: window.innerWidth < 640 ? '2px' : '4px',
   };
 
   const dayStyle = (date: Date): React.CSSProperties => {
@@ -215,7 +215,7 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      borderRadius: '8px',
+      borderRadius: window.innerWidth < 640 ? '4px' : '8px',
       cursor: isUnavailable ? 'not-allowed' : 'pointer',
       backgroundColor: isSelected ? colors.primary : 
                       inRange ? `${colors.primary}20` :
@@ -230,9 +230,9 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({
   };
 
   const dayNumberStyle: React.CSSProperties = {
-    fontSize: '14px',
+    fontSize: window.innerWidth < 640 ? '12px' : '14px',
     fontWeight: '500',
-    marginBottom: '2px',
+    marginBottom: window.innerWidth < 640 ? '0' : '2px',
   };
 
   const priceStyle = (date: Date): React.CSSProperties => {
@@ -241,17 +241,20 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({
     const inRange = isDateInRange(date);
     
     return {
-      fontSize: '10px',
+      fontSize: window.innerWidth < 640 ? '8px' : '10px',
       fontWeight: '400',
       color: isSelected ? 'white' : inRange ? colors.primary : '#6b7280',
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
     };
   };
 
   const monthGridStyle: React.CSSProperties = {
     display: 'grid',
-    gridTemplateColumns: 'repeat(3, 1fr)',
-    gap: '12px',
-    padding: '16px 0',
+    gridTemplateColumns: window.innerWidth < 640 ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)',
+    gap: window.innerWidth < 640 ? '8px' : '12px',
+    padding: window.innerWidth < 640 ? '12px 0' : '16px 0',
   };
 
   const monthButtonStyle = (month: number): React.CSSProperties => {
@@ -260,13 +263,13 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({
                           new Date().getFullYear() === currentDate.getFullYear();
     
     return {
-      padding: '16px',
+      padding: window.innerWidth < 640 ? '12px' : '16px',
       borderRadius: '8px',
       border: 'none',
       cursor: 'pointer',
       backgroundColor: isCurrentMonth ? colors.primary : 'white',
       color: isCurrentMonth ? 'white' : '#1a1a1a',
-      fontSize: '14px',
+      fontSize: window.innerWidth < 640 ? '12px' : '14px',
       fontWeight: '500',
       transition: 'all 0.2s',
       boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
@@ -277,13 +280,13 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({
     const isCurrentYear = year === new Date().getFullYear();
     
     return {
-      padding: '16px',
+      padding: window.innerWidth < 640 ? '12px' : '16px',
       borderRadius: '8px',
       border: 'none',
       cursor: 'pointer',
       backgroundColor: isCurrentYear ? colors.primary : 'white',
       color: isCurrentYear ? 'white' : '#1a1a1a',
-      fontSize: '14px',
+      fontSize: window.innerWidth < 640 ? '12px' : '14px',
       fontWeight: '500',
       transition: 'all 0.2s',
       boxShadow: '0 1px 3px rgba(0,0,0,0.1)',

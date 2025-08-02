@@ -141,7 +141,6 @@ const VillaDetailsPage: React.FC = () => {
     border: 'none',
     borderRadius: '8px',
     cursor: 'pointer',
-    marginRight: '15px',
   };
 
   const secondaryButtonStyle: React.CSSProperties = {
