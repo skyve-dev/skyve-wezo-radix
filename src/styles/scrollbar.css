@@ -1,0 +1,132 @@
+/* Global mobile-like scrollbar styling */
+
+/* Apply to all scrollable elements */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+/* Webkit scrollbar styling for mobile-like experience */
+*::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  border: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+/* Show scrollbar only when scrolling or hovering */
+*:hover::-webkit-scrollbar-thumb {
+  opacity: 1;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Ensure root and body elements can scroll properly */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#root {
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Special handling for main content areas */
+main {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Radix ScrollArea specific styling for consistency */
+[data-radix-scroll-area-viewport] {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+[data-radix-scroll-area-viewport]::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+[data-radix-scroll-area-viewport]::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+[data-radix-scroll-area-viewport]::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+[data-radix-scroll-area-viewport]:hover::-webkit-scrollbar-thumb {
+  opacity: 1;
+}
+
+[data-radix-scroll-area-viewport]::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Radix ScrollArea root styling */
+[data-radix-scroll-area-root] {
+  position: relative;
+  overflow: hidden;
+}
+
+[data-radix-scroll-area-viewport] {
+  height: 100%;
+  width: 100%;
+  border-radius: inherit;
+}
+
+/* Hide Radix's default scrollbar components in favor of native styling */
+[data-radix-scroll-area-scrollbar] {
+  display: none;
+}
+
+/* Ensure scrollbar appears during scroll events */
+.scrolling::-webkit-scrollbar-thumb,
+.scrolling *::-webkit-scrollbar-thumb {
+  opacity: 1 !important;
+}
+
+/* Show scrollbar on document when scrolling */
+html.scrolling::-webkit-scrollbar-thumb,
+body.scrolling::-webkit-scrollbar-thumb {
+  opacity: 1 !important;
+}
+
+/* Additional touch device support */
+@media (pointer: coarse) {
+  *::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Focus states for accessibility */
+*:focus::-webkit-scrollbar-thumb {
+  opacity: 1;
+}

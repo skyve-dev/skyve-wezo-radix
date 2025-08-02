@@ -3,6 +3,7 @@ import {Outlet} from 'react-router-dom';
 import {HamburgerMenuIcon} from '@radix-ui/react-icons';
 import DrawerMenu from './DrawerMenu';
 import BottomTabNavigation from './BottomTabNavigation';
+import {colors} from "../../utils/colors.ts";
 
 const MainLayout: React.FC = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -38,7 +39,7 @@ const MainLayout: React.FC = () => {
   const logoStyle: React.CSSProperties = {
     fontSize: '24px',
     fontWeight: 'bold',
-    color: '#4F46E5',
+    color: colors.primary,
   };
 
   const contentStyle: React.CSSProperties = {
