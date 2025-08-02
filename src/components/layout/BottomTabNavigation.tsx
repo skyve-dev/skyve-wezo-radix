@@ -3,6 +3,7 @@ import {useLocation, useNavigate} from 'react-router-dom';
 import {motion} from 'framer-motion';
 import {BarChartIcon, CalendarIcon, ChatBubbleIcon, DashboardIcon, HomeIcon, PersonIcon, MagnifyingGlassIcon, EnterIcon} from '@radix-ui/react-icons';
 import {useAuth} from '../../contexts/AuthContext';
+import {colors} from '../../utils/colors';
 
 interface TabItem {
   path: string;
@@ -83,7 +84,7 @@ const BottomTabNavigation: React.FC = () => {
     background: 'none',
     cursor: 'pointer',
     transition: 'all 0.2s',
-    color: isActive ? '#4F46E5' : '#9CA3AF',
+    color: isActive ? colors.primary : colors.gray400,
   });
 
   const iconStyle: React.CSSProperties = {

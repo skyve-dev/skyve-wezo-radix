@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import {CalendarIcon, HomeIcon, PersonIcon, PlusIcon} from '@radix-ui/react-icons';
 import {useAuth} from '../../contexts/AuthContext';
 import {mockBookings, mockVillas} from '../../data/mockData';
+import {colors} from '../../utils/colors';
 
 const HomeownerDashboard: React.FC = () => {
   const navigate = useNavigate();
@@ -52,7 +53,7 @@ const HomeownerDashboard: React.FC = () => {
   const statIconStyle: React.CSSProperties = {
     width: '48px',
     height: '48px',
-    backgroundColor: '#EEF2FF',
+    backgroundColor: colors.primaryLight,
     borderRadius: '12px',
     display: 'flex',
     alignItems: 'center',
@@ -92,7 +93,7 @@ const HomeownerDashboard: React.FC = () => {
   const addButtonStyle: React.CSSProperties = {
     fontSize: '14px',
     color: 'white',
-    backgroundColor: '#4F46E5',
+    backgroundColor: colors.primary,
     border: 'none',
     borderRadius: '6px',
     padding: '8px 16px',
@@ -205,7 +206,7 @@ const HomeownerDashboard: React.FC = () => {
           onClick={() => navigate('/my-villas')}
         >
           <div style={statIconStyle}>
-            <HomeIcon style={{ width: '24px', height: '24px', color: '#4F46E5' }} />
+            <HomeIcon style={{ width: '24px', height: '24px', color: colors.primary }} />
           </div>
           <div style={statContentStyle}>
             <p style={statLabelStyle}>My Villas</p>
@@ -220,7 +221,7 @@ const HomeownerDashboard: React.FC = () => {
           onClick={() => navigate('/bookings')}
         >
           <div style={statIconStyle}>
-            <CalendarIcon style={{ width: '24px', height: '24px', color: '#4F46E5' }} />
+            <CalendarIcon style={{ width: '24px', height: '24px', color: colors.primary }} />
           </div>
           <div style={statContentStyle}>
             <p style={statLabelStyle}>Total Bookings</p>
@@ -234,7 +235,7 @@ const HomeownerDashboard: React.FC = () => {
           whileTap={{ scale: 0.98 }}
         >
           <div style={statIconStyle}>
-            <PersonIcon style={{ width: '24px', height: '24px', color: '#4F46E5' }} />
+            <PersonIcon style={{ width: '24px', height: '24px', color: colors.primary }} />
           </div>
           <div style={statContentStyle}>
             <p style={statLabelStyle}>Total Revenue</p>
@@ -248,7 +249,7 @@ const HomeownerDashboard: React.FC = () => {
           whileTap={{ scale: 0.98 }}
         >
           <div style={statIconStyle}>
-            <CalendarIcon style={{ width: '24px', height: '24px', color: '#4F46E5' }} />
+            <CalendarIcon style={{ width: '24px', height: '24px', color: colors.primary }} />
           </div>
           <div style={statContentStyle}>
             <p style={statLabelStyle}>This Month</p>
@@ -263,7 +264,7 @@ const HomeownerDashboard: React.FC = () => {
           <span>My Villas</span>
           <motion.button
             style={addButtonStyle}
-            whileHover={{ backgroundColor: '#4338CA' }}
+            whileHover={{ backgroundColor: colors.primaryHover }}
             whileTap={{ scale: 0.98 }}
             onClick={() => navigate('/villas/add')}
           >
@@ -309,7 +310,7 @@ const HomeownerDashboard: React.FC = () => {
       <section style={sectionStyle}>
         <div style={sectionTitleStyle}>
           <span>Recent Bookings</span>
-          <button style={{ ...addButtonStyle, backgroundColor: 'transparent', color: '#4F46E5' }} onClick={() => navigate('/bookings')}>
+          <button style={{ ...addButtonStyle, backgroundColor: 'transparent', color: colors.primary }} onClick={() => navigate('/bookings')}>
             View All
           </button>
         </div>

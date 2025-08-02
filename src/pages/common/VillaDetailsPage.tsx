@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { mockVillas } from '../../data/mockData';
 import { useAuth } from '../../contexts/AuthContext';
+import { colors } from '../../utils/colors';
 
 const VillaDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -67,7 +68,7 @@ const VillaDetailsPage: React.FC = () => {
   const priceStyle: React.CSSProperties = {
     fontSize: '24px',
     fontWeight: '600',
-    color: '#059669',
+    color: colors.primary,
     marginBottom: '20px',
   };
 
@@ -91,7 +92,7 @@ const VillaDetailsPage: React.FC = () => {
     fontSize: '16px',
     fontWeight: '600',
     color: 'white',
-    backgroundColor: '#059669',
+    backgroundColor: colors.primary,
     border: 'none',
     borderRadius: '8px',
     cursor: 'pointer',
@@ -144,7 +145,7 @@ const VillaDetailsPage: React.FC = () => {
           <motion.button
             style={buttonStyle}
             onClick={handleBookNow}
-            whileHover={{ backgroundColor: '#047857' }}
+            whileHover={{ backgroundColor: colors.primaryHover }}
             whileTap={{ scale: 0.98 }}
           >
             {isAuthenticated ? 'Book Now' : 'Sign In to Book'}

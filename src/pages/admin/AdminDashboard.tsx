@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import {BarChartIcon, GearIcon, HomeIcon, PersonIcon} from '@radix-ui/react-icons';
 import {mockBookings, mockPromotion, mockVillas} from '../../data/mockData';
 import {unused} from "../../utils/unused.ts";
+import {colors} from '../../utils/colors';
 
 const AdminDashboard: React.FC = () => {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ const AdminDashboard: React.FC = () => {
     alignItems: 'center',
     gap: '8px',
     padding: '10px 16px',
-    backgroundColor: '#4F46E5',
+    backgroundColor: colors.primary,
     color: 'white',
     border: 'none',
     borderRadius: '8px',
@@ -70,7 +71,7 @@ const AdminDashboard: React.FC = () => {
   const statIconStyle: React.CSSProperties = {
     width: '48px',
     height: '48px',
-    backgroundColor: '#EEF2FF',
+    backgroundColor: colors.primaryLight,
     borderRadius: '12px',
     display: 'flex',
     alignItems: 'center',
@@ -109,7 +110,7 @@ const AdminDashboard: React.FC = () => {
 
   const actionButtonStyle: React.CSSProperties = {
     fontSize: '14px',
-    color: '#4F46E5',
+    color: colors.primary,
     background: 'none',
     border: 'none',
     cursor: 'pointer',
@@ -177,7 +178,7 @@ const AdminDashboard: React.FC = () => {
     width: '32px',
     height: '32px',
     margin: '0 auto 8px',
-    color: '#4F46E5',
+    color: colors.primary,
   };
 
   const quickActionLabelStyle: React.CSSProperties = {
@@ -197,7 +198,7 @@ const AdminDashboard: React.FC = () => {
         <h1 style={titleStyle}>Admin Dashboard</h1>
         <motion.button
           style={configButtonStyle}
-          whileHover={{ backgroundColor: '#4338CA' }}
+          whileHover={{ backgroundColor: colors.primaryHover }}
           whileTap={{ scale: 0.98 }}
           onClick={() => navigate('/admin/config')}
         >
@@ -215,7 +216,7 @@ const AdminDashboard: React.FC = () => {
           onClick={() => navigate('/properties')}
         >
           <div style={statIconStyle}>
-            <HomeIcon style={{ width: '24px', height: '24px', color: '#4F46E5' }} />
+            <HomeIcon style={{ width: '24px', height: '24px', color: colors.primary }} />
           </div>
           <div style={statContentStyle}>
             <p style={statLabelStyle}>Total Properties</p>
@@ -245,7 +246,7 @@ const AdminDashboard: React.FC = () => {
           onClick={() => navigate('/users')}
         >
           <div style={statIconStyle}>
-            <PersonIcon style={{ width: '24px', height: '24px', color: '#4F46E5' }} />
+            <PersonIcon style={{ width: '24px', height: '24px', color: colors.primary }} />
           </div>
           <div style={statContentStyle}>
             <p style={statLabelStyle}>Total Users</p>
@@ -260,7 +261,7 @@ const AdminDashboard: React.FC = () => {
           onClick={() => navigate('/reports')}
         >
           <div style={statIconStyle}>
-            <BarChartIcon style={{ width: '24px', height: '24px', color: '#4F46E5' }} />
+            <BarChartIcon style={{ width: '24px', height: '24px', color: colors.primary }} />
           </div>
           <div style={statContentStyle}>
             <p style={statLabelStyle}>Total Revenue</p>

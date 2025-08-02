@@ -3,6 +3,7 @@ import {motion} from 'framer-motion';
 import {useNavigate} from 'react-router-dom';
 import {mockPromotion, mockVillas} from '../../data/mockData';
 import type {Villa} from '../../types';
+import {colors} from '../../utils/colors';
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -71,6 +72,7 @@ const HomePage: React.FC = () => {
     borderRadius: '12px',
     overflow: 'hidden',
     boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+    height : '100%',
     cursor: 'pointer',
     transition: 'transform 0.2s, box-shadow 0.2s',
   };
@@ -101,7 +103,7 @@ const HomePage: React.FC = () => {
   const villaPriceStyle: React.CSSProperties = {
     fontSize: '16px',
     fontWeight: '600',
-    color: '#4F46E5',
+    color: colors.primary,
   };
 
   const amenitiesStyle: React.CSSProperties = {
@@ -189,7 +191,7 @@ const HomePage: React.FC = () => {
           {featuredVillas.map((villa, index) => (
             <motion.div
               key={villa.id}
-              initial={{ y: 20, opacity: 0 }}
+              initial={{ y: 20, opacity: 0}}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2 + index * 0.1, duration: 0.5 }}
             >

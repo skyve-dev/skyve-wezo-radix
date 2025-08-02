@@ -3,6 +3,7 @@ import { mockVillas } from '../../data/mockData';
 import type { Villa } from '../../types';
 import { useAuth } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { colors } from '../../utils/colors';
 
 const ListingsPage: React.FC = () => {
   const { isAuthenticated } = useAuth();
@@ -90,7 +91,7 @@ const ListingsPage: React.FC = () => {
 
   const buttonStyle: React.CSSProperties = {
     padding: '10px 20px',
-    backgroundColor: '#3b82f6',
+    backgroundColor: colors.primary,
     color: 'white',
     border: 'none',
     borderRadius: '8px',
@@ -165,7 +166,7 @@ const ListingsPage: React.FC = () => {
   const priceStyle: React.CSSProperties = {
     fontSize: '18px',
     fontWeight: '600',
-    color: '#059669',
+    color: colors.primary,
     marginBottom: '5px',
   };
 
@@ -182,7 +183,7 @@ const ListingsPage: React.FC = () => {
   const primaryButtonStyle: React.CSSProperties = {
     ...buttonStyle,
     flex: 1,
-    backgroundColor: '#059669',
+    backgroundColor: colors.primary,
   };
 
   const secondaryButtonStyle: React.CSSProperties = {

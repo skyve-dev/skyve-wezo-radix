@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import {BellIcon, CalendarIcon, HomeIcon} from '@radix-ui/react-icons';
 import {useAuth} from '../../contexts/AuthContext';
 import {mockBookings, mockVillas} from '../../data/mockData';
+import {colors} from '../../utils/colors';
 
 const TenantDashboard: React.FC = () => {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ const TenantDashboard: React.FC = () => {
   const statIconStyle: React.CSSProperties = {
     width: '48px',
     height: '48px',
-    backgroundColor: '#EEF2FF',
+    backgroundColor: colors.primaryLight,
     borderRadius: '12px',
     display: 'flex',
     alignItems: 'center',
@@ -85,7 +86,7 @@ const TenantDashboard: React.FC = () => {
 
   const viewAllButtonStyle: React.CSSProperties = {
     fontSize: '14px',
-    color: '#4F46E5',
+    color: colors.primary,
     background: 'none',
     border: 'none',
     cursor: 'pointer',
@@ -142,7 +143,7 @@ const TenantDashboard: React.FC = () => {
     width: '32px',
     height: '32px',
     margin: '0 auto 8px',
-    color: '#4F46E5',
+    color: colors.primary,
   };
 
   const quickActionLabelStyle: React.CSSProperties = {
@@ -169,7 +170,7 @@ const TenantDashboard: React.FC = () => {
           onClick={() => navigate('/bookings')}
         >
           <div style={statIconStyle}>
-            <CalendarIcon style={{ width: '24px', height: '24px', color: '#4F46E5' }} />
+            <CalendarIcon style={{ width: '24px', height: '24px', color: colors.primary }} />
           </div>
           <div style={statContentStyle}>
             <p style={statLabelStyle}>Active Bookings</p>
@@ -183,7 +184,7 @@ const TenantDashboard: React.FC = () => {
           whileTap={{ scale: 0.98 }}
         >
           <div style={statIconStyle}>
-            <HomeIcon style={{ width: '24px', height: '24px', color: '#4F46E5' }} />
+            <HomeIcon style={{ width: '24px', height: '24px', color: colors.primary }} />
           </div>
           <div style={statContentStyle}>
             <p style={statLabelStyle}>Total Bookings</p>
@@ -198,7 +199,7 @@ const TenantDashboard: React.FC = () => {
           onClick={() => navigate('/notifications')}
         >
           <div style={statIconStyle}>
-            <BellIcon style={{ width: '24px', height: '24px', color: '#4F46E5' }} />
+            <BellIcon style={{ width: '24px', height: '24px', color: colors.primary }} />
           </div>
           <div style={statContentStyle}>
             <p style={statLabelStyle}>Notifications</p>

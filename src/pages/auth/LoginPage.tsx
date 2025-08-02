@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {useNavigate, useLocation} from 'react-router-dom';
 import {motion} from 'framer-motion';
 import {useAuth} from '../../contexts/AuthContext';
+import {colors} from '../../utils/colors';
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -87,7 +88,7 @@ const LoginPage: React.FC = () => {
     fontSize: '16px',
     fontWeight: '600',
     color: 'white',
-    backgroundColor: '#4F46E5',
+    backgroundColor: colors.primary,
     border: 'none',
     borderRadius: '8px',
     cursor: 'pointer',
@@ -166,7 +167,7 @@ const LoginPage: React.FC = () => {
           <motion.button
             type="submit"
             style={buttonStyle}
-            whileHover={{ backgroundColor: '#4338CA' }}
+            whileHover={{ backgroundColor: colors.primaryHover }}
             whileTap={{ scale: 0.98 }}
           >
             Sign In

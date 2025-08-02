@@ -16,6 +16,7 @@ import {
 } from '@radix-ui/react-icons';
 import {useAuth} from '../../contexts/AuthContext';
 import {useNavigate} from 'react-router-dom';
+import {colors} from '../../utils/colors';
 
 interface DrawerMenuProps {
     isOpen: boolean;
@@ -314,12 +315,12 @@ const DrawerMenu: React.FC<DrawerMenuProps> = ({isOpen, onClose}) => {
                                     </motion.button>
                                 ) : (
                                     <motion.button
-                                        style={{...logoutButtonStyle, color: '#059669'}}
+                                        style={{...logoutButtonStyle, color: colors.primary}}
                                         onClick={handleLogin}
-                                        whileHover={{backgroundColor: '#F0FDF4'}}
+                                        whileHover={{backgroundColor: colors.primaryLight}}
                                         whileTap={{scale: 0.98}}
                                     >
-                                        <EnterIcon style={{...iconStyle, color: '#059669'}}/>
+                                        <EnterIcon style={{...iconStyle, color: colors.primary}}/>
                                         <span>Sign In</span>
                                     </motion.button>
                                 )}
