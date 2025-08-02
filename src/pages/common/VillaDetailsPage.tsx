@@ -244,21 +244,26 @@ const VillaDetailsPage: React.FC = () => {
     };
 
     const twoColumnLayoutStyle: React.CSSProperties = {
-        display: 'grid',
-        gridTemplateColumns: window.innerWidth > 768 ? '1fr 1fr' : '1fr',
+        display: 'flex',
+        flexWrap : 'wrap',
         gap: '40px',
         marginTop: '40px',
+        justifyContent : 'space-evenly',
     };
 
     const leftColumnStyle: React.CSSProperties = {
         display: 'flex',
         flexDirection: 'column',
+        width : '100%',
+        maxWidth : '450px',
     };
 
     const rightColumnStyle: React.CSSProperties = {
         display: 'flex',
         flexDirection: 'column',
         gap: '20px',
+        flexGrow : 1,
+        minWidth : '300px'
     };
 
     const bookingSummaryStyle: React.CSSProperties = {
@@ -346,7 +351,8 @@ const VillaDetailsPage: React.FC = () => {
 
     const houseRulesListStyle: React.CSSProperties = {
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
         gap: '20px',
     };
 
@@ -354,6 +360,7 @@ const VillaDetailsPage: React.FC = () => {
         display: 'flex',
         alignItems: 'flex-start',
         gap: '16px',
+        width : '300px'
     };
 
     const houseRuleIconStyle: React.CSSProperties = {
