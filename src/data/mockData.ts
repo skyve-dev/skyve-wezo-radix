@@ -38,6 +38,17 @@ export const mockVillas: Villa[] = [
         label: "New Year's Day"
       }
     ],
+    houseRules: {
+      checkInTime: '3:00 PM',
+      checkOutTime: '11:00 AM',
+      petsAllowed: false,
+      partiesAllowed: false,
+      commercialPhotographyAllowed: true,
+      smokingAllowed: false,
+      quietHours: '10:00 PM - 7:00 AM',
+      poolRules: 'Pool hours: 7:00 AM - 10:00 PM. No glass containers. Children must be supervised.',
+      cleaningFee: 'AED 500 (mandatory, paid separately)'
+    },
     isActive: true,
     isFeatured: true,
   },
@@ -61,6 +72,16 @@ export const mockVillas: Villa[] = [
       weekend: 1600,
       halfDay: 600,
     },
+    houseRules: {
+      checkInTime: '2:00 PM',
+      checkOutTime: '12:00 PM',
+      petsAllowed: true,
+      partiesAllowed: false,
+      commercialPhotographyAllowed: false,
+      smokingAllowed: false,
+      quietHours: '9:00 PM - 8:00 AM',
+      cleaningFee: 'AED 350 (included in total price)'
+    },
     isActive: true,
     isFeatured: true,
   },
@@ -83,6 +104,17 @@ export const mockVillas: Villa[] = [
       weekday: 1800,
       weekend: 2400,
       halfDay: 900,
+    },
+    houseRules: {
+      checkInTime: '4:00 PM',
+      checkOutTime: '11:00 AM',
+      petsAllowed: false,
+      partiesAllowed: true,
+      commercialPhotographyAllowed: true,
+      smokingAllowed: false,
+      quietHours: '11:00 PM - 7:00 AM',
+      poolRules: 'Pool available 24/7. Please shower before entering. No diving.',
+      cleaningFee: 'AED 750 (for events, additional cleaning may apply)'
     },
     isActive: true,
     isFeatured: true,
@@ -129,6 +161,17 @@ export const mockVillas: Villa[] = [
         label: 'Spring Premium'
       }
     ],
+    houseRules: {
+      checkInTime: '3:00 PM',
+      checkOutTime: '12:00 PM',
+      petsAllowed: false,
+      partiesAllowed: true,
+      commercialPhotographyAllowed: true,
+      smokingAllowed: false,
+      quietHours: '10:00 PM - 8:00 AM',
+      poolRules: 'Infinity pool open 24/7. Jacuzzi available until midnight. Towels provided.',
+      cleaningFee: 'AED 1000 (yacht cleaning additional if used)'
+    },
     isActive: true,
     isFeatured: true,
   },

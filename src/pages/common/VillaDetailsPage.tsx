@@ -252,6 +252,51 @@ const VillaDetailsPage: React.FC = () => {
     color: '#374151',
   };
 
+  const houseRulesContainerStyle: React.CSSProperties = {
+    marginBottom: '40px',
+  };
+
+  const houseRulesTitleStyle: React.CSSProperties = {
+    fontSize: '24px',
+    fontWeight: '600',
+    marginBottom: '20px',
+    color: '#1a1a1a',
+  };
+
+  const houseRulesGridStyle: React.CSSProperties = {
+    display: 'grid',
+    gridTemplateColumns: window.innerWidth < 768 ? '1fr' : 'repeat(2, 1fr)',
+    gap: '16px',
+  };
+
+  const houseRuleCardStyle: React.CSSProperties = {
+    display: 'flex',
+    gap: '16px',
+    padding: '20px',
+    backgroundColor: 'white',
+    borderRadius: '12px',
+    border: '1px solid #e5e7eb',
+    alignItems: 'flex-start',
+  };
+
+  const houseRuleIconStyle: React.CSSProperties = {
+    fontSize: '28px',
+    flexShrink: 0,
+  };
+
+  const houseRuleLabelStyle: React.CSSProperties = {
+    fontSize: '14px',
+    fontWeight: '600',
+    color: '#374151',
+    marginBottom: '4px',
+  };
+
+  const houseRuleValueStyle: React.CSSProperties = {
+    fontSize: '14px',
+    color: '#6b7280',
+    lineHeight: '1.5',
+  };
+
   const nights = selectedStartDate && selectedEndDate
     ? Math.ceil((selectedEndDate.getTime() - selectedStartDate.getTime()) / (1000 * 60 * 60 * 24))
     : 0;
@@ -313,6 +358,118 @@ const VillaDetailsPage: React.FC = () => {
           <div style={propertyDetailItemStyle}>
             <span style={propertyDetailIconStyle}>👥</span>
             <span style={propertyDetailTextStyle}>Max {villa.maxVisitors} Guests</span>
+          </div>
+        </div>
+
+        {/* House Rules Section */}
+        <div style={houseRulesContainerStyle}>
+          <h3 style={houseRulesTitleStyle}>House Rules</h3>
+          <div style={houseRulesGridStyle}>
+            {/* Check-in/Check-out Times */}
+            <div style={houseRuleCardStyle}>
+              <div style={houseRuleIconStyle}>🕐</div>
+              <div>
+                <div style={houseRuleLabelStyle}>Check-in / Check-out</div>
+                <div style={houseRuleValueStyle}>
+                  Check-in: {villa.houseRules.checkInTime}<br />
+                  Check-out: {villa.houseRules.checkOutTime}
+                </div>
+              </div>
+            </div>
+
+            {/* Maximum Occupancy */}
+            <div style={houseRuleCardStyle}>
+              <div style={houseRuleIconStyle}>👥</div>
+              <div>
+                <div style={houseRuleLabelStyle}>Maximum Occupancy</div>
+                <div style={houseRuleValueStyle}>
+                  {villa.maxVisitors} guests maximum
+                </div>
+              </div>
+            </div>
+
+            {/* Pets Policy */}
+            <div style={houseRuleCardStyle}>
+              <div style={houseRuleIconStyle}>🐾</div>
+              <div>
+                <div style={houseRuleLabelStyle}>Pets Policy</div>
+                <div style={houseRuleValueStyle}>
+                  {villa.houseRules.petsAllowed ? 'Pets are welcome' : 'No pets allowed'}
+                </div>
+              </div>
+            </div>
+
+            {/* Parties/Events */}
+            <div style={houseRuleCardStyle}>
+              <div style={houseRuleIconStyle}>🎉</div>
+              <div>
+                <div style={houseRuleLabelStyle}>Parties & Events</div>
+                <div style={houseRuleValueStyle}>
+                  {villa.houseRules.partiesAllowed ? 'Events allowed (with prior approval)' : 'No parties or events'}
+                </div>
+              </div>
+            </div>
+
+            {/* Photography */}
+            <div style={houseRuleCardStyle}>
+              <div style={houseRuleIconStyle}>📷</div>
+              <div>
+                <div style={houseRuleLabelStyle}>Commercial Photography</div>
+                <div style={houseRuleValueStyle}>
+                  {villa.houseRules.commercialPhotographyAllowed ? 'Allowed with permission' : 'Not permitted'}
+                </div>
+              </div>
+            </div>
+
+            {/* Smoking */}
+            <div style={houseRuleCardStyle}>
+              <div style={houseRuleIconStyle}>🚭</div>
+              <div>
+                <div style={houseRuleLabelStyle}>Smoking Policy</div>
+                <div style={houseRuleValueStyle}>
+                  {villa.houseRules.smokingAllowed ? 'Smoking allowed in designated areas' : 'No smoking indoors'}
+                </div>
+              </div>
+            </div>
+
+            {/* Quiet Hours */}
+            {villa.houseRules.quietHours && (
+              <div style={houseRuleCardStyle}>
+                <div style={houseRuleIconStyle}>🤫</div>
+                <div>
+                  <div style={houseRuleLabelStyle}>Quiet Hours</div>
+                  <div style={houseRuleValueStyle}>
+                    {villa.houseRules.quietHours}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Pool Rules */}
+            {villa.houseRules.poolRules && (
+              <div style={houseRuleCardStyle}>
+                <div style={houseRuleIconStyle}>🏊</div>
+                <div>
+                  <div style={houseRuleLabelStyle}>Pool Rules</div>
+                  <div style={houseRuleValueStyle}>
+                    {villa.houseRules.poolRules}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Cleaning Fee */}
+            {villa.houseRules.cleaningFee && (
+              <div style={houseRuleCardStyle}>
+                <div style={houseRuleIconStyle}>🧹</div>
+                <div>
+                  <div style={houseRuleLabelStyle}>Cleaning Fee</div>
+                  <div style={houseRuleValueStyle}>
+                    {villa.houseRules.cleaningFee}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 

@@ -15,6 +15,18 @@ export interface CustomPricing {
   label?: string; // Optional label for special occasions (e.g., "New Year's Eve", "Christmas")
 }
 
+export interface HouseRules {
+  checkInTime: string;
+  checkOutTime: string;
+  petsAllowed: boolean;
+  partiesAllowed: boolean;
+  commercialPhotographyAllowed: boolean;
+  smokingAllowed: boolean;
+  quietHours?: string;
+  poolRules?: string;
+  cleaningFee?: string;
+}
+
 export interface Villa {
   id: string;
   name: string;
@@ -33,6 +45,7 @@ export interface Villa {
     halfDay: number;
   };
   customPricing?: CustomPricing[]; // Array of date-specific custom prices
+  houseRules: HouseRules;
   isActive: boolean;
   isFeatured: boolean;
 }
