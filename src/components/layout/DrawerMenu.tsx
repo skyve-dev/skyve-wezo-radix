@@ -128,7 +128,7 @@ const DrawerMenu: React.FC<DrawerMenuProps> = ({isOpen, onClose}) => {
     const contentStyle: React.CSSProperties = {
         position: 'fixed',
         top: 0,
-        left: 0,
+        right: 0,
         bottom: 0,
         width: '280px',
         backgroundColor: 'white',
@@ -228,9 +228,9 @@ const DrawerMenu: React.FC<DrawerMenuProps> = ({isOpen, onClose}) => {
                         <Dialog.Content asChild>
                             <motion.div
                                 style={contentStyle}
-                                initial={{x: '-100%'}}
+                                initial={{x: '100%'}}
                                 animate={{x: 0}}
-                                exit={{x: '-100%'}}
+                                exit={{x: '100%'}}
                                 transition={{type: 'tween',ease:'easeInOut',duration:0.3}}
                             >
                                 <div style={headerStyle}>

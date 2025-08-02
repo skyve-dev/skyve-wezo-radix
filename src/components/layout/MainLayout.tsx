@@ -48,15 +48,15 @@ const MainLayout: React.FC = () => {
   return (
     <div style={containerStyle}>
       <header style={headerStyle}>
+        <div style={{ width: '40px' }} /> {/* Spacer for balance */}
+        <div style={logoStyle}>Wezo</div>
         <button
-          style={menuButtonStyle}
-          onClick={() => setIsDrawerOpen(true)}
-          aria-label="Open menu"
+            style={menuButtonStyle}
+            onClick={() => setIsDrawerOpen(true)}
+            aria-label="Open menu"
         >
           <HamburgerMenuIcon style={{ width: '24px', height: '24px' }} />
         </button>
-        <div style={logoStyle}>Wezo</div>
-        <div style={{ width: '40px' }} /> {/* Spacer for balance */}
       </header>
       
       <main style={contentStyle}>
