@@ -4,6 +4,7 @@ import {motion} from 'framer-motion';
 import {BarChartIcon, CalendarIcon, ChatBubbleIcon, DashboardIcon, HomeIcon, PersonIcon, MagnifyingGlassIcon, EnterIcon} from '@radix-ui/react-icons';
 import {useAuth} from '../../contexts/AuthContext';
 import {colors} from '../../utils/colors';
+import {useScrollDirection} from '../../hooks/useScrollDirection';
 
 interface TabItem {
   path: string;
@@ -15,6 +16,7 @@ const BottomTabNavigation: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useAuth();
+  const { isBottomNavVisible } = useScrollDirection();
 
   const anonymousTabs: TabItem[] = [
     { path: '/', label: 'Explore', icon: <HomeIcon /> },
@@ -72,6 +74,10 @@ const BottomTabNavigation: React.FC = () => {
     alignItems: 'center',
     padding: '8px 0',
     zIndex: 50,
+    transform: isBottomNavVisible ? 'translateY(0)' : 'translateY(100%)',
+    transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+    willChange: 'transform',
+    height: '64px', // Fixed height for consistent spacing
   };
 
   const tabStyle = (isActive: boolean): React.CSSProperties => ({

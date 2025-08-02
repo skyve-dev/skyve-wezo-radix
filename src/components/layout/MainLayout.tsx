@@ -4,19 +4,22 @@ import {HamburgerMenuIcon} from '@radix-ui/react-icons';
 import DrawerMenu from './DrawerMenu';
 import BottomTabNavigation from './BottomTabNavigation';
 import {colors} from "../../utils/colors.ts";
+import {useScrollDirection} from '../../hooks/useScrollDirection';
 
 const MainLayout: React.FC = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const { isHeaderVisible } = useScrollDirection();
 
   const containerStyle: React.CSSProperties = {
     minHeight: '100vh',
-    paddingBottom: '80px', // Space for bottom navigation
     backgroundColor: '#f9fafb',
   };
 
   const headerStyle: React.CSSProperties = {
-    position: 'sticky',
+    position: 'fixed',
     top: 0,
+    left: 0,
+    right: 0,
     backgroundColor: 'white',
     borderBottom: '1px solid #e5e7eb',
     padding: '16px',
@@ -24,6 +27,10 @@ const MainLayout: React.FC = () => {
     alignItems: 'center',
     justifyContent: 'space-between',
     zIndex: 40,
+    transform: isHeaderVisible ? 'translateY(0)' : 'translateY(-100%)',
+    transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+    willChange: 'transform',
+    height: '60px', // Fixed height for consistent spacing
   };
 
   const menuButtonStyle: React.CSSProperties = {
@@ -43,7 +50,9 @@ const MainLayout: React.FC = () => {
   };
 
   const contentStyle: React.CSSProperties = {
-    minHeight: 'calc(100vh - 80px - 60px)', // Full height minus header and bottom nav
+    minHeight: '100vh',
+    paddingTop: '60px', // Space for fixed header
+    paddingBottom: '64px', // Space for bottom navigation
   };
 
   return (
