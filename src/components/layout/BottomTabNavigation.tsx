@@ -5,6 +5,7 @@ import {BarChartIcon, CalendarIcon, ChatBubbleIcon, DashboardIcon, HomeIcon, Per
 import {useAuth} from '../../contexts/AuthContext';
 import {colors} from '../../utils/colors';
 import {useScrollDirection} from '../../hooks/useScrollDirection';
+import '../../styles/layout.css';
 
 interface TabItem {
   path: string;
@@ -78,6 +79,7 @@ const BottomTabNavigation: React.FC = () => {
     transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
     willChange: 'transform',
     height: '64px', // Fixed height for consistent spacing
+    boxSizing: 'border-box', // Include border in height calculation
   };
 
   const tabStyle = (isActive: boolean): React.CSSProperties => ({
@@ -105,7 +107,7 @@ const BottomTabNavigation: React.FC = () => {
   };
 
   return (
-    <div style={containerStyle}>
+    <div style={containerStyle} className="main-layout-bottom-nav">
       {tabs.map((tab) => {
         const isActive = location.pathname === tab.path;
         

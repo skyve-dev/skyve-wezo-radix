@@ -1,0 +1,50 @@
+/* Layout-specific styles for MainLayout component */
+
+/* Ensure proper box sizing for layout elements */
+.main-layout-container {
+  box-sizing: border-box;
+}
+
+.main-layout-header {
+  box-sizing: border-box;
+  /* Ensure header is always above content */
+  z-index: 1000;
+}
+
+.main-layout-content {
+  box-sizing: border-box;
+  /* Prevent content from scrolling behind fixed elements */
+  isolation: isolate;
+}
+
+.main-layout-bottom-nav {
+  box-sizing: border-box;
+  /* Ensure bottom nav is always above content */
+  z-index: 1001;
+}
+
+/* Prevent any unwanted scrolling issues */
+.main-layout-content > * {
+  box-sizing: border-box;
+}
+
+/* Additional safety for mobile devices */
+@supports (env(safe-area-inset-bottom)) {
+  .main-layout-content {
+    padding-bottom: calc(64px + env(safe-area-inset-bottom));
+  }
+}
+
+@supports (env(safe-area-inset-top)) {
+  .main-layout-content {
+    padding-top: calc(60px + env(safe-area-inset-top));
+  }
+}
+
+/* Handle cases where transforms might cause layout issues */
+@media (prefers-reduced-motion: reduce) {
+  .main-layout-header,
+  .main-layout-bottom-nav {
+    transition: none !important;
+  }
+}

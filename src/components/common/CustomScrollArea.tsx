@@ -21,7 +21,8 @@ const CustomScrollArea: React.FC<CustomScrollAreaProps> = ({
   const viewportStyle: React.CSSProperties = {
     width: '100%',
     height: '100%',
-    paddingBottom: '80px', // Space for bottom navigation
+    // Remove fixed padding since MainLayout handles spacing
+    // paddingBottom: '80px', // Space for bottom navigation - handled by MainLayout
     boxSizing: 'border-box',
   };
 

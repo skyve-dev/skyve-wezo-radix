@@ -5,11 +5,13 @@ import DrawerMenu from './DrawerMenu';
 import BottomTabNavigation from './BottomTabNavigation';
 import {colors} from "../../utils/colors.ts";
 import {useScrollDirection} from '../../hooks/useScrollDirection';
+import '../../styles/layout.css';
+import {unused} from "../../utils/unused.ts";
 
 const MainLayout: React.FC = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const { isHeaderVisible } = useScrollDirection();
-
+  const { isHeaderVisible, isBottomNavVisible } = useScrollDirection();
+  unused('isBottomNavVisible',isBottomNavVisible)
   const containerStyle: React.CSSProperties = {
     minHeight: '100vh',
     backgroundColor: '#f9fafb',
@@ -31,6 +33,7 @@ const MainLayout: React.FC = () => {
     transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
     willChange: 'transform',
     height: '60px', // Fixed height for consistent spacing
+    boxSizing: 'border-box', // Include border in height calculation
   };
 
   const menuButtonStyle: React.CSSProperties = {
@@ -50,14 +53,20 @@ const MainLayout: React.FC = () => {
   };
 
   const contentStyle: React.CSSProperties = {
+    // Always maintain padding to prevent content from touching screen edges
+    paddingTop: '60px', // Fixed space for header
+    paddingBottom: '64px', // Fixed space for bottom navigation
+    boxSizing: 'border-box',
+    position: 'relative',
     minHeight: '100vh',
-    paddingTop: '60px', // Space for fixed header
-    paddingBottom: '64px', // Space for bottom navigation
+    // Add safe area insets for better mobile experience
+    paddingLeft: 'env(safe-area-inset-left, 0)',
+    paddingRight: 'env(safe-area-inset-right, 0)',
   };
 
   return (
-    <div style={containerStyle}>
-      <header style={headerStyle}>
+    <div style={containerStyle} className="main-layout-container">
+      <header style={headerStyle} className="main-layout-header">
         <div style={{ width: '40px' }} /> {/* Spacer for balance */}
         <div style={logoStyle}>Wezo</div>
         <button
@@ -69,7 +78,7 @@ const MainLayout: React.FC = () => {
         </button>
       </header>
       
-      <main style={contentStyle}>
+      <main style={contentStyle} className="main-layout-content">
         <Outlet />
       </main>
       
