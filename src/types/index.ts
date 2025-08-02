@@ -97,3 +97,6 @@ export interface Promotion {
   link?: string;
   isActive: boolean;
 }
+
+// Re-export filter types
+export * from './filters';

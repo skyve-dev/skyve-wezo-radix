@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { mockVillas } from '../../data/mockData';
-import type { Villa } from '../../types';
+import type { Villa, VillaFilters } from '../../types';
+import { defaultFilters } from '../../types/filters';
 import { useAuth } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { colors } from '../../utils/colors';
+import SearchBar from '../../components/common/SearchBar';
+import FilterPanel from '../../components/common/FilterPanel';
+import { applyFilters } from '../../utils/filterUtils';
 
 const ListingsPage: React.FC = () => {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const [filteredVillas, setFilteredVillas] = useState<Villa[]>(mockVillas);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [locationFilter, setLocationFilter] = useState('');
-  const [maxPriceFilter, setMaxPriceFilter] = useState('');
+  const [filters, setFilters] = useState<VillaFilters>(defaultFilters);
+  const [isFilterPanelOpen, setIsFilterPanelOpen] = useState(false);
 
   // Helper function to get a flat array of amenities for display in villa cards
   const getFlatAmenities = (amenities: Villa['amenities']): string[] => {
@@ -24,28 +27,19 @@ const ListingsPage: React.FC = () => {
     return flatAmenities;
   };
 
-  const handleSearch = () => {
-    let filtered = mockVillas;
-
-    if (searchTerm) {
-      filtered = filtered.filter(villa =>
-        villa.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        villa.description.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
-
-    if (locationFilter) {
-      filtered = filtered.filter(villa =>
-        villa.location.toLowerCase().includes(locationFilter.toLowerCase())
-      );
-    }
-
-    if (maxPriceFilter) {
-      const maxPrice = parseInt(maxPriceFilter);
-      filtered = filtered.filter(villa => villa.pricing.weekday <= maxPrice);
-    }
-
+  // Apply filters whenever filters change
+  useEffect(() => {
+    const filtered = applyFilters(mockVillas, filters);
     setFilteredVillas(filtered);
+  }, [filters]);
+
+  const handleFiltersChange = (newFilters: VillaFilters) => {
+    setFilters(newFilters);
+  };
+
+  const handleApplyFilters = () => {
+    // Filters are applied automatically via useEffect
+    // This function can be used for additional logic like analytics
   };
 
   const handleBookVilla = (villaId: string) => {
@@ -82,22 +76,6 @@ const ListingsPage: React.FC = () => {
     fontSize: '16px',
     color: '#6b7280',
     marginBottom: '30px',
-  };
-
-  const filtersStyle: React.CSSProperties = {
-    display: 'flex',
-    gap: '15px',
-    marginBottom: '30px',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-  };
-
-  const inputStyle: React.CSSProperties = {
-    padding: '10px 15px',
-    border: '1px solid #d1d5db',
-    borderRadius: '8px',
-    fontSize: '14px',
-    minWidth: '200px',
   };
 
   const buttonStyle: React.CSSProperties = {
@@ -212,32 +190,20 @@ const ListingsPage: React.FC = () => {
         </p>
       </div>
 
-      <div style={filtersStyle}>
-        <input
-          type="text"
-          placeholder="Search villas..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          style={inputStyle}
-        />
-        <input
-          type="text"
-          placeholder="Filter by location..."
-          value={locationFilter}
-          onChange={(e) => setLocationFilter(e.target.value)}
-          style={inputStyle}
-        />
-        <input
-          type="number"
-          placeholder="Max price (AED)"
-          value={maxPriceFilter}
-          onChange={(e) => setMaxPriceFilter(e.target.value)}
-          style={inputStyle}
-        />
-        <button onClick={handleSearch} style={buttonStyle}>
-          Search
-        </button>
-      </div>
+      {/* Search Bar */}
+      <SearchBar 
+        filters={filters}
+        onOpenFilters={() => setIsFilterPanelOpen(true)}
+      />
+
+      {/* Filter Panel */}
+      <FilterPanel
+        isOpen={isFilterPanelOpen}
+        onClose={() => setIsFilterPanelOpen(false)}
+        filters={filters}
+        onFiltersChange={handleFiltersChange}
+        onApplyFilters={handleApplyFilters}
+      />
 
       <div style={gridStyle}>
         {filteredVillas.map((villa) => (
