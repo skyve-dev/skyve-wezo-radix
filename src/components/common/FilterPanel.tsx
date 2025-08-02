@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
+import * as Slider from '@radix-ui/react-slider';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Cross2Icon, TrashIcon, CheckIcon } from '@radix-ui/react-icons';
 import { colors } from '../../utils/colors';
@@ -22,6 +23,12 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   onApplyFilters,
 }) => {
   const [localFilters, setLocalFilters] = useState<VillaFilters>({ ...filters });
+  
+  // Local state for price range slider
+  const [priceRange, setPriceRange] = useState<[number, number]>([
+    localFilters.priceRange.min || 0,
+    localFilters.priceRange.max || 6000
+  ]);
 
   // Get all unique amenities from villas for checkbox options
   const getAllAmenities = () => {
@@ -78,6 +85,21 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
       searchTerm: '',
     };
     setLocalFilters(clearedFilters);
+    setPriceRange([0, 6000]);
+  };
+  
+  // Handle price range slider changes
+  const handlePriceRangeChange = (value: number[]) => {
+    const [min, max] = value;
+    setPriceRange([min, max]);
+    
+    // Update local filters
+    updateLocalFilters({
+      priceRange: {
+        min: min === 0 ? null : min,
+        max: max === 6000 ? null : max,
+      },
+    });
   };
 
   const getCategoryDisplayName = (category: string): string => {
@@ -190,10 +212,62 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
     boxSizing: 'border-box',
   };
 
-  const priceRangeStyle: React.CSSProperties = {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
+  const priceSliderContainerStyle: React.CSSProperties = {
+    padding: '20px 0',
+  };
+  
+  const priceDisplayStyle: React.CSSProperties = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginBottom: '16px',
+    fontSize: window.innerWidth < 768 ? '13px' : '14px',
+    fontWeight: '500',
+    color: '#374151',
     gap: '12px',
+  };
+  
+  const priceValueStyle: React.CSSProperties = {
+    padding: '8px 12px',
+    backgroundColor: '#f3f4f6',
+    borderRadius: '6px',
+    border: '1px solid #e5e7eb',
+  };
+  
+  const sliderRootStyle: React.CSSProperties = {
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    userSelect: 'none',
+    touchAction: 'none',
+    width: '100%',
+    height: '20px',
+  };
+  
+  const sliderTrackStyle: React.CSSProperties = {
+    backgroundColor: '#e5e7eb',
+    position: 'relative',
+    flexGrow: 1,
+    borderRadius: '9999px',
+    height: '4px',
+  };
+  
+  const sliderRangeStyle: React.CSSProperties = {
+    position: 'absolute',
+    backgroundColor: colors.primary,
+    borderRadius: '9999px',
+    height: '100%',
+  };
+  
+  const sliderThumbStyle: React.CSSProperties = {
+    display: 'block',
+    width: '20px',
+    height: '20px',
+    backgroundColor: 'white',
+    border: `2px solid ${colors.primary}`,
+    borderRadius: '50%',
+    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
+    cursor: 'pointer',
+    transition: 'all 0.2s ease',
   };
 
   const numberSelectStyle: React.CSSProperties = {
@@ -330,34 +404,36 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                     />
                   </div>
 
-                  {/* Price Range */}
+                  {/* Price Range Slider */}
                   <div style={sectionStyle}>
                     <h3 style={sectionTitleStyle}>Price Range (AED per night)</h3>
-                    <div style={priceRangeStyle}>
-                      <input
-                        type="number"
-                        placeholder="Min price"
-                        value={localFilters.priceRange.min || ''}
-                        onChange={(e) => updateLocalFilters({
-                          priceRange: {
-                            ...localFilters.priceRange,
-                            min: e.target.value ? parseInt(e.target.value) : null,
-                          },
-                        })}
-                        style={inputStyle}
-                      />
-                      <input
-                        type="number"
-                        placeholder="Max price"
-                        value={localFilters.priceRange.max || ''}
-                        onChange={(e) => updateLocalFilters({
-                          priceRange: {
-                            ...localFilters.priceRange,
-                            max: e.target.value ? parseInt(e.target.value) : null,
-                          },
-                        })}
-                        style={inputStyle}
-                      />
+                    <div style={priceSliderContainerStyle}>
+                      {/* Price Display */}
+                      <div style={priceDisplayStyle}>
+                        <div style={priceValueStyle}>
+                          Min: {priceRange[0]} AED
+                        </div>
+                        <div style={priceValueStyle}>
+                          Max: {priceRange[1]} AED
+                        </div>
+                      </div>
+                      
+                      {/* Dual-thumb Slider */}
+                      <Slider.Root
+                        value={priceRange}
+                        onValueChange={handlePriceRangeChange}
+                        max={6000}
+                        min={0}
+                        step={50}
+                        minStepsBetweenThumbs={1}
+                        style={sliderRootStyle}
+                      >
+                        <Slider.Track style={sliderTrackStyle}>
+                          <Slider.Range style={sliderRangeStyle} />
+                        </Slider.Track>
+                        <Slider.Thumb style={sliderThumbStyle} />
+                        <Slider.Thumb style={sliderThumbStyle} />
+                      </Slider.Root>
                     </div>
                   </div>
 
