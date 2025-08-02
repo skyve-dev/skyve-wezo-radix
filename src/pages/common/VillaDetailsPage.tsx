@@ -244,18 +244,15 @@ const VillaDetailsPage: React.FC = () => {
     };
 
     const twoColumnLayoutStyle: React.CSSProperties = {
-        display: 'flex',
-        flexWrap : 'wrap',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(330px, 1fr))',
         gap: '40px',
         marginTop: '40px',
-        justifyContent : 'space-evenly',
     };
 
     const leftColumnStyle: React.CSSProperties = {
         display: 'flex',
         flexDirection: 'column',
-        width : '100%',
-        maxWidth : '450px',
     };
 
     const rightColumnStyle: React.CSSProperties = {
@@ -263,7 +260,6 @@ const VillaDetailsPage: React.FC = () => {
         flexDirection: 'column',
         gap: '20px',
         flexGrow : 1,
-        minWidth : '300px'
     };
 
     const bookingSummaryStyle: React.CSSProperties = {

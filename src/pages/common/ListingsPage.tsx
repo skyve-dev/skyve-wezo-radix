@@ -91,7 +91,7 @@ const ListingsPage: React.FC = () => {
 
     const gridStyle: React.CSSProperties = {
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(330px, 1fr))',
         gap: '25px',
     };
 

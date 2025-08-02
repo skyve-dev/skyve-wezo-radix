@@ -4,7 +4,7 @@ import type {Villa} from "../types";
 export const mockVillas: Villa[] = [
     {
         "id": "villa-1",
-        "name": "Info about villa no (1)",
+        "name": "Villa 1",
         "ownerId": "owner-123",
         "description": "Summertime fun with Wizzo ☀️🏖🏡",
         "images": [
@@ -118,7 +118,7 @@ export const mockVillas: Villa[] = [
     },
     {
         "id": "villa-11",
-        "name": "Info about villa number (11)",
+        "name": "Villa 11",
         "ownerId": "owner-123",
         "description": "",
         "images": [
@@ -254,7 +254,7 @@ export const mockVillas: Villa[] = [
     },
     {
         "id": "villa-14",
-        "name": "Information on farm number (14)",
+        "name": "Villa 14",
         "ownerId": "owner-123",
         "description": "7 outdoor sessions",
         "images": [
@@ -363,7 +363,7 @@ export const mockVillas: Villa[] = [
     },
     {
         "id": "villa-17",
-        "name": "Farm info: (17)",
+        "name": "Villa 17",
         "ownerId": "owner-123",
         "description": "",
         "images": [
@@ -430,7 +430,7 @@ export const mockVillas: Villa[] = [
     },
     {
         "id": "villa-19",
-        "name": "Information about villa number (19)",
+        "name": "Villa 19",
         "ownerId": "owner-123",
         "description": "Summertime fun with Wizzo ☀️🏖🏡",
         "images": [
@@ -486,7 +486,7 @@ export const mockVillas: Villa[] = [
     },
     {
         "id": "villa-2",
-        "name": "Info about villa number (2)",
+        "name": "Villa 2",
         "ownerId": "owner-123",
         "description": "",
         "images": [
@@ -546,7 +546,7 @@ export const mockVillas: Villa[] = [
     },
     {
         "id": "villa-22",
-        "name": "Info on the break 22",
+        "name": "Villa 22",
         "ownerId": "owner-123",
         "description": "",
         "images": [
@@ -839,7 +839,7 @@ export const mockVillas: Villa[] = [
             "smokingAllowed": true
         },
         "isActive": true,
-        "isFeatured": true
+        "isFeatured": false
     },
     {
         "id": "villa-29",
@@ -904,7 +904,7 @@ export const mockVillas: Villa[] = [
     },
     {
         "id": "villa-30",
-        "name": "Info on farm 30",
+        "name": "Villa 30",
         "ownerId": "owner-123",
         "description": "",
         "images": [
@@ -961,7 +961,7 @@ export const mockVillas: Villa[] = [
     },
     {
         "id": "villa-31",
-        "name": "Info about Villa No. (31)",
+        "name": "Villa 31",
         "ownerId": "owner-123",
         "description": "",
         "images": [
@@ -1131,7 +1131,7 @@ export const mockVillas: Villa[] = [
     },
     {
         "id": "villa-39",
-        "name": "Information on farm number (39)",
+        "name": "Villa 39",
         "ownerId": "owner-123",
         "description": "",
         "images": [
@@ -1191,7 +1191,7 @@ export const mockVillas: Villa[] = [
     },
     {
         "id": "villa-4",
-        "name": "Info about villa number (4)",
+        "name": "Villa 4",
         "ownerId": "owner-123",
         "description": "",
         "images": [
@@ -1299,7 +1299,7 @@ export const mockVillas: Villa[] = [
             "smokingAllowed": true
         },
         "isActive": true,
-        "isFeatured": true
+        "isFeatured": false
     },
     {
         "id": "villa-41",
@@ -1547,7 +1547,7 @@ export const mockVillas: Villa[] = [
     },
     {
         "id": "villa-45",
-        "name": "Information on farm (45)",
+        "name": "Villa 45",
         "ownerId": "owner-123",
         "description": "6 outdoor sessions, Bluetooth headphones with mic",
         "images": [
@@ -1610,7 +1610,7 @@ export const mockVillas: Villa[] = [
     },
     {
         "id": "villa-46",
-        "name": "Information about farm number (46)",
+        "name": "Villa 46",
         "ownerId": "owner-123",
         "description": "Outdoor sessions 8, Hair tent",
         "images": [
@@ -1781,11 +1781,11 @@ export const mockVillas: Villa[] = [
             "smokingAllowed": true
         },
         "isActive": true,
-        "isFeatured": false
+        "isFeatured": true
     },
     {
         "id": "villa-5",
-        "name": "Info about villa number (5)",
+        "name": "Villa 5",
         "ownerId": "owner-123",
         "description": "",
         "images": [
@@ -1840,7 +1840,7 @@ export const mockVillas: Villa[] = [
             "smokingAllowed": true
         },
         "isActive": true,
-        "isFeatured": true
+        "isFeatured": false
     },
     {
         "id": "villa-50",
@@ -1965,7 +1965,7 @@ export const mockVillas: Villa[] = [
     },
     {
         "id": "villa-52",
-        "name": "Info on farm 52",
+        "name": "Villa 52",
         "ownerId": "owner-123",
         "description": "Outdoor sessions : 3",
         "images": [
@@ -2309,7 +2309,7 @@ export const mockVillas: Villa[] = [
     },
     {
         "id": "villa-59",
-        "name": "Info on farm 59",
+        "name": "Villa 59",
         "ownerId": "owner-123",
         "description": "Outdoor sessions : 2",
         "images": [
@@ -2365,7 +2365,7 @@ export const mockVillas: Villa[] = [
     },
     {
         "id": "villa-6",
-        "name": "Info about villa no. (6)",
+        "name": "Villa 6",
         "ownerId": "owner-123",
         "description": "",
         "images": [
@@ -2479,7 +2479,7 @@ export const mockVillas: Villa[] = [
             "smokingAllowed": true
         },
         "isActive": true,
-        "isFeatured": false
+        "isFeatured": true
     },
     {
         "id": "villa-62",
@@ -2593,11 +2593,11 @@ export const mockVillas: Villa[] = [
             "smokingAllowed": true
         },
         "isActive": true,
-        "isFeatured": false
+        "isFeatured": true
     },
     {
         "id": "villa-7",
-        "name": "Information on farm number (7)",
+        "name": "Villa 7",
         "ownerId": "owner-123",
         "description": "",
         "images": [
@@ -2654,7 +2654,7 @@ export const mockVillas: Villa[] = [
     },
     {
         "id": "villa-8",
-        "name": "Information on farm number (8)",
+        "name": "Villa 8",
         "ownerId": "owner-123",
         "description": "",
         "images": [
