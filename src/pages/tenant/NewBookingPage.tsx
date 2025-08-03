@@ -9,6 +9,7 @@ import {useVillas} from '../../contexts/VillasContext';
 import {colors} from '../../utils/colors';
 import type {Booking} from '../../types';
 import {NumericInput} from "../../components/inputs/NumericInput.tsx";
+import BookingCalendar from '../../components/common/BookingCalendar';
 
 const NewBookingPage: React.FC = () => {
     const navigate = useNavigate();
@@ -23,8 +24,11 @@ const NewBookingPage: React.FC = () => {
     const checkOutStr = searchParams.get('checkOut');
 
     const villa = villaId ? getVillaById(villaId) : null;
-    const checkInDate = checkInStr ? new Date(checkInStr) : null;
-    const checkOutDate = checkOutStr ? new Date(checkOutStr) : null;
+    const [checkInDate, setCheckInDate] = useState<Date | null>(checkInStr ? new Date(checkInStr) : null);
+    const [checkOutDate, setCheckOutDate] = useState<Date | null>(checkOutStr ? new Date(checkOutStr) : null);
+    
+    // State for calendar visibility - show if no dates are pre-selected
+    const [showCalendar, setShowCalendar] = useState(!checkInStr || !checkOutStr);
 
     // Form state
     const [cardNumber, setCardNumber] = useState('');
@@ -39,12 +43,45 @@ const NewBookingPage: React.FC = () => {
     const [showSuccess, setShowSuccess] = useState(false);
     const [errors, setErrors] = useState<Record<string, string>>({});
 
-    // Redirect if no villa or dates
+    // Redirect if no villa
     useEffect(() => {
-        if (!villa || !checkInDate || !checkOutDate) {
+        if (!villa) {
             navigate('/listings');
         }
-    }, [villa, checkInDate, checkOutDate, navigate]);
+    }, [villa, navigate]);
+    
+    // Get unavailable dates for the villa
+    const getUnavailableDates = () => {
+        if (!villa) return [];
+        
+        return bookings
+            .filter(booking => 
+                booking.villaId === villa.id && 
+                (booking.status === 'confirmed' || booking.status === 'pending')
+            )
+            .flatMap(booking => {
+                const dates = [];
+                const start = new Date(booking.checkInDate);
+                const end = new Date(booking.checkOutDate);
+                
+                for (let d = new Date(start); d < end; d.setDate(d.getDate() + 1)) {
+                    dates.push(new Date(d));
+                }
+                
+                return dates;
+            });
+    };
+    
+    // Handle date selection from calendar
+    const handleDateRangeSelect = (startDate: Date | null, endDate: Date | null) => {
+        setCheckInDate(startDate);
+        setCheckOutDate(endDate);
+        
+        // Hide calendar once dates are selected
+        if (startDate && endDate) {
+            setShowCalendar(false);
+        }
+    };
 
     // Calculate total price
     const calculateTotalPrice = () => {
@@ -374,7 +411,7 @@ const NewBookingPage: React.FC = () => {
     };
 
 
-    if (!villa || !checkInDate || !checkOutDate) {
+    if (!villa) {
         return null;
     }
 
@@ -394,8 +431,65 @@ const NewBookingPage: React.FC = () => {
         `}
             </style>
 
-            <h1 style={pageHeaderStyle}>Complete Your Booking</h1>
-
+            <h1 style={pageHeaderStyle}>
+                {showCalendar ? 'Select Your Dates' : 'Complete Your Booking'}
+            </h1>
+            
+            {/* Show Calendar if dates not pre-selected */}
+            {showCalendar && villa && (
+                <motion.div
+                    style={{
+                        backgroundColor: 'white',
+                        borderRadius: '12px',
+                        padding: '24px',
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                        marginBottom: '30px',
+                    }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                >
+                    <div style={{ marginBottom: '20px' }}>
+                        <h3 style={{ fontSize: '18px', fontWeight: '600', marginBottom: '8px' }}>
+                            {villa.name}
+                        </h3>
+                        <p style={{ fontSize: '14px', color: '#6b7280' }}>
+                            {villa.location}
+                        </p>
+                    </div>
+                    
+                    <BookingCalendar
+                        pricing={villa.pricing}
+                        customPricing={villa.customPricing}
+                        unavailableDates={getUnavailableDates()}
+                        onDateRangeSelect={handleDateRangeSelect}
+                    />
+                    
+                    {checkInDate && checkOutDate && (
+                        <motion.button
+                            style={{
+                                ...buttonStyle,
+                                marginTop: '20px',
+                            }}
+                            onClick={() => setShowCalendar(false)}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            whileHover={{ backgroundColor: colors.primaryHover }}
+                            whileTap={{ scale: 0.98 }}
+                        >
+                            Continue with Booking
+                        </motion.button>
+                    )}
+                </motion.div>
+            )}
+            
+            {/* Show Booking Form only when dates are selected */}
+            {!showCalendar && checkInDate && checkOutDate && (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                >
             <div style={contentGridStyle} className="content-grid">
                 {/* Left Column - Payment Form */}
                 <div style={sectionStyle}>
@@ -605,6 +699,8 @@ const NewBookingPage: React.FC = () => {
                     </Dialog.Root>
                 )}
             </AnimatePresence>
+                </motion.div>
+            )}
         </div>
     );
 };

@@ -26,6 +26,12 @@ const LoginPage: React.FC = () => {
     }
   };
 
+  const handleCancel = () => {
+    // Navigate back to the previous page or home
+    const from = location.state?.from || '/';
+    navigate(from);
+  };
+
   const containerStyle: React.CSSProperties = {
     minHeight: '100vh',
     display: 'flex',
@@ -171,6 +177,20 @@ const LoginPage: React.FC = () => {
             whileTap={{ scale: 0.98 }}
           >
             Sign In
+          </motion.button>
+          
+          <motion.button
+            type="button"
+            style={{
+              ...buttonStyle,
+              marginTop: '12px',
+              backgroundColor: '#6B7280',
+            }}
+            onClick={handleCancel}
+            whileHover={{ backgroundColor: '#4B5563' }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Cancel
           </motion.button>
           
           {error && <p style={errorStyle}>{error}</p>}
