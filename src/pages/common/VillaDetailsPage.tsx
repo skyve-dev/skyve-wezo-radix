@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import {motion} from 'framer-motion';
-import {mockVillas} from '../../data/data';
 import {useAuth} from '../../contexts/AuthContext';
 import {colors} from '../../utils/colors';
 import BookingCalendar from '../../components/common/BookingCalendar';
 import VillaImageGallery from '../../components/common/VillaImageGallery';
+import {useVillas} from "../../contexts/VillasContext.tsx";
 
 const VillaDetailsPage: React.FC = () => {
     const {id} = useParams<{ id: string }>();
@@ -13,8 +13,8 @@ const VillaDetailsPage: React.FC = () => {
     const {isAuthenticated} = useAuth();
     const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
     const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
-
-    const villa = mockVillas.find(v => v.id === id);
+    const {villas} = useVillas();
+    const villa = villas.find(v => v.id === id);
 
     // Helper function to get display name for amenity categories
     const getCategoryDisplayName = (category: string): string => {
@@ -74,7 +74,7 @@ const VillaDetailsPage: React.FC = () => {
         return (
             <div style={{padding: '40px', textAlign: 'center'}}>
                 <h1>Villa not found</h1>
-                <button onClick={() => navigate('/listings')}>
+                <button style={{border:'1px solid rgba(0,0,0,0.1)',padding:'8px 14px',borderRadius:'8px'}} onClick={() => navigate('/listings')}>
                     Back to Listings
                 </button>
             </div>
@@ -425,16 +425,16 @@ const VillaDetailsPage: React.FC = () => {
                     animate={{y: 0, opacity: 1}}
                     transition={{delay: 0.1, duration: 0.5}}
                 >
-                    <div style={{borderRadius:10,background:'blue',height:'50%',backgroundImage:`url(${villa.images[9] || villa.images[0]})`,backgroundPosition:'center',backgroundSize:'cover'}}></div>
-                    <div style={{borderRadius:10,background:'blue',height:'50%',backgroundImage:`url(${villa.images[8] || villa.images[0]})`,backgroundPosition:'center',backgroundSize:'cover'}}></div>
+                    <div style={{borderRadius:10,background:colors.gray100,height:'50%',backgroundImage:`url(${villa.images[9] || villa.images[0]})`,backgroundPosition:'center',backgroundSize:'cover'}}></div>
+                    <div style={{borderRadius:10,background:colors.gray100,height:'50%',backgroundImage:`url(${villa.images[8] || villa.images[0]})`,backgroundPosition:'center',backgroundSize:'cover'}}></div>
                 </motion.div>
                 <motion.div
                     style={{display:"flex",flexDirection:'column',gap:'10px'}} className={'hidden-on-tablet'}
                     initial={{y: 20, opacity: 0,flexGrow:1}}
                     animate={{y: 0, opacity: 1}}
                     transition={{delay: 0.1, duration: 0.5}}>
-                    <div style={{borderRadius:10,background:'blue',height:'50%',backgroundImage:`url(${villa.images[7] || villa.images[0]})`,backgroundPosition:'center',backgroundSize:'cover'}}></div>
-                    <div style={{borderRadius:10,background:'blue',height:'50%',backgroundImage:`url(${villa.images[6] || villa.images[0]})`,backgroundPosition:'center',backgroundSize:'cover'}}></div>
+                    <div style={{borderRadius:10,background:colors.gray100,height:'50%',backgroundImage:`url(${villa.images[7] || villa.images[0]})`,backgroundPosition:'center',backgroundSize:'cover'}}></div>
+                    <div style={{borderRadius:10,background:colors.gray100,height:'50%',backgroundImage:`url(${villa.images[6] || villa.images[0]})`,backgroundPosition:'center',backgroundSize:'cover'}}></div>
                 </motion.div>
             </div>
             <motion.div

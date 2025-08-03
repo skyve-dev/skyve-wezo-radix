@@ -144,7 +144,8 @@ const VillaImageGallery: React.FC<VillaImageGalleryProps> = ({images, villaName}
 
     if (validImages.length === 0) {
         return (
-            <div style={containerStyle}>
+            <div style={{width:'100%',paddingTop:'100%',position:'relative'}}>
+                <div style={containerStyle}>
                 <div style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -155,6 +156,7 @@ const VillaImageGallery: React.FC<VillaImageGalleryProps> = ({images, villaName}
                 }}>
                     No images available
                 </div>
+            </div>
             </div>
         );
     }

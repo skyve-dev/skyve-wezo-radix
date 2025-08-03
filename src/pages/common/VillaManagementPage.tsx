@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { CheckIcon } from '@radix-ui/react-icons';
 import { useAuth } from '../../contexts/AuthContext';
 import { useAmenities } from '../../contexts/AmenitiesContext';
+import { useVillas } from '../../contexts/VillasContext';
 import { colors } from '../../utils/colors';
 import type { Villa, VillaAmenities, User } from '../../types';
 
@@ -18,6 +19,7 @@ const VillaManagementPage: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { amenities } = useAmenities();
+  const { addVilla } = useVillas();
   
   // Form state
   const [formData, setFormData] = useState<Partial<Villa>>({
@@ -52,7 +54,7 @@ const VillaManagementPage: React.FC = () => {
       poolRules: '',
       cleaningFee: '',
     },
-    isActive: true,
+    isActive: false, // New villas start as inactive and need admin approval
     isFeatured: false,
     images: [],
   });
@@ -205,10 +207,31 @@ const VillaManagementPage: React.FC = () => {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      // In a real app, this would be an API call to create the villa
-      console.log('Villa data to submit:', formData);
+      // Create complete villa object with generated ID
+      const newVilla: Villa = {
+        id: `villa-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+        name: formData.name!,
+        description: formData.description!,
+        location: formData.location!,
+        ownerId: formData.ownerId || user!.id,
+        maxVisitors: formData.maxVisitors!,
+        numberOfBedrooms: formData.numberOfBedrooms!,
+        numberOfBeds: formData.numberOfBeds!,
+        numberOfBathrooms: formData.numberOfBathrooms!,
+        pricing: formData.pricing!,
+        amenities: formData.amenities!,
+        houseRules: formData.houseRules!,
+        isActive: false, // New villas start as inactive and need admin approval
+        isFeatured: false,
+        images: formData.images || [],
+      };
       
-      // Redirect to villa management list or dashboard
+      // Add villa to context
+      addVilla(newVilla);
+      
+      console.log('Villa created successfully:', newVilla);
+      
+      // Redirect to villa management list
       navigate('/villa-management');
     } catch (error) {
       console.error('Error creating villa:', error);

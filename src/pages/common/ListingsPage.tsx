@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {mockVillas} from '../../data/data';
+import React, {useEffect, useState, useMemo} from 'react';
+import {useVillas} from '../../contexts/VillasContext';
 import type {Villa, VillaFilters} from '../../types';
 import {defaultFilters} from '../../types/filters';
 import {useAuth} from '../../contexts/AuthContext';
@@ -12,9 +12,15 @@ import {applyFilters} from '../../utils/filterUtils';
 const ListingsPage: React.FC = () => {
     const {isAuthenticated} = useAuth();
     const navigate = useNavigate();
-    const [filteredVillas, setFilteredVillas] = useState<Villa[]>(mockVillas);
+    const { villas } = useVillas();
+    const [filteredVillas, setFilteredVillas] = useState<Villa[]>([]);
     const [filters, setFilters] = useState<VillaFilters>(defaultFilters);
     const [isFilterPanelOpen, setIsFilterPanelOpen] = useState(false);
+    
+    // Get only active villas for public listings - memoized to prevent infinite re-renders
+    const activeVillas = useMemo(() => {
+        return villas.filter(villa => villa.isActive);
+    }, [villas]);
 
     // Helper function to get a flat array of amenities for display in villa cards
     const getFlatAmenities = (amenities: Villa['amenities']): string[] => {
@@ -27,11 +33,11 @@ const ListingsPage: React.FC = () => {
         return flatAmenities;
     };
 
-    // Apply filters whenever filters change
+    // Apply filters whenever filters change or villas change
     useEffect(() => {
-        const filtered = applyFilters(mockVillas, filters);
+        const filtered = applyFilters(activeVillas, filters);
         setFilteredVillas(filtered);
-    }, [filters]);
+    }, [filters, activeVillas]);
 
     const handleFiltersChange = (newFilters: VillaFilters) => {
         setFilters(newFilters);
