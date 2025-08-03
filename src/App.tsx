@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Navigate, Route, Routes} from 'react-router-dom
 import {AuthProvider, useAuth} from './contexts/AuthContext';
 import {BookingsProvider} from './contexts/BookingsContext';
 import {VillasProvider} from './contexts/VillasContext';
+import {AmenitiesProvider} from './contexts/AmenitiesContext';
 import LoginPage from './pages/auth/LoginPage';
 import MainLayout from './components/layout/MainLayout';
 import HomePage from './pages/common/HomePage';
@@ -14,6 +15,8 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import NewBookingPage from './pages/tenant/NewBookingPage';
 import BookingListPage from './pages/tenant/BookingListPage';
 import BookingDetailPage from './pages/tenant/BookingDetailPage';
+import VillaManagementPage from './pages/common/VillaManagementPage';
+import VillaManagementListPage from './pages/common/VillaManagementListPage';
 import ScrollToTop from './components/common/ScrollToTop';
 
 // Protected Route Component
@@ -164,12 +167,12 @@ const AppContent: React.FC = () => {
         } />
         <Route path="villa-management" element={
           <ProtectedRoute>
-            <PlaceholderPage title="Villa Management" />
+            <VillaManagementListPage />
           </ProtectedRoute>
         } />
         <Route path="villas/add" element={
           <ProtectedRoute>
-            <PlaceholderPage title="Add Villa" />
+            <VillaManagementPage />
           </ProtectedRoute>
         } />
         <Route path="villas/:id/manage" element={
@@ -236,7 +239,9 @@ const App: React.FC = () => {
       <AuthProvider>
         <VillasProvider>
           <BookingsProvider>
-            <AppContent />
+            <AmenitiesProvider>
+              <AppContent />
+            </AmenitiesProvider>
           </BookingsProvider>
         </VillasProvider>
       </AuthProvider>

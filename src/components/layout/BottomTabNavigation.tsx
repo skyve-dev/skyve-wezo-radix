@@ -36,14 +36,14 @@ const BottomTabNavigation: React.FC = () => {
   const homeownerTabs: TabItem[] = [
     { path: '/dashboard', label: 'Dashboard', icon: <DashboardIcon /> },
     { path: '/listings', label: 'Listings', icon: <MagnifyingGlassIcon /> },
-    { path: '/my-villas', label: 'My Villas', icon: <HomeIcon /> },
+    { path: '/villa-management', label: 'My Villas', icon: <HomeIcon /> },
     { path: '/bookings', label: 'Bookings', icon: <CalendarIcon /> },
     { path: '/messages', label: 'Messages', icon: <ChatBubbleIcon /> },
   ];
 
   const adminTabs: TabItem[] = [
     { path: '/dashboard', label: 'Dashboard', icon: <DashboardIcon /> },
-    { path: '/properties', label: 'Properties', icon: <HomeIcon /> },
+    { path: '/villa-management', label: 'Properties', icon: <HomeIcon /> },
     { path: '/users', label: 'Users', icon: <PersonIcon /> },
     { path: '/reports', label: 'Reports', icon: <BarChartIcon /> },
     { path: '/profile', label: 'Profile', icon: <PersonIcon /> },

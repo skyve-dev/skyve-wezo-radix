@@ -1,6 +1,5 @@
 import type {Villa} from "../types";
 
-
 export const mockVillas: Villa[] = [
     {
         "id": "villa-1",
@@ -19,7 +18,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-1/9.jpg",
             "/assets/villas/villa-1/10.jpg"
         ],
-        "location": "Al-Ramas",
+        "location": "Al Rams",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -75,7 +74,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-10/9.jpg",
             "/assets/villas/villa-10/10.jpg"
         ],
-        "location": "Suhehila, Ras Al-Khaimah",
+        "location": "Suhaila",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -133,7 +132,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-11/9.jpg",
             "/assets/villas/villa-11/10.jpg"
         ],
-        "location": "Emirates Street - behind Saqr Garden",
+        "location": "Near Saqr Park",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -204,7 +203,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-13/9.jpg",
             "/assets/villas/villa-13/10.jpg"
         ],
-        "location": "Bathana area - close to the main street",
+        "location": "Al Bateen",
         "amenities": {
             "generalComfort": [
                 "Washing machine"
@@ -269,7 +268,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-14/9.jpg",
             "/assets/villas/villa-14/10.jpg"
         ],
-        "location": "On Al-Saadi Road - behind the airport",
+        "location": "Al Saadi",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -321,7 +320,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-16/9.jpg",
             "/assets/villas/villa-16/10.jpg"
         ],
-        "location": "Al-Kharan - behind Al-Rawabi kindergarten",
+        "location": "Al Kharan",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -378,7 +377,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-17/9.jpg",
             "/assets/villas/villa-17/10.jpg"
         ],
-        "location": "Shaggy - near Airport Street",
+        "location": "Al Shaghi",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -445,7 +444,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-19/9.jpg",
             "/assets/villas/villa-19/10.jpg"
         ],
-        "location": "Red Island",
+        "location": "Al Jazirat Al Hamra",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -501,7 +500,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-2/9.jpg",
             "/assets/villas/villa-2/10.jpg"
         ],
-        "location": "Khat - Mountain View",
+        "location": "Khatt",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -561,7 +560,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-22/9.jpg",
             "/assets/villas/villa-22/10.jpg"
         ],
-        "location": "Red Island - behind Red Island Club",
+        "location": "Al Jazirat Al Hamra",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -623,7 +622,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-25/9.jpg",
             "/assets/villas/villa-25/10.jpg"
         ],
-        "location": "Emirates Street - near the entrance to Jabal Jeis",
+        "location": "Near Jebel Jais",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -682,7 +681,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-26/9.jpg",
             "/assets/villas/villa-26/10.jpg"
         ],
-        "location": "The Red Isle Al-Morasi Street near Al-Jazira Athletic Club.",
+        "location": "Al Mairid",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -741,7 +740,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-27/9.jpg",
             "/assets/villas/villa-27/10.jpg"
         ],
-        "location": "Ras Al-Khaimah - Shamel",
+        "location": "Shamal",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -797,7 +796,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-28/9.jpg",
             "/assets/villas/villa-28/10.jpg"
         ],
-        "location": "Ras Al-Khemeh, Al-Rifaa",
+        "location": "Al Riffa",
         "amenities": {
             "generalComfort": [
                 "Washer with a heater"
@@ -858,7 +857,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-29/9.jpg",
             "/assets/villas/villa-29/10.jpg"
         ],
-        "location": "Ras Al-Khemeh, Stallion",
+        "location": "Al Fahlain",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -919,7 +918,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-30/9.jpg",
             "/assets/villas/villa-30/10.jpg"
         ],
-        "location": "close to Al-Hamarania",
+        "location": "Al Hamraniyah",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -976,7 +975,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-31/9.jpg",
             "/assets/villas/villa-31/10.jpg"
         ],
-        "location": "Villa site :",
+        "location": "Unspecified",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -1032,7 +1031,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-35/9.jpg",
             "/assets/villas/villa-35/10.jpg"
         ],
-        "location": "Emirates Street - near the entrance to Jabal Jeis",
+        "location": "Near Jebel Jais",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -1091,7 +1090,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-38/9.jpg",
             "/assets/villas/villa-38/10.jpg"
         ],
-        "location": "Ras Al-Khemeh - Seh Ghab.",
+        "location": "Seih Al Ghab",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -1146,7 +1145,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-39/9.jpg",
             "/assets/villas/villa-39/10.jpg"
         ],
-        "location": "Hamraniyah area",
+        "location": "Al Hamraniyah",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -1206,7 +1205,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-4/9.jpg",
             "/assets/villas/villa-4/10.jpg"
         ],
-        "location": "Al-Ramas",
+        "location": "Al Rams",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -1262,7 +1261,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-40/9.jpg",
             "/assets/villas/villa-40/10.jpg"
         ],
-        "location": "Ras Al-Kheima, Suhehila",
+        "location": "Suhaila",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -1318,7 +1317,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-41/9.jpg",
             "/assets/villas/villa-41/10.jpg"
         ],
-        "location": "Dubai, against us",
+        "location": "Unspecified",
         "amenities": {
             "generalComfort": [
                 "Washing machine"
@@ -1375,7 +1374,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-42/9.jpg",
             "/assets/villas/villa-42/10.jpg"
         ],
-        "location": "seminar area",
+        "location": "Unspecified",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -1440,7 +1439,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-43/9.jpg",
             "/assets/villas/villa-43/10.jpg"
         ],
-        "location": "Dakdaka - Al-Shaggy",
+        "location": "Digdaga",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -1504,7 +1503,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-44/9.jpg",
             "/assets/villas/villa-44/10.jpg"
         ],
-        "location": "Tricks - Al-Kharan",
+        "location": "Al Kharan",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -1562,7 +1561,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-45/9.jpg",
             "/assets/villas/villa-45/10.jpg"
         ],
-        "location": "behind the airport",
+        "location": "Near Ras Al Khaimah International Airport",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -1625,7 +1624,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-46/9.jpg",
             "/assets/villas/villa-46/10.jpg"
         ],
-        "location": "Shaggy Stallions",
+        "location": "Al Shaghi",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -1684,7 +1683,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-48/9.jpg",
             "/assets/villas/villa-48/10.jpg"
         ],
-        "location": "The head of the bluffing tent",
+        "location": "Unspecified",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -1742,7 +1741,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-49/9.jpg",
             "/assets/villas/villa-49/10.jpg"
         ],
-        "location": "Ras Al-Khemeh, Al-Birat",
+        "location": "Al Barirat",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -1800,7 +1799,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-5/9.jpg",
             "/assets/villas/villa-5/10.jpg"
         ],
-        "location": "Arab Port - Red Island",
+        "location": "Mina Al Arab",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -1859,7 +1858,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-50/9.jpg",
             "/assets/villas/villa-50/10.jpg"
         ],
-        "location": "Ras Al-Khaimah Emirate, Shamel area, directly on Emirates Street.",
+        "location": "Shamal",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -1920,7 +1919,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-51/9.jpg",
             "/assets/villas/villa-51/10.jpg"
         ],
-        "location": "Ras Al-Khaimah - Fahalin",
+        "location": "Al Fahlain",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -1980,7 +1979,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-52/9.jpg",
             "/assets/villas/villa-52/10.jpg"
         ],
-        "location": "Ras Al-Khemeh Airport",
+        "location": "Near Ras Al Khaimah International Airport",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -2037,7 +2036,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-53/9.jpg",
             "/assets/villas/villa-53/10.jpg"
         ],
-        "location": "Ras Al-Kheimah - Fahalin.",
+        "location": "Al Fahlain",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -2092,7 +2091,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-55/9.jpg",
             "/assets/villas/villa-55/10.jpg"
         ],
-        "location": "Al-Rifaa, Ras Al-Khaimah",
+        "location": "Al Riffa",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -2147,7 +2146,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-56/9.jpg",
             "/assets/villas/villa-56/10.jpg"
         ],
-        "location": "Shamel, Ras Al-Khaimah",
+        "location": "Shamal",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -2209,7 +2208,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-57/9.jpg",
             "/assets/villas/villa-57/10.jpg"
         ],
-        "location": "Al-Hamarania, Ras Al-Khaimah",
+        "location": "Al Hamraniyah",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -2265,7 +2264,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-58/9.jpg",
             "/assets/villas/villa-58/10.jpg"
         ],
-        "location": "Al-Hamarania, Ras Al-Khaimah",
+        "location": "Al Hamraniyah",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -2324,7 +2323,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-59/9.jpg",
             "/assets/villas/villa-59/10.jpg"
         ],
-        "location": "The Stallions",
+        "location": "Al Fahlain",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -2380,7 +2379,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-6/9.jpg",
             "/assets/villas/villa-6/10.jpg"
         ],
-        "location": "Southern Oil",
+        "location": "Al Dhait South",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -2436,7 +2435,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-60/9.jpg",
             "/assets/villas/villa-60/10.jpg"
         ],
-        "location": "Ras Al-Kheima, Al-Madafaq",
+        "location": "Al Madafaq",
         "amenities": {
             "generalComfort": [
                 "Washing machine"
@@ -2498,7 +2497,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-62/9.jpg",
             "/assets/villas/villa-62/10.jpg"
         ],
-        "location": "Ras Al-Khemeh, Al-Rifaa",
+        "location": "Al Riffa",
         "amenities": {
             "generalComfort": [
                 "Washing machine"
@@ -2558,7 +2557,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-63/9.jpg",
             "/assets/villas/villa-63/10.jpg"
         ],
-        "location": "Ras Al-Kheima, Al-Maqoura",
+        "location": "Al Maqour",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -2612,7 +2611,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-7/9.jpg",
             "/assets/villas/villa-7/10.jpg"
         ],
-        "location": "Airport Street",
+        "location": "Near Ras Al Khaimah International Airport",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -2669,7 +2668,7 @@ export const mockVillas: Villa[] = [
             "/assets/villas/villa-8/9.jpg",
             "/assets/villas/villa-8/10.jpg"
         ],
-        "location": "The beginning of Ras Al-Khaimah - Muhammad Bin Zayed Street",
+        "location": "Near Sheikh Mohammed Bin Zayed Road",
         "amenities": {
             "generalComfort": [],
             "outdoorRecreation": [
@@ -2707,4 +2706,99 @@ export const mockVillas: Villa[] = [
         "isActive": true,
         "isFeatured": false
     }
+]
+
+// Master list of all available amenities organized by category
+export const masterAmenities = {
+    "generalComfort": [
+        "Washing Machine"
+    ],
+    "outdoorRecreation": [
+        "Private Outdoor Pool",
+        "Pool Heating/Cooling System",
+        "Multiple Outdoor Seating Areas",
+        "Rooftop Terrace",
+        "Shaded Pergola",
+        "Poolside Loungers",
+        "Barbecue Area / Grill",
+        "Outdoor Oven",
+        "Children's Play Area",
+        "Soccer Field",
+        "Volleyball Court",
+        "Landscaped Gardens",
+        "Outdoor Shower",
+        "Water Fountains",
+        "Covered Parking",
+        "Private Parking",
+        "Nearby Mosque",
+        "Horse Riding (Available upon request)",
+        "Lake Access with Boats",
+        "Outdoor Games Equipment",
+        "Swing Set",
+        "Private Outdoor Pool",
+        "Outdoor changing room",
+        "Badminton Equipment",
+        "Kids' Bikes / Go-Karts"
+    ],
+    "kitchenDining": [
+        "Refrigerator",
+        "Stove (Gas/Electric)",
+        "Oven",
+        "Microwave",
+        "Dishwasher",
+        "Electric Kettle",
+        "Toaster",
+        "Coffee Machine",
+        "Espresso Machine",
+        "Cooking Utensils & Cookware"
+    ],
+    "technologyEntertainment": [
+        "Smart TV with Streaming Services (Netflix, etc.)",
+        "Wi-Fi / Internet Access",
+        "Integrated Indoor & Outdoor Sound System",
+        "Portable Bluetooth Speaker",
+        "Video Game Console",
+        "Movie Projector (Available upon request)"
+    ],
+    "specialFeatures": [
+        "Mountain View",
+        "Sea View",
+        "Jacuzzi",
+        "Fire Pit / Bonfire Area",
+        "Pool Table",
+        "Foosball Table",
+        "Traditional Bedouin Tent (Majlis)",
+        "On-site Mini-Farm with Animals (e.g., Horses, Peacocks, Deer)",
+        "Coffee Bar",
+        "First Aid Kit",
+        "Beach Access"
+    ]
+};
+
+export const locations = [
+    "Al Barirat",
+    "Al Bateen",
+    "Al Dhait South",
+    "Al Fahlain",
+    "Al Hamraniyah",
+    "Al Jazirat Al Hamra",
+    "Al Kharan",
+    "Al Madafaq",
+    "Al Mairid",
+    "Al Maqour",
+    "Al Rams",
+    "Al Riffa",
+    "Al Saadi",
+    "Al Shaghi",
+    "Digdaga",
+    "Khatt",
+    "Mina Al Arab",
+    "Near Jebel Jais",
+    "Near Ras Al Khaimah International Airport",
+    "Near Saqr Park",
+    "Near Sheikh Mohammed Bin Zayed Road",
+    "Seih Al Ghab",
+    "Shamal",
+    "Suhaila",
+    "Unspecified"
 ]
