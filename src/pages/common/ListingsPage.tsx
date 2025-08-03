@@ -130,13 +130,13 @@ const ListingsPage: React.FC = () => {
         fontSize: '20px',
         fontWeight: '600',
         color: '#1a1a1a',
-        marginBottom: '8px',
+        margin: '0px',
     };
 
     const locationStyle: React.CSSProperties = {
         fontSize: '14px',
         color: '#6b7280',
-        marginBottom: '10px',
+        margin: '0px',
     };
 
     const descriptionStyle: React.CSSProperties = {

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { PlusIcon, Pencil1Icon, EyeOpenIcon, EyeClosedIcon } from '@radix-ui/react-icons';
-import { useAuth } from '../../contexts/AuthContext';
-import { useVillas } from '../../contexts/VillasContext';
-import { colors } from '../../utils/colors';
+import React, {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {motion} from 'framer-motion';
+import {EyeClosedIcon, EyeOpenIcon, Pencil1Icon, PlusIcon} from '@radix-ui/react-icons';
+import {useAuth} from '../../contexts/AuthContext';
+import {useVillas} from '../../contexts/VillasContext';
+import {colors} from '../../utils/colors';
 
 const VillaManagementListPage: React.FC = () => {
   const navigate = useNavigate();
@@ -74,6 +74,7 @@ const VillaManagementListPage: React.FC = () => {
     fontSize: '28px',
     fontWeight: 'bold',
     color: '#1a1a1a',
+    margin : 0,
   };
 
   const filtersStyle: React.CSSProperties = {
@@ -117,12 +118,6 @@ const VillaManagementListPage: React.FC = () => {
   };
 
 
-  const imageStyle: React.CSSProperties = {
-    width: '100%',
-    height: '200px',
-    objectFit: 'cover',
-  };
-
   const cardContentStyle: React.CSSProperties = {
     padding: '16px',
   };
@@ -131,13 +126,14 @@ const VillaManagementListPage: React.FC = () => {
     fontSize: '18px',
     fontWeight: '600',
     color: '#1a1a1a',
-    marginBottom: '4px',
+    margin:'0px',
   };
 
   const villaLocationStyle: React.CSSProperties = {
     fontSize: '14px',
     color: '#6b7280',
-    marginBottom: '12px',
+    margin : '0px',
+    marginBottom:'8px'
   };
 
   const statusRowStyle: React.CSSProperties = {
@@ -312,12 +308,9 @@ const VillaManagementListPage: React.FC = () => {
               }}
               layout
             >
-              <img
-                src={villa.images[0]}
-                alt={villa.name}
-                style={imageStyle}
-              />
-              
+              <div style={{background:colors.gray200}}>
+              <div style={{width:'100%',paddingTop:'80%',backgroundImage:`url(${villa.images[0]})`,backgroundPosition:'center',backgroundSize:'cover'}}></div>
+              </div>
               <div style={cardContentStyle}>
                 <h3 style={villaNameStyle}>{villa.name}</h3>
                 <p style={villaLocationStyle}>{villa.location}</p>

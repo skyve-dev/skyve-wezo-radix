@@ -304,6 +304,12 @@ const VillaManagementPage: React.FC = () => {
         gap: '12px',
         marginBottom: '16px',
     };
+    const gridStylePricing: React.CSSProperties = {
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+        gap: '12px',
+        marginBottom: '16px',
+    };
 
     const formGroupStyle: React.CSSProperties = {
         display: 'flex',
@@ -586,10 +592,12 @@ const VillaManagementPage: React.FC = () => {
                 {/* Pricing Section */}
                 <div style={sectionStyle}>
                     <h2 style={sectionTitleStyle}>Pricing</h2>
-                    <div style={gridStyle}>
+                    <div style={gridStylePricing}>
                         <div style={formGroupStyle}>
                             <label style={labelStyle}>Weekday Price (AED) *</label>
                             <NumericInput
+                                style={{maxWidth: 'unset'}}
+                                steps={[100,500]}
                                 value={formData.pricing?.weekday}
                                 onChange={(value) => handleNestedChange('pricing', 'weekday', value || 0)}
                                 min={0}
@@ -601,6 +609,7 @@ const VillaManagementPage: React.FC = () => {
                         <div style={formGroupStyle}>
                             <label style={labelStyle}>Weekend Price (AED) *</label>
                             <NumericInput
+                                steps={[100,500]}
                                 value={formData.pricing?.weekend}
                                 onChange={(value) => handleNestedChange('pricing', 'weekend', value || 0)}
                                 min={0}
@@ -612,6 +621,7 @@ const VillaManagementPage: React.FC = () => {
                         <div style={formGroupStyle}>
                             <label style={labelStyle}>Half Day Price (AED) *</label>
                             <NumericInput
+                                steps={[100,500]}
                                 value={formData.pricing?.halfDay}
                                 onChange={(value) => handleNestedChange('pricing', 'halfDay', value || 0)}
                                 min={0}
