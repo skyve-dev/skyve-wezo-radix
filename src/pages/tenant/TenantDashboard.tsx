@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import {BellIcon, CalendarIcon, HomeIcon} from '@radix-ui/react-icons';
 import {useAuth} from '../../contexts/AuthContext';
 import {useBookings} from '../../contexts/BookingsContext';
-import {mockVillas} from '../../data/data';
+import {useVillas} from '../../contexts/VillasContext';
 import {colors} from '../../utils/colors';
 
 const TenantDashboard: React.FC = () => {
@@ -12,6 +12,7 @@ const TenantDashboard: React.FC = () => {
     const {user} = useAuth();
 
     const { getBookingsByTenant } = useBookings();
+    const { getVillaById } = useVillas();
     const userBookings = user ? getBookingsByTenant(user.id) : [];
     const recentBookings = userBookings.slice(0, 3);
 
@@ -219,7 +220,7 @@ const TenantDashboard: React.FC = () => {
                     </button>
                 </div>
                 {recentBookings.map((booking) => {
-                    const villa = mockVillas.find(v => v.id === booking.villaId);
+                    const villa = getVillaById(booking.villaId);
                     return (
                         <motion.div
                             key={booking.id}

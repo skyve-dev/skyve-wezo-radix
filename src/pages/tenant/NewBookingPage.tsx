@@ -5,7 +5,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { CheckCircledIcon } from '@radix-ui/react-icons';
 import { useAuth } from '../../contexts/AuthContext';
 import { useBookings } from '../../contexts/BookingsContext';
-import { mockVillas } from '../../data/data';
+import { useVillas } from '../../contexts/VillasContext';
 import { colors } from '../../utils/colors';
 import type { Booking } from '../../types';
 
@@ -13,14 +13,15 @@ const NewBookingPage: React.FC = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { user } = useAuth();
-  const { addBooking } = useBookings();
+  const { addBooking, bookings } = useBookings();
+  const { getVillaById, isVillaAvailable } = useVillas();
 
   // Get booking details from URL params
   const villaId = searchParams.get('villa');
   const checkInStr = searchParams.get('checkIn');
   const checkOutStr = searchParams.get('checkOut');
 
-  const villa = villaId ? mockVillas.find(v => v.id === villaId) : null;
+  const villa = villaId ? getVillaById(villaId) : null;
   const checkInDate = checkInStr ? new Date(checkInStr) : null;
   const checkOutDate = checkOutStr ? new Date(checkOutStr) : null;
 
@@ -121,6 +122,18 @@ const NewBookingPage: React.FC = () => {
     if (!validateForm() || !user || !villa || !checkInDate || !checkOutDate) return;
     
     setIsProcessing(true);
+    
+    // Check villa availability before processing payment
+    const available = isVillaAvailable(villa.id, checkInDate, checkOutDate, bookings);
+    
+    if (!available) {
+      setErrors({
+        ...errors,
+        availability: 'Sorry, this villa is not available for the selected dates. Please choose different dates.'
+      });
+      setIsProcessing(false);
+      return;
+    }
     
     // Simulate API call delay
     await new Promise(resolve => setTimeout(resolve, 2000));
@@ -518,6 +531,25 @@ const NewBookingPage: React.FC = () => {
               <span>AED {totalPrice}</span>
             </div>
           </div>
+
+          {/* Availability Error */}
+          {errors.availability && (
+            <div style={{
+              backgroundColor: '#fef2f2',
+              border: '1px solid #fecaca',
+              borderRadius: '8px',
+              padding: '12px',
+              marginBottom: '16px',
+            }}>
+              <div style={{
+                fontSize: '14px',
+                color: '#dc2626',
+                fontWeight: '500',
+              }}>
+                {errors.availability}
+              </div>
+            </div>
+          )}
 
           {/* Pay Button */}
           <motion.button

@@ -2,6 +2,7 @@ import React from 'react';
 import {BrowserRouter as Router, Navigate, Route, Routes} from 'react-router-dom';
 import {AuthProvider, useAuth} from './contexts/AuthContext';
 import {BookingsProvider} from './contexts/BookingsContext';
+import {VillasProvider} from './contexts/VillasContext';
 import LoginPage from './pages/auth/LoginPage';
 import MainLayout from './components/layout/MainLayout';
 import HomePage from './pages/common/HomePage';
@@ -11,6 +12,8 @@ import TenantDashboard from './pages/tenant/TenantDashboard';
 import HomeownerDashboard from './pages/homeowner/HomeownerDashboard';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import NewBookingPage from './pages/tenant/NewBookingPage';
+import BookingListPage from './pages/tenant/BookingListPage';
+import BookingDetailPage from './pages/tenant/BookingDetailPage';
 
 // Protected Route Component
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -136,7 +139,12 @@ const AppContent: React.FC = () => {
         } />
         <Route path="bookings" element={
           <ProtectedRoute>
-            <PlaceholderPage title="Bookings" />
+            <BookingListPage />
+          </ProtectedRoute>
+        } />
+        <Route path="bookings/:id" element={
+          <ProtectedRoute>
+            <BookingDetailPage />
           </ProtectedRoute>
         } />
         
@@ -224,9 +232,11 @@ const App: React.FC = () => {
   return (
     <Router>
       <AuthProvider>
-        <BookingsProvider>
-          <AppContent />
-        </BookingsProvider>
+        <VillasProvider>
+          <BookingsProvider>
+            <AppContent />
+          </BookingsProvider>
+        </VillasProvider>
       </AuthProvider>
     </Router>
   );
