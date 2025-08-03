@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import * as Slider from '@radix-ui/react-slider';
+import * as Select from '@radix-ui/react-select';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Cross2Icon, TrashIcon, CheckIcon } from '@radix-ui/react-icons';
+import { Cross2Icon, TrashIcon, CheckIcon, ChevronDownIcon, CheckIcon as SelectedIcon } from '@radix-ui/react-icons';
 import { colors } from '../../utils/colors';
 import type { VillaFilters } from '../../types/filters';
-import { mockVillas } from '../../data/data';
+import { useAmenities } from '../../contexts/AmenitiesContext';
+import { locations } from '../../data/data';
 
 interface FilterPanelProps {
   isOpen: boolean;
@@ -30,33 +32,12 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
     localFilters.priceRange.max || 6000
   ]);
 
-  // Get all unique amenities from villas for checkbox options
-  const getAllAmenities = () => {
-    const amenitiesByCategory: Record<string, Set<string>> = {
-      generalComfort: new Set(),
-      outdoorRecreation: new Set(),
-      kitchenDining: new Set(),
-      technologyEntertainment: new Set(),
-      specialFeatures: new Set(),
-    };
-
-    mockVillas.forEach(villa => {
-      Object.entries(villa.amenities).forEach(([category, items]) => {
-        if (items && amenitiesByCategory[category]) {
-          items.forEach((item: string) => amenitiesByCategory[category].add(item));
-        }
-      });
-    });
-
-    return Object.fromEntries(
-      Object.entries(amenitiesByCategory).map(([category, items]) => [
-        category,
-        Array.from(items).sort()
-      ])
-    );
-  };
-
-  const allAmenities = getAllAmenities();
+  // Get amenities from context
+  const { amenities } = useAmenities();
+  
+  // State for location dropdown
+  const [isLocationDropdownOpen, setIsLocationDropdownOpen] = useState(false);
+  const [locationSearchValue, setLocationSearchValue] = useState(localFilters.location);
 
   const updateLocalFilters = (updates: Partial<VillaFilters>) => {
     setLocalFilters(prev => ({ ...prev, ...updates }));
@@ -86,6 +67,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
     };
     setLocalFilters(clearedFilters);
     setPriceRange([0, 6000]);
+    setLocationSearchValue('');
   };
   
   // Handle price range slider changes
@@ -440,13 +422,101 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                   {/* Location */}
                   <div style={sectionStyle}>
                     <h3 style={sectionTitleStyle}>Location</h3>
-                    <input
-                      type="text"
-                      placeholder="Search by location..."
+                    <Select.Root
                       value={localFilters.location}
-                      onChange={(e) => updateLocalFilters({ location: e.target.value })}
-                      style={inputStyle}
-                    />
+                      onValueChange={(value) => {
+                        updateLocalFilters({ location: value });
+                        setLocationSearchValue(value);
+                      }}
+                      open={isLocationDropdownOpen}
+                      onOpenChange={setIsLocationDropdownOpen}
+                    >
+                      <Select.Trigger
+                        style={{
+                          ...inputStyle,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          cursor: 'pointer',
+                        }}
+                      >
+                        <Select.Value placeholder="Select or enter location">
+                          {localFilters.location || "Select or enter location"}
+                        </Select.Value>
+                        <Select.Icon>
+                          <ChevronDownIcon />
+                        </Select.Icon>
+                      </Select.Trigger>
+                      
+                      <Select.Portal>
+                        <Select.Content
+                          style={{
+                            backgroundColor: 'white',
+                            border: '1px solid #e5e7eb',
+                            borderRadius: '8px',
+                            boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
+                            maxHeight: '200px',
+                            overflowY: 'auto',
+                            zIndex: 150,
+                          }}
+                        >
+                          <Select.Viewport>
+                            {/* Custom input option */}
+                            <div
+                              style={{
+                                padding: '8px 12px',
+                                borderBottom: '1px solid #f3f4f6',
+                              }}
+                            >
+                              <input
+                                type="text"
+                                placeholder="Enter custom location..."
+                                value={locationSearchValue}
+                                onChange={(e) => {
+                                  setLocationSearchValue(e.target.value);
+                                  updateLocalFilters({ location: e.target.value });
+                                }}
+                                style={{
+                                  width: '100%',
+                                  padding: '6px 8px',
+                                  border: '1px solid #d1d5db',
+                                  borderRadius: '4px',
+                                  fontSize: '14px',
+                                  outline: 'none',
+                                  boxSizing: 'border-box',
+                                }}
+                                onClick={(e) => e.stopPropagation()}
+                              />
+                            </div>
+                            
+                            {/* Predefined locations */}
+                            {locations
+                              .filter(location => location !== 'Unspecified')
+                              .filter(location => location.toLowerCase().includes(locationSearchValue.toLowerCase()))
+                              .map((location) => (
+                                <Select.Item
+                                  key={location}
+                                  value={location}
+                                  style={{
+                                    padding: '8px 12px',
+                                    fontSize: '14px',
+                                    cursor: 'pointer',
+                                    borderBottom: '1px solid #f3f4f6',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'space-between',
+                                  }}
+                                >
+                                  <Select.ItemText>{location}</Select.ItemText>
+                                  <Select.ItemIndicator>
+                                    <SelectedIcon width={14} height={14} />
+                                  </Select.ItemIndicator>
+                                </Select.Item>
+                              ))}
+                          </Select.Viewport>
+                        </Select.Content>
+                      </Select.Portal>
+                    </Select.Root>
                   </div>
 
                   {/* Bedrooms */}
@@ -506,13 +576,13 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                   {/* Amenities */}
                   <div style={sectionStyle}>
                     <h3 style={sectionTitleStyle}>Amenities</h3>
-                    {Object.entries(allAmenities).map(([category, amenities]) => (
+                    {Object.entries(amenities).map(([category, categoryAmenities]) => (
                       <div key={category} style={amenityCategoryStyle}>
                         <h4 style={amenityCategoryTitleStyle}>
                           {getCategoryDisplayName(category)}
                         </h4>
                         <div style={checkboxGridStyle}>
-                          {amenities.map(amenity => {
+                          {categoryAmenities.map((amenity: string) => {
                             const isChecked = localFilters.amenities[category as keyof VillaFilters['amenities']].includes(amenity);
                             return (
                               <div
