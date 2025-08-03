@@ -283,19 +283,26 @@ const NewBookingPage: React.FC = () => {
     position: 'fixed',
     inset: 0,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 9999,
+    zIndex: 50,
   };
 
   const successModalContentStyle: React.CSSProperties = {
+    position: 'fixed',
+    top: '50vh',
+    left: '50vw',
+    transform: 'translate(-50%, -50%)',
     backgroundColor: 'white',
     borderRadius: '16px',
-    padding: '40px',
-    maxWidth: '400px',
+    padding: '32px',
+    width: 'calc(100vw - 40px)',
+    maxWidth: '420px',
+    maxHeight: 'calc(100vh - 40px)',
     textAlign: 'center',
-    boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
+    boxShadow: '0 25px 50px rgba(0,0,0,0.25)',
+    zIndex: 51,
+    outline: 'none',
+    margin: '0',
+    overflow: 'auto',
   };
 
   const successIconContainerStyle: React.CSSProperties = {
@@ -548,7 +555,7 @@ const NewBookingPage: React.FC = () => {
               <Dialog.Content asChild>
                 <motion.div
                   style={successModalContentStyle}
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.9,x:'-50%',y:'-50%' }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                 >
