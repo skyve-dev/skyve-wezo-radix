@@ -3,7 +3,7 @@ import {motion} from 'framer-motion';
 import {useNavigate} from 'react-router-dom';
 import {BellIcon, CalendarIcon, HomeIcon} from '@radix-ui/react-icons';
 import {useAuth} from '../../contexts/AuthContext';
-import {mockBookings} from '../../data/mockData';
+import {useBookings} from '../../contexts/BookingsContext';
 import {mockVillas} from '../../data/data';
 import {colors} from '../../utils/colors';
 
@@ -11,7 +11,8 @@ const TenantDashboard: React.FC = () => {
     const navigate = useNavigate();
     const {user} = useAuth();
 
-    const userBookings = mockBookings.filter(booking => booking.tenantId === user?.id);
+    const { getBookingsByTenant } = useBookings();
+    const userBookings = user ? getBookingsByTenant(user.id) : [];
     const recentBookings = userBookings.slice(0, 3);
 
     const containerStyle: React.CSSProperties = {

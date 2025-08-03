@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Navigate, Route, Routes} from 'react-router-dom';
 import {AuthProvider, useAuth} from './contexts/AuthContext';
+import {BookingsProvider} from './contexts/BookingsContext';
 import LoginPage from './pages/auth/LoginPage';
 import MainLayout from './components/layout/MainLayout';
 import HomePage from './pages/common/HomePage';
@@ -9,6 +10,7 @@ import VillaDetailsPage from './pages/common/VillaDetailsPage';
 import TenantDashboard from './pages/tenant/TenantDashboard';
 import HomeownerDashboard from './pages/homeowner/HomeownerDashboard';
 import AdminDashboard from './pages/admin/AdminDashboard';
+import NewBookingPage from './pages/tenant/NewBookingPage';
 
 // Protected Route Component
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -207,7 +209,7 @@ const AppContent: React.FC = () => {
         {/* Protected Booking routes */}
         <Route path="bookings/new" element={
           <ProtectedRoute>
-            <PlaceholderPage title="New Booking" />
+            <NewBookingPage />
           </ProtectedRoute>
         } />
         
@@ -222,7 +224,9 @@ const App: React.FC = () => {
   return (
     <Router>
       <AuthProvider>
-        <AppContent />
+        <BookingsProvider>
+          <AppContent />
+        </BookingsProvider>
       </AuthProvider>
     </Router>
   );
