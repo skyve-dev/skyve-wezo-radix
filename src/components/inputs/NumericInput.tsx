@@ -27,7 +27,7 @@ export const NumericInput: React.FC<{
     const valueRef = useRef(value);
     valueRef.current = value;
     return <div style={{display: 'flex', gap: '12px', maxWidth: '200px'}}>
-        <button style={{
+        <button type={'button'} style={{
             borderRadius: '48px',
             width: '42px',
             height: '42px',
@@ -54,7 +54,7 @@ export const NumericInput: React.FC<{
             onFocus={(e) => e.target.style.borderColor = colors.primary}
             onBlur={(e) => e.target.style.borderColor = '#e5e7eb'}
         />
-        <button style={{
+        <button type={'button'} style={{
             borderRadius: '48px',
             width: '42px',
             height: '42px',
