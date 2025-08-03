@@ -156,20 +156,21 @@ const VillaDetailsPage: React.FC = () => {
         fontSize: '32px',
         fontWeight: 'bold',
         color: '#1a1a1a',
-        marginBottom: '10px',
     };
 
     const locationStyle: React.CSSProperties = {
         fontSize: '18px',
         color: '#6b7280',
-        marginBottom: '20px',
+        margin : 0,
+        marginBottom: '18px'
     };
 
     const descriptionStyle: React.CSSProperties = {
         fontSize: '16px',
         color: '#4b5563',
         lineHeight: '1.6',
-        marginBottom: '30px',
+        margin : 0,
+
     };
 
     const priceStyle: React.CSSProperties = {
@@ -320,8 +321,7 @@ const VillaDetailsPage: React.FC = () => {
     const propertyDetailItemStyle: React.CSSProperties = {
         display: 'flex',
         alignItems: 'center',
-        gap: '4px',
-        marginBottom : '10px'
+        gap: '4px'
     };
 
     const propertyDetailIconStyle: React.CSSProperties = {

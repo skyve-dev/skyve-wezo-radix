@@ -63,7 +63,7 @@ const HomePage: React.FC = () => {
 
     const villaGridStyle: React.CSSProperties = {
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
         gap: '16px',
         marginBottom: '32px',
     };
@@ -85,15 +85,16 @@ const HomePage: React.FC = () => {
 
     const villaNameStyle: React.CSSProperties = {
         fontSize: '18px',
+        lineHeight : '18px',
         fontWeight: '600',
         color: '#1a1a1a',
-        marginBottom: '4px',
+        margin : 0,
     };
 
     const villaLocationStyle: React.CSSProperties = {
         fontSize: '14px',
         color: '#6b7280',
-        marginBottom: '8px',
+        margin : 0,
     };
 
     const villaPriceStyle: React.CSSProperties = {
@@ -143,7 +144,7 @@ const HomePage: React.FC = () => {
             >
                 <div style={{
                     width: '100%',
-                    paddingTop: '70%',
+                    paddingTop: '100%',
                     backgroundImage: `url(${villa.images[0]})`,
                     backgroundPosition: 'center',
                     backgroundSize: 'cover',
