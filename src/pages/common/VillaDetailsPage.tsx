@@ -198,8 +198,8 @@ const VillaDetailsPage: React.FC = () => {
     };
 
     const amenityListStyle: React.CSSProperties = {
-        display: 'flex',
-        flexWrap: 'wrap',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit,minmax(180px,1fr))',
         gap: '16px',
     };
 
