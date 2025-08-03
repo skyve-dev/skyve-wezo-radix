@@ -14,6 +14,7 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import NewBookingPage from './pages/tenant/NewBookingPage';
 import BookingListPage from './pages/tenant/BookingListPage';
 import BookingDetailPage from './pages/tenant/BookingDetailPage';
+import ScrollToTop from './components/common/ScrollToTop';
 
 // Protected Route Component
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -231,6 +232,7 @@ const AppContent: React.FC = () => {
 const App: React.FC = () => {
   return (
     <Router>
+      <ScrollToTop excludePaths={['/listings']} />
       <AuthProvider>
         <VillasProvider>
           <BookingsProvider>

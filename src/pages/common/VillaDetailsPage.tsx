@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import {motion} from 'framer-motion';
 import {mockVillas} from '../../data/data';
@@ -15,11 +15,6 @@ const VillaDetailsPage: React.FC = () => {
     const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
 
     const villa = mockVillas.find(v => v.id === id);
-
-    // Scroll to top when component mounts or villa changes
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [id]);
 
     // Helper function to get display name for amenity categories
     const getCategoryDisplayName = (category: string): string => {
