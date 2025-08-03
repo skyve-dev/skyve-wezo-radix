@@ -8,6 +8,7 @@ import {useBookings} from '../../contexts/BookingsContext';
 import {useVillas} from '../../contexts/VillasContext';
 import {colors} from '../../utils/colors';
 import type {Booking} from '../../types';
+import {NumericInput} from "../../components/inputs/NumericInput.tsx";
 
 const NewBookingPage: React.FC = () => {
     const navigate = useNavigate();
@@ -241,7 +242,7 @@ const NewBookingPage: React.FC = () => {
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
         gap: '12px',
-        marginBottom:'20px'
+        marginBottom: '20px'
     };
 
     const summaryRowStyle: React.CSSProperties = {
@@ -478,49 +479,9 @@ const NewBookingPage: React.FC = () => {
                     {/* Number of Guests */}
                     <div style={formGroupStyle}>
                         <label style={labelStyle}>Number of Guests</label>
-                        <div style={{display: 'flex', gap: '12px',maxWidth:'200px'}}>
-                            <button style={{
-                                borderRadius: '48px',
-                                width: '42px',
-                                height: '42px',
-                                flexShrink: 0,
-                                border: '1px solid rgba(0,0,0,0.1)'
-                            }} onClick={() => setNumberOfGuests(old => old > 1 ? old - 1 : 1)}>
-                                <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M2.25 7.5C2.25 7.22386 2.47386 7 2.75 7H12.25C12.5261 7 12.75 7.22386 12.75 7.5C12.75 7.77614 12.5261 8 12.25 8H2.75C2.47386 8 2.25 7.77614 2.25 7.5Z"
-                                        fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
-                                </svg>
-                            </button>
-                            <input
-                                type="number"
-                                value={numberOfGuests}
-                                onChange={(e) => {
-                                    setNumberOfGuests(parseInt(e.target.value) || 1)
-                                }}
-                                min={1}
-                                max={villa.maxVisitors}
-                                style={{...(errors.guests ? inputErrorStyle : inputStyle),textAlign:'center'}}
-                                onFocus={(e) => e.target.style.borderColor = colors.primary}
-                                onBlur={(e) => e.target.style.borderColor = '#e5e7eb'}
-                            />
-                            <button style={{
-                                borderRadius: '48px',
-                                width: '42px',
-                                height: '42px',
-                                flexShrink: 0,
-                                border: '1px solid rgba(0,0,0,0.1)'
-                            }} onClick={() => setNumberOfGuests(old => (old ?? 0) + 1)}>
-                                <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M8 2.75C8 2.47386 7.77614 2.25 7.5 2.25C7.22386 2.25 7 2.47386 7 2.75V7H2.75C2.47386 7 2.25 7.22386 2.25 7.5C2.25 7.77614 2.47386 8 2.75 8H7V12.25C7 12.5261 7.22386 12.75 7.5 12.75C7.77614 12.75 8 12.5261 8 12.25V8H12.25C12.5261 8 12.75 7.77614 12.75 7.5C12.75 7.22386 12.5261 7 12.25 7H8V2.75Z"
-                                        fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
-                                </svg>
-                            </button>
-
-                        </div>
+                        <NumericInput value={numberOfGuests} onChange={(val) => {
+                            setNumberOfGuests(val || 1)
+                        }} invalid={errors.guests !== null && errors.guests !== undefined && errors.guests.length > 0}/>
                         {errors.guests && <div style={errorTextStyle}>{errors.guests}</div>}
                     </div>
                 </div>
