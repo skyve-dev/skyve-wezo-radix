@@ -1,24 +1,47 @@
 import React from 'react';
 import {motion} from 'framer-motion';
 import {useNavigate} from 'react-router-dom';
-import {CalendarIcon, HomeIcon, PersonIcon, PlusIcon} from '@radix-ui/react-icons';
+import {CalendarIcon, HomeIcon, ReaderIcon, PlusIcon, TokensIcon} from '@radix-ui/react-icons';
 import {useAuth} from '../../contexts/AuthContext';
-import {mockBookings} from '../../data/mockData';
-import {mockVillas} from "../../data/data.ts";
+import {useVillas} from '../../contexts/VillasContext';
+import {useBookings} from '../../contexts/BookingsContext';
+import type { Booking } from '../../types';
 import {colors} from '../../utils/colors';
 
 const HomeownerDashboard: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { villas, getVillaById } = useVillas();
+  const { getBookingsByVilla } = useBookings();
   
-  const ownerVillas = mockVillas.filter(villa => villa.ownerId === user?.id);
-  const ownerBookings = mockBookings.filter(booking => 
-    ownerVillas.some(villa => villa.id === booking.villaId)
-  );
+  // Get villas owned by the current homeowner
+  const ownerVillas = villas.filter(villa => villa.ownerId === user?.id);
+  
+  // Get all bookings for the homeowner's villas
+  const ownerBookings = ownerVillas.reduce((allBookings, villa) => {
+    const villaBookings = getBookingsByVilla(villa.id);
+    return [...allBookings, ...villaBookings];
+  }, [] as Booking[]);
 
+  // Calculate total revenue from paid bookings
   const totalRevenue = ownerBookings
     .filter(booking => booking.paymentStatus === 'paid')
     .reduce((sum, booking) => sum + booking.totalPrice, 0);
+
+  // Get this month's bookings
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth();
+  const currentYear = currentDate.getFullYear();
+  
+  const thisMonthBookings = ownerBookings.filter(booking => {
+    const bookingDate = new Date(booking.checkInDate);
+    return bookingDate.getMonth() === currentMonth && bookingDate.getFullYear() === currentYear;
+  });
+
+  // Get recent 20 bookings, sorted by check-in date (most recent first)
+  const recentBookings = ownerBookings
+    .sort((a, b) => new Date(b.checkInDate).getTime() - new Date(a.checkInDate).getTime())
+    .slice(0, 20);
 
   const containerStyle: React.CSSProperties = {
     padding: '20px',
@@ -236,7 +259,7 @@ const HomeownerDashboard: React.FC = () => {
           whileTap={{ scale: 0.98 }}
         >
           <div style={statIconStyle}>
-            <PersonIcon style={{ width: '24px', height: '24px', color: colors.primary }} />
+            <TokensIcon style={{ width: '24px', height: '24px', color: colors.primary }} />
           </div>
           <div style={statContentStyle}>
             <p style={statLabelStyle}>Total Revenue</p>
@@ -250,11 +273,11 @@ const HomeownerDashboard: React.FC = () => {
           whileTap={{ scale: 0.98 }}
         >
           <div style={statIconStyle}>
-            <CalendarIcon style={{ width: '24px', height: '24px', color: colors.primary }} />
+            <ReaderIcon style={{ width: '24px', height: '24px', color: colors.primary }} />
           </div>
           <div style={statContentStyle}>
-            <p style={statLabelStyle}>This Month</p>
-            <p style={statValueStyle}>{ownerBookings.filter(b => b.status === 'confirmed').length}</p>
+            <p style={statLabelStyle}>This Month's Bookings</p>
+            <p style={statValueStyle}>{thisMonthBookings.length}</p>
           </div>
         </motion.div>
       </div>
@@ -262,7 +285,7 @@ const HomeownerDashboard: React.FC = () => {
       {/* My Villas */}
       <section style={sectionStyle}>
         <div style={sectionTitleStyle}>
-          <span>My Villas</span>
+          <span>My Villas ({ownerVillas.length})</span>
           <motion.button
             style={addButtonStyle}
             whileHover={{ backgroundColor: colors.primaryHover }}
@@ -273,71 +296,189 @@ const HomeownerDashboard: React.FC = () => {
             Add Villa
           </motion.button>
         </div>
-        <div style={villaGridStyle}>
-          {ownerVillas.slice(0, 4).map((villa) => (
-            <motion.div
-              key={villa.id}
-              style={villaCardStyle}
-              whileHover={{ scale: 1.02 }}
+        {ownerVillas.length === 0 ? (
+          <div style={{
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+            padding: '40px 20px',
+            textAlign: 'center'
+          }}>
+            <HomeIcon style={{ 
+              width: '48px', 
+              height: '48px', 
+              color: '#9ca3af', 
+              margin: '0 auto 16px' 
+            }} />
+            <h3 style={{ 
+              fontSize: '18px', 
+              fontWeight: '600', 
+              color: '#1a1a1a', 
+              marginBottom: '8px' 
+            }}>
+              No Villas Yet
+            </h3>
+            <p style={{ 
+              fontSize: '14px', 
+              color: '#6b7280', 
+              marginBottom: '20px' 
+            }}>
+              Start your hosting journey by adding your first villa.
+            </p>
+            <motion.button
+              style={addButtonStyle}
+              whileHover={{ backgroundColor: colors.primaryHover }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => navigate(`/villas/${villa.id}/manage`)}
+              onClick={() => navigate('/villas/add')}
             >
-              <img
-                src={villa.images[0]}
-                alt={villa.name}
-                style={villaImageStyle}
-              />
-              <div style={villaContentStyle}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
-                  <div>
-                    <p style={villaNameStyle}>{villa.name}</p>
-                    <p style={villaLocationStyle}>{villa.location}</p>
-                  </div>
-                  <span style={statusBadgeStyle(villa.isActive)}>
-                    {villa.isActive ? 'Active' : 'Inactive'}
-                  </span>
-                </div>
-                <div style={villaStatsStyle}>
-                  <span>AED {villa.pricing.weekday}/day</span>
-                  <span>Max {villa.maxVisitors} guests</span>
-                </div>
+              <PlusIcon style={{ width: '16px', height: '16px' }} />
+              Add Your First Villa
+            </motion.button>
+          </div>
+        ) : (
+          <>
+            <div style={villaGridStyle}>
+              {ownerVillas.slice(0, 6).map((villa) => {
+                const villaBookings = getBookingsByVilla(villa.id);
+                const villaRevenue = villaBookings
+                  .filter(booking => booking.paymentStatus === 'paid')
+                  .reduce((sum, booking) => sum + booking.totalPrice, 0);
+                
+                return (
+                  <motion.div
+                    key={villa.id}
+                    style={villaCardStyle}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => navigate(`/villas/${villa.id}/manage`)}
+                  >
+                    <img
+                      src={villa.images[0]}
+                      alt={villa.name}
+                      style={villaImageStyle}
+                    />
+                    <div style={villaContentStyle}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
+                        <div>
+                          <p style={villaNameStyle}>{villa.name}</p>
+                          <p style={villaLocationStyle}>{villa.location}</p>
+                        </div>
+                        <span style={statusBadgeStyle(villa.isActive)}>
+                          {villa.isActive ? 'Active' : 'Inactive'}
+                        </span>
+                      </div>
+                      <div style={villaStatsStyle}>
+                        <span>AED {villa.pricing.weekday}/day</span>
+                        <span>Max {villa.maxVisitors} guests</span>
+                      </div>
+                      <div style={{ 
+                        display: 'flex', 
+                        justifyContent: 'space-between', 
+                        marginTop: '8px',
+                        paddingTop: '8px',
+                        borderTop: '1px solid #f3f4f6',
+                        fontSize: '12px',
+                        color: '#6b7280'
+                      }}>
+                        <span>{villaBookings.length} booking{villaBookings.length !== 1 ? 's' : ''}</span>
+                        <span>AED {villaRevenue.toLocaleString()} revenue</span>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+            {ownerVillas.length > 6 && (
+              <div style={{ 
+                padding: '16px', 
+                textAlign: 'center',
+                fontSize: '14px',
+                color: '#6b7280'
+              }}>
+                Showing 6 of {ownerVillas.length} villas
+                <button 
+                  style={{ 
+                    marginLeft: '8px',
+                    color: colors.primary,
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    textDecoration: 'underline'
+                  }}
+                  onClick={() => navigate('/villa-management')}
+                >
+                  View All
+                </button>
               </div>
-            </motion.div>
-          ))}
-        </div>
+            )}
+          </>
+        )}
       </section>
 
       {/* Recent Bookings */}
       <section style={sectionStyle}>
         <div style={sectionTitleStyle}>
-          <span>Recent Bookings</span>
+          <span>Recent Bookings ({recentBookings.length})</span>
           <button style={{ ...addButtonStyle, backgroundColor: 'transparent', color: colors.primary }} onClick={() => navigate('/bookings')}>
             View All
           </button>
         </div>
         <div style={recentBookingsStyle}>
-          {ownerBookings.slice(0, 5).map((booking) => {
-            const villa = ownerVillas.find(v => v.id === booking.villaId);
-            return (
-              <div key={booking.id} style={bookingItemStyle}>
-                <div style={bookingInfoStyle}>
-                  <p style={bookingVillaStyle}>{villa?.name}</p>
-                  <p style={bookingDateStyle}>
-                    {booking.checkInDate.toLocaleDateString()} - {booking.checkOutDate.toLocaleDateString()}
-                  </p>
-                </div>
-                <div style={{ textAlign: 'right' }}>
-                  <p style={{ fontSize: '14px', fontWeight: '600', color: '#1a1a1a' }}>
-                    AED {booking.totalPrice}
-                  </p>
-                  <span style={statusBadgeStyle(booking.status === 'confirmed')}>
-                    {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
-                  </span>
-                </div>
-              </div>
-            );
-          })}
+          {recentBookings.length === 0 ? (
+            <div style={{ 
+              padding: '40px 20px', 
+              textAlign: 'center', 
+              color: '#6b7280',
+              fontSize: '14px' 
+            }}>
+              No bookings yet for your properties.
+            </div>
+          ) : (
+            recentBookings.slice(0, 10).map((booking) => {
+              const villa = getVillaById(booking.villaId);
+              return (
+                <motion.div 
+                  key={booking.id} 
+                  style={bookingItemStyle}
+                  whileHover={{ backgroundColor: '#f9fafb' }}
+                  onClick={() => navigate(`/bookings/${booking.id}`)}
+                >
+                  <div style={bookingInfoStyle}>
+                    <p style={bookingVillaStyle}>{villa?.name || 'Unknown Villa'}</p>
+                    <p style={bookingDateStyle}>
+                      {booking.checkInDate.toLocaleDateString()} - {booking.checkOutDate.toLocaleDateString()}
+                    </p>
+                    <p style={{ fontSize: '12px', color: '#9ca3af', marginTop: '2px' }}>
+                      Booking ID: {booking.id}
+                    </p>
+                  </div>
+                  <div style={{ textAlign: 'right' }}>
+                    <p style={{ fontSize: '14px', fontWeight: '600', color: '#1a1a1a', marginBottom: '4px' }}>
+                      AED {booking.totalPrice.toLocaleString()}
+                    </p>
+                    <p style={{ fontSize: '12px', color: '#6b7280', marginBottom: '4px' }}>
+                      {booking.numberOfGuests} guest{booking.numberOfGuests > 1 ? 's' : ''}
+                    </p>
+                    <span style={statusBadgeStyle(booking.status === 'confirmed')}>
+                      {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
+                    </span>
+                  </div>
+                </motion.div>
+              );
+            })
+          )}
         </div>
+        {recentBookings.length > 10 && (
+          <div style={{ 
+            padding: '16px', 
+            textAlign: 'center', 
+            backgroundColor: '#f9fafb',
+            fontSize: '14px',
+            color: '#6b7280'
+          }}>
+            Showing 10 of {recentBookings.length} recent bookings
+          </div>
+        )}
       </section>
     </motion.div>
   );
