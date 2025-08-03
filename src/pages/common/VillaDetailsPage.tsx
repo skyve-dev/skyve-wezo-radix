@@ -161,7 +161,7 @@ const VillaDetailsPage: React.FC = () => {
     const locationStyle: React.CSSProperties = {
         fontSize: '18px',
         color: '#6b7280',
-        margin : 0,
+        margin: 0,
         marginBottom: '18px'
     };
 
@@ -169,7 +169,7 @@ const VillaDetailsPage: React.FC = () => {
         fontSize: '16px',
         color: '#4b5563',
         lineHeight: '1.6',
-        margin : 0,
+        margin: 0,
 
     };
 
@@ -260,7 +260,7 @@ const VillaDetailsPage: React.FC = () => {
         display: 'flex',
         flexDirection: 'column',
         gap: '20px',
-        flexGrow : 1,
+        flexGrow: 1,
     };
 
     const bookingSummaryStyle: React.CSSProperties = {
@@ -356,7 +356,7 @@ const VillaDetailsPage: React.FC = () => {
         display: 'flex',
         alignItems: 'flex-start',
         gap: '16px',
-        width : '300px'
+        width: '300px'
     };
 
     const houseRuleIconStyle: React.CSSProperties = {
@@ -397,14 +397,46 @@ const VillaDetailsPage: React.FC = () => {
             animate={{opacity: 1}}
             transition={{duration: 0.5}}
         >
-            <motion.div
-                initial={{y: 20, opacity: 0}}
-                animate={{y: 0, opacity: 1}}
-                transition={{delay: 0.1, duration: 0.5}}
-            >
-                <VillaImageGallery images={villa.images} villaName={villa.name}/>
-            </motion.div>
-
+            <div style={{display: 'flex',flexWrap:'wrap',gap:'10px'}}>
+                <style>
+                    {`
+                      @media (max-width: 770px) {
+                        .hidden-on-tablet {
+                          display: none !important;
+                        }
+                      }
+                      @media (max-width: 400px) {
+                        .hidden-on-mobile {
+                          display: none !important;
+                        }
+                      }
+                    `}
+                </style>
+                <motion.div
+                    initial={{y: 20, opacity: 0,flexGrow:2}}
+                    animate={{y: 0, opacity: 1}}
+                    transition={{delay: 0.1, duration: 0.5}}
+                >
+                    <VillaImageGallery images={villa.images} villaName={villa.name}/>
+                </motion.div>
+                <motion.div
+                    style={{display:"flex",flexDirection:'column',gap:'10px'}} className={'hidden-on-mobile'}
+                    initial={{y: 20, opacity: 0,flexGrow:1}}
+                    animate={{y: 0, opacity: 1}}
+                    transition={{delay: 0.1, duration: 0.5}}
+                >
+                    <div style={{borderRadius:10,background:'blue',height:'50%',backgroundImage:`url(${villa.images[9] || villa.images[0]})`,backgroundPosition:'center',backgroundSize:'cover'}}></div>
+                    <div style={{borderRadius:10,background:'blue',height:'50%',backgroundImage:`url(${villa.images[8] || villa.images[0]})`,backgroundPosition:'center',backgroundSize:'cover'}}></div>
+                </motion.div>
+                <motion.div
+                    style={{display:"flex",flexDirection:'column',gap:'10px'}} className={'hidden-on-tablet'}
+                    initial={{y: 20, opacity: 0,flexGrow:1}}
+                    animate={{y: 0, opacity: 1}}
+                    transition={{delay: 0.1, duration: 0.5}}>
+                    <div style={{borderRadius:10,background:'blue',height:'50%',backgroundImage:`url(${villa.images[7] || villa.images[0]})`,backgroundPosition:'center',backgroundSize:'cover'}}></div>
+                    <div style={{borderRadius:10,background:'blue',height:'50%',backgroundImage:`url(${villa.images[6] || villa.images[0]})`,backgroundPosition:'center',backgroundSize:'cover'}}></div>
+                </motion.div>
+            </div>
             <motion.div
                 initial={{y: 20, opacity: 0}}
                 animate={{y: 0, opacity: 1}}
