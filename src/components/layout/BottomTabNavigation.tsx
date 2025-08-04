@@ -1,7 +1,7 @@
 import React from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import {motion} from 'framer-motion';
-import {BarChartIcon, CalendarIcon, ChatBubbleIcon, DashboardIcon, HomeIcon, PersonIcon, MagnifyingGlassIcon, EnterIcon} from '@radix-ui/react-icons';
+import {BarChartIcon, CalendarIcon, ChatBubbleIcon, DashboardIcon, HomeIcon, PersonIcon, MagnifyingGlassIcon, EnterIcon, AvatarIcon} from '@radix-ui/react-icons';
 import {useAuth} from '../../contexts/AuthContext';
 import {colors} from '../../utils/colors';
 import {useScrollDirection} from '../../hooks/useScrollDirection';
@@ -38,7 +38,7 @@ const BottomTabNavigation: React.FC = () => {
     { path: '/listings', label: 'Listings', icon: <MagnifyingGlassIcon /> },
     { path: '/villa-management', label: 'My Villas', icon: <HomeIcon /> },
     { path: '/bookings', label: 'Bookings', icon: <CalendarIcon /> },
-    { path: '/messages', label: 'Messages', icon: <ChatBubbleIcon /> },
+    { path: '/profile', label: 'Profile', icon: <PersonIcon /> },
   ];
 
   const adminTabs: TabItem[] = [
@@ -46,7 +46,7 @@ const BottomTabNavigation: React.FC = () => {
     { path: '/villas', label: 'Properties', icon: <HomeIcon /> },
     { path: '/users', label: 'Users', icon: <PersonIcon /> },
     { path: '/reports', label: 'Reports', icon: <BarChartIcon /> },
-    { path: '/messages', label: 'Messages', icon: <ChatBubbleIcon /> },
+    { path: '/profile', label: 'Profile', icon: <AvatarIcon /> },
   ];
 
   const getTabs = (): TabItem[] => {
