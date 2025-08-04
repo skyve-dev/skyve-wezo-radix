@@ -1,5 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router, Navigate, Route, Routes} from 'react-router-dom';
+import { getRouterBasePath } from './utils/basePath';
 import {AuthProvider, useAuth} from './contexts/AuthContext';
 import {BookingsProvider} from './contexts/BookingsContext';
 import {VillasProvider} from './contexts/VillasContext';
@@ -245,8 +246,10 @@ const AppContent: React.FC = () => {
 };
 
 const App: React.FC = () => {
+  const basePath = getRouterBasePath();
+
   return (
-    <Router>
+    <Router basename={basePath}>
       <ScrollToTop excludePaths={['/listings']} />
       <AuthProvider>
         <UserProvider>
