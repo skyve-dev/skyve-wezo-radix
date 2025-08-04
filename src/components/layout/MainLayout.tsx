@@ -3,8 +3,10 @@ import {Outlet, useLocation, useNavigate} from 'react-router-dom';
 import {ArrowLeftIcon, HamburgerMenuIcon} from '@radix-ui/react-icons';
 import DrawerMenu from './DrawerMenu';
 import BottomTabNavigation from './BottomTabNavigation';
+import TopNavigation from './TopNavigation';
 import {colors} from "../../utils/colors.ts";
 import {useScrollDirection} from '../../hooks/useScrollDirection';
+import {useIsMobile} from '../../utils/responsive';
 import '../../styles/layout.css';
 
 const MainLayout: React.FC = () => {
@@ -12,6 +14,7 @@ const MainLayout: React.FC = () => {
     const {isHeaderVisible} = useScrollDirection();
     const navigate = useNavigate();
     const location = useLocation();
+    const isMobile = useIsMobile();
 
     // Determine if back button should be shown
     const shouldShowBackButton = () => {
@@ -65,8 +68,8 @@ const MainLayout: React.FC = () => {
 
     const contentStyle: React.CSSProperties = {
         // Always maintain padding to prevent content from touching screen edges
-        paddingTop: '60px', // Fixed space for header
-        paddingBottom: '64px', // Fixed space for bottom navigation
+        paddingTop: isMobile ? '60px' : '70px', // Different heights for mobile vs desktop nav
+        paddingBottom: isMobile ? '64px' : '0px', // Bottom padding only on mobile
         boxSizing: 'border-box',
         position: 'relative',
         minHeight: '100vh',
@@ -77,39 +80,50 @@ const MainLayout: React.FC = () => {
 
     return (
         <div style={containerStyle} className="main-layout-container">
-            <header style={headerStyle} className="main-layout-header">
-                <div style={{width: '40px', display: "flex", alignItems: 'center'}}>
-                    {shouldShowBackButton() ? (
+            {/* Render different navigation based on screen size */}
+            {isMobile ? (
+                <>
+                    {/* Mobile header - keep existing design */}
+                    <header style={headerStyle} className="main-layout-header">
+                        <div style={{width: '40px', display: "flex", alignItems: 'center'}}>
+                            {shouldShowBackButton() ? (
+                                <button
+                                    style={menuButtonStyle}
+                                    onClick={handleBackClick}
+                                    aria-label="Go back"
+                                >
+                                    <ArrowLeftIcon style={{width: '24px', height: '24px', color: colors.white}}/>
+                                </button>
+                            ) : (
+                                <svg viewBox="0 0 40.917 30.807">
+                                    <path fill="#fff"
+                                          d="M.427 6.768S1.805.645 7.01 1.18c5.664.765 3.368 11.097 3.368 11.097S16.882-.732 23.617.032c6.429 1.99 3.75 10.18 3.75 10.18S35.863-1.651 39.995 1.64c2.985 2.296-1.99 7.424-4.898 12.781-5.357 11.097-6.123 13.24-11.71 12.475-5.164-1.811-4.285-10.485-4.285-10.485s-4.67 14.771-10.868 14.388C-2.184 31.027.12 8.91.427 6.768z"/>
+                                </svg>
+                            )}
+                        </div>
+                        <div style={logoStyle}></div>
                         <button
                             style={menuButtonStyle}
-                            onClick={handleBackClick}
-                            aria-label="Go back"
+                            onClick={() => setIsDrawerOpen(true)}
+                            aria-label="Open menu"
                         >
-                            <ArrowLeftIcon style={{width: '24px', height: '24px', color: colors.white}}/>
+                            <HamburgerMenuIcon style={{width: '24px', height: '24px', color: colors.white}}/>
                         </button>
-                    ) : (
-                        <svg viewBox="0 0 40.917 30.807">
-                            <path fill="#fff"
-                                  d="M.427 6.768S1.805.645 7.01 1.18c5.664.765 3.368 11.097 3.368 11.097S16.882-.732 23.617.032c6.429 1.99 3.75 10.18 3.75 10.18S35.863-1.651 39.995 1.64c2.985 2.296-1.99 7.424-4.898 12.781-5.357 11.097-6.123 13.24-11.71 12.475-5.164-1.811-4.285-10.485-4.285-10.485s-4.67 14.771-10.868 14.388C-2.184 31.027.12 8.91.427 6.768z"/>
-                        </svg>
-                    )}
-                </div>
-                <div style={logoStyle}></div>
-                <button
-                    style={menuButtonStyle}
-                    onClick={() => setIsDrawerOpen(true)}
-                    aria-label="Open menu"
-                >
-                    <HamburgerMenuIcon style={{width: '24px', height: '24px', color: colors.white}}/>
-                </button>
-            </header>
+                    </header>
+                    <BottomTabNavigation/>
+                </>
+            ) : (
+                <>
+                    {/* Desktop navigation */}
+                    <TopNavigation/>
+                </>
+            )}
 
             <main style={contentStyle} className="main-layout-content">
                 <Outlet/>
             </main>
 
             <DrawerMenu isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}/>
-            <BottomTabNavigation/>
         </div>
     );
 };
