@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Navigate, Route, Routes} from 'react-router-dom
 import {AuthProvider, useAuth} from './contexts/AuthContext';
 import {BookingsProvider} from './contexts/BookingsContext';
 import {VillasProvider} from './contexts/VillasContext';
+import {UserProvider} from './contexts/UserContext';
 import {AmenitiesProvider} from './contexts/AmenitiesContext';
 import LoginPage from './pages/auth/LoginPage';
 import MainLayout from './components/layout/MainLayout';
@@ -17,6 +18,7 @@ import BookingListPage from './pages/common/BookingListPage';
 import BookingDetailPage from './pages/common/BookingDetailPage';
 import VillaManagementPage from './pages/common/VillaManagementPage';
 import VillaManagementListPage from './pages/common/VillaManagementListPage';
+import UserListPage from './pages/admin/UserListPage';
 import ScrollToTop from './components/common/ScrollToTop';
 
 // Protected Route Component
@@ -184,12 +186,17 @@ const AppContent: React.FC = () => {
         {/* Protected Admin routes */}
         <Route path="properties" element={
           <ProtectedRoute>
-            <PlaceholderPage title="Properties Management" />
+            <VillaManagementListPage />
+          </ProtectedRoute>
+        } />
+        <Route path="villas" element={
+          <ProtectedRoute>
+            <VillaManagementListPage />
           </ProtectedRoute>
         } />
         <Route path="users" element={
           <ProtectedRoute>
-            <PlaceholderPage title="Users Management" />
+            <UserListPage />
           </ProtectedRoute>
         } />
         <Route path="reports" element={
@@ -237,13 +244,15 @@ const App: React.FC = () => {
     <Router>
       <ScrollToTop excludePaths={['/listings']} />
       <AuthProvider>
-        <VillasProvider>
-          <BookingsProvider>
-            <AmenitiesProvider>
-              <AppContent />
-            </AmenitiesProvider>
-          </BookingsProvider>
-        </VillasProvider>
+        <UserProvider>
+          <VillasProvider>
+            <BookingsProvider>
+              <AmenitiesProvider>
+                <AppContent />
+              </AmenitiesProvider>
+            </BookingsProvider>
+          </VillasProvider>
+        </UserProvider>
       </AuthProvider>
     </Router>
   );

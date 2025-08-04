@@ -43,10 +43,10 @@ const BottomTabNavigation: React.FC = () => {
 
   const adminTabs: TabItem[] = [
     { path: '/dashboard', label: 'Dashboard', icon: <DashboardIcon /> },
-    { path: '/villa-management', label: 'Properties', icon: <HomeIcon /> },
+    { path: '/villas', label: 'Properties', icon: <HomeIcon /> },
     { path: '/users', label: 'Users', icon: <PersonIcon /> },
     { path: '/reports', label: 'Reports', icon: <BarChartIcon /> },
-    { path: '/profile', label: 'Profile', icon: <PersonIcon /> },
+    { path: '/messages', label: 'Messages', icon: <ChatBubbleIcon /> },
   ];
 
   const getTabs = (): TabItem[] => {

@@ -6,9 +6,11 @@ import {mockBookings, mockPromotion} from '../../data/mockData';
 import {mockVillas} from '../../data/data';
 import {unused} from "../../utils/unused.ts";
 import {colors} from '../../utils/colors';
+import {useUsers} from '../../contexts/UserContext';
 
 const AdminDashboard: React.FC = () => {
   const navigate = useNavigate();
+  const { users } = useUsers();
   
   const totalVillas = mockVillas.length;
   const activeVillas = mockVillas.filter(villa => villa.isActive).length;
@@ -17,6 +19,7 @@ const AdminDashboard: React.FC = () => {
   const totalRevenue = mockBookings
     .filter(booking => booking.paymentStatus === 'paid')
     .reduce((sum, booking) => sum + booking.totalPrice, 0);
+  const totalUsers = users.length;
 
   const containerStyle: React.CSSProperties = {
     padding: '20px',
@@ -214,7 +217,7 @@ const AdminDashboard: React.FC = () => {
           style={statCardStyle}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          onClick={() => navigate('/properties')}
+          onClick={() => navigate('/villas')}
         >
           <div style={statIconStyle}>
             <HomeIcon style={{ width: '24px', height: '24px', color: colors.primary }} />
@@ -229,7 +232,7 @@ const AdminDashboard: React.FC = () => {
           style={statCardStyle}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          onClick={() => navigate('/properties')}
+          onClick={() => navigate('/villas')}
         >
           <div style={statIconStyle}>
             <HomeIcon style={{ width: '24px', height: '24px', color: '#10B981' }} />
@@ -251,7 +254,7 @@ const AdminDashboard: React.FC = () => {
           </div>
           <div style={statContentStyle}>
             <p style={statLabelStyle}>Total Users</p>
-            <p style={statValueStyle}>150</p>
+            <p style={statValueStyle}>{totalUsers}</p>
           </div>
         </motion.div>
 

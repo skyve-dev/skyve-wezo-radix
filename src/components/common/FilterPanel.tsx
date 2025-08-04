@@ -455,40 +455,53 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                             border: '1px solid #e5e7eb',
                             borderRadius: '8px',
                             boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
-                            maxHeight: '200px',
-                            overflowY: 'auto',
                             zIndex: 150,
+                            width: 'var(--radix-select-trigger-width)',
+                            maxWidth: '100%',
                           }}
                         >
-                          <Select.Viewport>
-                            {/* Custom input option */}
-                            <div
-                              style={{
-                                padding: '8px 12px',
-                                borderBottom: '1px solid #f3f4f6',
+                          {/* Custom input option - outside viewport */}
+                          <div
+                            style={{
+                              padding: '8px 12px',
+                              borderBottom: '1px solid #f3f4f6',
+                              backgroundColor: 'white',
+                              position: 'sticky',
+                              top: 0,
+                              zIndex: 1,
+                            }}
+                          >
+                            <input
+                              type="text"
+                              placeholder="Enter custom location..."
+                              value={locationSearchValue}
+                              onChange={(e) => {
+                                setLocationSearchValue(e.target.value);
+                                updateLocalFilters({ location: e.target.value });
                               }}
-                            >
-                              <input
-                                type="text"
-                                placeholder="Enter custom location..."
-                                value={locationSearchValue}
-                                onChange={(e) => {
-                                  setLocationSearchValue(e.target.value);
-                                  updateLocalFilters({ location: e.target.value });
-                                }}
-                                style={{
-                                  width: '100%',
-                                  padding: '6px 8px',
-                                  border: '1px solid #d1d5db',
-                                  borderRadius: '4px',
-                                  fontSize: '14px',
-                                  outline: 'none',
-                                  boxSizing: 'border-box',
-                                }}
-                                onClick={(e) => e.stopPropagation()}
-                              />
-                            </div>
-                            
+                              style={{
+                                width: '100%',
+                                padding: '6px 8px',
+                                border: '1px solid #d1d5db',
+                                borderRadius: '4px',
+                                fontSize: '14px',
+                                outline: 'none',
+                                boxSizing: 'border-box',
+                              }}
+                              onClick={(e) => e.stopPropagation()}
+                              onMouseDown={(e) => e.stopPropagation()}
+                              autoFocus
+                            />
+                          </div>
+                          
+                          <Select.Viewport
+                            style={{
+                              maxHeight: '250px',
+                              overflowY: 'auto',
+                              overflowX: 'hidden',
+                              padding: '4px',
+                            }}
+                          >
                             {/* Predefined locations */}
                             {locations
                               .filter(location => location !== 'Unspecified')
@@ -499,12 +512,14 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                                   value={location}
                                   style={{
                                     padding: '8px 12px',
+                                    margin: '2px 0',
                                     fontSize: '14px',
                                     cursor: 'pointer',
-                                    borderBottom: '1px solid #f3f4f6',
+                                    borderRadius: '4px',
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'space-between',
+                                    outline: 'none',
                                   }}
                                 >
                                   <Select.ItemText>{location}</Select.ItemText>

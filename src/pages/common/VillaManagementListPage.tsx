@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {motion} from 'framer-motion';
-import {EyeClosedIcon, EyeOpenIcon, Pencil1Icon, PlusIcon} from '@radix-ui/react-icons';
+import {EyeClosedIcon, EyeOpenIcon, Pencil1Icon, PlusIcon, CheckIcon, ChevronDownIcon} from '@radix-ui/react-icons';
+import * as Select from '@radix-ui/react-select';
 import {useAuth} from '../../contexts/AuthContext';
 import {useVillas} from '../../contexts/VillasContext';
 import {colors} from '../../utils/colors';
@@ -263,26 +264,178 @@ const VillaManagementListPage: React.FC = () => {
           style={searchInputStyle}
         />
         
-        <select
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value as 'all' | 'active' | 'inactive')}
-          style={selectStyle}
-        >
-          <option value="all">All Status</option>
-          <option value="active">Active</option>
-          <option value="inactive">Inactive</option>
-        </select>
+        <Select.Root value={statusFilter} onValueChange={(value: any) => setStatusFilter(value)}>
+          <Select.Trigger
+            style={{
+              ...selectStyle,
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: '8px',
+              minWidth: '150px',
+            }}
+          >
+            <Select.Value />
+            <Select.Icon>
+              <ChevronDownIcon />
+            </Select.Icon>
+          </Select.Trigger>
+          <Select.Portal>
+            <Select.Content
+              style={{
+                backgroundColor: 'white',
+                borderRadius: '8px',
+                padding: '8px',
+                boxShadow: '0 10px 38px -10px rgba(22, 23, 24, 0.35), 0 10px 20px -15px rgba(22, 23, 24, 0.2)',
+                zIndex: 1000,
+              }}
+            >
+              <Select.Viewport>
+                <Select.Item
+                  value="all"
+                  style={{
+                    fontSize: '14px',
+                    padding: '8px 12px',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    outline: 'none',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <Select.ItemText>All Status</Select.ItemText>
+                  <Select.ItemIndicator>
+                    <CheckIcon />
+                  </Select.ItemIndicator>
+                </Select.Item>
+                <Select.Item
+                  value="active"
+                  style={{
+                    fontSize: '14px',
+                    padding: '8px 12px',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    outline: 'none',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <Select.ItemText>Active</Select.ItemText>
+                  <Select.ItemIndicator>
+                    <CheckIcon />
+                  </Select.ItemIndicator>
+                </Select.Item>
+                <Select.Item
+                  value="inactive"
+                  style={{
+                    fontSize: '14px',
+                    padding: '8px 12px',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    outline: 'none',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <Select.ItemText>Inactive</Select.ItemText>
+                  <Select.ItemIndicator>
+                    <CheckIcon />
+                  </Select.ItemIndicator>
+                </Select.Item>
+              </Select.Viewport>
+            </Select.Content>
+          </Select.Portal>
+        </Select.Root>
 
         {user.role === 'admin' && (
-          <select
-            value={featuredFilter}
-            onChange={(e) => setFeaturedFilter(e.target.value as 'all' | 'featured' | 'not-featured')}
-            style={selectStyle}
-          >
-            <option value="all">All Featured</option>
-            <option value="featured">Featured</option>
-            <option value="not-featured">Not Featured</option>
-          </select>
+          <Select.Root value={featuredFilter} onValueChange={(value: any) => setFeaturedFilter(value)}>
+            <Select.Trigger
+              style={{
+                ...selectStyle,
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: '8px',
+                minWidth: '150px',
+              }}
+            >
+              <Select.Value />
+              <Select.Icon>
+                <ChevronDownIcon />
+              </Select.Icon>
+            </Select.Trigger>
+            <Select.Portal>
+              <Select.Content
+                style={{
+                  backgroundColor: 'white',
+                  borderRadius: '8px',
+                  padding: '8px',
+                  boxShadow: '0 10px 38px -10px rgba(22, 23, 24, 0.35), 0 10px 20px -15px rgba(22, 23, 24, 0.2)',
+                  zIndex: 1000,
+                }}
+              >
+                <Select.Viewport>
+                  <Select.Item
+                    value="all"
+                    style={{
+                      fontSize: '14px',
+                      padding: '8px 12px',
+                      borderRadius: '4px',
+                      cursor: 'pointer',
+                      outline: 'none',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                    }}
+                  >
+                    <Select.ItemText>All Featured</Select.ItemText>
+                    <Select.ItemIndicator>
+                      <CheckIcon />
+                    </Select.ItemIndicator>
+                  </Select.Item>
+                  <Select.Item
+                    value="featured"
+                    style={{
+                      fontSize: '14px',
+                      padding: '8px 12px',
+                      borderRadius: '4px',
+                      cursor: 'pointer',
+                      outline: 'none',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                    }}
+                  >
+                    <Select.ItemText>Featured</Select.ItemText>
+                    <Select.ItemIndicator>
+                      <CheckIcon />
+                    </Select.ItemIndicator>
+                  </Select.Item>
+                  <Select.Item
+                    value="not-featured"
+                    style={{
+                      fontSize: '14px',
+                      padding: '8px 12px',
+                      borderRadius: '4px',
+                      cursor: 'pointer',
+                      outline: 'none',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                    }}
+                  >
+                    <Select.ItemText>Not Featured</Select.ItemText>
+                    <Select.ItemIndicator>
+                      <CheckIcon />
+                    </Select.ItemIndicator>
+                  </Select.Item>
+                </Select.Viewport>
+              </Select.Content>
+            </Select.Portal>
+          </Select.Root>
         )}
       </div>
 

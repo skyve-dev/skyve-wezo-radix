@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {motion} from 'framer-motion';
-import {CheckIcon} from '@radix-ui/react-icons';
+import {CheckIcon, ChevronDownIcon} from '@radix-ui/react-icons';
 import {Indicator, Root} from '@radix-ui/react-checkbox';
+import * as Select from '@radix-ui/react-select';
 import {useAuth} from '../../contexts/AuthContext';
 import {useAmenities} from '../../contexts/AmenitiesContext';
 import {useVillas} from '../../contexts/VillasContext';
@@ -514,18 +515,64 @@ const VillaManagementPage: React.FC = () => {
                         {user.role === 'admin' && (
                             <div style={formGroupStyle}>
                                 <label style={labelStyle}>Owner *</label>
-                                <select
+                                <Select.Root
                                     value={formData.ownerId || ''}
-                                    onChange={(e) => handleInputChange('ownerId', e.target.value)}
-                                    style={selectStyle}
+                                    onValueChange={(value) => handleInputChange('ownerId', value)}
                                 >
-                                    <option value="">Select an owner</option>
-                                    {mockUsers.map(mockUser => (
-                                        <option key={mockUser.id} value={mockUser.id}>
-                                            {mockUser.name} ({mockUser.email})
-                                        </option>
-                                    ))}
-                                </select>
+                                    <Select.Trigger
+                                        style={{
+                                            ...selectStyle,
+                                            display: 'inline-flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'space-between',
+                                            gap: '8px',
+                                        }}
+                                    >
+                                        <Select.Value placeholder="Select an owner" />
+                                        <Select.Icon>
+                                            <ChevronDownIcon />
+                                        </Select.Icon>
+                                    </Select.Trigger>
+                                    <Select.Portal>
+                                        <Select.Content
+                                            style={{
+                                                backgroundColor: 'white',
+                                                borderRadius: '8px',
+                                                padding: '8px',
+                                                boxShadow: '0 10px 38px -10px rgba(22, 23, 24, 0.35), 0 10px 20px -15px rgba(22, 23, 24, 0.2)',
+                                                zIndex: 1000,
+                                                maxHeight: '300px',
+                                                overflowY: 'auto',
+                                            }}
+                                        >
+                                            <Select.Viewport>
+                                                {mockUsers.map(mockUser => (
+                                                    <Select.Item
+                                                        key={mockUser.id}
+                                                        value={mockUser.id}
+                                                        style={{
+                                                            fontSize: '14px',
+                                                            padding: '8px 12px',
+                                                            borderRadius: '4px',
+                                                            cursor: 'pointer',
+                                                            outline: 'none',
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            justifyContent: 'space-between',
+                                                        }}
+                                                    >
+                                                        <Select.ItemText>
+                                                            {mockUser.name} ({mockUser.email})
+                                                        </Select.ItemText>
+                                                        <Select.ItemIndicator>
+                                                            <CheckIcon />
+                                                        </Select.ItemIndicator>
+                                                    </Select.Item>
+                                                ))}
+                                            </Select.Viewport>
+                                        </Select.Content>
+                                    </Select.Portal>
+                                </Select.Root>
                                 {errors.ownerId && <span style={errorStyle}>{errors.ownerId}</span>}
                             </div>
                         )}
