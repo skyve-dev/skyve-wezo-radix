@@ -11,6 +11,7 @@ import MainLayout from './components/layout/MainLayout';
 import HomePage from './pages/common/HomePage';
 import ListingsPage from './pages/common/ListingsPage';
 import VillaDetailsPage from './pages/common/VillaDetailsPage';
+import ProfilePage from './pages/common/ProfilePage';
 import TenantDashboard from './pages/tenant/TenantDashboard';
 import HomeownerDashboard from './pages/homeowner/HomeownerDashboard';
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -121,7 +122,7 @@ const AppContent: React.FC = () => {
         {/* Protected Common routes */}
         <Route path="profile" element={
           <ProtectedRoute>
-            <PlaceholderPage title="Profile" />
+            <ProfilePage />
           </ProtectedRoute>
         } />
         <Route path="settings" element={

@@ -8,7 +8,7 @@ import {colors} from "../../utils/colors.ts";
 import {useScrollDirection} from '../../hooks/useScrollDirection';
 import {useIsMobile} from '../../utils/responsive';
 import '../../styles/layout.css';
-
+import wezoLogo from "./wezo-logo-40.png";
 const MainLayout: React.FC = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const {isHeaderVisible} = useScrollDirection();
@@ -95,10 +95,8 @@ const MainLayout: React.FC = () => {
                                     <ArrowLeftIcon style={{width: '24px', height: '24px', color: colors.white}}/>
                                 </button>
                             ) : (
-                                <svg viewBox="0 0 40.917 30.807">
-                                    <path fill="#fff"
-                                          d="M.427 6.768S1.805.645 7.01 1.18c5.664.765 3.368 11.097 3.368 11.097S16.882-.732 23.617.032c6.429 1.99 3.75 10.18 3.75 10.18S35.863-1.651 39.995 1.64c2.985 2.296-1.99 7.424-4.898 12.781-5.357 11.097-6.123 13.24-11.71 12.475-5.164-1.811-4.285-10.485-4.285-10.485s-4.67 14.771-10.868 14.388C-2.184 31.027.12 8.91.427 6.768z"/>
-                                </svg>
+                                <img src={wezoLogo} alt="Wezo Logo" style={{width: '40px',height:'40px'}}/>
+
                             )}
                         </div>
                         <div style={logoStyle}></div>

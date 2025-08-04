@@ -13,6 +13,7 @@ import {
   HamburgerMenuIcon,
   Cross1Icon,
   ArrowLeftIcon,
+  AvatarIcon,
 } from '@radix-ui/react-icons';
 import { useAuth } from '../../contexts/AuthContext';
 import { colors } from '../../utils/colors';
@@ -49,6 +50,7 @@ const TopNavigation: React.FC = () => {
     { path: '/villa-management', label: 'My Villas', icon: <HomeIcon /> },
     { path: '/bookings', label: 'Bookings', icon: <CalendarIcon /> },
     { path: '/messages', label: 'Messages', icon: <ChatBubbleIcon /> },
+    { path: '/profile', label: 'Profile', icon: <PersonIcon /> },
   ];
 
   const adminTabs: TabItem[] = [
@@ -57,6 +59,7 @@ const TopNavigation: React.FC = () => {
     { path: '/users', label: 'Users', icon: <PersonIcon /> },
     { path: '/reports', label: 'Reports', icon: <BarChartIcon /> },
     { path: '/messages', label: 'Messages', icon: <ChatBubbleIcon /> },
+    { path: '/profile', label: 'Profile', icon: <AvatarIcon /> },
   ];
 
   const getTabs = (): TabItem[] => {
