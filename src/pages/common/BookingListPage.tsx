@@ -148,8 +148,8 @@ const BookingListPage: React.FC = () => {
         boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
         cursor: 'pointer',
         transition: 'all 0.2s',
-        width: '100%',
-        maxWidth: 320
+        flexGrow:1,
+        minWidth: 320
     };
 
     const villaInfoStyle: React.CSSProperties = {
@@ -311,7 +311,7 @@ const BookingListPage: React.FC = () => {
                     </motion.button>
                 )}
             </div>
-            <div style={{display: 'flex', flexWrap: 'wrap'}}>
+            <div style={{display: 'flex', flexWrap: 'wrap',gap:'16px'}}>
                 {sortedBookings.map((booking) => {
                     const villa = getVillaById(booking.villaId);
                     const nights = calculateNights(booking.checkInDate, booking.checkOutDate);
