@@ -1,5 +1,81 @@
 /* Layout-specific styles for MainLayout component */
 
+/* Prevent zooming and pinching on all devices */
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  /* Prevent zooming */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  
+  /* Prevent touch gestures that could cause zoom */
+  touch-action: pan-x pan-y;
+  -ms-touch-action: pan-x pan-y;
+  
+  /* Prevent selection and highlighting */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  
+  /* Remove tap highlight on mobile */
+  -webkit-tap-highlight-color: transparent;
+  
+  /* Prevent overscroll */
+  overscroll-behavior: none;
+  -ms-scroll-chaining: none;
+}
+
+/* Global touch-action reset */
+* {
+  touch-action: manipulation;
+  -ms-touch-action: manipulation;
+}
+
+/* Allow text selection in specific content areas */
+input,
+textarea,
+[contenteditable="true"],
+.allow-text-selection {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  -webkit-touch-callout: default;
+}
+
+/* Prevent zoom on input focus (iOS Safari) */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+input[type="search"],
+textarea,
+select {
+  font-size: 16px !important;
+  transform: translateZ(0);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 /* Ensure proper box sizing for layout elements */
 .main-layout-container {
   box-sizing: border-box;
