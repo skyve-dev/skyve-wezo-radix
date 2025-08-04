@@ -5,6 +5,7 @@ import {mockPromotion} from '../../data/mockData';
 import {useVillas} from '../../contexts/VillasContext';
 import type {Villa} from '../../types';
 import {colors} from '../../utils/colors';
+import { getAssetUrl } from '../../utils/basePath';
 
 const HomePage: React.FC = () => {
     const navigate = useNavigate();
@@ -146,7 +147,7 @@ const HomePage: React.FC = () => {
                 <div style={{
                     width: '100%',
                     paddingTop: '100%',
-                    backgroundImage: `url(${villa.images[0]})`,
+                    backgroundImage: `url(${getAssetUrl(villa.images[0])})`,
                     backgroundPosition: 'center',
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat'

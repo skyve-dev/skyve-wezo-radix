@@ -6,6 +6,7 @@ import * as Select from '@radix-ui/react-select';
 import {useAuth} from '../../contexts/AuthContext';
 import {useVillas} from '../../contexts/VillasContext';
 import {colors} from '../../utils/colors';
+import { getAssetUrl } from '../../utils/basePath';
 
 const VillaManagementListPage: React.FC = () => {
   const navigate = useNavigate();
@@ -462,7 +463,7 @@ const VillaManagementListPage: React.FC = () => {
               layout
             >
               <div style={{background:colors.gray200}}>
-              <div style={{width:'100%',paddingTop:'80%',backgroundImage:`url(${villa.images[0]})`,backgroundPosition:'center',backgroundSize:'cover'}}></div>
+              <div style={{width:'100%',paddingTop:'80%',backgroundImage:`url(${getAssetUrl(villa.images[0])})`,backgroundPosition:'center',backgroundSize:'cover'}}></div>
               </div>
               <div style={cardContentStyle}>
                 <h3 style={villaNameStyle}>{villa.name}</h3>

@@ -8,6 +8,7 @@ import {colors} from '../../utils/colors';
 import SearchBar from '../../components/common/SearchBar';
 import FilterPanel from '../../components/common/FilterPanel';
 import {applyFilters} from '../../utils/filterUtils';
+import { getAssetUrl } from '../../utils/basePath';
 
 const ListingsPage: React.FC = () => {
     const {isAuthenticated} = useAuth();
@@ -223,7 +224,7 @@ const ListingsPage: React.FC = () => {
                 {filteredVillas.map((villa) => (
                     <div key={villa.id} style={cardStyle}>
                         <div style={{
-                            backgroundImage: `url(${villa.images[0]})`,
+                            backgroundImage: `url(${getAssetUrl(villa.images[0])})`,
                             ...imageStyle
                         }}>
                         </div>

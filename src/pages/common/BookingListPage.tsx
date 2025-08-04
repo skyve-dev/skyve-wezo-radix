@@ -6,6 +6,7 @@ import {useAuth} from '../../contexts/AuthContext';
 import {useBookings} from '../../contexts/BookingsContext';
 import {useVillas} from '../../contexts/VillasContext';
 import {colors} from '../../utils/colors';
+import { getAssetUrl } from '../../utils/basePath';
 
 const BookingListPage: React.FC = () => {
     const navigate = useNavigate();
@@ -336,7 +337,7 @@ const BookingListPage: React.FC = () => {
                                         paddingTop: '70%',
                                         borderTopRightRadius:'10px',borderTopLeftRadius:'10px',
                                         boxSizing: 'border-box',
-                                        backgroundImage: `url(${villa.images[0]})`,
+                                        backgroundImage: `url(${getAssetUrl(villa.images[0])})`,
                                         backgroundSize: 'cover',
                                         backgroundPosition: 'center'
                                     }}></div>

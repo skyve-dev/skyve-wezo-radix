@@ -6,6 +6,7 @@ import {mockBookings, mockPromotion} from '../../data/mockData';
 import {mockVillas} from '../../data/data';
 import {colors} from '../../utils/colors';
 import {useUsers} from '../../contexts/UserContext';
+import { getAssetUrl } from '../../utils/basePath';
 
 const AdminDashboard: React.FC = () => {
   const navigate = useNavigate();
@@ -321,7 +322,7 @@ const AdminDashboard: React.FC = () => {
               onClick={() => navigate(`/properties/${villa.id}`)}
             >
               <img
-                src={villa.images[0]}
+                src={getAssetUrl(villa.images[0])}
                 alt={villa.name}
                 style={{ width: '100%', height: '80px', objectFit: 'cover', borderRadius: '4px', marginBottom: '8px' }}
               />

@@ -7,6 +7,7 @@ import {useVillas} from '../../contexts/VillasContext';
 import {useBookings} from '../../contexts/BookingsContext';
 import type { Booking } from '../../types';
 import {colors} from '../../utils/colors';
+import { getAssetUrl } from '../../utils/basePath';
 
 const HomeownerDashboard: React.FC = () => {
   const navigate = useNavigate();
@@ -349,7 +350,7 @@ const HomeownerDashboard: React.FC = () => {
                     onClick={() => navigate(`/villas/${villa.id}/manage`)}
                   >
                     <div style={{backgroundColor:colors.gray200}}>
-                      <div style={{width:'100%',paddingTop:'100%',backgroundImage:`url(${villa.images[0]})`,backgroundPosition:'center',backgroundSize:'cover'}}></div>
+                      <div style={{width:'100%',paddingTop:'100%',backgroundImage:`url(${getAssetUrl(villa.images[0])})`,backgroundPosition:'center',backgroundSize:'cover'}}></div>
                     </div>
 
                     <div style={villaContentStyle}>

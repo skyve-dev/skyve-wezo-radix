@@ -10,6 +10,7 @@ import {colors} from '../../utils/colors';
 import type {Booking} from '../../types';
 import {NumericInput} from "../../components/inputs/NumericInput.tsx";
 import BookingCalendar from '../../components/common/BookingCalendar';
+import { getAssetUrl } from '../../utils/basePath';
 
 const NewBookingPage: React.FC = () => {
     const navigate = useNavigate();
@@ -586,7 +587,7 @@ const NewBookingPage: React.FC = () => {
 
                     {/* Villa Info */}
                     <div style={villaInfoStyle}>
-                        <img src={villa.images[0]} alt={villa.name} style={villaImageStyle}/>
+                        <img src={getAssetUrl(villa.images[0])} alt={villa.name} style={villaImageStyle}/>
                         <div style={villaDetailsStyle}>
                             <h3 style={villaNameStyle}>{villa.name}</h3>
                             <p style={villaLocationStyle}>{villa.location}</p>

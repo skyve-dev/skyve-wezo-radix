@@ -6,6 +6,7 @@ import {useAuth} from '../../contexts/AuthContext';
 import {useBookings} from '../../contexts/BookingsContext';
 import {useVillas} from '../../contexts/VillasContext';
 import {colors} from '../../utils/colors';
+import { getAssetUrl } from '../../utils/basePath';
 
 const BookingDetailPage: React.FC = () => {
     const navigate = useNavigate();
@@ -308,7 +309,7 @@ const BookingDetailPage: React.FC = () => {
                                     width: '100%',
                                     borderRadius: '12px',
                                     paddingTop: '100%',
-                                    backgroundImage: `url(${villa.images[0]})`,
+                                    backgroundImage: `url(${getAssetUrl(villa.images[0])})`,
                                     backgroundPosition: 'center',
                                     backgroundSize: 'cover'
                                 }}></div>
@@ -319,7 +320,7 @@ const BookingDetailPage: React.FC = () => {
                                         width: '100%',
                                         borderRadius: '12px',
                                         paddingTop: '100%',
-                                        backgroundImage: `url(${villa.images[1] || villa.images[0]})`,
+                                        backgroundImage: `url(${getAssetUrl(villa.images[1] || villa.images[0])})`,
                                         backgroundPosition: 'center',
                                         backgroundSize: 'cover'
                                     }}></div>
@@ -329,7 +330,7 @@ const BookingDetailPage: React.FC = () => {
                                         width: '100%',
                                         borderRadius: '12px',
                                         paddingTop: '100%',
-                                        backgroundImage: `url(${villa.images[2] || villa.images[0]})`,
+                                        backgroundImage: `url(${getAssetUrl(villa.images[2] || villa.images[0])})`,
                                         backgroundPosition: 'center',
                                         backgroundSize: 'cover'
                                     }}></div>
@@ -341,7 +342,7 @@ const BookingDetailPage: React.FC = () => {
                                         width: '100%',
                                         borderRadius: '12px',
                                         paddingTop: '100%',
-                                        backgroundImage: `url(${villa.images[3] || villa.images[0]})`,
+                                        backgroundImage: `url(${getAssetUrl(villa.images[3] || villa.images[0])})`,
                                         backgroundPosition: 'center',
                                         backgroundSize: 'cover'
                                     }}></div>
@@ -351,7 +352,7 @@ const BookingDetailPage: React.FC = () => {
                                         width: '100%',
                                         borderRadius: '12px',
                                         paddingTop: '100%',
-                                        backgroundImage: `url(${villa.images[4] || villa.images[0]})`,
+                                        backgroundImage: `url(${getAssetUrl(villa.images[4] || villa.images[0])})`,
                                         backgroundPosition: 'center',
                                         backgroundSize: 'cover'
                                     }}></div>

@@ -4,6 +4,7 @@ import {Autoplay, Navigation, Pagination} from 'swiper/modules';
 import {ChevronLeftIcon, ChevronRightIcon} from '@radix-ui/react-icons';
 import {colors} from '../../utils/colors';
 import type {Swiper as SwiperType} from 'swiper';
+import {getAssetUrl} from "../../utils/basePath.ts";
 
 interface VillaImageGalleryProps {
     images: string[];
@@ -198,7 +199,7 @@ const VillaImageGallery: React.FC<VillaImageGalleryProps> = ({images, villaName}
                     {validImages.map((image, index) => (
                         <SwiperSlide key={`${image}-${index}`} style={slideStyle}>
                             <img
-                                src={image}
+                                src={getAssetUrl(image)}
                                 alt={`${villaName} - Image ${index + 1}`}
                                 style={imageStyle}
                                 loading={index < 3 ? 'eager' : 'lazy'} // Load first 3 images eagerly

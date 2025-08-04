@@ -6,6 +6,7 @@ import {colors} from '../../utils/colors';
 import BookingCalendar from '../../components/common/BookingCalendar';
 import VillaImageGallery from '../../components/common/VillaImageGallery';
 import {useVillas} from "../../contexts/VillasContext.tsx";
+import { getAssetUrl } from '../../utils/basePath';
 import {
     IoBedOutline,
     IoCameraOutline,
@@ -444,7 +445,7 @@ const VillaDetailsPage: React.FC = () => {
                         borderRadius: 10,
                         background: colors.gray100,
                         height: '50%',
-                        backgroundImage: `url(${villa.images[9] || villa.images[0]})`,
+                        backgroundImage: `url(${getAssetUrl(villa.images[9] || villa.images[0])})`,
                         backgroundPosition: 'center',
                         backgroundSize: 'cover'
                     }}></div>
@@ -452,7 +453,7 @@ const VillaDetailsPage: React.FC = () => {
                         borderRadius: 10,
                         background: colors.gray100,
                         height: '50%',
-                        backgroundImage: `url(${villa.images[8] || villa.images[0]})`,
+                        backgroundImage: `url(${getAssetUrl(villa.images[8] || villa.images[0])})`,
                         backgroundPosition: 'center',
                         backgroundSize: 'cover'
                     }}></div>
@@ -466,7 +467,7 @@ const VillaDetailsPage: React.FC = () => {
                         borderRadius: 10,
                         background: colors.gray100,
                         height: '50%',
-                        backgroundImage: `url(${villa.images[7] || villa.images[0]})`,
+                        backgroundImage: `url(${getAssetUrl(villa.images[7] || villa.images[0])})`,
                         backgroundPosition: 'center',
                         backgroundSize: 'cover'
                     }}></div>
@@ -474,7 +475,7 @@ const VillaDetailsPage: React.FC = () => {
                         borderRadius: 10,
                         background: colors.gray100,
                         height: '50%',
-                        backgroundImage: `url(${villa.images[6] || villa.images[0]})`,
+                        backgroundImage: `url(${getAssetUrl(villa.images[6] || villa.images[0])})`,
                         backgroundPosition: 'center',
                         backgroundSize: 'cover'
                     }}></div>
