@@ -177,6 +177,11 @@ const AppContent: React.FC = () => {
             <VillaManagementPage />
           </ProtectedRoute>
         } />
+        <Route path="villas/edit/:id" element={
+          <ProtectedRoute>
+            <VillaManagementPage />
+          </ProtectedRoute>
+        } />
         <Route path="villas/:id/manage" element={
           <ProtectedRoute>
             <PlaceholderPage title="Manage Villa" />

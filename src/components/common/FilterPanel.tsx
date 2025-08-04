@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import * as Slider from '@radix-ui/react-slider';
-import * as Select from '@radix-ui/react-select';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Cross2Icon, TrashIcon, CheckIcon, ChevronDownIcon, CheckIcon as SelectedIcon } from '@radix-ui/react-icons';
 import { colors } from '../../utils/colors';
@@ -422,116 +421,136 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                   {/* Location */}
                   <div style={sectionStyle}>
                     <h3 style={sectionTitleStyle}>Location</h3>
-                    <Select.Root
-                      value={localFilters.location}
-                      onValueChange={(value) => {
-                        updateLocalFilters({ location: value });
-                        setLocationSearchValue(value);
-                      }}
-                      open={isLocationDropdownOpen}
-                      onOpenChange={setIsLocationDropdownOpen}
-                    >
-                      <Select.Trigger
+                    <div style={{ position: 'relative' }}>
+                      <input
+                        type="text"
+                        placeholder="Select or enter location..."
+                        value={locationSearchValue}
+                        onChange={(e) => {
+                          setLocationSearchValue(e.target.value);
+                          updateLocalFilters({ location: e.target.value });
+                        }}
+                        onFocus={() => setIsLocationDropdownOpen(true)}
                         style={{
                           ...inputStyle,
+                          paddingRight: '40px',
+                        }}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setIsLocationDropdownOpen(!isLocationDropdownOpen)}
+                        style={{
+                          position: 'absolute',
+                          right: '12px',
+                          top: '50%',
+                          transform: 'translateY(-50%)',
+                          background: 'none',
+                          border: 'none',
+                          cursor: 'pointer',
+                          padding: '4px',
                           display: 'flex',
                           alignItems: 'center',
-                          justifyContent: 'space-between',
-                          cursor: 'pointer',
+                          justifyContent: 'center',
                         }}
                       >
-                        <Select.Value placeholder="Select or enter location">
-                          {localFilters.location || "Select or enter location"}
-                        </Select.Value>
-                        <Select.Icon>
-                          <ChevronDownIcon />
-                        </Select.Icon>
-                      </Select.Trigger>
-                      
-                      <Select.Portal>
-                        <Select.Content
+                        <ChevronDownIcon
                           style={{
-                            backgroundColor: 'white',
-                            border: '1px solid #e5e7eb',
-                            borderRadius: '8px',
-                            boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
-                            zIndex: 150,
-                            width: 'var(--radix-select-trigger-width)',
-                            maxWidth: '100%',
+                            transform: isLocationDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                            transition: 'transform 0.2s',
                           }}
-                        >
-                          {/* Custom input option - outside viewport */}
+                        />
+                      </button>
+                      
+                      {isLocationDropdownOpen && (
+                        <>
+                          {/* Invisible overlay to close dropdown when clicking outside */}
                           <div
                             style={{
-                              padding: '8px 12px',
-                              borderBottom: '1px solid #f3f4f6',
-                              backgroundColor: 'white',
-                              position: 'sticky',
+                              position: 'fixed',
                               top: 0,
-                              zIndex: 1,
+                              left: 0,
+                              right: 0,
+                              bottom: 0,
+                              zIndex: 149,
                             }}
-                          >
-                            <input
-                              type="text"
-                              placeholder="Enter custom location..."
-                              value={locationSearchValue}
-                              onChange={(e) => {
-                                setLocationSearchValue(e.target.value);
-                                updateLocalFilters({ location: e.target.value });
-                              }}
-                              style={{
-                                width: '100%',
-                                padding: '6px 8px',
-                                border: '1px solid #d1d5db',
-                                borderRadius: '4px',
-                                fontSize: '14px',
-                                outline: 'none',
-                                boxSizing: 'border-box',
-                              }}
-                              onClick={(e) => e.stopPropagation()}
-                              onMouseDown={(e) => e.stopPropagation()}
-                              autoFocus
-                            />
-                          </div>
+                            onClick={() => setIsLocationDropdownOpen(false)}
+                          />
                           
-                          <Select.Viewport
+                          {/* Dropdown content */}
+                          <div
                             style={{
+                              position: 'absolute',
+                              top: '100%',
+                              left: 0,
+                              right: 0,
+                              backgroundColor: 'white',
+                              border: '1px solid #e5e7eb',
+                              borderRadius: '8px',
+                              boxShadow: '0 4px 16px rgba(0,0,0,0.15)',
+                              zIndex: 150,
                               maxHeight: '250px',
                               overflowY: 'auto',
-                              overflowX: 'hidden',
-                              padding: '4px',
+                              marginBottom: '12px',
                             }}
                           >
-                            {/* Predefined locations */}
                             {locations
                               .filter(location => location !== 'Unspecified')
-                              .filter(location => location.toLowerCase().includes(locationSearchValue.toLowerCase()))
+                              .filter(location => 
+                                location.toLowerCase().includes(locationSearchValue.toLowerCase())
+                              )
                               .map((location) => (
-                                <Select.Item
+                                <div
                                   key={location}
-                                  value={location}
+                                  onClick={() => {
+                                    setLocationSearchValue(location);
+                                    updateLocalFilters({ location });
+                                    setIsLocationDropdownOpen(false);
+                                  }}
                                   style={{
-                                    padding: '8px 12px',
-                                    margin: '2px 0',
+                                    padding: '12px 16px',
                                     fontSize: '14px',
                                     cursor: 'pointer',
-                                    borderRadius: '4px',
+                                    borderBottom: '1px solid #f3f4f6',
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'space-between',
-                                    outline: 'none',
+                                    transition: 'background-color 0.2s',
+                                  }}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.backgroundColor = '#f9fafb';
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.backgroundColor = 'white';
                                   }}
                                 >
-                                  <Select.ItemText>{location}</Select.ItemText>
-                                  <Select.ItemIndicator>
-                                    <SelectedIcon width={14} height={14} />
-                                  </Select.ItemIndicator>
-                                </Select.Item>
+                                  <span>{location}</span>
+                                  {localFilters.location === location && (
+                                    <SelectedIcon width={14} height={14} style={{ color: colors.primary }} />
+                                  )}
+                                </div>
                               ))}
-                          </Select.Viewport>
-                        </Select.Content>
-                      </Select.Portal>
-                    </Select.Root>
+                            
+                            {/* Show message if no locations match */}
+                            {locations
+                              .filter(location => location !== 'Unspecified')
+                              .filter(location => 
+                                location.toLowerCase().includes(locationSearchValue.toLowerCase())
+                              ).length === 0 && locationSearchValue && (
+                              <div
+                                style={{
+                                  padding: '12px 16px',
+                                  fontSize: '14px',
+                                  color: '#6b7280',
+                                  fontStyle: 'italic',
+                                }}
+                              >
+                                No locations found. Continue typing to use "{locationSearchValue}" as a custom location.
+                              </div>
+                            )}
+                          </div>
+                        </>
+                      )}
+                    </div>
                   </div>
 
                   {/* Bedrooms */}

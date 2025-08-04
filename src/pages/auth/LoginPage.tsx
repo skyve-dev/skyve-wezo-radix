@@ -53,9 +53,10 @@ const LoginPage: React.FC = () => {
   const titleStyle: React.CSSProperties = {
     fontSize: '32px',
     fontWeight: 'bold',
-    color: '#1a1a1a',
+    color: colors.primary,
     marginBottom: '8px',
     textAlign: 'center',
+
   };
 
   const subtitleStyle: React.CSSProperties = {
@@ -109,7 +110,7 @@ const LoginPage: React.FC = () => {
   };
 
   const demoInfoStyle: React.CSSProperties = {
-    marginTop: '24px',
+    marginBottom: '24px',
     padding: '16px',
     backgroundColor: '#F3F4F6',
     borderRadius: '8px',
@@ -136,9 +137,20 @@ const LoginPage: React.FC = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.5 }}
       >
-        <h1 style={titleStyle}>Wezo</h1>
-        <p style={subtitleStyle}>Rental Property Platform</p>
-        
+        <h1 style={titleStyle}>Welcome Back</h1>
+        <p style={subtitleStyle}>Rental Property in Ras Al Khaima</p>
+        <div style={demoInfoStyle}>
+          <strong>Demo Credentials:</strong>
+          <div style={demoCredentialStyle}>
+            Tenant: tenant@example.com / password
+          </div>
+          <div style={demoCredentialStyle}>
+            Homeowner: homeowner@example.com / password
+          </div>
+          <div style={demoCredentialStyle}>
+            Admin: admin@example.com / password
+          </div>
+        </div>
         <form onSubmit={handleSubmit}>
           <div style={inputGroupStyle}>
             <label style={labelStyle} htmlFor="email">
@@ -196,18 +208,7 @@ const LoginPage: React.FC = () => {
           {error && <p style={errorStyle}>{error}</p>}
         </form>
         
-        <div style={demoInfoStyle}>
-          <strong>Demo Credentials:</strong>
-          <div style={demoCredentialStyle}>
-            Tenant: tenant@example.com / password
-          </div>
-          <div style={demoCredentialStyle}>
-            Homeowner: homeowner@example.com / password
-          </div>
-          <div style={demoCredentialStyle}>
-            Admin: admin@example.com / password
-          </div>
-        </div>
+
       </motion.div>
     </motion.div>
   );

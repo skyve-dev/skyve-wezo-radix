@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import {motion} from 'framer-motion';
 import {CheckIcon, ChevronDownIcon} from '@radix-ui/react-icons';
 import {Indicator, Root} from '@radix-ui/react-checkbox';
 import * as Select from '@radix-ui/react-select';
+import * as Dialog from '@radix-ui/react-dialog';
 import {useAuth} from '../../contexts/AuthContext';
 import {useAmenities} from '../../contexts/AmenitiesContext';
 import {useVillas} from '../../contexts/VillasContext';
@@ -48,9 +49,11 @@ const availableLocations = [
 
 const VillaManagementPage: React.FC = () => {
     const navigate = useNavigate();
+    const { id: villaId } = useParams<{ id: string }>();
+    const isEditMode = Boolean(villaId);
     const {user} = useAuth();
     const {amenities} = useAmenities();
-    const {addVilla} = useVillas();
+    const {addVilla, updateVilla, getVillaById} = useVillas();
 
     // Form state
     const [formData, setFormData] = useState<Partial<Villa>>({
@@ -94,6 +97,24 @@ const VillaManagementPage: React.FC = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     // Location state for dropdown with custom input
     const [isLocationDropdownOpen, setIsLocationDropdownOpen] = useState(false);
+    
+    // Confirmation dialog states
+    const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+    const [showSuccessDialog, setShowSuccessDialog] = useState(false);
+    const [pendingFormData, setPendingFormData] = useState<Partial<Villa> | null>(null);
+
+    // Load villa data in edit mode
+    useEffect(() => {
+        if (isEditMode && villaId) {
+            const villa = getVillaById(villaId);
+            if (villa) {
+                setFormData(villa);
+            } else {
+                // Villa not found, redirect to villa list
+                navigate('/villa-management');
+            }
+        }
+    }, [isEditMode, villaId, getVillaById, navigate]);
 
     // Check if user has permission to access this page
     useEffect(() => {
@@ -225,43 +246,66 @@ const VillaManagementPage: React.FC = () => {
             return;
         }
 
+        // Store form data for confirmation dialog
+        setPendingFormData(formData);
+        setShowConfirmDialog(true);
+    };
+
+    // Handle confirmed submission
+    const handleConfirmedSubmit = async () => {
+        if (!pendingFormData) return;
+
         setIsSubmitting(true);
+        setShowConfirmDialog(false);
 
         try {
             // Simulate API call
             await new Promise(resolve => setTimeout(resolve, 2000));
 
-            // Create complete villa object with generated ID
-            const newVilla: Villa = {
-                id: `villa-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-                name: formData.name!,
-                description: formData.description!,
-                location: formData.location!,
-                ownerId: formData.ownerId || user!.id,
-                maxVisitors: formData.maxVisitors!,
-                numberOfBedrooms: formData.numberOfBedrooms!,
-                numberOfBeds: formData.numberOfBeds!,
-                numberOfBathrooms: formData.numberOfBathrooms!,
-                pricing: formData.pricing!,
-                amenities: formData.amenities!,
-                houseRules: formData.houseRules!,
-                isActive: false, // New villas start as inactive and need admin approval
-                isFeatured: false,
-                images: formData.images || [],
-            };
+            if (isEditMode && villaId) {
+                // Update existing villa
+                const updates = {
+                    ...pendingFormData as Partial<Villa>
+                };
+                updateVilla(villaId, updates);
+                console.log('Villa updated successfully:', { id: villaId, ...updates });
+            } else {
+                // Create new villa
+                const newVilla: Villa = {
+                    id: `villa-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+                    name: pendingFormData.name!,
+                    description: pendingFormData.description!,
+                    location: pendingFormData.location!,
+                    ownerId: pendingFormData.ownerId || user!.id,
+                    maxVisitors: pendingFormData.maxVisitors!,
+                    numberOfBedrooms: pendingFormData.numberOfBedrooms!,
+                    numberOfBeds: pendingFormData.numberOfBeds!,
+                    numberOfBathrooms: pendingFormData.numberOfBathrooms!,
+                    pricing: pendingFormData.pricing!,
+                    amenities: pendingFormData.amenities!,
+                    houseRules: pendingFormData.houseRules!,
+                    isActive: false, // New villas start as inactive and need admin approval
+                    isFeatured: false,
+                    images: pendingFormData.images || [],
+                };
+                addVilla(newVilla);
+                console.log('Villa created successfully:', newVilla);
+            }
 
-            // Add villa to context
-            addVilla(newVilla);
-
-            console.log('Villa created successfully:', newVilla);
-
-            // Redirect to villa management list
-            navigate('/villa-management');
+            // Show success dialog
+            setShowSuccessDialog(true);
         } catch (error) {
-            console.error('Error creating villa:', error);
+            console.error('Error saving villa:', error);
         } finally {
             setIsSubmitting(false);
+            setPendingFormData(null);
         }
+    };
+
+    // Handle success dialog close
+    const handleSuccessDialogClose = () => {
+        setShowSuccessDialog(false);
+        navigate('/villa-management');
     };
 
     // Styles - Updated for compact layout
@@ -458,7 +502,7 @@ const VillaManagementPage: React.FC = () => {
             transition={{duration: 0.5}}
         >
             <div style={headerStyle}>
-                <h1 style={titleStyle}>Register New Villa</h1>
+                <h1 style={titleStyle}>{isEditMode ? 'Edit Villa' : 'Register New Villa'}</h1>
             </div>
 
             <form onSubmit={handleSubmit}>
@@ -838,9 +882,186 @@ const VillaManagementPage: React.FC = () => {
                     whileHover={!isSubmitting ? {backgroundColor: colors.primaryHover} : {}}
                     whileTap={!isSubmitting ? {scale: 0.98} : {}}
                 >
-                    {isSubmitting ? 'Creating Villa...' : 'Create Villa'}
+                    {isSubmitting ? (isEditMode ? 'Updating Villa...' : 'Creating Villa...') : (isEditMode ? 'Update Villa' : 'Create Villa')}
                 </motion.button>
             </form>
+
+            {/* Confirmation Dialog */}
+            <Dialog.Root open={showConfirmDialog} onOpenChange={setShowConfirmDialog}>
+                <Dialog.Portal>
+                    <Dialog.Overlay
+                        style={{
+                            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                            position: 'fixed',
+                            inset: 0,
+                            zIndex: 9998,
+                        }}
+                    />
+                    <Dialog.Content
+                        style={{
+                            backgroundColor: 'white',
+                            borderRadius: '12px',
+                            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                            position: 'fixed',
+                            top: '50%',
+                            left: '50%',
+                            transform: 'translate(-50%, -50%)',
+                            width: '90vw',
+                            maxWidth: '450px',
+                            maxHeight: '85vh',
+                            padding: '24px',
+                            zIndex: 9999,
+                        }}
+                    >
+                        <Dialog.Title
+                            style={{
+                                margin: 0,
+                                fontSize: '18px',
+                                fontWeight: '600',
+                                color: '#1a1a1a',
+                                marginBottom: '12px',
+                            }}
+                        >
+                            Confirm {isEditMode ? 'Update' : 'Creation'}
+                        </Dialog.Title>
+                        <Dialog.Description
+                            style={{
+                                margin: 0,
+                                fontSize: '14px',
+                                color: '#6b7280',
+                                marginBottom: '24px',
+                                lineHeight: '1.5',
+                            }}
+                        >
+                            Are you sure you want to {isEditMode ? 'update' : 'create'} this villa? {!isEditMode && 'New villas require admin approval before becoming active.'}
+                        </Dialog.Description>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'flex-end',
+                                gap: '12px',
+                            }}
+                        >
+                            <Dialog.Close asChild>
+                                <button
+                                    style={{
+                                        padding: '8px 16px',
+                                        fontSize: '14px',
+                                        fontWeight: '500',
+                                        color: '#6b7280',
+                                        backgroundColor: '#f9fafb',
+                                        border: '1px solid #e5e7eb',
+                                        borderRadius: '6px',
+                                        cursor: 'pointer',
+                                    }}
+                                >
+                                    Cancel
+                                </button>
+                            </Dialog.Close>
+                            <button
+                                onClick={handleConfirmedSubmit}
+                                disabled={isSubmitting}
+                                style={{
+                                    padding: '8px 16px',
+                                    fontSize: '14px',
+                                    fontWeight: '500',
+                                    color: 'white',
+                                    backgroundColor: colors.primary,
+                                    border: 'none',
+                                    borderRadius: '6px',
+                                    cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                                    opacity: isSubmitting ? 0.7 : 1,
+                                }}
+                            >
+                                {isSubmitting ? 'Processing...' : 'Confirm'}
+                            </button>
+                        </div>
+                    </Dialog.Content>
+                </Dialog.Portal>
+            </Dialog.Root>
+
+            {/* Success Dialog */}
+            <Dialog.Root open={showSuccessDialog} onOpenChange={setShowSuccessDialog}>
+                <Dialog.Portal>
+                    <Dialog.Overlay
+                        style={{
+                            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                            position: 'fixed',
+                            inset: 0,
+                            zIndex: 9998,
+                        }}
+                    />
+                    <Dialog.Content
+                        style={{
+                            backgroundColor: 'white',
+                            borderRadius: '12px',
+                            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                            position: 'fixed',
+                            top: '50%',
+                            left: '50%',
+                            transform: 'translate(-50%, -50%)',
+                            width: '90vw',
+                            maxWidth: '400px',
+                            maxHeight: '85vh',
+                            padding: '24px',
+                            zIndex: 9999,
+                            textAlign: 'center',
+                        }}
+                    >
+                        <div
+                            style={{
+                                width: '48px',
+                                height: '48px',
+                                backgroundColor: '#dcfce7',
+                                borderRadius: '50%',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                margin: '0 auto 16px',
+                            }}
+                        >
+                            <CheckIcon style={{ width: '24px', height: '24px', color: '#16a34a' }} />
+                        </div>
+                        <Dialog.Title
+                            style={{
+                                margin: 0,
+                                fontSize: '18px',
+                                fontWeight: '600',
+                                color: '#1a1a1a',
+                                marginBottom: '8px',
+                            }}
+                        >
+                            Success!
+                        </Dialog.Title>
+                        <Dialog.Description
+                            style={{
+                                margin: 0,
+                                fontSize: '14px',
+                                color: '#6b7280',
+                                marginBottom: '24px',
+                                lineHeight: '1.5',
+                            }}
+                        >
+                            Villa has been {isEditMode ? 'updated' : 'created'} successfully. {!isEditMode && 'It will be reviewed by an administrator before becoming active.'}
+                        </Dialog.Description>
+                        <button
+                            onClick={handleSuccessDialogClose}
+                            style={{
+                                padding: '8px 24px',
+                                fontSize: '14px',
+                                fontWeight: '500',
+                                color: 'white',
+                                backgroundColor: colors.primary,
+                                border: 'none',
+                                borderRadius: '6px',
+                                cursor: 'pointer',
+                            }}
+                        >
+                            OK
+                        </button>
+                    </Dialog.Content>
+                </Dialog.Portal>
+            </Dialog.Root>
         </motion.div>
     );
 };

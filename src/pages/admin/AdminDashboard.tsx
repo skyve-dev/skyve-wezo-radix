@@ -4,7 +4,6 @@ import {useNavigate} from 'react-router-dom';
 import {BarChartIcon, GearIcon, HomeIcon, PersonIcon} from '@radix-ui/react-icons';
 import {mockBookings, mockPromotion} from '../../data/mockData';
 import {mockVillas} from '../../data/data';
-import {unused} from "../../utils/unused.ts";
 import {colors} from '../../utils/colors';
 import {useUsers} from '../../contexts/UserContext';
 
@@ -14,8 +13,6 @@ const AdminDashboard: React.FC = () => {
   
   const totalVillas = mockVillas.length;
   const activeVillas = mockVillas.filter(villa => villa.isActive).length;
-  const totalBookings = mockBookings.length;
-  unused(totalBookings)
   const totalRevenue = mockBookings
     .filter(booking => booking.paymentStatus === 'paid')
     .reduce((sum, booking) => sum + booking.totalPrice, 0);

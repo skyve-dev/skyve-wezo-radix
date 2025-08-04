@@ -52,11 +52,11 @@ export const applyFilters = (villas: Villa[], filters: VillaFilters): Villa[] =>
 
     if (hasSelectedAmenities) {
       // Check if villa has all selected amenities
-      const villaAmenities = getAllVillaAmenities(villa);
+      const villaAmenities = getAllVillaAmenities(villa).map(i => i.toUpperCase());
       
       for (const selectedAmenities of Object.values(filters.amenities)) {
         for (const amenity of selectedAmenities) {
-          if (!villaAmenities.includes(amenity)) {
+          if (!villaAmenities.includes(amenity.toUpperCase())) {
             return false;
           }
         }

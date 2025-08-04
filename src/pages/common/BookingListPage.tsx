@@ -338,7 +338,7 @@ const BookingListPage: React.FC = () => {
                                         boxSizing: 'border-box',
                                         backgroundImage: `url(${villa.images[0]})`,
                                         backgroundSize: 'cover',
-                                        backgroundOrigin: 'center'
+                                        backgroundPosition: 'center'
                                     }}></div>
                                 </div>
                                 <div style={villaDetailsStyle}>

@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { MagnifyingGlassIcon, PersonIcon, CheckIcon } from '@radix-ui/react-icons';
+import React, {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {motion} from 'framer-motion';
+import {CheckIcon, MagnifyingGlassIcon, PersonIcon} from '@radix-ui/react-icons';
 import * as Select from '@radix-ui/react-select';
-import { useAuth } from '../../contexts/AuthContext';
-import { useUsers } from '../../contexts/UserContext';
-import { colors } from '../../utils/colors';
+import {useAuth} from '../../contexts/AuthContext';
+import {useUsers} from '../../contexts/UserContext';
+import {colors} from '../../utils/colors';
 
 const UserListPage: React.FC = () => {
   const navigate = useNavigate();
   const { user: currentUser } = useAuth();
-  const { users, searchUsers, filterUsersByRole, updateUser } = useUsers();
+  const {  searchUsers, filterUsersByRole, updateUser } = useUsers();
   
   const [searchTerm, setSearchTerm] = useState('');
   const [roleFilter, setRoleFilter] = useState<'all' | 'tenant' | 'homeowner' | 'admin'>('all');

@@ -140,13 +140,9 @@ const HomeownerDashboard: React.FC = () => {
     boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
     overflow: 'hidden',
     cursor: 'pointer',
+    maxWidth : '420px',
   };
 
-  const villaImageStyle: React.CSSProperties = {
-    width: '100%',
-    height: '160px',
-    objectFit: 'cover',
-  };
 
   const villaContentStyle: React.CSSProperties = {
     padding: '16px',
@@ -352,11 +348,10 @@ const HomeownerDashboard: React.FC = () => {
                     whileTap={{ scale: 0.98 }}
                     onClick={() => navigate(`/villas/${villa.id}/manage`)}
                   >
-                    <img
-                      src={villa.images[0]}
-                      alt={villa.name}
-                      style={villaImageStyle}
-                    />
+                    <div style={{backgroundColor:colors.gray200}}>
+                      <div style={{width:'100%',paddingTop:'100%',backgroundImage:`url(${villa.images[0]})`,backgroundPosition:'center',backgroundSize:'cover'}}></div>
+                    </div>
+
                     <div style={villaContentStyle}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
                         <div>

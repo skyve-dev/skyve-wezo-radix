@@ -132,13 +132,6 @@ const BookingDetailPage: React.FC = () => {
         gap: '8px',
     };
 
-    const sideImageStyle: React.CSSProperties = {
-        width: '100%',
-        height: 'calc(50% - 4px)',
-        borderRadius: '8px',
-        objectFit: 'cover',
-        cursor: 'pointer',
-    };
 
     const villaNameStyle: React.CSSProperties = {
         fontSize: '24px',

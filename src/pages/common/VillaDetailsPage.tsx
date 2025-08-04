@@ -6,6 +6,16 @@ import {colors} from '../../utils/colors';
 import BookingCalendar from '../../components/common/BookingCalendar';
 import VillaImageGallery from '../../components/common/VillaImageGallery';
 import {useVillas} from "../../contexts/VillasContext.tsx";
+import {
+    IoBedOutline,
+    IoCameraOutline,
+    IoLogoNoSmoking,
+    IoPawOutline,
+    IoPeopleOutline,
+    IoTimeOutline
+} from "react-icons/io5";
+import {MdOutlineBedroomParent, MdOutlineCelebration, MdOutlineShower} from "react-icons/md";
+import {GoPeople} from "react-icons/go";
 
 const VillaDetailsPage: React.FC = () => {
     const {id} = useParams<{ id: string }>();
@@ -178,8 +188,8 @@ const VillaDetailsPage: React.FC = () => {
         fontSize: '18px',
         fontWeight: '600',
         marginBottom: '0px',
-        display:'flex',
-        gap : '24px'
+        display: 'flex',
+        gap: '24px'
     };
 
     const amenitiesCategoriesStyle: React.CSSProperties = {
@@ -314,7 +324,7 @@ const VillaDetailsPage: React.FC = () => {
     const propertyDetailsStyle: React.CSSProperties = {
         display: 'flex',
         flexWrap: 'wrap',
-        gap: '10px',
+        gap: '32px',
         marginBottom: '30px',
         backgroundColor: '#f9fafb',
         borderRadius: '12px',
@@ -328,6 +338,9 @@ const VillaDetailsPage: React.FC = () => {
 
     const propertyDetailIconStyle: React.CSSProperties = {
         fontSize: '16px',
+        display:'flex',
+        alignItems:'center',
+        justifyContent:'center',
     };
 
     const propertyDetailTextStyle: React.CSSProperties = {
@@ -479,38 +492,52 @@ const VillaDetailsPage: React.FC = () => {
                 {/* Property Details */}
                 <div style={propertyDetailsStyle}>
                     <div style={propertyDetailItemStyle}>
-                        <span style={propertyDetailIconStyle}>🛏️</span>
+                        <span style={propertyDetailIconStyle}>
+                            <MdOutlineBedroomParent style={{fontSize: '26px'}}/>
+                        </span>
                         <span style={propertyDetailTextStyle}>{villa.numberOfBedrooms} Bedrooms</span>
                     </div>
                     <div style={propertyDetailItemStyle}>
-                        <span style={propertyDetailIconStyle}>🛋️</span>
+                        <span style={propertyDetailIconStyle}>
+                            <IoBedOutline style={{fontSize: '26px'}}/>
+                        </span>
                         <span style={propertyDetailTextStyle}>{villa.numberOfBeds} Beds</span>
                     </div>
                     <div style={propertyDetailItemStyle}>
-                        <span style={propertyDetailIconStyle}>🚿</span>
+                        <span style={propertyDetailIconStyle}>
+                            <MdOutlineShower style={{fontSize: '26px'}}/>
+                        </span>
                         <span style={propertyDetailTextStyle}>{villa.numberOfBathrooms} Bathrooms</span>
                     </div>
                     <div style={propertyDetailItemStyle}>
-                        <span style={propertyDetailIconStyle}>👥</span>
+                        <span style={propertyDetailIconStyle}>
+                            <GoPeople style={{fontSize: '22px'}}/>
+                        </span>
                         <span style={propertyDetailTextStyle}>Max {villa.maxVisitors} Guests</span>
                     </div>
                 </div>
                 <div style={priceStyle}>
-                    <div style={{display: 'flex',flexDirection:'column',gap:'4px'}}>
-                        <div style={{width:60,fontSize:'12px',color:colors.gray500}}>Weekday :</div>
-                        <div style={{fontSize:'16px',color:colors.primaryHover}}>
+                    <div style={{display: 'flex', flexDirection: 'column', gap: '4px'}}>
+                        <div style={{width: 60, fontSize: '12px', color: colors.gray500, whiteSpace: 'nowrap'}}>Weekday
+                            :
+                        </div>
+                        <div style={{fontSize: '16px', color: colors.primaryHover}}>
                             AED {villa.pricing.weekday}/night
                         </div>
                     </div>
-                    <div style={{display: 'flex',flexDirection:'column',gap:'4px'}}>
-                        <div style={{width:60,fontSize:'12px',color:colors.gray500}}>Weekend :</div>
-                        <div style={{fontSize:'16px',color:colors.primaryHover}}>
+                    <div style={{display: 'flex', flexDirection: 'column', gap: '4px'}}>
+                        <div style={{width: 60, fontSize: '12px', color: colors.gray500, whiteSpace: 'nowrap'}}>Weekend
+                            :
+                        </div>
+                        <div style={{fontSize: '16px', color: colors.primaryHover}}>
                             AED {villa.pricing.weekend}/night
                         </div>
                     </div>
-                    <div style={{display: 'flex',flexDirection:'column',gap:'4px'}}>
-                        <div style={{width:60,fontSize:'12px',color:colors.gray500}}>Halfday :</div>
-                        <div style={{fontSize:'16px',color:colors.primaryHover}}>
+                    <div style={{display: 'flex', flexDirection: 'column', gap: '4px'}}>
+                        <div style={{width: 60, fontSize: '12px', color: colors.gray500, whiteSpace: 'nowrap'}}>Halfday
+                            :
+                        </div>
+                        <div style={{fontSize: '16px', color: colors.primaryHover}}>
                             AED {villa.pricing.halfDay}
                         </div>
                     </div>
@@ -553,7 +580,9 @@ const VillaDetailsPage: React.FC = () => {
                     <div style={houseRulesListStyle}>
                         {/* Check-in/Check-out Times */}
                         <div style={houseRuleItemStyle}>
-                            <div style={houseRuleIconStyle}>🕐</div>
+                            <div style={houseRuleIconStyle}>
+                                <IoTimeOutline style={{fontSize: '26px'}}/>
+                            </div>
                             <div style={houseRuleContentStyle}>
                                 <div style={houseRuleLabelStyle}>Check-in / Check-out</div>
                                 <div style={houseRuleValueStyle}>
@@ -565,7 +594,9 @@ const VillaDetailsPage: React.FC = () => {
 
                         {/* Maximum Occupancy */}
                         <div style={houseRuleItemStyle}>
-                            <div style={houseRuleIconStyle}>👥</div>
+                            <div style={houseRuleIconStyle}>
+                                <IoPeopleOutline style={{fontSize: '26px'}}/>
+                            </div>
                             <div style={houseRuleContentStyle}>
                                 <div style={houseRuleLabelStyle}>Maximum Occupancy</div>
                                 <div style={houseRuleValueStyle}>
@@ -576,7 +607,9 @@ const VillaDetailsPage: React.FC = () => {
 
                         {/* Pets Policy */}
                         <div style={houseRuleItemStyle}>
-                            <div style={houseRuleIconStyle}>🐾</div>
+                            <div style={houseRuleIconStyle}>
+                                <IoPawOutline style={{fontSize: '26px'}}/>
+                            </div>
                             <div style={houseRuleContentStyle}>
                                 <div style={houseRuleLabelStyle}>Pets Policy</div>
                                 <div style={houseRuleValueStyle}>
@@ -587,7 +620,9 @@ const VillaDetailsPage: React.FC = () => {
 
                         {/* Parties/Events */}
                         <div style={houseRuleItemStyle}>
-                            <div style={houseRuleIconStyle}>🎉</div>
+                            <div style={houseRuleIconStyle}>
+                                <MdOutlineCelebration style={{fontSize: '26px'}}/>
+                            </div>
                             <div style={houseRuleContentStyle}>
                                 <div style={houseRuleLabelStyle}>Parties & Events</div>
                                 <div style={houseRuleValueStyle}>
@@ -598,7 +633,9 @@ const VillaDetailsPage: React.FC = () => {
 
                         {/* Photography */}
                         <div style={houseRuleItemStyle}>
-                            <div style={houseRuleIconStyle}>📷</div>
+                            <div style={houseRuleIconStyle}>
+                                <IoCameraOutline style={{fontSize: '26px'}}/>
+                            </div>
                             <div style={houseRuleContentStyle}>
                                 <div style={houseRuleLabelStyle}>Commercial Photography</div>
                                 <div style={houseRuleValueStyle}>
@@ -609,7 +646,9 @@ const VillaDetailsPage: React.FC = () => {
 
                         {/* Smoking */}
                         <div style={houseRuleItemStyle}>
-                            <div style={houseRuleIconStyle}>🚭</div>
+                            <div style={houseRuleIconStyle}>
+                                <IoLogoNoSmoking style={{fontSize: '26px'}}/>
+                            </div>
                             <div style={houseRuleContentStyle}>
                                 <div style={houseRuleLabelStyle}>Smoking Policy</div>
                                 <div style={houseRuleValueStyle}>

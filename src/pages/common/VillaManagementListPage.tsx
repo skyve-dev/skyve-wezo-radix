@@ -106,7 +106,7 @@ const VillaManagementListPage: React.FC = () => {
 
   const gridStyle: React.CSSProperties = {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
     gap: '24px',
   };
 
@@ -503,7 +503,7 @@ const VillaManagementListPage: React.FC = () => {
 
                   <motion.button
                     style={secondaryButtonStyle}
-                    onClick={() => navigate(`/villas/${villa.id}/manage`)}
+                    onClick={() => navigate(`/villas/edit/${villa.id}`)}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
