@@ -15,7 +15,7 @@ import ProfilePage from './pages/common/ProfilePage';
 import TenantDashboard from './pages/tenant/TenantDashboard';
 import HomeownerDashboard from './pages/homeowner/HomeownerDashboard';
 import AdminDashboard from './pages/admin/AdminDashboard';
-import NewBookingPage from './pages/tenant/NewBookingPage';
+import NewBookingPage from './pages/common/NewBookingPage';
 import BookingListPage from './pages/common/BookingListPage';
 import BookingDetailPage from './pages/common/BookingDetailPage';
 import VillaManagementPage from './pages/common/VillaManagementPage';
@@ -111,6 +111,9 @@ const AppContent: React.FC = () => {
         
         {/* Villa details - accessible to all users */}
         <Route path="villas/:id" element={<VillaDetailsPage />} />
+        
+        {/* Booking page - accessible to all users (guests and authenticated) */}
+        <Route path="bookings/new" element={<NewBookingPage />} />
         
         {/* Protected Routes - require authentication */}
         <Route path="dashboard" element={
@@ -229,13 +232,6 @@ const AppContent: React.FC = () => {
         <Route path="admin/featured-villas" element={
           <ProtectedRoute>
             <PlaceholderPage title="Featured Villas Management" />
-          </ProtectedRoute>
-        } />
-        
-        {/* Protected Booking routes */}
-        <Route path="bookings/new" element={
-          <ProtectedRoute>
-            <NewBookingPage />
           </ProtectedRoute>
         } />
         

@@ -50,10 +50,6 @@ const ListingsPage: React.FC = () => {
     };
 
     const handleBookVilla = (villaId: string) => {
-        if (!isAuthenticated) {
-            navigate('/login', {state: {from: `/villas/${villaId}`, action: 'booking'}});
-            return;
-        }
         navigate(`/bookings/new?villa=${villaId}`);
     };
 
@@ -198,12 +194,7 @@ const ListingsPage: React.FC = () => {
 
     return (
         <div style={containerStyle}>
-            <div style={headerStyle}>
-                <h1 style={titleStyle}>Villa Listings</h1>
-                <p style={subtitleStyle}>
-                    Discover luxury villas in Ras Al Khaimah for your perfect getaway
-                </p>
-            </div>
+
 
             {/* Search Bar */}
             <SearchBar

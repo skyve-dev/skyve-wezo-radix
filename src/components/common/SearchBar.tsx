@@ -56,7 +56,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ filters, onOpenFilters, className
   const containerStyle: React.CSSProperties = {
     position: 'relative',
     width: '100%',
-    maxWidth: '600px',
     margin: '0 auto 24px',
   };
 

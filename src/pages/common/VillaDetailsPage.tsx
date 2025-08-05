@@ -94,10 +94,6 @@ const VillaDetailsPage: React.FC = () => {
     }
 
     const handleBookNow = () => {
-        if (!isAuthenticated) {
-            navigate('/login', {state: {from: `/villas/${villa.id}`, action: 'booking'}});
-            return;
-        }
         if (selectedStartDate && selectedEndDate) {
             const searchParams = new URLSearchParams({
                 villa: villa.id,
@@ -758,11 +754,9 @@ const VillaDetailsPage: React.FC = () => {
                             whileHover={selectedStartDate && selectedEndDate ? {backgroundColor: colors.primaryHover} : {}}
                             whileTap={selectedStartDate && selectedEndDate ? {scale: 0.98} : {}}
                         >
-                            {!isAuthenticated
-                                ? 'Sign In to Book'
-                                : selectedStartDate && selectedEndDate
-                                    ? 'Proceed to Booking'
-                                    : 'Select Dates'}
+                            {selectedStartDate && selectedEndDate
+                                ? 'Proceed to Booking'
+                                : 'Select Dates'}
                         </motion.button>
 
                         <motion.button

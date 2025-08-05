@@ -7,6 +7,7 @@ interface UserContextType {
   searchUsers: (searchTerm: string) => User[];
   filterUsersByRole: (role: 'all' | 'tenant' | 'homeowner' | 'admin') => User[];
   getUserById: (userId: string) => User | undefined;
+  getUserByEmail: (email: string) => User | undefined;
   updateUser: (userId: string, updates: Partial<User>) => void;
   addUser: (user: User) => void;
   deleteUser: (userId: string) => void;
@@ -145,6 +146,10 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     return users.find(user => user.id === userId);
   };
 
+  const getUserByEmail = (email: string): User | undefined => {
+    return users.find(user => user.email.toLowerCase() === email.toLowerCase());
+  };
+
   const updateUser = (userId: string, updates: Partial<User>) => {
     setUsers(prevUsers => 
       prevUsers.map(user => 
@@ -166,6 +171,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     searchUsers,
     filterUsersByRole,
     getUserById,
+    getUserByEmail,
     updateUser,
     addUser,
     deleteUser,

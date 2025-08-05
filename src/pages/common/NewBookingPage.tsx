@@ -6,6 +6,7 @@ import {CheckCircledIcon} from '@radix-ui/react-icons';
 import {useAuth} from '../../contexts/AuthContext';
 import {useBookings} from '../../contexts/BookingsContext';
 import {useVillas} from '../../contexts/VillasContext';
+import {useUsers} from '../../contexts/UserContext';
 import {colors} from '../../utils/colors';
 import type {Booking} from '../../types';
 import {NumericInput} from "../../components/inputs/NumericInput.tsx";
@@ -15,9 +16,10 @@ import { getAssetUrl } from '../../utils/basePath';
 const NewBookingPage: React.FC = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
-    const {user} = useAuth();
+    const {user, isAuthenticated} = useAuth();
     const {addBooking, bookings} = useBookings();
     const {getVillaById, isVillaAvailable} = useVillas();
+    const {getUserByEmail, addUser} = useUsers();
 
     // Get booking details from URL params
     const villaId = searchParams.get('villa');
@@ -38,6 +40,11 @@ const NewBookingPage: React.FC = () => {
     const [expiryYear, setExpiryYear] = useState('');
     const [cvv, setCvv] = useState('');
     const [numberOfGuests, setNumberOfGuests] = useState(1);
+    
+    // Guest form state
+    const [guestName, setGuestName] = useState('');
+    const [guestEmail, setGuestEmail] = useState('');
+    const [guestPhone, setGuestPhone] = useState('');
 
     // UI state
     const [isProcessing, setIsProcessing] = useState(false);
@@ -132,6 +139,21 @@ const NewBookingPage: React.FC = () => {
     const validateForm = () => {
         const newErrors: Record<string, string> = {};
 
+        // Guest validation if not authenticated
+        if (!isAuthenticated) {
+            if (!guestName || guestName.length < 2) {
+                newErrors.guestName = 'Please enter your full name';
+            }
+
+            if (!guestEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(guestEmail)) {
+                newErrors.guestEmail = 'Please enter a valid email address';
+            }
+
+            if (!guestPhone || guestPhone.length < 10) {
+                newErrors.guestPhone = 'Please enter a valid phone number';
+            }
+        }
+
         if (!cardNumber || cardNumber.replace(/\s/g, '').length !== 16) {
             newErrors.cardNumber = 'Please enter a valid 16-digit card number';
         }
@@ -158,7 +180,7 @@ const NewBookingPage: React.FC = () => {
 
     // Simulate payment processing
     const processPayment = async () => {
-        if (!validateForm() || !user || !villa || !checkInDate || !checkOutDate) return;
+        if (!validateForm() || !villa || !checkInDate || !checkOutDate) return;
 
         setIsProcessing(true);
 
@@ -177,11 +199,36 @@ const NewBookingPage: React.FC = () => {
         // Simulate API call delay
         await new Promise(resolve => setTimeout(resolve, 2000));
 
+        let bookingUserId: string;
+
+        // Handle guest booking
+        if (!isAuthenticated) {
+            // Check if user exists with this email
+            const existingUser = getUserByEmail(guestEmail);
+            
+            if (existingUser) {
+                bookingUserId = existingUser.id;
+            } else {
+                // Create new guest user
+                const newGuestUser = {
+                    id: `guest-${Date.now()}`,
+                    email: guestEmail,
+                    name: guestName,
+                    role: 'tenant' as const,
+                    isActive: true,
+                };
+                addUser(newGuestUser);
+                bookingUserId = newGuestUser.id;
+            }
+        } else {
+            bookingUserId = user!.id;
+        }
+
         // Create new booking
         const newBooking: Booking = {
             id: `booking-${Date.now()}`,
             villaId: villa.id,
-            tenantId: user.id,
+            tenantId: bookingUserId,
             checkInDate,
             checkOutDate,
             numberOfGuests,
@@ -198,7 +245,11 @@ const NewBookingPage: React.FC = () => {
 
         // Redirect after 3 seconds
         setTimeout(() => {
-            navigate('/tenant');
+            if (isAuthenticated) {
+                navigate('/tenant');
+            } else {
+                navigate('/');
+            }
         }, 3000);
     };
 
@@ -494,6 +545,64 @@ const NewBookingPage: React.FC = () => {
             <div style={contentGridStyle} className="content-grid">
                 {/* Left Column - Payment Form */}
                 <div style={sectionStyle}>
+                    {/* Guest Information Section for non-authenticated users */}
+                    {!isAuthenticated && (
+                        <>
+                            <h2 style={sectionTitleStyle}>Guest Information</h2>
+                            
+                            {/* Guest Name */}
+                            <div style={formGroupStyle}>
+                                <label style={labelStyle}>Full Name</label>
+                                <input
+                                    type="text"
+                                    value={guestName}
+                                    onChange={(e) => setGuestName(e.target.value)}
+                                    placeholder="John Doe"
+                                    style={errors.guestName ? inputErrorStyle : inputStyle}
+                                    onFocus={(e) => e.target.style.borderColor = colors.primary}
+                                    onBlur={(e) => e.target.style.borderColor = '#e5e7eb'}
+                                />
+                                {errors.guestName && <div style={errorTextStyle}>{errors.guestName}</div>}
+                            </div>
+
+                            {/* Guest Email */}
+                            <div style={formGroupStyle}>
+                                <label style={labelStyle}>Email Address</label>
+                                <input
+                                    type="email"
+                                    value={guestEmail}
+                                    onChange={(e) => setGuestEmail(e.target.value)}
+                                    placeholder="john@example.com"
+                                    style={errors.guestEmail ? inputErrorStyle : inputStyle}
+                                    onFocus={(e) => e.target.style.borderColor = colors.primary}
+                                    onBlur={(e) => e.target.style.borderColor = '#e5e7eb'}
+                                />
+                                {errors.guestEmail && <div style={errorTextStyle}>{errors.guestEmail}</div>}
+                            </div>
+
+                            {/* Guest Phone */}
+                            <div style={formGroupStyle}>
+                                <label style={labelStyle}>Phone Number</label>
+                                <input
+                                    type="tel"
+                                    value={guestPhone}
+                                    onChange={(e) => setGuestPhone(e.target.value)}
+                                    placeholder="+971 50 123 4567"
+                                    style={errors.guestPhone ? inputErrorStyle : inputStyle}
+                                    onFocus={(e) => e.target.style.borderColor = colors.primary}
+                                    onBlur={(e) => e.target.style.borderColor = '#e5e7eb'}
+                                />
+                                {errors.guestPhone && <div style={errorTextStyle}>{errors.guestPhone}</div>}
+                            </div>
+
+                            <div style={{ 
+                                borderBottom: '1px solid #e5e7eb', 
+                                marginBottom: '24px', 
+                                marginTop: '8px' 
+                            }} />
+                        </>
+                    )}
+                    
                     <h2 style={sectionTitleStyle}>Payment Details</h2>
 
                     {/* Card Number */}
@@ -595,7 +704,7 @@ const NewBookingPage: React.FC = () => {
                     </div>
 
                     {/* Booking Details */}
-                    <div>
+                    <div style={{marginBottom:'16px'}}>
                         <div style={summaryRowStyle}>
                             <span>Check-in</span>
                             <span>{checkInDate.toLocaleDateString()}</span>
@@ -692,8 +801,13 @@ const NewBookingPage: React.FC = () => {
                                         Check-in: {checkInDate.toLocaleDateString()}
                                     </p>
                                     <p style={{...successMessageStyle, fontSize: '14px', marginTop: '16px'}}>
-                                        Redirecting to your dashboard...
+                                        {isAuthenticated ? 'Redirecting to your dashboard...' : 'Redirecting to home page...'}
                                     </p>
+                                    {!isAuthenticated && (
+                                        <p style={{...successMessageStyle, fontSize: '13px', color: '#9ca3af', marginTop: '8px'}}>
+                                            A confirmation email has been sent to {guestEmail}
+                                        </p>
+                                    )}
                                 </motion.div>
                             </Dialog.Content>
                         </Dialog.Portal>
