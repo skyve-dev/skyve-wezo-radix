@@ -7,6 +7,7 @@ import { colors } from '../../utils/colors';
 import type { VillaFilters } from '../../types/filters';
 import { useAmenities } from '../../contexts/AmenitiesContext';
 import { locations } from '../../data/data';
+import { usePreventBodyScroll } from '../../hooks/useScrollbarWidth';
 
 interface FilterPanelProps {
   isOpen: boolean;
@@ -37,6 +38,9 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   // State for location dropdown
   const [isLocationDropdownOpen, setIsLocationDropdownOpen] = useState(false);
   const [locationSearchValue, setLocationSearchValue] = useState(localFilters.location);
+  
+  // Prevent body scroll when panel is open
+  usePreventBodyScroll(isOpen);
 
   const updateLocalFilters = (updates: Partial<VillaFilters>) => {
     setLocalFilters(prev => ({ ...prev, ...updates }));
@@ -341,7 +345,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   };
 
   return (
-    <Dialog.Root open={isOpen} onOpenChange={onClose}>
+    <Dialog.Root open={isOpen} onOpenChange={onClose} modal={false}>
       <AnimatePresence>
         {isOpen && (
           <Dialog.Portal forceMount>
@@ -355,7 +359,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                 onClick={onClose}
               />
             </Dialog.Overlay>
-            <Dialog.Content asChild>
+            <Dialog.Content asChild onInteractOutside={onClose}>
               <motion.div
                 style={contentStyle}
                 initial={{ x: window.innerWidth < 768 ? '100%' : '400px' }}
