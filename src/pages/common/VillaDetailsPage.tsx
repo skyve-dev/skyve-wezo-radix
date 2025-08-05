@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import {motion} from 'framer-motion';
-import {useAuth} from '../../contexts/AuthContext';
 import {colors} from '../../utils/colors';
 import BookingCalendar from '../../components/common/BookingCalendar';
 import VillaImageGallery from '../../components/common/VillaImageGallery';
@@ -21,7 +20,6 @@ import {GoPeople} from "react-icons/go";
 const VillaDetailsPage: React.FC = () => {
     const {id} = useParams<{ id: string }>();
     const navigate = useNavigate();
-    const {isAuthenticated} = useAuth();
     const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
     const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
     const {villas} = useVillas();

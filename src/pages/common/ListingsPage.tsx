@@ -2,16 +2,15 @@ import React, {useEffect, useState, useMemo} from 'react';
 import {useVillas} from '../../contexts/VillasContext';
 import type {Villa, VillaFilters} from '../../types';
 import {defaultFilters} from '../../types/filters';
-import {useAuth} from '../../contexts/AuthContext';
 import {useNavigate} from 'react-router-dom';
 import {colors} from '../../utils/colors';
 import SearchBar from '../../components/common/SearchBar';
 import FilterPanel from '../../components/common/FilterPanel';
 import {applyFilters} from '../../utils/filterUtils';
 import { getAssetUrl } from '../../utils/basePath';
+import { shadows, borderRadius } from '../../utils/design';
 
 const ListingsPage: React.FC = () => {
-    const {isAuthenticated} = useAuth();
     const navigate = useNavigate();
     const { villas } = useVillas();
     const [filteredVillas, setFilteredVillas] = useState<Villa[]>([]);
@@ -63,23 +62,6 @@ const ListingsPage: React.FC = () => {
         margin: '0 auto',
     };
 
-    const headerStyle: React.CSSProperties = {
-        marginBottom: '30px',
-        textAlign: 'center',
-    };
-
-    const titleStyle: React.CSSProperties = {
-        fontSize: '32px',
-        fontWeight: 'bold',
-        color: '#1a1a1a',
-        marginBottom: '10px',
-    };
-
-    const subtitleStyle: React.CSSProperties = {
-        fontSize: '16px',
-        color: '#6b7280',
-        marginBottom: '30px',
-    };
 
     const buttonStyle: React.CSSProperties = {
         padding: '10px 20px',
@@ -100,12 +82,13 @@ const ListingsPage: React.FC = () => {
 
     const cardStyle: React.CSSProperties = {
         backgroundColor: 'white',
-        borderRadius: '12px',
+        borderRadius: borderRadius.lg,
         overflow: 'hidden',
-        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-        transition: 'transform 0.2s, box-shadow 0.2s',
+        boxShadow: shadows.md,
+        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
         display: 'flex',
         flexDirection: 'column',
+        cursor: 'pointer',
     };
 
     const imageStyle: React.CSSProperties = {
@@ -213,7 +196,18 @@ const ListingsPage: React.FC = () => {
 
             <div style={gridStyle}>
                 {filteredVillas.map((villa) => (
-                    <div key={villa.id} style={cardStyle}>
+                    <div 
+                        key={villa.id} 
+                        style={cardStyle}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.transform = 'translateY(-8px)';
+                            e.currentTarget.style.boxShadow = shadows.xl;
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.transform = 'translateY(0)';
+                            e.currentTarget.style.boxShadow = shadows.md;
+                        }}
+                    >
                         <div style={{
                             backgroundImage: `url(${getAssetUrl(villa.images[0])})`,
                             ...imageStyle
