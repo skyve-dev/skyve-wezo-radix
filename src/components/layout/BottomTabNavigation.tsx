@@ -37,7 +37,7 @@ const BottomTabNavigation: React.FC = () => {
     { path: '/dashboard', label: 'Dashboard', icon: <DashboardIcon /> },
     { path: '/listings', label: 'Listings', icon: <MagnifyingGlassIcon /> },
     { path: '/villa-management', label: 'My Villas', icon: <HomeIcon /> },
-    { path: '/bookings', label: 'Bookings', icon: <CalendarIcon /> },
+    { path: '/reports', label: 'Reports', icon: <BarChartIcon /> },
     { path: '/profile', label: 'Profile', icon: <PersonIcon /> },
   ];
 

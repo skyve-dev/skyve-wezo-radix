@@ -22,6 +22,10 @@ import VillaManagementPage from './pages/common/VillaManagementPage';
 import VillaManagementListPage from './pages/common/VillaManagementListPage';
 import UserListPage from './pages/admin/UserListPage';
 import ScrollToTop from './components/common/ScrollToTop';
+import SettingsPage from './pages/common/SettingsPage';
+import NotificationsPage from './pages/common/NotificationsPage';
+import HelpSupportPage from './pages/common/HelpSupportPage';
+import ReportsPage from './pages/common/ReportsPage';
 
 // Protected Route Component
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -130,17 +134,17 @@ const AppContent: React.FC = () => {
         } />
         <Route path="settings" element={
           <ProtectedRoute>
-            <PlaceholderPage title="Settings" />
+            <SettingsPage />
           </ProtectedRoute>
         } />
         <Route path="notifications" element={
           <ProtectedRoute>
-            <PlaceholderPage title="Notifications" />
+            <NotificationsPage />
           </ProtectedRoute>
         } />
         <Route path="help" element={
           <ProtectedRoute>
-            <PlaceholderPage title="Help & Support" />
+            <HelpSupportPage />
           </ProtectedRoute>
         } />
         <Route path="messages" element={
@@ -211,7 +215,7 @@ const AppContent: React.FC = () => {
         } />
         <Route path="reports" element={
           <ProtectedRoute>
-            <PlaceholderPage title="Reports" />
+            <ReportsPage />
           </ProtectedRoute>
         } />
         <Route path="admin/management" element={
