@@ -9,13 +9,24 @@ import FilterPanel from '../../components/common/FilterPanel';
 import {applyFilters} from '../../utils/filterUtils';
 import { getAssetUrl } from '../../utils/basePath';
 import { shadows, borderRadius } from '../../utils/design';
+import * as Dialog from '@radix-ui/react-dialog';
+import { Cross2Icon } from '@radix-ui/react-icons';
+import BookingCalendar from '../../components/common/BookingCalendar';
+import { useBookings } from '../../contexts/BookingsContext';
 
 const ListingsPage: React.FC = () => {
     const navigate = useNavigate();
     const { villas } = useVillas();
+    const { bookings } = useBookings();
     const [filteredVillas, setFilteredVillas] = useState<Villa[]>([]);
     const [filters, setFilters] = useState<VillaFilters>(defaultFilters);
     const [isFilterPanelOpen, setIsFilterPanelOpen] = useState(false);
+    
+    // Modal state for date selection
+    const [isDateModalOpen, setIsDateModalOpen] = useState(false);
+    const [selectedVilla, setSelectedVilla] = useState<Villa | null>(null);
+    const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
+    const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
     
     // Get only active villas for public listings - memoized to prevent infinite re-renders
     const activeVillas = useMemo(() => {
@@ -31,6 +42,61 @@ const ListingsPage: React.FC = () => {
             }
         });
         return flatAmenities;
+    };
+    
+    // Get unavailable dates for a villa
+    const getUnavailableDates = (villa: Villa) => {
+        return bookings
+            .filter(booking => 
+                booking.villaId === villa.id && 
+                (booking.status === 'confirmed' || booking.status === 'pending')
+            )
+            .flatMap(booking => {
+                const dates = [];
+                const start = new Date(booking.checkInDate);
+                const end = new Date(booking.checkOutDate);
+                
+                for (let d = new Date(start); d < end; d.setDate(d.getDate() + 1)) {
+                    dates.push(new Date(d));
+                }
+                
+                return dates;
+            });
+    };
+    
+    // Handle date selection from calendar
+    const handleDateRangeSelect = (startDate: Date | null, endDate: Date | null) => {
+        setSelectedStartDate(startDate);
+        setSelectedEndDate(endDate);
+    };
+    
+    // Open modal for date selection
+    const openDateModal = (villa: Villa) => {
+        setSelectedVilla(villa);
+        setSelectedStartDate(null);
+        setSelectedEndDate(null);
+        setIsDateModalOpen(true);
+    };
+    
+    // Close modal and reset selections
+    const closeDateModal = () => {
+        setIsDateModalOpen(false);
+        setSelectedVilla(null);
+        setSelectedStartDate(null);
+        setSelectedEndDate(null);
+    };
+    
+    // Navigate to booking page with selected dates
+    const proceedToBooking = () => {
+        if (selectedVilla && selectedStartDate && selectedEndDate) {
+            const searchParams = new URLSearchParams({
+                villa: selectedVilla.id,
+                checkIn: selectedStartDate.toISOString(),
+                checkOut: selectedEndDate.toISOString()
+            });
+            navigate(`/bookings/new?${searchParams.toString()}`);
+            closeDateModal();
+        }
     };
 
     // Apply filters whenever filters change or villas change
@@ -48,8 +114,8 @@ const ListingsPage: React.FC = () => {
         // This function can be used for additional logic like analytics
     };
 
-    const handleBookVilla = (villaId: string) => {
-        navigate(`/bookings/new?villa=${villaId}`);
+    const handleBookVilla = (villa: Villa) => {
+        openDateModal(villa);
     };
 
     const handleViewDetails = (villaId: string) => {
@@ -256,7 +322,7 @@ const ListingsPage: React.FC = () => {
                                     View Details
                                 </button>
                                 <button
-                                    onClick={() => handleBookVilla(villa.id)}
+                                    onClick={() => handleBookVilla(villa)}
                                     style={primaryButtonStyle}
                                 >
                                     Book Now
@@ -272,6 +338,188 @@ const ListingsPage: React.FC = () => {
                     No villas found matching your criteria. Try adjusting your filters.
                 </div>
             )}
+            
+            {/* Date Selection Modal */}
+            <Dialog.Root open={isDateModalOpen} onOpenChange={setIsDateModalOpen}>
+                <Dialog.Portal>
+                    <Dialog.Overlay style={{
+                        position: 'fixed',
+                        inset: 0,
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        zIndex: 9998
+                    }} />
+                    <Dialog.Content style={{
+                        position: 'fixed',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        backgroundColor: 'white',
+                        borderRadius: '12px',
+                        padding: '24px',
+                        maxWidth: '320px',
+                        width: '90%',
+                        maxHeight: '90vh',
+                        overflowY: 'auto',
+                        zIndex: 9999,
+                        boxShadow: '0 10px 50px rgba(0, 0, 0, 0.3)'
+                    }}>
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            marginBottom: '20px'
+                        }}>
+                            <Dialog.Title style={{
+                                fontSize: '20px',
+                                fontWeight: '600',
+                                color: '#1a1a1a',
+                                margin: 0
+                            }}>
+                                Select Your Dates
+                            </Dialog.Title>
+                            <Dialog.Close asChild>
+                                <button
+                                    onClick={closeDateModal}
+                                    style={{
+                                        background: 'none',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                        padding: '4px',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        borderRadius: '4px',
+                                        transition: 'background-color 0.2s'
+                                    }}
+                                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f3f4f6'}
+                                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+                                >
+                                    <Cross2Icon style={{ width: '18px', height: '18px' }} />
+                                </button>
+                            </Dialog.Close>
+                        </div>
+                        
+                        {selectedVilla && (
+                            <>
+                                <div style={{
+                                    marginBottom: '20px',
+                                    padding: '16px',
+                                    backgroundColor: '#f9fafb',
+                                    borderRadius: '8px'
+                                }}>
+                                    <h3 style={{
+                                        fontSize: '16px',
+                                        fontWeight: '600',
+                                        color: '#1a1a1a',
+                                        marginTop: 0,
+                                        marginBottom: '8px'
+                                    }}>
+                                        {selectedVilla.name}
+                                    </h3>
+                                    <p style={{
+                                        fontSize: '14px',
+                                        color: '#6b7280',
+                                        margin: 0
+                                    }}>
+                                        {selectedVilla.location}
+                                    </p>
+                                </div>
+                                
+                                <BookingCalendar
+                                    pricing={selectedVilla.pricing}
+                                    customPricing={selectedVilla.customPricing}
+                                    unavailableDates={getUnavailableDates(selectedVilla)}
+                                    onDateRangeSelect={handleDateRangeSelect}
+                                />
+                                
+                                {selectedStartDate && selectedEndDate && (
+                                    <div style={{
+                                        marginTop: '20px',
+                                        padding: '16px',
+                                        backgroundColor: '#f0fdf4',
+                                        borderRadius: '8px',
+                                        border: '1px solid #bbf7d0'
+                                    }}>
+                                        <div style={{
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                            marginBottom: '8px'
+                                        }}>
+                                            <span style={{ fontSize: '14px', color: '#4b5563' }}>
+                                                Check-in: {selectedStartDate.toLocaleDateString()}
+                                            </span>
+                                            <span style={{ fontSize: '14px', color: '#4b5563' }}>
+                                                Check-out: {selectedEndDate.toLocaleDateString()}
+                                            </span>
+                                        </div>
+                                        <div style={{
+                                            fontSize: '16px',
+                                            fontWeight: '600',
+                                            color: colors.primary
+                                        }}>
+                                            Total nights: {Math.ceil((selectedEndDate.getTime() - selectedStartDate.getTime()) / (1000 * 60 * 60 * 24))}
+                                        </div>
+                                    </div>
+                                )}
+                                
+                                <div style={{
+                                    display: 'flex',
+                                    gap: '12px',
+                                    marginTop: '24px'
+                                }}>
+                                    <button
+                                        onClick={closeDateModal}
+                                        style={{
+                                            flex: 1,
+                                            padding: '12px 24px',
+                                            backgroundColor: '#f3f4f6',
+                                            color: '#374151',
+                                            border: 'none',
+                                            borderRadius: '8px',
+                                            fontSize: '14px',
+                                            fontWeight: '500',
+                                            cursor: 'pointer',
+                                            transition: 'background-color 0.2s'
+                                        }}
+                                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#e5e7eb'}
+                                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#f3f4f6'}
+                                    >
+                                        Cancel
+                                    </button>
+                                    <button
+                                        onClick={proceedToBooking}
+                                        disabled={!selectedStartDate || !selectedEndDate}
+                                        style={{
+                                            flex: 1,
+                                            padding: '12px 24px',
+                                            backgroundColor: selectedStartDate && selectedEndDate ? colors.primary : '#d1d5db',
+                                            color: 'white',
+                                            border: 'none',
+                                            borderRadius: '8px',
+                                            fontSize: '14px',
+                                            fontWeight: '500',
+                                            cursor: selectedStartDate && selectedEndDate ? 'pointer' : 'not-allowed',
+                                            transition: 'background-color 0.2s'
+                                        }}
+                                        onMouseEnter={(e) => {
+                                            if (selectedStartDate && selectedEndDate) {
+                                                e.currentTarget.style.backgroundColor = colors.primaryHover;
+                                            }
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            if (selectedStartDate && selectedEndDate) {
+                                                e.currentTarget.style.backgroundColor = colors.primary;
+                                            }
+                                        }}
+                                    >
+                                        Next
+                                    </button>
+                                </div>
+                            </>
+                        )}
+                    </Dialog.Content>
+                </Dialog.Portal>
+            </Dialog.Root>
         </div>
     );
 };
