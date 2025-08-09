@@ -7,6 +7,9 @@
     "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
     "dev:client": "cd client && npm run dev",
     "dev:server": "cd server && npm run dev",
+    "dev:safe": "node scripts/start-both.js",
+    "dev:client:safe": "node scripts/start-client.js",
+    "dev:server:safe": "node scripts/start-server.js",
     "build": "npm run build:client && npm run build:server",
     "build:client": "cd client && npm run build",
     "build:server": "cd server && npm run build",
@@ -15,7 +18,8 @@
     "preview": "cd client && npm run preview",
     "start": "concurrently \"npm run start:client\" \"npm run start:server\"",
     "start:client": "cd client && npm run preview",
-    "start:server": "cd server && npm run start"
+    "start:server": "cd server && npm run start",
+    "port:check": "node scripts/port-handler.js"
   },
   "devDependencies": {
     "concurrently": "^9.1.2"

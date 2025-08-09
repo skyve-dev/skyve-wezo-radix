@@ -15,7 +15,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:5173',
+  origin: process.env.CLIENT_URL || ['http://localhost:5173', 'http://localhost:4173'],
   credentials: true
 }));
 
@@ -23,7 +23,7 @@ app.use(express.json());
 
 // Health check endpoint
 app.get('/api/health', (_req, res) => {
-  res.json({ status: 'OK', message: 'Server is running' });
+  return res.json({ status: 'OK', message: 'Server is running' });
 });
 
 // API routes
@@ -34,9 +34,9 @@ app.use('/api/notifications', notificationsRouter);
 app.use('/api/promotions', promotionsRouter);
 
 // Error handling middleware
-app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+app.use((err: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
   console.error(err.stack);
-  res.status(500).json({ error: 'Something went wrong!' });
+  return res.status(500).json({ error: 'Something went wrong!' });
 });
 
 app.listen(PORT, () => {

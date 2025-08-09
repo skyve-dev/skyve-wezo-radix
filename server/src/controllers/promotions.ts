@@ -15,10 +15,10 @@ export const getPromotions = async (req: Request, res: Response) => {
       }
     });
     
-    res.json(promotions);
+    return res.json(promotions);
   } catch (error) {
     console.error('Error fetching promotions:', error);
-    res.status(500).json({ error: 'Failed to fetch promotions' });
+    return res.status(500).json({ error: 'Failed to fetch promotions' });
   }
 };
 
@@ -34,10 +34,10 @@ export const getPromotion = async (req: Request, res: Response) => {
       return res.status(404).json({ error: 'Promotion not found' });
     }
     
-    res.json(promotion);
+    return res.json(promotion);
   } catch (error) {
     console.error('Error fetching promotion:', error);
-    res.status(500).json({ error: 'Failed to fetch promotion' });
+    return res.status(500).json({ error: 'Failed to fetch promotion' });
   }
 };
 
@@ -55,10 +55,10 @@ export const createPromotion = async (req: Request, res: Response) => {
       }
     });
     
-    res.status(201).json(promotion);
+    return res.status(201).json(promotion);
   } catch (error) {
     console.error('Error creating promotion:', error);
-    res.status(500).json({ error: 'Failed to create promotion' });
+    return res.status(500).json({ error: 'Failed to create promotion' });
   }
 };
 
@@ -79,10 +79,10 @@ export const updatePromotion = async (req: Request, res: Response) => {
       data: updateData
     });
     
-    res.json(promotion);
+    return res.json(promotion);
   } catch (error) {
     console.error('Error updating promotion:', error);
-    res.status(500).json({ error: 'Failed to update promotion' });
+    return res.status(500).json({ error: 'Failed to update promotion' });
   }
 };
 
@@ -94,9 +94,9 @@ export const deletePromotion = async (req: Request, res: Response) => {
       where: { id },
     });
     
-    res.status(204).send();
+    return res.status(204).send();
   } catch (error) {
     console.error('Error deleting promotion:', error);
-    res.status(500).json({ error: 'Failed to delete promotion' });
+    return res.status(500).json({ error: 'Failed to delete promotion' });
   }
 };

@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
 import type { Booking } from '../types';
-import { api } from '../services/api';
+import { BookingService } from '../services/bookingService';
 import { useAuth } from './AuthContext';
 
 interface BookingsContextType {
@@ -40,11 +40,12 @@ export const BookingsProvider: React.FC<BookingsProviderProps> = ({ children }) 
     setLoading(true);
     setError(null);
     try {
-      const params: any = {};
+      let data: Booking[];
       if (user?.role === 'tenant') {
-        params.tenantId = user.id;
+        data = await BookingService.getBookingsByTenant(user.id);
+      } else {
+        data = await BookingService.getBookings();
       }
-      const data = await api.getBookings(params) as Booking[];
       setBookings(data);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to fetch bookings');
@@ -62,7 +63,7 @@ export const BookingsProvider: React.FC<BookingsProviderProps> = ({ children }) 
 
   const addBooking = async (bookingData: Omit<Booking, 'id'>) => {
     try {
-      const newBooking = await api.createBooking(bookingData) as Booking;
+      const newBooking = await BookingService.createBooking(bookingData);
       setBookings(prev => [...prev, newBooking]);
     } catch (err) {
       console.error('Error adding booking:', err);
@@ -72,7 +73,7 @@ export const BookingsProvider: React.FC<BookingsProviderProps> = ({ children }) 
 
   const updateBooking = async (id: string, updates: Partial<Booking>) => {
     try {
-      const updatedBooking = await api.updateBooking(id, updates) as Booking;
+      const updatedBooking = await BookingService.updateBooking(id, updates);
       setBookings(prev => 
         prev.map(booking => 
           booking.id === id ? updatedBooking : booking
@@ -86,7 +87,7 @@ export const BookingsProvider: React.FC<BookingsProviderProps> = ({ children }) 
 
   const deleteBooking = async (id: string) => {
     try {
-      await api.deleteBooking(id);
+      await BookingService.deleteBooking(id);
       setBookings(prev => prev.filter(booking => booking.id !== id));
     } catch (err) {
       console.error('Error deleting booking:', err);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import * as Slider from '@radix-ui/react-slider';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -6,8 +6,8 @@ import { Cross2Icon, TrashIcon, CheckIcon, ChevronDownIcon, CheckIcon as Selecte
 import { colors } from '../../utils/colors';
 import type { VillaFilters } from '../../types/filters';
 import { useAmenities } from '../../contexts/AmenitiesContext';
-import { locations } from '../../data/data';
 import { usePreventBodyScroll } from '../../hooks/useScrollbarWidth';
+import { VillaService } from '../../services';
 
 interface FilterPanelProps {
   isOpen: boolean;
@@ -25,6 +25,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   onApplyFilters,
 }) => {
   const [localFilters, setLocalFilters] = useState<VillaFilters>({ ...filters });
+  const [locations, setLocations] = useState<string[]>([]);
   
   // Local state for price range slider
   const [priceRange, setPriceRange] = useState<[number, number]>([
@@ -38,6 +39,13 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   // State for location dropdown
   const [isLocationDropdownOpen, setIsLocationDropdownOpen] = useState(false);
   const [locationSearchValue, setLocationSearchValue] = useState(localFilters.location);
+  
+  // Fetch locations on mount
+  useEffect(() => {
+    VillaService.getLocations()
+      .then(setLocations)
+      .catch(console.error);
+  }, []);
   
   // Prevent body scroll when panel is open
   usePreventBodyScroll(isOpen);

@@ -1,7 +1,7 @@
 import type {ReactNode} from 'react';
 import React, {createContext, useContext, useState, useEffect} from 'react';
 import type {User} from '../types';
-import { api } from '../services/api';
+import { UserService } from '../services/userService';
 
 interface AuthContextType {
   user: User | null;
@@ -34,7 +34,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const login = async (email: string, password: string) => {
     setLoading(true);
     try {
-      const userData = await api.login(email, password) as User;
+      const userData = await UserService.login(email, password);
       setUser(userData);
       localStorage.setItem('user', JSON.stringify(userData));
     } catch (error) {

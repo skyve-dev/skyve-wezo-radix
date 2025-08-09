@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
 import type { Villa, Booking } from '../types';
-import { api } from '../services/api';
+import { VillaService } from '../services/villaService';
 
 interface VillasContextType {
   villas: Villa[];
@@ -40,7 +40,7 @@ export const VillasProvider: React.FC<VillasProviderProps> = ({ children }) => {
     setLoading(true);
     setError(null);
     try {
-      const data = await api.getVillas({ isActive: true }) as Villa[];
+      const data = await VillaService.getActiveVillas();
       setVillas(data);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to fetch villas');
@@ -98,7 +98,7 @@ export const VillasProvider: React.FC<VillasProviderProps> = ({ children }) => {
 
   const updateVilla = async (id: string, updates: Partial<Villa>) => {
     try {
-      const updatedVilla = await api.updateVilla(id, updates) as Villa;
+      const updatedVilla = await VillaService.updateVilla(id, updates);
       setVillas(prev => 
         prev.map(villa => 
           villa.id === id ? updatedVilla : villa
@@ -112,7 +112,7 @@ export const VillasProvider: React.FC<VillasProviderProps> = ({ children }) => {
 
   const addVilla = async (villaData: Omit<Villa, 'id'>) => {
     try {
-      const newVilla = await api.createVilla(villaData) as Villa;
+      const newVilla = await VillaService.createVilla(villaData);
       setVillas(prev => [...prev, newVilla]);
     } catch (err) {
       console.error('Error adding villa:', err);
@@ -122,7 +122,7 @@ export const VillasProvider: React.FC<VillasProviderProps> = ({ children }) => {
 
   const deleteVilla = async (id: string) => {
     try {
-      await api.deleteVilla(id);
+      await VillaService.deleteVilla(id);
       setVillas(prev => prev.filter(villa => villa.id !== id));
     } catch (err) {
       console.error('Error deleting villa:', err);

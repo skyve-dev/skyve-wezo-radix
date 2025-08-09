@@ -26,10 +26,10 @@ export const getNotifications = async (req: Request, res: Response) => {
       }
     });
     
-    res.json(notifications);
+    return res.json(notifications);
   } catch (error) {
     console.error('Error fetching notifications:', error);
-    res.status(500).json({ error: 'Failed to fetch notifications' });
+    return res.status(500).json({ error: 'Failed to fetch notifications' });
   }
 };
 
@@ -46,10 +46,10 @@ export const createNotification = async (req: Request, res: Response) => {
       }
     });
     
-    res.status(201).json(notification);
+    return res.status(201).json(notification);
   } catch (error) {
     console.error('Error creating notification:', error);
-    res.status(500).json({ error: 'Failed to create notification' });
+    return res.status(500).json({ error: 'Failed to create notification' });
   }
 };
 
@@ -62,10 +62,10 @@ export const markAsRead = async (req: Request, res: Response) => {
       data: { isRead: true }
     });
     
-    res.json(notification);
+    return res.json(notification);
   } catch (error) {
     console.error('Error marking notification as read:', error);
-    res.status(500).json({ error: 'Failed to mark notification as read' });
+    return res.status(500).json({ error: 'Failed to mark notification as read' });
   }
 };
 
@@ -77,9 +77,9 @@ export const deleteNotification = async (req: Request, res: Response) => {
       where: { id },
     });
     
-    res.status(204).send();
+    return res.status(204).send();
   } catch (error) {
     console.error('Error deleting notification:', error);
-    res.status(500).json({ error: 'Failed to delete notification' });
+    return res.status(500).json({ error: 'Failed to delete notification' });
   }
 };

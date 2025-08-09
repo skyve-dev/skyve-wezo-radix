@@ -249,8 +249,15 @@ const BookingListPage: React.FC = () => {
         gap: '6px',
     };
 
-    const calculateNights = (checkIn: Date, checkOut: Date): number => {
-        return Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24));
+    const calculateNights = (checkIn: Date | string, checkOut: Date | string): number => {
+        const checkInDate = checkIn instanceof Date ? checkIn : new Date(checkIn);
+        const checkOutDate = checkOut instanceof Date ? checkOut : new Date(checkOut);
+        return Math.ceil((checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24));
+    };
+
+    const formatDate = (date: Date | string): string => {
+        const dateObj = date instanceof Date ? date : new Date(date);
+        return dateObj.toLocaleDateString();
     };
 
     // Find tenant info for homeowner/admin views
@@ -362,11 +369,11 @@ const BookingListPage: React.FC = () => {
                             <div style={bookingDetailsGridStyle}>
                                 <div style={detailItemStyle}>
                                     <span style={detailLabelStyle}>Check-in</span>
-                                    <span style={detailValueStyle}>{booking.checkInDate.toLocaleDateString()}</span>
+                                    <span style={detailValueStyle}>{formatDate(booking.checkInDate)}</span>
                                 </div>
                                 <div style={detailItemStyle}>
                                     <span style={detailLabelStyle}>Check-out</span>
-                                    <span style={detailValueStyle}>{booking.checkOutDate.toLocaleDateString()}</span>
+                                    <span style={detailValueStyle}>{formatDate(booking.checkOutDate)}</span>
                                 </div>
                                 <div style={detailItemStyle}>
                                     <span style={detailLabelStyle}>Nights</span>

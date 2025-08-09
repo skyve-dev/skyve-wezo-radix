@@ -14,10 +14,10 @@ export const login = async (req: Request, res: Response) => {
     }
     
     const { password: _, ...userWithoutPassword } = user;
-    res.json(userWithoutPassword);
+    return res.json(userWithoutPassword);
   } catch (error) {
     console.error('Error logging in:', error);
-    res.status(500).json({ error: 'Failed to login' });
+    return res.status(500).json({ error: 'Failed to login' });
   }
 };
 
@@ -43,10 +43,10 @@ export const getUsers = async (req: Request, res: Response) => {
       }
     });
     
-    res.json(users);
+    return res.json(users);
   } catch (error) {
     console.error('Error fetching users:', error);
-    res.status(500).json({ error: 'Failed to fetch users' });
+    return res.status(500).json({ error: 'Failed to fetch users' });
   }
 };
 
@@ -74,10 +74,10 @@ export const getUser = async (req: Request, res: Response) => {
       return res.status(404).json({ error: 'User not found' });
     }
     
-    res.json(user);
+    return res.json(user);
   } catch (error) {
     console.error('Error fetching user:', error);
-    res.status(500).json({ error: 'Failed to fetch user' });
+    return res.status(500).json({ error: 'Failed to fetch user' });
   }
 };
 
@@ -106,10 +106,10 @@ export const createUser = async (req: Request, res: Response) => {
       }
     });
     
-    res.status(201).json(user);
+    return res.status(201).json(user);
   } catch (error) {
     console.error('Error creating user:', error);
-    res.status(500).json({ error: 'Failed to create user' });
+    return res.status(500).json({ error: 'Failed to create user' });
   }
 };
 
@@ -141,10 +141,10 @@ export const updateUser = async (req: Request, res: Response) => {
       }
     });
     
-    res.json(user);
+    return res.json(user);
   } catch (error) {
     console.error('Error updating user:', error);
-    res.status(500).json({ error: 'Failed to update user' });
+    return res.status(500).json({ error: 'Failed to update user' });
   }
 };
 
@@ -156,9 +156,9 @@ export const deleteUser = async (req: Request, res: Response) => {
       where: { id },
     });
     
-    res.status(204).send();
+    return res.status(204).send();
   } catch (error) {
     console.error('Error deleting user:', error);
-    res.status(500).json({ error: 'Failed to delete user' });
+    return res.status(500).json({ error: 'Failed to delete user' });
   }
 };

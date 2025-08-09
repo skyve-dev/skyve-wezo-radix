@@ -1,20 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {motion} from 'framer-motion';
 import {useNavigate} from 'react-router-dom';
 import {BarChartIcon, GearIcon, HomeIcon, PersonIcon} from '@radix-ui/react-icons';
-import {mockBookings, mockPromotion} from '../../data/data';
-import {mockVillas} from '../../data/data';
 import {colors} from '../../utils/colors';
 import {useUsers} from '../../contexts/UserContext';
 import { getAssetUrl } from '../../utils/basePath';
+import { VillaService, BookingService, PromotionService } from '../../services';
+import type { Villa, Booking, Promotion } from '../../types';
 
 const AdminDashboard: React.FC = () => {
   const navigate = useNavigate();
   const { users } = useUsers();
+  const [villas, setVillas] = useState<Villa[]>([]);
+  const [bookings, setBookings] = useState<Booking[]>([]);
+  const [promotions, setPromotions] = useState<Promotion[]>([]);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const [villasData, bookingsData, promotionsData] = await Promise.all([
+          VillaService.getVillas(),
+          BookingService.getBookings(),
+          PromotionService.getPromotions()
+        ]);
+        setVillas(villasData);
+        setBookings(bookingsData);
+        setPromotions(promotionsData);
+      } catch (error) {
+        console.error('Error loading dashboard data:', error);
+      }
+    };
+    loadData();
+  }, []);
   
-  const totalVillas = mockVillas.length;
-  const activeVillas = mockVillas.filter(villa => villa.isActive).length;
-  const totalRevenue = mockBookings
+  const totalVillas = villas.length;
+  const activeVillas = villas.filter(villa => villa.isActive).length;
+  const totalRevenue = bookings
     .filter(booking => booking.paymentStatus === 'paid')
     .reduce((sum, booking) => sum + booking.totalPrice, 0);
   const totalUsers = users.length;
@@ -150,13 +171,15 @@ const AdminDashboard: React.FC = () => {
     marginBottom: '12px',
   };
 
+  const activePromotion = promotions.find(p => p.isActive) || promotions[0];
+  
   const promotionStatusStyle: React.CSSProperties = {
     fontSize: '12px',
     padding: '4px 8px',
     borderRadius: '4px',
     fontWeight: '500',
-    backgroundColor: mockPromotion.isActive ? '#DCFCE7' : '#FEE2E2',
-    color: mockPromotion.isActive ? '#166534' : '#DC2626',
+    backgroundColor: activePromotion?.isActive ? '#DCFCE7' : '#FEE2E2',
+    color: activePromotion?.isActive ? '#166534' : '#DC2626',
     display: 'inline-block',
   };
 
@@ -280,25 +303,31 @@ const AdminDashboard: React.FC = () => {
             Edit Banner
           </button>
         </div>
-        <motion.div
-          style={promotionCardStyle}
-          whileHover={{ scale: 1.01 }}
-          whileTap={{ scale: 0.99 }}
-          onClick={() => navigate('/admin/promotions')}
-        >
-          <img
-            src={mockPromotion.imageUrl}
-            alt={mockPromotion.title}
-            style={promotionImageStyle}
-          />
-          <div style={promotionContentStyle}>
-            <h3 style={promotionTitleStyle}>{mockPromotion.title}</h3>
-            <p style={promotionDescriptionStyle}>{mockPromotion.description}</p>
-            <span style={promotionStatusStyle}>
-              {mockPromotion.isActive ? 'Active' : 'Inactive'}
-            </span>
+        {activePromotion ? (
+          <motion.div
+            style={promotionCardStyle}
+            whileHover={{ scale: 1.01 }}
+            whileTap={{ scale: 0.99 }}
+            onClick={() => navigate('/admin/promotions')}
+          >
+            <img
+              src={activePromotion.imageUrl}
+              alt={activePromotion.title}
+              style={promotionImageStyle}
+            />
+            <div style={promotionContentStyle}>
+              <h3 style={promotionTitleStyle}>{activePromotion.title}</h3>
+              <p style={promotionDescriptionStyle}>{activePromotion.description}</p>
+              <span style={promotionStatusStyle}>
+                {activePromotion.isActive ? 'Active' : 'Inactive'}
+              </span>
+            </div>
+          </motion.div>
+        ) : (
+          <div style={promotionCardStyle}>
+            <p style={{ color: '#9ca3af', fontSize: '14px', textAlign: 'center' }}>No active promotions</p>
           </div>
-        </motion.div>
+        )}
       </section>
 
       {/* Featured Villas Management */}
@@ -310,7 +339,7 @@ const AdminDashboard: React.FC = () => {
           </button>
         </div>
         <div style={quickActionsGridStyle}>
-          {mockVillas.filter(villa => villa.isFeatured).map((villa) => (
+          {villas.filter(villa => villa.isFeatured).map((villa) => (
             <motion.div
               key={villa.id}
               style={quickActionStyle}

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { masterAmenities } from '../data/data';
+import { VillaService } from '../services';
 
 interface AmenityCategory {
   generalComfort: string[];
@@ -35,18 +35,37 @@ interface AmenitiesProviderProps {
 }
 
 export const AmenitiesProvider: React.FC<AmenitiesProviderProps> = ({ children }) => {
-  const [amenities, setAmenities] = useState<AmenityCategory>(masterAmenities);
+  const [amenities, setAmenities] = useState<AmenityCategory>({
+    generalComfort: [],
+    outdoorRecreation: [],
+    kitchenDining: [],
+    technologyEntertainment: [],
+    specialFeatures: [],
+  });
 
-  // Load amenities from localStorage on mount
+  // Load amenities from API on mount
   useEffect(() => {
-    const storedAmenities = localStorage.getItem('amenities');
-    if (storedAmenities) {
+    const loadAmenities = async () => {
       try {
-        setAmenities(JSON.parse(storedAmenities));
+        const amenitiesData = await VillaService.getAmenitiesCategories();
+        setAmenities(amenitiesData as unknown as AmenityCategory);
+        // Cache in localStorage
+        localStorage.setItem('amenities', JSON.stringify(amenitiesData));
       } catch (error) {
-        console.error('Error loading amenities from localStorage:', error);
+        console.error('Error loading amenities from API:', error);
+        // Fallback to localStorage if API fails
+        const storedAmenities = localStorage.getItem('amenities');
+        if (storedAmenities) {
+          try {
+            setAmenities(JSON.parse(storedAmenities));
+          } catch (parseError) {
+            console.error('Error parsing stored amenities:', parseError);
+          }
+        }
       }
-    }
+    };
+    
+    loadAmenities();
   }, []);
 
   // Save amenities to localStorage whenever they change

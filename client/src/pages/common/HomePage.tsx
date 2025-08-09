@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {motion} from 'framer-motion';
 import {useNavigate} from 'react-router-dom';
-import {mockPromotion} from '../../data/data.ts';
 import {useVillas} from '../../contexts/VillasContext';
-import type {Villa} from '../../types';
+import type {Villa, Promotion} from '../../types';
 import {colors} from '../../utils/colors';
 import { getAssetUrl } from '../../utils/basePath';
+import { PromotionService } from '../../services';
 
 const HomePage: React.FC = () => {
     const navigate = useNavigate();
     const { getFeaturedVillas } = useVillas();
+    const [promotions, setPromotions] = useState<Promotion[]>([]);
     const featuredVillas = getFeaturedVillas().slice(0, 4);
+    
+    useEffect(() => {
+        PromotionService.getActivePromotions()
+            .then(setPromotions)
+            .catch(console.error);
+    }, []);
+    
+    const activePromotion = promotions[0];
 
     const containerStyle: React.CSSProperties = {
         padding: '16px',
@@ -191,15 +200,29 @@ const HomePage: React.FC = () => {
                 whileTap={{scale: 0.98}}
                 onClick={() => navigate('/listings')}
             >
-                <img
-                    src={mockPromotion.imageUrl}
-                    alt={mockPromotion.title}
-                    style={heroImageStyle}
-                />
-                <div style={heroOverlayStyle}>
-                    <h1 style={heroTitleStyle}>{mockPromotion.title}</h1>
-                    <p style={heroDescriptionStyle}>{mockPromotion.description}</p>
-                </div>
+                {activePromotion ? (
+                    <>
+                        <img
+                            src={activePromotion.imageUrl}
+                            alt={activePromotion.title}
+                            style={heroImageStyle}
+                        />
+                        <div style={heroOverlayStyle}>
+                            <h1 style={heroTitleStyle}>{activePromotion.title}</h1>
+                            <p style={heroDescriptionStyle}>{activePromotion.description}</p>
+                        </div>
+                    </>
+                ) : (
+                    <div style={{
+                        ...heroOverlayStyle,
+                        backgroundColor: colors.primary,
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+                        <h1 style={heroTitleStyle}>Welcome to Skyve Wezo</h1>
+                        <p style={heroDescriptionStyle}>Discover amazing villas for your perfect getaway</p>
+                    </div>
+                )}
             </motion.div>
 
             {/* Featured Villas */}

@@ -40,10 +40,10 @@ export const getBookings = async (req: Request, res: Response) => {
       }
     }));
     
-    res.json(transformedBookings);
+    return res.json(transformedBookings);
   } catch (error) {
     console.error('Error fetching bookings:', error);
-    res.status(500).json({ error: 'Failed to fetch bookings' });
+    return res.status(500).json({ error: 'Failed to fetch bookings' });
   }
 };
 
@@ -85,10 +85,10 @@ export const getBooking = async (req: Request, res: Response) => {
       }
     };
     
-    res.json(transformedBooking);
+    return res.json(transformedBooking);
   } catch (error) {
     console.error('Error fetching booking:', error);
-    res.status(500).json({ error: 'Failed to fetch booking' });
+    return res.status(500).json({ error: 'Failed to fetch booking' });
   }
 };
 
@@ -143,10 +143,10 @@ export const createBooking = async (req: Request, res: Response) => {
       }
     };
     
-    res.status(201).json(transformedBooking);
+    return res.status(201).json(transformedBooking);
   } catch (error) {
     console.error('Error creating booking:', error);
-    res.status(500).json({ error: 'Failed to create booking' });
+    return res.status(500).json({ error: 'Failed to create booking' });
   }
 };
 
@@ -200,10 +200,10 @@ export const updateBooking = async (req: Request, res: Response) => {
       }
     };
     
-    res.json(transformedBooking);
+    return res.json(transformedBooking);
   } catch (error) {
     console.error('Error updating booking:', error);
-    res.status(500).json({ error: 'Failed to update booking' });
+    return res.status(500).json({ error: 'Failed to update booking' });
   }
 };
 
@@ -215,9 +215,9 @@ export const deleteBooking = async (req: Request, res: Response) => {
       where: { id },
     });
     
-    res.status(204).send();
+    return res.status(204).send();
   } catch (error) {
     console.error('Error deleting booking:', error);
-    res.status(500).json({ error: 'Failed to delete booking' });
+    return res.status(500).json({ error: 'Failed to delete booking' });
   }
 };

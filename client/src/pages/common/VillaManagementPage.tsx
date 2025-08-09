@@ -8,16 +8,10 @@ import * as Dialog from '@radix-ui/react-dialog';
 import {useAuth} from '../../contexts/AuthContext';
 import {useAmenities} from '../../contexts/AmenitiesContext';
 import {useVillas} from '../../contexts/VillasContext';
+import {useUsers} from '../../contexts/UserContext';
 import {NumericInput} from '../../components/inputs/NumericInput';
 import {colors} from '../../utils/colors';
-import type {User, Villa, VillaAmenities} from '../../types';
-
-// Mock users for admin selection (in a real app, this would come from an API)
-const mockUsers: User[] = [
-    {id: 'user-1', email: 'john@example.com', name: 'John Smith', role: 'homeowner', isActive: true},
-    {id: 'user-2', email: 'jane@example.com', name: 'Jane Doe', role: 'homeowner', isActive: true},
-    {id: 'user-3', email: 'mike@example.com', name: 'Mike Johnson', role: 'homeowner', isActive: true},
-];
+import type {Villa, VillaAmenities} from '../../types';
 
 // Available locations from existing villa data
 const availableLocations = [
@@ -54,6 +48,7 @@ const VillaManagementPage: React.FC = () => {
     const {user} = useAuth();
     const {amenities} = useAmenities();
     const {addVilla, updateVilla, getVillaById} = useVillas();
+    const {users} = useUsers();
 
     // Form state
     const [formData, setFormData] = useState<Partial<Villa>>({
@@ -590,10 +585,10 @@ const VillaManagementPage: React.FC = () => {
                                             }}
                                         >
                                             <Select.Viewport>
-                                                {mockUsers.map(mockUser => (
+                                                {users.filter(user => user.role === 'homeowner').map(homeowner => (
                                                     <Select.Item
-                                                        key={mockUser.id}
-                                                        value={mockUser.id}
+                                                        key={homeowner.id}
+                                                        value={homeowner.id}
                                                         style={{
                                                             fontSize: '14px',
                                                             padding: '8px 12px',
@@ -606,7 +601,7 @@ const VillaManagementPage: React.FC = () => {
                                                         }}
                                                     >
                                                         <Select.ItemText>
-                                                            {mockUser.name} ({mockUser.email})
+                                                            {homeowner.name} ({homeowner.email})
                                                         </Select.ItemText>
                                                         <Select.ItemIndicator>
                                                             <CheckIcon />

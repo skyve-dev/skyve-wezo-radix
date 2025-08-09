@@ -790,13 +790,17 @@ const NewBookingPage: React.FC = () => {
                                     animate={{opacity: 1, scale: 1}}
                                     exit={{opacity: 0, scale: 0.9}}
                                 >
+                                    <Dialog.Title asChild>
+                                        <h2 style={successTitleStyle}>Booking Confirmed!</h2>
+                                    </Dialog.Title>
                                     <div style={successIconContainerStyle}>
                                         <CheckCircledIcon width={48} height={48} color="white"/>
                                     </div>
-                                    <h2 style={successTitleStyle}>Booking Confirmed!</h2>
-                                    <p style={successMessageStyle}>
-                                        Your booking for {villa.name} has been confirmed.
-                                    </p>
+                                    <Dialog.Description asChild>
+                                        <p style={successMessageStyle}>
+                                            Your booking for {villa.name} has been confirmed.
+                                        </p>
+                                    </Dialog.Description>
                                     <p style={successMessageStyle}>
                                         Check-in: {checkInDate.toLocaleDateString()}
                                     </p>

@@ -4,7 +4,7 @@ import { VillaAmenities, HouseRules, CustomPricing } from '../types';
 
 export const getVillas = async (req: Request, res: Response) => {
   try {
-    const { location, minPrice, maxPrice, guests, bedrooms, isActive } = req.query;
+    const { location, guests, bedrooms, isActive } = req.query;
     
     const where: any = {};
     
@@ -39,10 +39,10 @@ export const getVillas = async (req: Request, res: Response) => {
       houseRules: JSON.parse(villa.houseRules) as HouseRules,
     }));
     
-    res.json(transformedVillas);
+    return res.json(transformedVillas);
   } catch (error) {
     console.error('Error fetching villas:', error);
-    res.status(500).json({ error: 'Failed to fetch villas' });
+    return res.status(500).json({ error: 'Failed to fetch villas' });
   }
 };
 
@@ -88,10 +88,10 @@ export const getVilla = async (req: Request, res: Response) => {
       houseRules: JSON.parse(villa.houseRules) as HouseRules,
     };
     
-    res.json(transformedVilla);
+    return res.json(transformedVilla);
   } catch (error) {
     console.error('Error fetching villa:', error);
-    res.status(500).json({ error: 'Failed to fetch villa' });
+    return res.status(500).json({ error: 'Failed to fetch villa' });
   }
 };
 
@@ -159,10 +159,10 @@ export const createVilla = async (req: Request, res: Response) => {
       houseRules: JSON.parse(villa.houseRules) as HouseRules,
     };
     
-    res.status(201).json(transformedVilla);
+    return res.status(201).json(transformedVilla);
   } catch (error) {
     console.error('Error creating villa:', error);
-    res.status(500).json({ error: 'Failed to create villa' });
+    return res.status(500).json({ error: 'Failed to create villa' });
   }
 };
 
@@ -234,10 +234,10 @@ export const updateVilla = async (req: Request, res: Response) => {
       houseRules: JSON.parse(villa.houseRules) as HouseRules,
     };
     
-    res.json(transformedVilla);
+    return res.json(transformedVilla);
   } catch (error) {
     console.error('Error updating villa:', error);
-    res.status(500).json({ error: 'Failed to update villa' });
+    return res.status(500).json({ error: 'Failed to update villa' });
   }
 };
 
@@ -249,9 +249,9 @@ export const deleteVilla = async (req: Request, res: Response) => {
       where: { id },
     });
     
-    res.status(204).send();
+    return res.status(204).send();
   } catch (error) {
     console.error('Error deleting villa:', error);
-    res.status(500).json({ error: 'Failed to delete villa' });
+    return res.status(500).json({ error: 'Failed to delete villa' });
   }
 };

@@ -44,6 +44,12 @@ const HomeownerDashboard: React.FC = () => {
     .sort((a, b) => new Date(b.checkInDate).getTime() - new Date(a.checkInDate).getTime())
     .slice(0, 20);
 
+  // Helper function to format dates safely
+  const formatDate = (date: Date | string): string => {
+    const dateObj = date instanceof Date ? date : new Date(date);
+    return dateObj.toLocaleDateString();
+  };
+
   const containerStyle: React.CSSProperties = {
     padding: '20px',
     maxWidth: '1200px',
@@ -442,7 +448,7 @@ const HomeownerDashboard: React.FC = () => {
                   <div style={bookingInfoStyle}>
                     <p style={bookingVillaStyle}>{villa?.name || 'Unknown Villa'}</p>
                     <p style={bookingDateStyle}>
-                      {booking.checkInDate.toLocaleDateString()} - {booking.checkOutDate.toLocaleDateString()}
+                      {formatDate(booking.checkInDate)} - {formatDate(booking.checkOutDate)}
                     </p>
                     <p style={{ fontSize: '12px', color: '#9ca3af', marginTop: '2px' }}>
                       Booking ID: {booking.id}
