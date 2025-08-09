@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55b53441-d67e-4899-8611-4e1fdaff75d6" name="Changes" comment="Add NotificationsContext to manage user notifications and integrate it into the app">
+    <list default="true" id="55b53441-d67e-4899-8611-4e1fdaff75d6" name="Changes" comment="Update grid column styling across pages for improved responsiveness">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/common/ListingsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/common/ListingsPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/common/VillaDetailsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/common/VillaDetailsPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/common/VillaManagementListPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/common/VillaManagementListPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/layout/BottomTabNavigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/BottomTabNavigation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/layout/DrawerMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/DrawerMenu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/common/NewBookingPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/common/NewBookingPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/prisma/dev.db" beforeDir="false" afterPath="$PROJECT_DIR$/server/prisma/dev.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -132,15 +132,7 @@
       <workItem from="1754319501348" duration="16311000" />
       <workItem from="1754394843249" duration="5267000" />
       <workItem from="1754485762184" duration="6145000" />
-      <workItem from="1754714250564" duration="13007000" />
-    </task>
-    <task id="LOCAL-00012" summary="Add house rules section to VillaDetailsPage and update villa types and mock data  &#10;&#10;- Add styled house rules section with icons in `VillaDetailsPage`.  &#10;- Extend `Villa` type to include `HouseRules` and implement types for individual rules.  &#10;- Update mock data to specify house rules for all villas.  &#10;- Ensure responsive design for house rules grid and card layout.">
-      <option name="closed" value="true" />
-      <created>1754149297153</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1754149297153</updated>
+      <workItem from="1754714250564" duration="14345000" />
     </task>
     <task id="LOCAL-00013" summary="Refactor `amenities` structure across villa pages and enhance display logic&#10;&#10;- Replace flat `amenities` array with categorized `VillaAmenities` structure in villa types and mock data.&#10;- Update VillaDetailsPage to display amenities in categorized sections with styled titles.&#10;- Use helper functions to streamline amenities processing and ensure reusability across ListingsPage and HomePage.&#10;- Adjust villa card components to normalize and display top amenities efficiently.">
       <option name="closed" value="true" />
@@ -526,7 +518,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754750853353</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="Update grid column styling across pages for improved responsiveness">
+      <option name="closed" value="true" />
+      <created>1754751746146</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1754751746146</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -538,7 +538,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Remove `BookingDetailPage` and `BookingListPage` for tenant; migrate booking management features to `common` components&#10;&#10;- Deleted `BookingDetailPage` and `BookingListPage` from tenant-specific directory due to consolidation.&#10;- Centralized booking management logic into `BookingListPage` under `common` with role-based filtering and enhanced structure.&#10;- Improved maintainability by reducing duplication and ensuring unified booking management across user roles." />
     <MESSAGE value="Remove `BookingDetailPage` and `BookingListPage` from tenant directory&#10;&#10;- Deleted `BookingDetailPage.tsx` and `BookingListPage.tsx` to consolidate pages into a shared structure.&#10;- Updated related logic to ensure `BookingListPage.tsx` under `common` directory supports role-based booking filtering." />
     <MESSAGE value="Replace native selects with Radix Select in VillaManagementListPage and FilterPanel; add UserContext for user management&#10;&#10;- Updated `VillaManagementListPage` to use `@radix-ui/react-select` for status and featured filters, improving dropdown styles and usability.&#10;- Enhanced `FilterPanel` with Radix Select, adding optimized styles and custom functionality for location filtering.&#10;- Added `UserContext` for managing user states and actions, such as searching, filtering by role, fetching by ID, and CRUD operations." />
     <MESSAGE value="Prevent user-initiated zoom across all devices and input scenarios&#10;&#10;- Block pinch, double-tap, keyboard, and wheel zoom actions in `main.tsx` using event listeners.&#10;- Update `index.html` with restrictive `viewport` meta tag to limit zoom capabilities.&#10;- Apply CSS rules in `layout.css` to disable zoom, touch gestures, and overscroll while keeping certain areas text-selectable." />
@@ -563,6 +562,7 @@
     <MESSAGE value="Remove `data.ts` containing mock villa data to clean up unused files" />
     <MESSAGE value="Remove mock villa data file (`data.ts`)" />
     <MESSAGE value="Add NotificationsContext to manage user notifications and integrate it into the app" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add NotificationsContext to manage user notifications and integrate it into the app" />
+    <MESSAGE value="Update grid column styling across pages for improved responsiveness" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update grid column styling across pages for improved responsiveness" />
   </component>
 </project>

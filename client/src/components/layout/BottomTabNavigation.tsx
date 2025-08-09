@@ -1,7 +1,7 @@
 import React from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import {motion} from 'framer-motion';
-import {BarChartIcon, CalendarIcon, ChatBubbleIcon, DashboardIcon, HomeIcon, PersonIcon, MagnifyingGlassIcon, EnterIcon, AvatarIcon} from '@radix-ui/react-icons';
+import {BarChartIcon, CalendarIcon, ChatBubbleIcon, DashboardIcon, HomeIcon, PersonIcon, EnterIcon, AvatarIcon} from '@radix-ui/react-icons';
 import {useAuth} from '../../contexts/AuthContext';
 import {colors} from '../../utils/colors';
 import {useScrollDirection} from '../../hooks/useScrollDirection';
@@ -21,13 +21,12 @@ const BottomTabNavigation: React.FC = () => {
 
   const anonymousTabs: TabItem[] = [
     { path: '/', label: 'Explore', icon: <HomeIcon /> },
-    { path: '/listings', label: 'Listings', icon: <MagnifyingGlassIcon /> },
+    { path: '/bookings', label: 'Bookings', icon: <CalendarIcon /> },
     { path: '/login', label: 'Login', icon: <EnterIcon /> },
   ];
 
   const tenantTabs: TabItem[] = [
     { path: '/', label: 'Explore', icon: <HomeIcon /> },
-    { path: '/listings', label: 'Listings', icon: <MagnifyingGlassIcon /> },
     { path: '/bookings', label: 'Bookings', icon: <CalendarIcon /> },
     { path: '/messages', label: 'Messages', icon: <ChatBubbleIcon /> },
     { path: '/profile', label: 'Profile', icon: <PersonIcon /> },
@@ -35,7 +34,7 @@ const BottomTabNavigation: React.FC = () => {
 
   const homeownerTabs: TabItem[] = [
     { path: '/dashboard', label: 'Dashboard', icon: <DashboardIcon /> },
-    { path: '/listings', label: 'Listings', icon: <MagnifyingGlassIcon /> },
+    { path: '/bookings', label: 'Bookings', icon: <CalendarIcon /> },
     { path: '/villa-management', label: 'My Villas', icon: <HomeIcon /> },
     { path: '/reports', label: 'Reports', icon: <BarChartIcon /> },
     { path: '/profile', label: 'Profile', icon: <PersonIcon /> },
@@ -43,7 +42,7 @@ const BottomTabNavigation: React.FC = () => {
 
   const adminTabs: TabItem[] = [
     { path: '/dashboard', label: 'Dashboard', icon: <DashboardIcon /> },
-    { path: '/villas', label: 'Properties', icon: <HomeIcon /> },
+    { path: '/bookings', label: 'Bookings', icon: <CalendarIcon /> },
     { path: '/users', label: 'Users', icon: <PersonIcon /> },
     { path: '/reports', label: 'Reports', icon: <BarChartIcon /> },
     { path: '/profile', label: 'Profile', icon: <AvatarIcon /> },

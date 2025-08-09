@@ -11,7 +11,7 @@ import {
     MixerHorizontalIcon,
     PersonIcon,
     QuestionMarkCircledIcon,
-    MagnifyingGlassIcon,
+    CalendarIcon,
     EnterIcon,
 } from '@radix-ui/react-icons';
 import {useAuth} from '../../contexts/AuthContext';
@@ -57,10 +57,10 @@ const DrawerMenu: React.FC<DrawerMenuProps> = ({isOpen, onClose}) => {
                     },
                 },
                 {
-                    label: 'Villa Listings',
-                    icon: <MagnifyingGlassIcon/>,
+                    label: 'Bookings',
+                    icon: <CalendarIcon/>,
                     onClick: () => {
-                        navigate('/listings');
+                        navigate('/bookings');
                         onClose();
                     },
                 },
@@ -78,10 +78,10 @@ const DrawerMenu: React.FC<DrawerMenuProps> = ({isOpen, onClose}) => {
         // Authenticated user menu items
         const commonMenuItems: MenuItem[] = [
             {
-                label: 'Villa Listings',
-                icon: <MagnifyingGlassIcon/>,
+                label: 'Bookings',
+                icon: <CalendarIcon/>,
                 onClick: () => {
-                    navigate('/listings');
+                    navigate('/bookings');
                     onClose();
                 },
             },

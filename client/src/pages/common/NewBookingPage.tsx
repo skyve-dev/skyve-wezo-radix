@@ -233,7 +233,7 @@ const NewBookingPage: React.FC = () => {
             checkOutDate,
             numberOfGuests,
             totalPrice,
-            status: 'confirmed',
+            status: 'pending',
             paymentStatus: 'paid',
         };
 
@@ -791,14 +791,14 @@ const NewBookingPage: React.FC = () => {
                                     exit={{opacity: 0, scale: 0.9}}
                                 >
                                     <Dialog.Title asChild>
-                                        <h2 style={successTitleStyle}>Booking Confirmed!</h2>
+                                        <h2 style={successTitleStyle}>Booking Submitted!</h2>
                                     </Dialog.Title>
                                     <div style={successIconContainerStyle}>
                                         <CheckCircledIcon width={48} height={48} color="white"/>
                                     </div>
                                     <Dialog.Description asChild>
                                         <p style={successMessageStyle}>
-                                            Your booking for {villa.name} has been confirmed.
+                                            Your booking for {villa.name} has been submitted and is pending approval.
                                         </p>
                                     </Dialog.Description>
                                     <p style={successMessageStyle}>
