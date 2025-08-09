@@ -1,6 +1,7 @@
 import type {ReactNode} from 'react';
-import React, {createContext, useContext, useState} from 'react';
+import React, {createContext, useContext, useState, useEffect} from 'react';
 import type {User} from '../types';
+import { api } from '../services/api';
 
 interface AuthContextType {
   user: User | null;
@@ -8,49 +9,45 @@ interface AuthContextType {
   logout: () => void;
   isAuthenticated: boolean;
   isAnonymous: boolean;
+  loading: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-const mockUsers: Record<string, User> = {
-  'tenant@example.com': {
-    id: '1',
-    email: 'tenant@example.com',
-    name: 'John Tenant',
-    role: 'tenant',
-    isActive: true,
-  },
-  'homeowner@example.com': {
-    id: '2',
-    email: 'homeowner@example.com',
-    name: 'Jane Owner',
-    role: 'homeowner',
-    isActive: true,
-  },
-  'admin@example.com': {
-    id: '3',
-    email: 'admin@example.com',
-    name: 'Admin User',
-    role: 'admin',
-    isActive: true,
-  },
-};
-
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  // Check for stored user on mount
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch (error) {
+        console.error('Failed to parse stored user:', error);
+        localStorage.removeItem('user');
+      }
+    }
+  }, []);
 
   const login = async (email: string, password: string) => {
-    // Mock authentication
-    const mockUser = mockUsers[email];
-    if (mockUser && password === 'password') {
-      setUser(mockUser);
-    } else {
+    setLoading(true);
+    try {
+      const userData = await api.login(email, password) as User;
+      setUser(userData);
+      localStorage.setItem('user', JSON.stringify(userData));
+    } catch (error) {
+      console.error('Login failed:', error);
       throw new Error('Invalid credentials');
+    } finally {
+      setLoading(false);
     }
   };
 
   const logout = () => {
     setUser(null);
+    localStorage.removeItem('user');
   };
 
   const value = {
@@ -59,6 +56,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     logout,
     isAuthenticated: !!user,
     isAnonymous: !user,
+    loading,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

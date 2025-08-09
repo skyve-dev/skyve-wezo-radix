@@ -4,8 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55b53441-d67e-4899-8611-4e1fdaff75d6" name="Changes" comment="Add IntelliJ IDEA project configuration file (`workspace.xml`) to repository">
+    <list default="true" id="55b53441-d67e-4899-8611-4e1fdaff75d6" name="Changes" comment="Add `CLAUDE.md` with guidelines for development and project setup">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/contexts/AuthContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/contexts/AuthContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/contexts/BookingsContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/contexts/BookingsContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/contexts/VillasContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/contexts/VillasContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/server/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/server/prisma/schema.prisma" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +27,13 @@
         <option value="JavaScript File" />
         <option value="TypeScript JSX File" />
       </list>
+    </option>
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="false" />
+    <option name="myAllFileTypesSelected" value="true" />
+    <option name="mySelectedFileTypes">
+      <set />
     </option>
   </component>
   <component name="Git.Settings">
@@ -60,6 +75,11 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\arif\\WebstormProjects\\skyve-wezo-radix\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
+    ]
   }
 }</component>
   <component name="RecentsManager">
@@ -103,15 +123,7 @@
       <workItem from="1754319501348" duration="16311000" />
       <workItem from="1754394843249" duration="5267000" />
       <workItem from="1754485762184" duration="6145000" />
-      <workItem from="1754714250564" duration="4127000" />
-    </task>
-    <task id="LOCAL-00008" summary="Make `BookingCalendar` styles responsive for smaller screen sizes&#10;&#10;- Adjust various style properties (padding, font size, grid spacing, etc.) in `BookingCalendar` to adapt based on screen width.&#10;- Remove unused `marginRight` property from button styles in `VillaDetailsPage`.">
-      <option name="closed" value="true" />
-      <created>1754122133029</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1754122133029</updated>
+      <workItem from="1754714250564" duration="6184000" />
     </task>
     <task id="LOCAL-00009" summary="Replace default Vite assets with custom branding and update MainLayout styles&#10;&#10;- Remove Vite and React SVGs; add custom favicon and header logo for &quot;Wezo.ae.&quot;&#10;- Update `index.html` to use the new favicon and change the page title to &quot;Wezo.ae.&quot;&#10;- Adjust MainLayout styles: replace placeholder text with logo SVG, use new color palette for header and logo. &#10;- Clean up unused imports and redundant code in MainLayout component.">
       <option name="closed" value="true" />
@@ -497,7 +509,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754719512730</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Add `CLAUDE.md` with guidelines for development and project setup">
+      <option name="closed" value="true" />
+      <created>1754720209789</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1754720209789</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -509,7 +529,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Integrate Radix UI Checkbox into VillaManagementPage and improve location selection&#10;&#10;- Add `@radix-ui/react-checkbox` for improved checkbox rendering and replace existing logic with Radix components.&#10;- Implement custom dropdown for location selection, including predefined location suggestions.&#10;- Refactor button attributes in `NumericInput` to use explicit `type=&quot;button&quot;` for better clarity.&#10;- Update inline styles in `VillaManagementPage` for compact and consistent layout across sections.&#10;- Update dependency in `package-lock.json` for Radix UI integration." />
     <MESSAGE value="Refactor villa pages and components for consistent styles and enhanced pricing features&#10;&#10;- Standardize margin and spacing across villa pages (`VillaManagementListPage`, `ListingsPage`, and `VillaDetailsPage`) for uniform layout.&#10;- Update `VillaDetailsPage` pricing section with additional &quot;Half Day&quot; pricing and improved styling.&#10;- Replace inline images with styled `div` containers for improved rendering in `VillaManagementListPage`.&#10;- Extend `NumericInput` to support customizable steps and additional styles, updating related usages in villa management forms.&#10;- Add consistent grid layout for pricing fields in `VillaManagementPage`." />
     <MESSAGE value="Enhance FilterPanel with Radix Select for location and integrate AmenitiesContext&#10;&#10;- Replace custom location input with `@radix-ui/react-select`, incorporating predefined locations and custom input functionality.&#10;- Leverage `AmenitiesContext` for dynamic amenity handling, removing redundant amenity logic.&#10;- Add state management for the location dropdown and reset location on filters clear.&#10;- Update BookingListPage image and layout styles for improved visual consistency." />
     <MESSAGE value="Add cancel button to LoginPage and integrate date selection with calendar in NewBookingPage&#10;&#10;- Introduce `Cancel` button on LoginPage with navigation logic to redirect users to the previous page or home.&#10;- Enhance NewBookingPage with a `BookingCalendar` component for date selection, including unavailable dates handling.&#10;- Add dynamic calendar visibility based on date pre-selection in NewBookingPage.&#10;- Refactor NewBookingPage to improve state management for check-in and check-out dates." />
@@ -534,6 +553,7 @@
     <MESSAGE value="Add `HelpSupportPage`, `NotificationsPage`, and `ReportsPage` with modular components and enhanced interactions&#10;&#10;- Introduce `HelpSupportPage` featuring categorized FAQs, category filtering, and contact options with Radix icons.&#10;- Add `NotificationsPage` allowing filtering by type or unread status, marking notifications as read, and deleting notifications.&#10;- Create `ReportsPage` with role-based access control, chart data preparation, and responsive reporting features." />
     <MESSAGE value="Move mock data from `mockData.ts` to `data.ts` for better organization" />
     <MESSAGE value="Add IntelliJ IDEA project configuration file (`workspace.xml`) to repository" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add IntelliJ IDEA project configuration file (`workspace.xml`) to repository" />
+    <MESSAGE value="Add `CLAUDE.md` with guidelines for development and project setup" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add `CLAUDE.md` with guidelines for development and project setup" />
   </component>
 </project>

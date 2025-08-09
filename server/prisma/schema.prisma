@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -12,60 +12,93 @@ model User {
   email     String   @unique
   password  String
   name      String
-  role      UserRole
+  role      String   // 'tenant' | 'homeowner' | 'admin'
+  avatar    String?
+  isActive  Boolean  @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  bookings  Booking[]
-  villas    Villa[]   @relation("HomeownerVillas")
-}
-
-enum UserRole {
-  TENANT
-  HOMEOWNER
-  ADMIN
+  bookings      Booking[]
+  ownedVillas   Villa[]    @relation("HomeownerVillas")
+  messages_sent Message[]  @relation("MessageSender")
+  messages_received Message[] @relation("MessageReceiver")
+  notifications Notification[]
 }
 
 model Villa {
-  id          String   @id @default(cuid())
-  name        String
-  description String
-  location    String
-  price       Float
-  bedrooms    Int
-  bathrooms   Int
-  guests      Int
-  area        Float
-  images      String[]
-  amenities   String[]
-  available   Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id                 String   @id @default(cuid())
+  name               String
+  ownerId            String
+  description        String
+  images             String   // JSON array stored as string
+  location           String
+  amenities          String   // JSON object stored as string
+  maxVisitors        Int
+  numberOfBedrooms   Int
+  numberOfBeds       Int
+  numberOfBathrooms  Int
+  weekdayPrice       Float
+  weekendPrice       Float
+  halfDayPrice       Float
+  customPricing      String?  // JSON array stored as string
+  houseRules         String   // JSON object stored as string
+  isActive           Boolean  @default(true)
+  isFeatured         Boolean  @default(false)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
 
-  homeowner   User     @relation("HomeownerVillas", fields: [homeownerId], references: [id])
-  homeownerId String
-  bookings    Booking[]
+  owner      User      @relation("HomeownerVillas", fields: [ownerId], references: [id])
+  bookings   Booking[]
 }
 
 model Booking {
-  id        String        @id @default(cuid())
-  checkIn   DateTime
-  checkOut  DateTime
-  guests    Int
-  total     Float
-  status    BookingStatus @default(PENDING)
-  createdAt DateTime      @default(now())
-  updatedAt DateTime      @updatedAt
+  id             String   @id @default(cuid())
+  villaId        String
+  tenantId       String
+  checkInDate    DateTime
+  checkOutDate   DateTime
+  numberOfGuests Int
+  totalPrice     Float
+  status         String   // 'pending' | 'confirmed' | 'cancelled' | 'completed'
+  paymentStatus  String   // 'pending' | 'paid' | 'refunded'
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
-  tenant   User   @relation(fields: [tenantId], references: [id])
-  tenantId String
-  villa    Villa  @relation(fields: [villaId], references: [id])
-  villaId  String
+  villa  Villa @relation(fields: [villaId], references: [id])
+  tenant User  @relation(fields: [tenantId], references: [id])
 }
 
-enum BookingStatus {
-  PENDING
-  CONFIRMED
-  CANCELLED
-  COMPLETED
+model Message {
+  id         String   @id @default(cuid())
+  senderId   String
+  receiverId String
+  content    String
+  timestamp  DateTime @default(now())
+  isRead     Boolean  @default(false)
+
+  sender   User @relation("MessageSender", fields: [senderId], references: [id])
+  receiver User @relation("MessageReceiver", fields: [receiverId], references: [id])
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String
+  message   String
+  type      String   // 'booking' | 'payment' | 'message' | 'system'
+  timestamp DateTime @default(now())
+  isRead    Boolean  @default(false)
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Promotion {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  imageUrl    String
+  link        String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
