@@ -4,19 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55b53441-d67e-4899-8611-4e1fdaff75d6" name="Changes" comment="Update navigation and booking functionality across pages&#10;&#10;- Replace `Listings` tab with `Bookings` in bottom navigation and drawer menu.&#10;- Update booking submission status to `pending` and include approval message.&#10;- Adjust `Dialog` title and description for booking confirmation.">
-      <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
+    <list default="true" id="55b53441-d67e-4899-8611-4e1fdaff75d6" name="Changes" comment="Add reusable components and improve navigation configuration&#10;&#10;- Implement `ConfirmationDialog` component for consistent confirmation prompts.&#10;- Create `SuccessNotification` component for user success feedback.&#10;- Refactor navigation logic with `navigationConfig` for role-based navigation. &#10;- Update `BookingDetailPage` to include confirmation dialogs and success notifications.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/layout/BottomTabNavigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/BottomTabNavigation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/layout/DrawerMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/DrawerMenu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/layout/TopNavigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/TopNavigation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/admin/UserListPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/admin/UserListPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/common/BookingDetailPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/common/BookingDetailPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/common/SuccessNotification.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/common/SuccessNotification.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/auth/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/auth/LoginPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/common/NewBookingPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/common/NewBookingPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/common/ReportsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/common/ReportsPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/services/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/services/bookingService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/bookingService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/prisma/dev.db" beforeDir="false" afterPath="$PROJECT_DIR$/server/prisma/dev.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/controllers/bookings.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/bookings.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes/bookings.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/bookings.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,15 +136,7 @@
       <workItem from="1754319501348" duration="16311000" />
       <workItem from="1754394843249" duration="5267000" />
       <workItem from="1754485762184" duration="6145000" />
-      <workItem from="1754714250564" duration="18046000" />
-    </task>
-    <task id="LOCAL-00014" summary="Add &quot;Listings&quot; tab and menu item for villa navigation&#10;&#10;- Add &quot;Listings&quot; option with icon in DrawerMenu for quick access.&#10;- Include &quot;Listings&quot; tab in BottomTabNavigation for both tenants and homeowners.">
-      <option name="closed" value="true" />
-      <created>1754152800800</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1754152800800</updated>
+      <workItem from="1754714250564" duration="20235000" />
     </task>
     <task id="LOCAL-00015" summary="Implement advanced filtering system for villa listings&#10;&#10;- Add SearchBar and FilterPanel components for dynamic filters.&#10;- Create `applyFilters` utility for filtering villas based on price, location, amenities, guests, and more.&#10;- Refactor ListingsPage state to use centralized filter logic with improved UI/UX.">
       <option name="closed" value="true" />
@@ -533,7 +522,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754752931207</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="Add reusable components and improve navigation configuration&#10;&#10;- Implement `ConfirmationDialog` component for consistent confirmation prompts.&#10;- Create `SuccessNotification` component for user success feedback.&#10;- Refactor navigation logic with `navigationConfig` for role-based navigation. &#10;- Update `BookingDetailPage` to include confirmation dialogs and success notifications.">
+      <option name="closed" value="true" />
+      <created>1754757050695</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1754757050695</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -545,7 +542,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Replace native selects with Radix Select in VillaManagementListPage and FilterPanel; add UserContext for user management&#10;&#10;- Updated `VillaManagementListPage` to use `@radix-ui/react-select` for status and featured filters, improving dropdown styles and usability.&#10;- Enhanced `FilterPanel` with Radix Select, adding optimized styles and custom functionality for location filtering.&#10;- Added `UserContext` for managing user states and actions, such as searching, filtering by role, fetching by ID, and CRUD operations." />
     <MESSAGE value="Prevent user-initiated zoom across all devices and input scenarios&#10;&#10;- Block pinch, double-tap, keyboard, and wheel zoom actions in `main.tsx` using event listeners.&#10;- Update `index.html` with restrictive `viewport` meta tag to limit zoom capabilities.&#10;- Apply CSS rules in `layout.css` to disable zoom, touch gestures, and overscroll while keeping certain areas text-selectable." />
     <MESSAGE value="Update BookingListPage layout styles for improved responsiveness&#10;&#10;- Adjust item containers to use `flexGrow` and `minWidth` for better scaling and spacing.&#10;- Add `gap` to wrapped booking items for consistent alignment." />
     <MESSAGE value="Enable villa editing with new route and dialog enhancements&#10;&#10;- Introduced `/villas/edit/:id` route for villa editing in `App.tsx`.&#10;- Enhanced `VillaManagementPage` with support for both new villa creation and editing, adding logic for loading and updating existing villas.&#10;- Added confirmation and success dialogs for villa creation and editing actions.&#10;- Updated styles and functionality in `HomeownerDashboard` and `VillaManagementListPage` for consistency." />
@@ -570,6 +566,7 @@
     <MESSAGE value="Add NotificationsContext to manage user notifications and integrate it into the app" />
     <MESSAGE value="Update grid column styling across pages for improved responsiveness" />
     <MESSAGE value="Update navigation and booking functionality across pages&#10;&#10;- Replace `Listings` tab with `Bookings` in bottom navigation and drawer menu.&#10;- Update booking submission status to `pending` and include approval message.&#10;- Adjust `Dialog` title and description for booking confirmation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update navigation and booking functionality across pages&#10;&#10;- Replace `Listings` tab with `Bookings` in bottom navigation and drawer menu.&#10;- Update booking submission status to `pending` and include approval message.&#10;- Adjust `Dialog` title and description for booking confirmation." />
+    <MESSAGE value="Add reusable components and improve navigation configuration&#10;&#10;- Implement `ConfirmationDialog` component for consistent confirmation prompts.&#10;- Create `SuccessNotification` component for user success feedback.&#10;- Refactor navigation logic with `navigationConfig` for role-based navigation. &#10;- Update `BookingDetailPage` to include confirmation dialogs and success notifications." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add reusable components and improve navigation configuration&#10;&#10;- Implement `ConfirmationDialog` component for consistent confirmation prompts.&#10;- Create `SuccessNotification` component for user success feedback.&#10;- Refactor navigation logic with `navigationConfig` for role-based navigation. &#10;- Update `BookingDetailPage` to include confirmation dialogs and success notifications." />
   </component>
 </project>

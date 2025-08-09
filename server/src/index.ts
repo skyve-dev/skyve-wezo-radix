@@ -8,6 +8,7 @@ import villasRouter from './routes/villas';
 import bookingsRouter from './routes/bookings';
 import notificationsRouter from './routes/notifications';
 import promotionsRouter from './routes/promotions';
+import reportsRouter from './routes/reports';
 
 dotenv.config();
 
@@ -32,6 +33,7 @@ app.use('/api/villas', villasRouter);
 app.use('/api/bookings', bookingsRouter);
 app.use('/api/notifications', notificationsRouter);
 app.use('/api/promotions', promotionsRouter);
+app.use('/api/reports', reportsRouter);
 
 // Error handling middleware
 app.use((err: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {

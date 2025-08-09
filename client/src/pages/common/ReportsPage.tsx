@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useVillas } from '../../contexts/VillasContext';
 import { useBookings } from '../../contexts/BookingsContext';
@@ -12,6 +12,8 @@ import {
     EyeOpenIcon,
     ClockIcon
 } from '@radix-ui/react-icons';
+import { ReportService, type ReportStats } from '../../services/reportService';
+import ReportsSkeleton from '../../components/common/ReportsSkeleton';
 
 interface ChartData {
     label: string;
@@ -24,6 +26,36 @@ const ReportsPage: React.FC = () => {
     const { villas } = useVillas();
     const { bookings } = useBookings();
     const [selectedPeriod, setSelectedPeriod] = useState<'7d' | '30d' | '90d' | '1y'>('30d');
+    const [reportStats, setReportStats] = useState<ReportStats | null>(null);
+    const [loading, setLoading] = useState(true);
+    
+    // Fetch report stats from backend
+    useEffect(() => {
+        const fetchReportStats = async () => {
+            if (!user || user.role === 'tenant') {
+                setLoading(false);
+                return;
+            }
+            
+            try {
+                setLoading(true);
+                const stats = await ReportService.getReportStats(
+                    selectedPeriod,
+                    user.id,
+                    user.role
+                );
+                setReportStats(stats);
+            } catch (error) {
+                console.error('Error fetching report stats:', error);
+                // Fall back to using local data if API fails
+                setReportStats(null);
+            } finally {
+                setLoading(false);
+            }
+        };
+        
+        fetchReportStats();
+    }, [user, selectedPeriod]);
     
     // Filter data based on user role
     const filteredData = useMemo(() => {
@@ -45,8 +77,108 @@ const ReportsPage: React.FC = () => {
         }
     }, [user, villas, bookings]);
     
-    // Calculate metrics based on filtered data
+    // Calculate metrics based on backend data or filtered local data
     const metrics = useMemo(() => {
+        // Use backend data if available
+        if (reportStats) {
+            const { properties, bookings: bookingStats, revenue, occupancy, propertyViews, users } = reportStats;
+            const pendingBookings = bookingStats.byStatus.pending || 0;
+            const confirmedBookings = bookingStats.byStatus.confirmed || 0;
+            
+            if (user?.role === 'admin') {
+                return [
+                    {
+                        label: 'Total Properties',
+                        value: properties.total,
+                        change: '+12%', // TODO: Calculate actual trend
+                        trend: 'up' as const,
+                        icon: <HomeIcon style={{ width: '20px', height: '20px' }} />
+                    },
+                    {
+                        label: 'Total Bookings',
+                        value: bookingStats.total,
+                        change: '+8%', // TODO: Calculate actual trend
+                        trend: 'up' as const,
+                        icon: <CalendarIcon style={{ width: '20px', height: '20px' }} />
+                    },
+                    {
+                        label: 'Total Revenue',
+                        value: `AED ${revenue.total.toLocaleString()}`,
+                        change: '+15%', // TODO: Calculate actual trend
+                        trend: 'up' as const,
+                        icon: <span style={{ width: '20px', height: '20px', fontSize: '16px' }}>💰</span>
+                    },
+                    {
+                        label: 'Active Users',
+                        value: users?.active || 0,
+                        change: '+5%', // TODO: Calculate actual trend
+                        trend: 'up' as const,
+                        icon: <PersonIcon style={{ width: '20px', height: '20px' }} />
+                    },
+                    {
+                        label: 'Avg Occupancy',
+                        value: `${occupancy.rate}%`,
+                        change: '+3%', // TODO: Calculate actual trend
+                        trend: 'up' as const,
+                        icon: <span style={{ width: '20px', height: '20px', fontSize: '16px' }}>📈</span>
+                    },
+                    {
+                        label: 'Pending Bookings',
+                        value: pendingBookings,
+                        change: pendingBookings > 0 ? 'Needs Action' : 'All Clear',
+                        trend: pendingBookings > 0 ? 'down' as const : 'up' as const,
+                        icon: <ClockIcon style={{ width: '20px', height: '20px' }} />
+                    }
+                ];
+            } else {
+                return [
+                    {
+                        label: 'My Properties',
+                        value: properties.total,
+                        change: properties.active === properties.total ? 'All Active' : `${properties.active} Active`,
+                        trend: 'neutral' as const,
+                        icon: <HomeIcon style={{ width: '20px', height: '20px' }} />
+                    },
+                    {
+                        label: 'Total Bookings',
+                        value: bookingStats.total,
+                        change: `${confirmedBookings} Confirmed`,
+                        trend: 'up' as const,
+                        icon: <CalendarIcon style={{ width: '20px', height: '20px' }} />
+                    },
+                    {
+                        label: 'My Earnings',
+                        value: `AED ${revenue.total.toLocaleString()}`,
+                        change: '+10%', // TODO: Calculate actual trend
+                        trend: 'up' as const,
+                        icon: <span style={{ width: '20px', height: '20px', fontSize: '16px' }}>💰</span>
+                    },
+                    {
+                        label: 'Occupancy Rate',
+                        value: `${occupancy.rate}%`,
+                        change: '+5%', // TODO: Calculate actual trend
+                        trend: 'up' as const,
+                        icon: <span style={{ width: '20px', height: '20px', fontSize: '16px' }}>📈</span>
+                    },
+                    {
+                        label: 'Pending Requests',
+                        value: pendingBookings,
+                        change: pendingBookings > 0 ? 'Needs Action' : 'All Clear',
+                        trend: pendingBookings > 0 ? 'down' as const : 'up' as const,
+                        icon: <ClockIcon style={{ width: '20px', height: '20px' }} />
+                    },
+                    {
+                        label: 'Property Views',
+                        value: propertyViews,
+                        change: '+18%', // TODO: Calculate actual trend
+                        trend: 'up' as const,
+                        icon: <EyeOpenIcon style={{ width: '20px', height: '20px' }} />
+                    }
+                ];
+            }
+        }
+        
+        // Fall back to local data calculation
         const { villas: userVillas, bookings: userBookings } = filteredData;
         
         const totalProperties = userVillas.length;
@@ -164,10 +296,21 @@ const ReportsPage: React.FC = () => {
                 }
             ];
         }
-    }, [filteredData, user]);
+    }, [filteredData, user, reportStats]);
     
     // Generate chart data for bookings by status
     const bookingStatusData: ChartData[] = useMemo(() => {
+        // Use backend data if available
+        if (reportStats) {
+            const { byStatus } = reportStats.bookings;
+            return [
+                { label: 'Confirmed', value: byStatus.confirmed || 0, color: '#10B981' },
+                { label: 'Pending', value: byStatus.pending || 0, color: '#F59E0B' },
+                { label: 'Cancelled', value: byStatus.cancelled || 0, color: '#EF4444' }
+            ].filter(item => item.value > 0);
+        }
+        
+        // Fall back to local data
         const { bookings: userBookings } = filteredData;
         const confirmed = userBookings.filter(b => b.status === 'confirmed').length;
         const pending = userBookings.filter(b => b.status === 'pending').length;
@@ -178,10 +321,35 @@ const ReportsPage: React.FC = () => {
             { label: 'Pending', value: pending, color: '#F59E0B' },
             { label: 'Cancelled', value: cancelled, color: '#EF4444' }
         ].filter(item => item.value > 0);
-    }, [filteredData]);
+    }, [filteredData, reportStats]);
     
     // Generate chart data for properties by location (for admin) or booking trends (for homeowner)
     const secondaryChartData: ChartData[] = useMemo(() => {
+        // Use backend data if available
+        if (reportStats) {
+            if (user?.role === 'admin') {
+                // Properties by location from backend
+                const colors = ['#3B82F6', '#8B5CF6', '#EF4444', '#10B981', '#F59E0B'];
+                return reportStats.locations.map((item, index) => ({
+                    label: item.location,
+                    value: item.count,
+                    color: colors[index % colors.length]
+                }));
+            } else {
+                // Monthly bookings trend from backend
+                const { monthlyTrend } = reportStats.bookings;
+                const colors = ['#3B82F6', '#8B5CF6', '#EF4444', '#10B981', '#F59E0B', '#06B6D4'];
+                return Object.entries(monthlyTrend)
+                    .map(([month, count], index) => ({
+                        label: month,
+                        value: count,
+                        color: colors[index % colors.length]
+                    }))
+                    .slice(0, 6);
+            }
+        }
+        
+        // Fall back to local data
         const { villas: userVillas, bookings: userBookings } = filteredData;
         
         if (user?.role === 'admin') {
@@ -217,7 +385,7 @@ const ReportsPage: React.FC = () => {
                 }))
                 .slice(0, 6); // Last 6 months
         }
-    }, [filteredData, user]);
+    }, [filteredData, user, reportStats]);
     
     if (!user || user.role === 'tenant') {
         return (
@@ -339,7 +507,7 @@ const ReportsPage: React.FC = () => {
     
     const chartsGridStyle: React.CSSProperties = {
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(330px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
         gap: '24px',
         marginTop: '32px',
     };
@@ -393,6 +561,11 @@ const ReportsPage: React.FC = () => {
         }
         return 'Reports';
     };
+    
+    // Loading state with skeleton
+    if (loading) {
+        return <ReportsSkeleton />;
+    }
     
     return (
         <div style={containerStyle}>

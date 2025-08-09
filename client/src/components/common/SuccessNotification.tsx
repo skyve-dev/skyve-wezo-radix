@@ -33,7 +33,7 @@ const SuccessNotification: React.FC<SuccessNotificationProps> = ({
     position: 'fixed',
     top: '20px',
     right: '20px',
-    width: '360px',
+    width: '320px',
     maxWidth: '90vw',
     backgroundColor: 'white',
     borderRadius: '12px',

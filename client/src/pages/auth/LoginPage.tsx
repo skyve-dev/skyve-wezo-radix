@@ -208,6 +208,41 @@ const LoginPage: React.FC = () => {
           {error && <p style={errorStyle}>{error}</p>}
         </form>
         
+        <div style={{
+          marginTop: '24px',
+          paddingTop: '24px',
+          borderTop: '1px solid #e5e7eb',
+          textAlign: 'center',
+        }}>
+          <p style={{
+            fontSize: '14px',
+            color: '#6b7280',
+            marginBottom: '8px',
+          }}>
+            Don't have an account?
+          </p>
+          <motion.button
+            onClick={() => navigate('/register')}
+            style={{
+              fontSize: '14px',
+              fontWeight: '600',
+              color: colors.primary,
+              backgroundColor: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+              textDecoration: 'underline',
+              padding: '4px 8px',
+              borderRadius: '4px',
+            }}
+            whileHover={{ 
+              backgroundColor: colors.primaryLight,
+              textDecoration: 'none',
+            }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Register
+          </motion.button>
+        </div>
 
       </motion.div>
     </motion.div>

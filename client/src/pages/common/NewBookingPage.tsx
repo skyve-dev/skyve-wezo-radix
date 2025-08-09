@@ -399,7 +399,7 @@ const NewBookingPage: React.FC = () => {
         borderRadius: '16px',
         padding: '32px',
         width: 'calc(100vw - 40px)',
-        maxWidth: '330px',
+        maxWidth: '320px',
         maxHeight: 'calc(100vh - 40px)',
         textAlign: 'center',
         boxShadow: '0 25px 50px rgba(0,0,0,0.25)',

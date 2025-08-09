@@ -209,6 +209,19 @@ class ApiService {
       method: 'DELETE',
     });
   }
+
+  // Report endpoints
+  async getReportStats(queryString: string) {
+    return this.request(`/reports/stats?${queryString}`);
+  }
+
+  async getRevenueReport(queryString: string) {
+    return this.request(`/reports/revenue?${queryString}`);
+  }
+
+  async getPerformanceMetrics(queryString: string) {
+    return this.request(`/reports/performance?${queryString}`);
+  }
 }
 
 export const api = new ApiService();

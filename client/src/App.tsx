@@ -8,6 +8,7 @@ import {UserProvider} from './contexts/UserContext';
 import {AmenitiesProvider} from './contexts/AmenitiesContext';
 import {NotificationsProvider} from './contexts/NotificationsContext';
 import LoginPage from './pages/auth/LoginPage';
+import RegisterPage from './pages/auth/RegisterPage';
 import MainLayout from './components/layout/MainLayout';
 import HomePage from './pages/common/HomePage';
 import ListingsPage from './pages/common/ListingsPage';
@@ -104,6 +105,10 @@ const AppContent: React.FC = () => {
       <Route 
         path="/login" 
         element={isAuthenticated ? <Navigate to="/" /> : <LoginPage />} 
+      />
+      <Route 
+        path="/register" 
+        element={isAuthenticated ? <Navigate to="/" /> : <RegisterPage />} 
       />
       
       {/* Main Layout - accessible to all users (anonymous and authenticated) */}
