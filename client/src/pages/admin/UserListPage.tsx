@@ -97,9 +97,9 @@ const UserListPage: React.FC = () => {
 
   const statCardStyle: React.CSSProperties = {
     flex: '1',
-    minWidth: '150px',
-    padding: '16px',
-    backgroundColor: '#f9fafb',
+    minWidth: '50px',
+    padding: '8px',
+    backgroundColor: colors.gray200,
     borderRadius: '8px',
     textAlign: 'center',
   };
@@ -184,7 +184,7 @@ const UserListPage: React.FC = () => {
   };
 
   const roleBadgeStyle: React.CSSProperties = {
-    padding: '4px 12px',
+    padding: '4px 8px',
     fontSize: '12px',
     fontWeight: '500',
     borderRadius: '12px',

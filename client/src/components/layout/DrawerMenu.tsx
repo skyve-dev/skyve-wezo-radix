@@ -146,14 +146,6 @@ const DrawerMenu: React.FC<DrawerMenuProps> = ({isOpen, onClose}) => {
         if (user?.role === 'admin') {
             roleSpecificItems.push(
                 {
-                    label: 'User & Property Admin',
-                    icon: <PersonIcon/>,
-                    onClick: () => {
-                        navigate('/admin/management');
-                        onClose();
-                    },
-                },
-                {
                     label: 'App Configuration',
                     icon: <MixerHorizontalIcon/>,
                     onClick: () => {

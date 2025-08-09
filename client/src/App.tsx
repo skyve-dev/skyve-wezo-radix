@@ -6,6 +6,7 @@ import {BookingsProvider} from './contexts/BookingsContext';
 import {VillasProvider} from './contexts/VillasContext';
 import {UserProvider} from './contexts/UserContext';
 import {AmenitiesProvider} from './contexts/AmenitiesContext';
+import {NotificationsProvider} from './contexts/NotificationsContext';
 import LoginPage from './pages/auth/LoginPage';
 import MainLayout from './components/layout/MainLayout';
 import HomePage from './pages/common/HomePage';
@@ -218,11 +219,6 @@ const AppContent: React.FC = () => {
             <ReportsPage />
           </ProtectedRoute>
         } />
-        <Route path="admin/management" element={
-          <ProtectedRoute>
-            <PlaceholderPage title="User & Property Admin" />
-          </ProtectedRoute>
-        } />
         <Route path="admin/config" element={
           <ProtectedRoute>
             <PlaceholderPage title="App Configuration" />
@@ -256,9 +252,11 @@ const App: React.FC = () => {
         <UserProvider>
           <VillasProvider>
             <BookingsProvider>
-              <AmenitiesProvider>
-                <AppContent />
-              </AmenitiesProvider>
+              <NotificationsProvider>
+                <AmenitiesProvider>
+                  <AppContent />
+                </AmenitiesProvider>
+              </NotificationsProvider>
             </BookingsProvider>
           </VillasProvider>
         </UserProvider>

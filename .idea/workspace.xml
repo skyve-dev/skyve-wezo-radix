@@ -4,35 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55b53441-d67e-4899-8611-4e1fdaff75d6" name="Changes" comment="Add backend APIs, database schema, and seed data for villa booking system">
-      <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
+    <list default="true" id="55b53441-d67e-4899-8611-4e1fdaff75d6" name="Changes" comment="Remove mock villa data file (`data.ts`)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/common/FilterPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/common/FilterPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/inputs/NumericInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/inputs/NumericInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/contexts/AmenitiesContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/contexts/AmenitiesContext.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/contexts/AuthContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/contexts/AuthContext.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/contexts/BookingsContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/contexts/BookingsContext.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/contexts/UserContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/contexts/UserContext.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/contexts/VillasContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/contexts/VillasContext.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/data/data.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/admin/AdminDashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/admin/AdminDashboard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/common/BookingDetailPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/common/BookingDetailPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/common/BookingListPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/common/BookingListPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/common/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/common/HomePage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/common/NewBookingPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/common/NewBookingPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/common/VillaManagementPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/common/VillaManagementPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/homeowner/HomeownerDashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/homeowner/HomeownerDashboard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/client/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/layout/DrawerMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/DrawerMenu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/admin/UserListPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/admin/UserListPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/common/NotificationsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/common/NotificationsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/common/ProfilePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/common/ProfilePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/common/ReportsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/common/ReportsPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/prisma/dev.db" beforeDir="false" afterPath="$PROJECT_DIR$/server/prisma/dev.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/controllers/bookings.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/bookings.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/controllers/notifications.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/notifications.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/controllers/promotions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/promotions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/controllers/users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/users.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/controllers/villas.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/villas.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/types/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/utils/seed.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/utils/seed.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-integration.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,15 +136,7 @@
       <workItem from="1754319501348" duration="16311000" />
       <workItem from="1754394843249" duration="5267000" />
       <workItem from="1754485762184" duration="6145000" />
-      <workItem from="1754714250564" duration="9768000" />
-    </task>
-    <task id="LOCAL-00010" summary="Add custom pricing logic for villas, update BookingCalendar and VillaDetailsPage integration&#10;&#10;- Implement date-specific custom pricing with priority over standard pricing logic.&#10;- Refactor price calculation in VillaDetailsPage to use new custom pricing logic.&#10;- Enhance BookingCalendar to display custom pricing labels, tooltips, and styling.&#10;- Update mock data with diverse custom pricing scenarios and add `CustomPricing` type to types.">
-      <option name="closed" value="true" />
-      <created>1754146916638</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1754146916638</updated>
+      <workItem from="1754714250564" duration="12092000" />
     </task>
     <task id="LOCAL-00011" summary="Add property details section to VillaDetailsPage and enhance ListingsPage villa info display&#10;&#10;- Add property details (bedrooms, beds, bathrooms, max guests) with styled icons in VillaDetailsPage.&#10;- Update ListingsPage to display bedroom and bathroom data alongside max guest capacity.&#10;- Extend villa types and mock data with new attributes for bedrooms, beds, and bathrooms.">
       <option name="closed" value="true" />
@@ -549,7 +522,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754739940685</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Remove mock villa data file (`data.ts`)">
+      <option name="closed" value="true" />
+      <created>1754743480984</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1754743480984</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -561,8 +542,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Enhance FilterPanel with Radix Select for location and integrate AmenitiesContext&#10;&#10;- Replace custom location input with `@radix-ui/react-select`, incorporating predefined locations and custom input functionality.&#10;- Leverage `AmenitiesContext` for dynamic amenity handling, removing redundant amenity logic.&#10;- Add state management for the location dropdown and reset location on filters clear.&#10;- Update BookingListPage image and layout styles for improved visual consistency." />
-    <MESSAGE value="Add cancel button to LoginPage and integrate date selection with calendar in NewBookingPage&#10;&#10;- Introduce `Cancel` button on LoginPage with navigation logic to redirect users to the previous page or home.&#10;- Enhance NewBookingPage with a `BookingCalendar` component for date selection, including unavailable dates handling.&#10;- Add dynamic calendar visibility based on date pre-selection in NewBookingPage.&#10;- Refactor NewBookingPage to improve state management for check-in and check-out dates." />
     <MESSAGE value="Add BookingDetailPage and BookingListPage for enhanced booking management&#10;&#10;- Introduce `BookingDetailPage` with comprehensive booking and villa detail display, dynamic styles, and user-specific actions.&#10;- Add `BookingListPage` with role-based booking filtering, improved layout, and empty state handling.&#10;- Include responsive styling for both pages to enhance usability across devices." />
     <MESSAGE value="Remove `BookingDetailPage` and `BookingListPage` for tenant; migrate booking management features to `common` components&#10;&#10;- Deleted `BookingDetailPage` and `BookingListPage` from tenant-specific directory due to consolidation.&#10;- Centralized booking management logic into `BookingListPage` under `common` with role-based filtering and enhanced structure.&#10;- Improved maintainability by reducing duplication and ensuring unified booking management across user roles." />
     <MESSAGE value="Remove `BookingDetailPage` and `BookingListPage` from tenant directory&#10;&#10;- Deleted `BookingDetailPage.tsx` and `BookingListPage.tsx` to consolidate pages into a shared structure.&#10;- Updated related logic to ensure `BookingListPage.tsx` under `common` directory supports role-based booking filtering." />
@@ -586,6 +565,8 @@
     <MESSAGE value="Add IntelliJ IDEA project configuration file (`workspace.xml`) to repository" />
     <MESSAGE value="Add `CLAUDE.md` with guidelines for development and project setup" />
     <MESSAGE value="Add backend APIs, database schema, and seed data for villa booking system" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add backend APIs, database schema, and seed data for villa booking system" />
+    <MESSAGE value="Remove `data.ts` containing mock villa data to clean up unused files" />
+    <MESSAGE value="Remove mock villa data file (`data.ts`)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove mock villa data file (`data.ts`)" />
   </component>
 </project>

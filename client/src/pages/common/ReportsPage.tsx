@@ -339,7 +339,7 @@ const ReportsPage: React.FC = () => {
     
     const chartsGridStyle: React.CSSProperties = {
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(330px, 1fr))',
         gap: '24px',
         marginTop: '32px',
     };

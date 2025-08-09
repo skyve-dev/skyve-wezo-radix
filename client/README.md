@@ -81,7 +81,6 @@ A mobile-first, single-page application prototype for a rental property platform
 - Villa Management
 
 **Administrator:**
-- User & Property Admin
 - App Configuration
 
 ## Getting Started

@@ -1,72 +1,25 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { colors } from '../../utils/colors';
 import { shadows, borderRadius } from '../../utils/design';
-import { BellIcon, CheckIcon, Cross2Icon } from '@radix-ui/react-icons';
-
-interface Notification {
-    id: string;
-    type: 'booking' | 'payment' | 'system' | 'promotional';
-    title: string;
-    message: string;
-    timestamp: Date;
-    isRead: boolean;
-    priority: 'low' | 'medium' | 'high';
-}
+import { BellIcon, CheckIcon, Cross2Icon, ReloadIcon } from '@radix-ui/react-icons';
+import { useNotifications } from '../../contexts/NotificationsContext';
 
 const NotificationsPage: React.FC = () => {
-    
-    // Mock notifications data based on user role
-    const [notifications, setNotifications] = useState<Notification[]>([
-        {
-            id: '1',
-            type: 'booking',
-            title: 'Booking Confirmed',
-            message: 'Your booking for Villa Paradise has been confirmed for Dec 25-30, 2024.',
-            timestamp: new Date('2024-12-20T10:00:00'),
-            isRead: false,
-            priority: 'high'
-        },
-        {
-            id: '2',
-            type: 'payment',
-            title: 'Payment Received',
-            message: 'Payment of AED 3,500 has been processed successfully.',
-            timestamp: new Date('2024-12-19T14:30:00'),
-            isRead: true,
-            priority: 'medium'
-        },
-        {
-            id: '3',
-            type: 'system',
-            title: 'Profile Updated',
-            message: 'Your profile information has been successfully updated.',
-            timestamp: new Date('2024-12-18T09:15:00'),
-            isRead: true,
-            priority: 'low'
-        },
-        {
-            id: '4',
-            type: 'promotional',
-            title: 'Special Offer Available',
-            message: '20% off on weekend bookings! Valid until Dec 31, 2024.',
-            timestamp: new Date('2024-12-17T16:45:00'),
-            isRead: false,
-            priority: 'medium'
-        },
-        {
-            id: '5',
-            type: 'booking',
-            title: 'Check-in Reminder',
-            message: 'Your check-in is tomorrow at Villa Sunset. Don\'t forget to bring your ID.',
-            timestamp: new Date('2024-12-16T18:00:00'),
-            isRead: false,
-            priority: 'high'
-        }
-    ]);
+    const { 
+        notifications, 
+        loading, 
+        error, 
+        unreadCount,
+        markAsRead, 
+        deleteNotification, 
+        markAllAsRead,
+        refreshNotifications
+    } = useNotifications();
     
     const [filter, setFilter] = useState<'all' | 'unread' | 'booking' | 'payment' | 'system'>('all');
     
-    const getNotificationIcon = (type: Notification['type']) => {
+    const getNotificationIcon = (type: string) => {
         switch (type) {
             case 'booking':
                 return '🏠';
@@ -74,46 +27,54 @@ const NotificationsPage: React.FC = () => {
                 return '💳';
             case 'system':
                 return '⚙️';
-            case 'promotional':
-                return '🎉';
+            case 'message':
+                return '💬';
             default:
                 return '📢';
         }
     };
     
-    const getPriorityColor = (priority: Notification['priority']) => {
-        switch (priority) {
-            case 'high':
-                return '#EF4444';
-            case 'medium':
-                return '#F59E0B';
-            case 'low':
-                return '#10B981';
-            default:
-                return '#6B7280';
+    
+    const handleMarkAsRead = async (id: string) => {
+        try {
+            await markAsRead(id);
+        } catch (error) {
+            console.error('Failed to mark notification as read:', error);
         }
     };
     
-    const markAsRead = (id: string) => {
-        setNotifications(prev => 
-            prev.map(notification => 
-                notification.id === id 
-                    ? { ...notification, isRead: true }
-                    : notification
-            )
-        );
+    const handleDelete = async (id: string) => {
+        try {
+            await deleteNotification(id);
+        } catch (error) {
+            console.error('Failed to delete notification:', error);
+        }
+    };
+
+    const handleMarkAllAsRead = async () => {
+        try {
+            await markAllAsRead();
+        } catch (error) {
+            console.error('Failed to mark all as read:', error);
+        }
+    };
+
+    const handleRefresh = async () => {
+        try {
+            await refreshNotifications();
+        } catch (error) {
+            console.error('Failed to refresh notifications:', error);
+        }
     };
     
-    const markAllAsRead = () => {
-        setNotifications(prev => 
-            prev.map(notification => ({ ...notification, isRead: true }))
-        );
-    };
-    
-    const deleteNotification = (id: string) => {
-        setNotifications(prev => 
-            prev.filter(notification => notification.id !== id)
-        );
+    const formatDate = (date: Date | string): string => {
+        const dateObj = date instanceof Date ? date : new Date(date);
+        return dateObj.toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
     };
     
     const filteredNotifications = notifications.filter(notification => {
@@ -128,297 +89,310 @@ const NotificationsPage: React.FC = () => {
                 return true;
         }
     });
-    
-    const unreadCount = notifications.filter(n => !n.isRead).length;
-    
+
+    // Styles
     const containerStyle: React.CSSProperties = {
-        padding: '24px',
+        padding: '20px',
         maxWidth: '800px',
         margin: '0 auto',
+        backgroundColor: '#fafafa',
+        minHeight: '100vh',
     };
-    
+
     const headerStyle: React.CSSProperties = {
-        marginBottom: '32px',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
+        marginBottom: '20px',
         flexWrap: 'wrap',
-        gap: '16px',
+        gap: '10px',
     };
-    
+
     const titleStyle: React.CSSProperties = {
-        fontSize: '28px',
-        fontWeight: 'bold',
-        color: '#1a1a1a',
+        fontSize: '24px',
+        fontWeight: '600',
+        color: '#1f2937',
+        margin: '0',
         display: 'flex',
         alignItems: 'center',
-        gap: '12px',
+        gap: '10px',
     };
-    
-    const filterStyle: React.CSSProperties = {
-        display: 'flex',
-        gap: '8px',
-        flexWrap: 'wrap',
-    };
-    
-    const filterButtonStyle: React.CSSProperties = {
-        padding: '8px 16px',
-        backgroundColor: '#f3f4f6',
-        color: '#374151',
-        border: 'none',
-        borderRadius: '8px',
-        fontSize: '14px',
-        fontWeight: '500',
-        cursor: 'pointer',
-        transition: 'background-color 0.2s',
-    };
-    
-    const activeFilterStyle: React.CSSProperties = {
-        ...filterButtonStyle,
+
+    const badgeStyle: React.CSSProperties = {
         backgroundColor: colors.primary,
         color: 'white',
+        borderRadius: '50%',
+        width: '20px',
+        height: '20px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: '12px',
+        fontWeight: '600',
     };
-    
-    const notificationStyle: React.CSSProperties = {
-        backgroundColor: 'white',
-        borderRadius: borderRadius.lg,
-        padding: '20px',
-        marginBottom: '16px',
-        boxShadow: shadows.sm,
-        transition: 'box-shadow 0.2s',
-        position: 'relative',
-        border: '1px solid #f3f4f6',
+
+    const actionsStyle: React.CSSProperties = {
+        display: 'flex',
+        gap: '10px',
+        alignItems: 'center',
     };
-    
-    const unreadNotificationStyle: React.CSSProperties = {
-        ...notificationStyle,
+
+    const refreshButtonStyle: React.CSSProperties = {
+        padding: '8px 16px',
+        backgroundColor: colors.primary,
+        color: 'white',
+        border: 'none',
+        borderRadius: borderRadius.md,
+        cursor: 'pointer',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '5px',
+        fontSize: '14px',
+        fontWeight: '500',
+    };
+
+    const markAllButtonStyle: React.CSSProperties = {
+        padding: '8px 16px',
+        backgroundColor: 'transparent',
+        color: colors.primary,
         border: `1px solid ${colors.primary}`,
-        backgroundColor: '#fef7f0',
+        borderRadius: borderRadius.md,
+        cursor: 'pointer',
+        fontSize: '14px',
+        fontWeight: '500',
     };
-    
+
+    const filterContainerStyle: React.CSSProperties = {
+        display: 'flex',
+        gap: '10px',
+        marginBottom: '20px',
+        flexWrap: 'wrap',
+    };
+
+    const filterButtonStyle = (isActive: boolean): React.CSSProperties => ({
+        padding: '8px 16px',
+        border: `1px solid ${isActive ? colors.primary : '#e5e7eb'}`,
+        backgroundColor: isActive ? colors.primary : 'white',
+        color: isActive ? 'white' : '#6b7280',
+        borderRadius: borderRadius.md,
+        cursor: 'pointer',
+        fontSize: '14px',
+        fontWeight: '500',
+        transition: 'all 0.2s',
+    });
+
+    const notificationItemStyle = (isRead: boolean): React.CSSProperties => ({
+        backgroundColor: isRead ? '#f9fafb' : 'white',
+        borderRadius: borderRadius.lg,
+        padding: '16px',
+        marginBottom: '12px',
+        boxShadow: shadows.sm,
+        border: `1px solid ${isRead ? '#e5e7eb' : colors.primary}`,
+        position: 'relative',
+        transition: 'all 0.2s',
+    });
+
     const notificationHeaderStyle: React.CSSProperties = {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
-        marginBottom: '12px',
+        marginBottom: '8px',
     };
-    
-    const notificationTitleStyle: React.CSSProperties = {
+
+    const iconAndTitleStyle: React.CSSProperties = {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '10px',
+        flex: 1,
+    };
+
+    const titleNotificationStyle: React.CSSProperties = {
         fontSize: '16px',
         fontWeight: '600',
-        color: '#1a1a1a',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '8px',
-        marginBottom: '4px',
+        color: '#1f2937',
+        margin: '0',
     };
-    
-    const notificationMessageStyle: React.CSSProperties = {
-        fontSize: '14px',
-        color: '#4b5563',
-        lineHeight: '1.5',
-        marginBottom: '12px',
-    };
-    
-    const notificationFooterStyle: React.CSSProperties = {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
+
+    const timestampStyle: React.CSSProperties = {
         fontSize: '12px',
         color: '#9ca3af',
+        whiteSpace: 'nowrap',
     };
-    
+
+    const messageStyle: React.CSSProperties = {
+        fontSize: '14px',
+        color: '#4b5563',
+        lineHeight: '1.4',
+        marginBottom: '12px',
+    };
+
+    const notificationActionsStyle: React.CSSProperties = {
+        display: 'flex',
+        gap: '8px',
+        justifyContent: 'flex-end',
+    };
+
     const actionButtonStyle: React.CSSProperties = {
-        background: 'none',
-        border: 'none',
+        padding: '6px 12px',
+        border: '1px solid #e5e7eb',
+        backgroundColor: 'white',
+        color: '#6b7280',
+        borderRadius: borderRadius.sm,
         cursor: 'pointer',
-        padding: '4px',
+        fontSize: '12px',
         display: 'flex',
         alignItems: 'center',
+        gap: '4px',
+        transition: 'all 0.2s',
+    };
+
+    const loadingStyle: React.CSSProperties = {
+        display: 'flex',
         justifyContent: 'center',
-        borderRadius: '4px',
-        transition: 'background-color 0.2s',
+        alignItems: 'center',
+        height: '200px',
+        fontSize: '16px',
+        color: '#6b7280',
     };
-    
-    const markAsReadButtonStyle: React.CSSProperties = {
-        padding: '12px 24px',
-        backgroundColor: colors.primary,
-        color: 'white',
-        border: 'none',
-        borderRadius: '8px',
-        fontSize: '14px',
-        fontWeight: '500',
-        cursor: 'pointer',
-        transition: 'background-color 0.2s',
+
+    const errorStyle: React.CSSProperties = {
+        backgroundColor: '#FEE2E2',
+        color: '#DC2626',
+        padding: '16px',
+        borderRadius: borderRadius.md,
+        marginBottom: '20px',
+        textAlign: 'center',
     };
-    
+
+    const emptyStateStyle: React.CSSProperties = {
+        textAlign: 'center',
+        padding: '60px 20px',
+        color: '#9ca3af',
+    };
+
+    if (loading) {
+        return (
+            <div style={containerStyle}>
+                <div style={loadingStyle}>
+                    <ReloadIcon className="animate-spin" style={{ marginRight: '8px' }} />
+                    Loading notifications...
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div style={containerStyle}>
+            {error && (
+                <div style={errorStyle}>
+                    {error}
+                </div>
+            )}
+            
             <div style={headerStyle}>
-                <div>
-                    <h1 style={titleStyle}>
-                        <BellIcon style={{ width: '28px', height: '28px' }} />
-                        Notifications
-                        {unreadCount > 0 && (
-                            <span style={{
-                                backgroundColor: '#EF4444',
-                                color: 'white',
-                                borderRadius: '50%',
-                                width: '24px',
-                                height: '24px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                fontSize: '12px',
-                                fontWeight: 'bold',
-                            }}>
-                                {unreadCount}
-                            </span>
-                        )}
-                    </h1>
-                    <p style={{ fontSize: '14px', color: '#6b7280', margin: 0 }}>
-                        Stay updated with your latest activities
+                <h1 style={titleStyle}>
+                    <BellIcon width={24} height={24} />
+                    Notifications
+                    {unreadCount > 0 && (
+                        <span style={badgeStyle}>
+                            {unreadCount > 99 ? '99+' : unreadCount}
+                        </span>
+                    )}
+                </h1>
+                
+                <div style={actionsStyle}>
+                    <button 
+                        style={refreshButtonStyle}
+                        onClick={handleRefresh}
+                        disabled={loading}
+                    >
+                        <ReloadIcon width={14} height={14} />
+                        Refresh
+                    </button>
+                    {unreadCount > 0 && (
+                        <button 
+                            style={markAllButtonStyle}
+                            onClick={handleMarkAllAsRead}
+                        >
+                            Mark All Read
+                        </button>
+                    )}
+                </div>
+            </div>
+
+            <div style={filterContainerStyle}>
+                {['all', 'unread', 'booking', 'payment', 'system'].map(filterOption => (
+                    <button
+                        key={filterOption}
+                        style={filterButtonStyle(filter === filterOption)}
+                        onClick={() => setFilter(filterOption as any)}
+                    >
+                        {filterOption.charAt(0).toUpperCase() + filterOption.slice(1)}
+                        {filterOption === 'unread' && unreadCount > 0 && ` (${unreadCount})`}
+                    </button>
+                ))}
+            </div>
+
+            {filteredNotifications.length === 0 ? (
+                <div style={emptyStateStyle}>
+                    <BellIcon width={48} height={48} style={{ marginBottom: '16px', opacity: 0.3 }} />
+                    <h3>No notifications found</h3>
+                    <p>
+                        {filter === 'all' 
+                            ? 'You have no notifications at the moment.'
+                            : `No ${filter} notifications found.`
+                        }
                     </p>
                 </div>
-                
-                {unreadCount > 0 && (
-                    <button
-                        style={markAsReadButtonStyle}
-                        onClick={markAllAsRead}
-                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = colors.primaryHover}
-                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = colors.primary}
+            ) : (
+                filteredNotifications.map((notification) => (
+                    <motion.div
+                        key={notification.id}
+                        style={notificationItemStyle(notification.isRead)}
+                        whileHover={{ scale: 1.01 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, x: -100 }}
                     >
-                        Mark All as Read
-                    </button>
-                )}
-            </div>
-            
-            <div style={filterStyle}>
-                <button
-                    style={filter === 'all' ? activeFilterStyle : filterButtonStyle}
-                    onClick={() => setFilter('all')}
-                >
-                    All ({notifications.length})
-                </button>
-                <button
-                    style={filter === 'unread' ? activeFilterStyle : filterButtonStyle}
-                    onClick={() => setFilter('unread')}
-                >
-                    Unread ({unreadCount})
-                </button>
-                <button
-                    style={filter === 'booking' ? activeFilterStyle : filterButtonStyle}
-                    onClick={() => setFilter('booking')}
-                >
-                    Bookings
-                </button>
-                <button
-                    style={filter === 'payment' ? activeFilterStyle : filterButtonStyle}
-                    onClick={() => setFilter('payment')}
-                >
-                    Payments
-                </button>
-                <button
-                    style={filter === 'system' ? activeFilterStyle : filterButtonStyle}
-                    onClick={() => setFilter('system')}
-                >
-                    System
-                </button>
-            </div>
-            
-            <div style={{ marginTop: '24px' }}>
-                {filteredNotifications.length === 0 ? (
-                    <div style={{
-                        textAlign: 'center',
-                        padding: '40px',
-                        color: '#6b7280',
-                        backgroundColor: 'white',
-                        borderRadius: borderRadius.lg,
-                        boxShadow: shadows.sm,
-                    }}>
-                        <BellIcon style={{ width: '48px', height: '48px', margin: '0 auto 16px', opacity: 0.5 }} />
-                        <h3 style={{ fontSize: '18px', marginBottom: '8px' }}>No notifications found</h3>
-                        <p style={{ fontSize: '14px', margin: 0 }}>
-                            {filter === 'all' 
-                                ? 'You\'re all caught up!' 
-                                : `No ${filter} notifications at the moment.`
-                            }
-                        </p>
-                    </div>
-                ) : (
-                    filteredNotifications.map((notification) => (
-                        <div
-                            key={notification.id}
-                            style={notification.isRead ? notificationStyle : unreadNotificationStyle}
-                            onMouseEnter={(e) => {
-                                e.currentTarget.style.boxShadow = shadows.md;
-                            }}
-                            onMouseLeave={(e) => {
-                                e.currentTarget.style.boxShadow = shadows.sm;
-                            }}
-                        >
-                            <div style={notificationHeaderStyle}>
-                                <div style={{ flex: 1 }}>
-                                    <div style={notificationTitleStyle}>
-                                        <span style={{ fontSize: '18px' }}>
-                                            {getNotificationIcon(notification.type)}
-                                        </span>
-                                        {notification.title}
-                                        <div style={{
-                                            width: '8px',
-                                            height: '8px',
-                                            borderRadius: '50%',
-                                            backgroundColor: getPriorityColor(notification.priority),
-                                        }} />
-                                    </div>
-                                    <div style={notificationMessageStyle}>
-                                        {notification.message}
-                                    </div>
-                                </div>
-                                
-                                <div style={{ display: 'flex', gap: '4px' }}>
-                                    {!notification.isRead && (
-                                        <button
-                                            style={actionButtonStyle}
-                                            onClick={() => markAsRead(notification.id)}
-                                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f3f4f6'}
-                                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
-                                            title="Mark as read"
-                                        >
-                                            <CheckIcon style={{ width: '16px', height: '16px', color: colors.primary }} />
-                                        </button>
-                                    )}
-                                    <button
-                                        style={actionButtonStyle}
-                                        onClick={() => deleteNotification(notification.id)}
-                                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#fef2f2'}
-                                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
-                                        title="Delete notification"
-                                    >
-                                        <Cross2Icon style={{ width: '16px', height: '16px', color: '#EF4444' }} />
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <div style={notificationFooterStyle}>
-                                <span>
-                                    {notification.timestamp.toLocaleDateString()} at {notification.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                        <div style={notificationHeaderStyle}>
+                            <div style={iconAndTitleStyle}>
+                                <span style={{ fontSize: '20px' }}>
+                                    {getNotificationIcon(notification.type)}
                                 </span>
-                                <span style={{
-                                    padding: '2px 8px',
-                                    backgroundColor: '#f3f4f6',
-                                    borderRadius: '4px',
-                                    fontSize: '11px',
-                                    textTransform: 'uppercase',
-                                    fontWeight: '500',
-                                }}>
-                                    {notification.type}
-                                </span>
+                                <h3 style={titleNotificationStyle}>
+                                    {notification.title}
+                                </h3>
                             </div>
+                            <span style={timestampStyle}>
+                                {formatDate(notification.timestamp)}
+                            </span>
                         </div>
-                    ))
-                )}
-            </div>
+
+                        <p style={messageStyle}>
+                            {notification.message}
+                        </p>
+
+                        <div style={notificationActionsStyle}>
+                            {!notification.isRead && (
+                                <button
+                                    style={actionButtonStyle}
+                                    onClick={() => handleMarkAsRead(notification.id)}
+                                >
+                                    <CheckIcon width={12} height={12} />
+                                    Mark as Read
+                                </button>
+                            )}
+                            <button
+                                style={actionButtonStyle}
+                                onClick={() => handleDelete(notification.id)}
+                            >
+                                <Cross2Icon width={12} height={12} />
+                                Delete
+                            </button>
+                        </div>
+                    </motion.div>
+                ))
+            )}
         </div>
     );
 };
