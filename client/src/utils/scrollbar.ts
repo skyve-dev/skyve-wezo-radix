@@ -1,6 +1,6 @@
 // Utility to enhance scrollbar visibility during scroll events
 export const initializeScrollbarBehavior = () => {
-  let scrollTimeout: number;
+  let scrollTimeout: ReturnType<typeof setTimeout>;
   
   const handleScroll = (element: Element) => {
     // Add scrolling class to show scrollbar

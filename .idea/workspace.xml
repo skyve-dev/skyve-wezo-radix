@@ -1,0 +1,1207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="55b53441-d67e-4899-8611-4e1fdaff75d6" name="Changes" comment="Move mock data from `mockData.ts` to `data.ts` for better organization">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CLAUDE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eslint.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-1/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-1/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-1/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-1/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-1/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-1/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-1/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-1/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-1/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-1/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-1/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-1/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-1/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-10/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-10/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-10/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-10/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-10/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-10/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-10/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-10/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-10/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-10/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-10/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-10/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-11/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-11/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-11/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-11/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-11/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-11/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-11/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-11/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-11/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-11/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-11/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-11/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-11/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-13/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-13/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-13/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-13/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-13/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-13/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-13/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-13/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-13/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-13/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-13/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-13/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-14/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-14/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-14/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-14/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-14/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-14/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-14/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-14/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-14/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-14/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-14/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-14/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-14/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-16/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-16/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-16/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-16/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-16/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-16/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-16/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-16/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-16/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-16/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-16/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-16/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-16/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-17/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-17/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-17/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-17/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-17/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-17/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-17/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-17/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-17/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-17/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-17/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-17/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-17/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-19/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-19/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-19/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-19/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-19/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-19/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-19/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-19/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-19/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-19/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-19/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-19/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-19/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-2/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-2/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-2/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-2/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-2/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-2/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-2/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-2/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-2/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-2/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-2/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-2/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-2/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-21/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-21/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-21/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-21/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-21/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-21/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-21/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-21/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-21/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-21/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-21/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-21/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-21/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-22/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-22/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-22/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-22/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-22/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-22/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-22/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-22/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-22/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-22/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-22/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-22/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-22/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-25/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-25/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-25/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-25/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-25/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-25/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-25/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-25/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-25/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-25/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-25/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-25/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-25/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-26/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-26/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-26/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-26/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-26/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-26/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-26/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-26/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-26/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-26/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-26/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-26/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-26/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-27/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-27/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-27/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-27/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-27/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-27/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-27/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-27/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-27/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-27/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-27/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-27/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-27/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-28/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-28/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-28/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-28/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-28/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-28/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-28/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-28/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-28/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-28/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-28/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-28/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-28/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-29/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-29/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-29/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-29/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-29/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-29/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-29/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-29/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-29/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-29/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-29/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-29/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-29/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-30/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-30/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-30/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-30/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-30/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-30/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-30/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-30/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-30/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-30/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-30/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-31/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-31/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-31/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-31/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-31/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-31/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-31/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-31/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-31/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-31/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-31/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-31/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-31/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-35/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-35/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-35/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-35/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-35/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-35/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-35/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-35/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-35/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-35/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-35/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-35/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-35/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-38/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-38/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-38/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-38/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-38/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-38/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-38/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-38/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-38/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-38/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-38/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-38/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-38/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-39/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-39/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-39/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-39/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-39/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-39/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-39/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-39/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-39/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-39/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-39/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-39/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-39/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-4/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-4/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-4/11.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-4/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-4/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-4/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-4/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-4/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-4/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-4/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-4/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-4/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-4/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-4/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-40/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-40/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-40/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-40/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-40/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-40/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-40/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-40/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-40/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-40/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-40/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-40/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-40/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-41/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-41/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-41/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-41/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-41/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-41/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-41/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-41/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-41/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-41/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-41/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-41/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-41/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-42/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-42/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-42/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-42/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-42/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-42/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-42/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-42/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-42/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-42/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-42/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-43/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-43/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-43/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-43/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-43/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-43/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-43/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-43/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-43/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-43/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-43/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-43/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-43/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-44/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-44/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-44/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-44/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-44/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-44/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-44/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-44/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-44/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-44/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-44/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-44/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-44/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-45/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-45/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-45/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-45/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-45/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-45/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-45/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-45/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-45/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-45/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-45/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-45/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-45/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-46/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-46/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-46/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-46/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-46/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-46/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-46/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-46/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-46/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-46/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-46/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-46/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-46/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-48/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-48/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-48/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-48/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-48/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-48/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-48/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-48/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-48/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-48/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-48/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-48/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-49/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-49/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-49/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-49/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-49/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-49/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-49/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-49/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-49/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-49/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-49/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-49/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-49/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-5/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-5/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-5/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-5/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-5/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-5/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-5/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-5/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-5/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-5/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-5/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-5/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-5/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-50/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-50/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-50/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-50/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-50/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-50/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-50/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-50/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-50/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-50/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-50/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-50/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-50/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-51/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-51/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-51/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-51/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-51/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-51/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-51/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-51/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-51/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-51/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-51/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-51/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-51/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-52/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-52/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-52/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-52/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-52/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-52/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-52/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-52/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-52/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-52/gram-grabberz-73926301.mp-4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-52/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-53/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-53/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-53/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-53/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-53/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-53/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-53/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-53/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-53/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-53/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-53/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-53/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-53/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-55/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-55/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-55/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-55/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-55/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-55/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-55/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-55/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-55/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-55/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-55/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-55/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-55/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-56/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-56/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-56/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-56/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-56/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-56/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-56/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-56/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-56/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-56/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-56/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-56/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-56/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-57/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-57/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-57/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-57/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-57/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-57/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-57/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-57/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-57/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-57/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-57/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-57/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-57/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-58/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-58/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-58/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-58/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-58/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-58/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-58/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-58/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-58/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-58/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-58/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-58/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-58/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-59/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-59/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-59/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-59/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-59/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-59/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-59/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-59/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-59/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-59/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-59/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-59/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-59/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-6/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-6/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-6/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-6/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-6/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-6/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-6/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-6/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-6/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-6/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-6/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-6/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-6/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-60/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-60/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-60/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-60/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-60/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-60/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-60/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-60/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-60/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-60/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-60/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-60/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-60/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-62/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-62/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-62/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-62/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-62/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-62/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-62/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-62/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-62/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-62/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-62/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-62/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-62/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-63/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-63/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-63/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-63/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-63/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-63/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-63/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-63/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-63/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-63/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-63/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-63/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-63/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-7/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-7/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-7/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-7/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-7/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-7/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-7/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-7/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-7/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-7/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-7/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-7/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-7/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-8/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-8/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-8/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-8/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-8/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-8/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-8/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-8/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-8/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-8/cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-8/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/villas/villa-8/video.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/AssetImage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/BookingCalendar.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/CustomScrollArea.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/FilterPanel.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/ScrollToTop.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/SearchBar.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/VillaImageGallery.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/inputs/NumericInput.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/BottomTabNavigation.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/DrawerMenu.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/MainLayout.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/TopNavigation.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/wezo-logo-40.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/wezo-logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contexts/AmenitiesContext.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contexts/AuthContext.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contexts/BookingsContext.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contexts/UserContext.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contexts/VillasContext.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/data.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/useScrollDirection.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/useScrollbarWidth.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/AdminDashboard.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/UserListPage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/auth/LoginPage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/common/BookingDetailPage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/common/BookingListPage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/common/HelpSupportPage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/common/HomePage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/common/ListingsPage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/common/NewBookingPage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/common/NotificationsPage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/common/ProfilePage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/common/ReportsPage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/common/SettingsPage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/common/VillaDetailsPage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/common/VillaManagementListPage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/common/VillaManagementPage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/homeowner/HomeownerDashboard.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/tenant/TenantDashboard.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/layout.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/scrollbar.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/filters.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/basePath.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/colors.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/design.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/filterUtils.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/responsive.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/scrollbar.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/unused.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vite-env.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.node.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vite.config.ts" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+        <option value="JavaScript File" />
+        <option value="TypeScript JSX File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="690814e1-0620-4ce4-bcf2-81c4f02954be" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="30iNETUmWhiH68LBS7SJUCeZUO0" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Node.js.cleanJson.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;sqlite-typeorm&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/arif/WebstormProjects/skyve-wezo-radix/src/components/layout&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\arif\\WebstormProjects\\skyve-wezo-radix\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\arif\WebstormProjects\skyve-wezo-radix\src\components\layout" />
+      <recent name="C:\Users\arif\WebstormProjects\skyve-wezo-radix\public\assets" />
+      <recent name="C:\Users\arif\WebstormProjects\skyve-wezo-radix\public" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\arif\WebstormProjects\skyve-wezo-radix\src\components\layout" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="cleanJson.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/data/cleanJson.js" working-dir="$PROJECT_DIR$/src/data">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.cleanJson.js" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-WS-251.25410.117" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="55b53441-d67e-4899-8611-4e1fdaff75d6" name="Changes" comment="" />
+      <created>1754106321720</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1754106321720</updated>
+      <workItem from="1754106322890" duration="5087000" />
+      <workItem from="1754112365928" duration="24185000" />
+      <workItem from="1754163270367" duration="47186000" />
+      <workItem from="1754319501348" duration="16311000" />
+      <workItem from="1754394843249" duration="5267000" />
+      <workItem from="1754485762184" duration="6145000" />
+      <workItem from="1754714250564" duration="3297000" />
+    </task>
+    <task id="LOCAL-00007" summary="Add BookingCalendar component and integrate date range selection in VillaDetailsPage&#10;&#10;- Create `BookingCalendar` with month, year, and decade views to select date ranges.&#10;- Integrate calendar in `VillaDetailsPage` with dynamic booking summary.&#10;- Calculate and display total booking price and average price per night based on selected dates.&#10;- Modify &quot;Book Now&quot; button flow to validate date selection before proceeding.">
+      <option name="closed" value="true" />
+      <created>1754121450099</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1754121450099</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Make `BookingCalendar` styles responsive for smaller screen sizes&#10;&#10;- Adjust various style properties (padding, font size, grid spacing, etc.) in `BookingCalendar` to adapt based on screen width.&#10;- Remove unused `marginRight` property from button styles in `VillaDetailsPage`.">
+      <option name="closed" value="true" />
+      <created>1754122133029</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1754122133029</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Replace default Vite assets with custom branding and update MainLayout styles&#10;&#10;- Remove Vite and React SVGs; add custom favicon and header logo for &quot;Wezo.ae.&quot;&#10;- Update `index.html` to use the new favicon and change the page title to &quot;Wezo.ae.&quot;&#10;- Adjust MainLayout styles: replace placeholder text with logo SVG, use new color palette for header and logo. &#10;- Clean up unused imports and redundant code in MainLayout component.">
+      <option name="closed" value="true" />
+      <created>1754123120051</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1754123120051</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Add custom pricing logic for villas, update BookingCalendar and VillaDetailsPage integration&#10;&#10;- Implement date-specific custom pricing with priority over standard pricing logic.&#10;- Refactor price calculation in VillaDetailsPage to use new custom pricing logic.&#10;- Enhance BookingCalendar to display custom pricing labels, tooltips, and styling.&#10;- Update mock data with diverse custom pricing scenarios and add `CustomPricing` type to types.">
+      <option name="closed" value="true" />
+      <created>1754146916638</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1754146916638</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Add property details section to VillaDetailsPage and enhance ListingsPage villa info display&#10;&#10;- Add property details (bedrooms, beds, bathrooms, max guests) with styled icons in VillaDetailsPage.&#10;- Update ListingsPage to display bedroom and bathroom data alongside max guest capacity.&#10;- Extend villa types and mock data with new attributes for bedrooms, beds, and bathrooms.">
+      <option name="closed" value="true" />
+      <created>1754147488017</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1754147488017</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Add house rules section to VillaDetailsPage and update villa types and mock data  &#10;&#10;- Add styled house rules section with icons in `VillaDetailsPage`.  &#10;- Extend `Villa` type to include `HouseRules` and implement types for individual rules.  &#10;- Update mock data to specify house rules for all villas.  &#10;- Ensure responsive design for house rules grid and card layout.">
+      <option name="closed" value="true" />
+      <created>1754149297153</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1754149297153</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Refactor `amenities` structure across villa pages and enhance display logic&#10;&#10;- Replace flat `amenities` array with categorized `VillaAmenities` structure in villa types and mock data.&#10;- Update VillaDetailsPage to display amenities in categorized sections with styled titles.&#10;- Use helper functions to streamline amenities processing and ensure reusability across ListingsPage and HomePage.&#10;- Adjust villa card components to normalize and display top amenities efficiently.">
+      <option name="closed" value="true" />
+      <created>1754152237667</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1754152237667</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Add &quot;Listings&quot; tab and menu item for villa navigation&#10;&#10;- Add &quot;Listings&quot; option with icon in DrawerMenu for quick access.&#10;- Include &quot;Listings&quot; tab in BottomTabNavigation for both tenants and homeowners.">
+      <option name="closed" value="true" />
+      <created>1754152800800</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1754152800800</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Implement advanced filtering system for villa listings&#10;&#10;- Add SearchBar and FilterPanel components for dynamic filters.&#10;- Create `applyFilters` utility for filtering villas based on price, location, amenities, guests, and more.&#10;- Refactor ListingsPage state to use centralized filter logic with improved UI/UX.">
+      <option name="closed" value="true" />
+      <created>1754154471442</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1754154471442</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Enhance VillaDetailsPage amenities and house rules sections&#10;&#10;- Add `getAmenityIcon` helper to display icons alongside amenities.&#10;- Introduce styles for enhanced amenity categorization and streamlined list display.&#10;- Refactor house rules layout with consistent styling and icon alignment.&#10;- Improve overall readability and UX for both sections.">
+      <option name="closed" value="true" />
+      <created>1754156272545</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1754156272545</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Add VillaImageGallery component to enhance villa image experience&#10;&#10;- Introduce VillaImageGallery component with Swiper integration for responsive image slideshows.&#10;- Replace static villa image display in VillaDetailsPage with Carousel.&#10;- Update mock data to include additional images for variety in showcases.&#10;- Add Swiper and associated dependencies to package.json for advanced carousel functionality.&#10;- Extend styles and logic to handle broken images gracefully and improve visual consistency.">
+      <option name="closed" value="true" />
+      <created>1754157922811</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1754157922811</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Refactor code formatting and improve style consistency in VillaDetailsPage&#10;&#10;- Use consistent indentation and spacing for better readability.&#10;- Adjust various style properties for enhanced layout and alignment.&#10;- Streamline amenity list display with improved wrapping and spacing.&#10;- Update property detail and button styles for visual clarity and usability.">
+      <option name="closed" value="true" />
+      <created>1754159460282</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1754159460282</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Add price range slider to FilterPanel for improved filtering&#10;&#10;- Replace numeric input fields for price with a dual-thumb slider.&#10;- Introduce `@radix-ui/react-slider` for precise price range selection.&#10;- Update styles for slider, price display, and container for better UX.&#10;- Adjust filter reset logic to include slider defaults.&#10;- Enhance local state management for dynamic price updates.">
+      <option name="closed" value="true" />
+      <created>1754160197066</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1754160197066</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Update VillaDetailsPage layout styles for responsive design improvements&#10;&#10;- Replace grid layout with flexible wrapping for better responsiveness.&#10;- Adjust column styles with width, maxWidth, and flex properties.&#10;- Enhance house rules layout with row display and wrapping for better alignment.">
+      <option name="closed" value="true" />
+      <created>1754164121645</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1754164121645</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Add villa details for listings  &#10;&#10;- Add `index.txt` files for multiple villas, including detailed descriptions, rates, amenities, and facilities.  &#10;- Update villa information directory in `public/assets/villas/`.  &#10;- Ensure all villas include formatted data, such as pool information, guest limits, rates, and kitchen utilities for consistent display.  &#10;- Maintain file structure for easy integration with existing filtering and display systems.">
+      <option name="closed" value="true" />
+      <created>1754166818192</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1754166818192</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Refactor layout styles and update villa mock data for consistency&#10;&#10;- Adjust layout across multiple pages for improved responsiveness, replacing flex layout with grid in VillaDetailsPage and ListingsPage.&#10;- Refactor indentation in HomePage for consistent code formatting.&#10;- Update villa mock data names for clarity and standardization.&#10;- Modify featured status of select villas in mock data to reflect updates.">
+      <option name="closed" value="true" />
+      <created>1754168612697</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1754168612697</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Refactor styles for consistency and improve responsiveness on VillaDetailsPage and HomePage&#10;&#10;- Adjust margin and spacing styles across components for cleaner layout.&#10;- Update grid column size in HomePage for better responsiveness.&#10;- Modify padding in villa image display for improved aspect ratio handling.">
+      <option name="closed" value="true" />
+      <created>1754189788490</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1754189788490</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Update amenity list layout on VillaDetailsPage for improved responsiveness&#10;&#10;- Replace flex layout with grid for better wrapping and spacing.&#10;- Adjust grid columns using `auto-fit` for dynamic resizing.">
+      <option name="closed" value="true" />
+      <created>1754193483176</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1754193483176</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Add NewBookingPage and BookingsContext for booking management&#10;&#10;- Introduce `BookingsContext` for state management, including functions to add and update bookings.&#10;- Add `NewBookingPage` with UI for booking details, form validation, and payment processing.&#10;- Integrate `NewBookingPage` into App routing for tenant booking flow.&#10;- Update `TenantDashboard` to fetch bookings dynamically using `BookingsContext`.&#10;- Refactor `App` to wrap content with `BookingsProvider`.">
+      <option name="closed" value="true" />
+      <created>1754195170954</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1754195170954</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Refactor success modal styles in NewBookingPage for consistency and responsiveness">
+      <option name="closed" value="true" />
+      <created>1754196062749</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1754196062749</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Add BookingDetailPage, BookingListPage, and VillasContext for booking management&#10;&#10;- Introduce `BookingDetailPage` to display detailed information about tenant bookings.&#10;- Add `BookingListPage` for viewing and managing tenant booking summaries.&#10;- Create `VillasContext` for managing villa-related operations, including fetching villa details and available villas.&#10;- Enhance tenant flow with dynamic booking and villa data integration.">
+      <option name="closed" value="true" />
+      <created>1754201516775</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1754201516775</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Add ScrollToTop component and implement back button in MainLayout&#10;&#10;- Introduce `ScrollToTop` component to ensure navigation scroll resets, with exclusions for specific paths.&#10;- Implement a dynamic back button in `MainLayout` header for improved navigation.&#10;- Refactor `VillaDetailsPage` to remove redundant scroll-to-top logic.&#10;- Update development server script to enable `--host` option for local debugging.">
+      <option name="closed" value="true" />
+      <created>1754205438558</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1754205438558</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Refactor VillaDetailsPage styles and update image gallery layout for responsiveness&#10;&#10;- Standardize margin and spacing in inline styles for consistency.&#10;- Introduce responsive wrapping layout in the image gallery using `motion.div` and CSS media queries.&#10;- Add additional image sections for improved viewing experience on different screen sizes.">
+      <option name="closed" value="true" />
+      <created>1754207337799</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1754207337799</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Refactor NewBookingPage to standardize indentation and spacing for improved code readability and consistency">
+      <option name="closed" value="true" />
+      <created>1754208879631</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1754208879631</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Refactor NewBookingPage to standardize indentation and spacing for improved code readability and consistency">
+      <option name="closed" value="true" />
+      <created>1754209642370</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1754209642370</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Add AmenitiesContext and Villa Management pages&#10;&#10;- Introduce `AmenitiesContext` for managing amenities state and operations (add, update, remove).&#10;- Add `VillaManagementListPage` for filtering and managing villas based on status and featured state.&#10;- Add `VillaManagementPage` with detailed forms for creating and editing villa information, including amenities, pricing, and house rules.&#10;- Implement localStorage integration to persist amenity state in `AmenitiesContext`.">
+      <option name="closed" value="true" />
+      <created>1754214368121</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1754214368121</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Integrate VillasContext into villa pages and refactor styles&#10;&#10;- Replace `mockVillas` with `VillasContext` across `VillaDetailsPage`, `ListingsPage`, and `HomePage`.&#10;- Use `useVillas` to fetch and filter villas dynamically.&#10;- Update villa management to create inactive villas by default and add them via `VillasContext`.&#10;- Enhance button and image gallery styles for improved consistency and appearance.">
+      <option name="closed" value="true" />
+      <created>1754216756886</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1754216756886</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Refactor NewBookingPage to use NumericInput component for number of guests input&#10;&#10;- Replace custom number of guests input logic with reusable `NumericInput` component.&#10;- Add `NumericInput` component to streamline number input with built-in validation and styling.&#10;- Remove redundant styles and logic from `NewBookingPage`.">
+      <option name="closed" value="true" />
+      <created>1754219253503</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1754219253503</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Integrate Radix UI Checkbox into VillaManagementPage and improve location selection&#10;&#10;- Add `@radix-ui/react-checkbox` for improved checkbox rendering and replace existing logic with Radix components.&#10;- Implement custom dropdown for location selection, including predefined location suggestions.&#10;- Refactor button attributes in `NumericInput` to use explicit `type=&quot;button&quot;` for better clarity.&#10;- Update inline styles in `VillaManagementPage` for compact and consistent layout across sections.&#10;- Update dependency in `package-lock.json` for Radix UI integration.">
+      <option name="closed" value="true" />
+      <created>1754221162809</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1754221162809</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Refactor villa pages and components for consistent styles and enhanced pricing features&#10;&#10;- Standardize margin and spacing across villa pages (`VillaManagementListPage`, `ListingsPage`, and `VillaDetailsPage`) for uniform layout.&#10;- Update `VillaDetailsPage` pricing section with additional &quot;Half Day&quot; pricing and improved styling.&#10;- Replace inline images with styled `div` containers for improved rendering in `VillaManagementListPage`.&#10;- Extend `NumericInput` to support customizable steps and additional styles, updating related usages in villa management forms.&#10;- Add consistent grid layout for pricing fields in `VillaManagementPage`.">
+      <option name="closed" value="true" />
+      <created>1754238063281</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1754238063281</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Enhance FilterPanel with Radix Select for location and integrate AmenitiesContext&#10;&#10;- Replace custom location input with `@radix-ui/react-select`, incorporating predefined locations and custom input functionality.&#10;- Leverage `AmenitiesContext` for dynamic amenity handling, removing redundant amenity logic.&#10;- Add state management for the location dropdown and reset location on filters clear.&#10;- Update BookingListPage image and layout styles for improved visual consistency.">
+      <option name="closed" value="true" />
+      <created>1754240374083</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1754240374083</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Add cancel button to LoginPage and integrate date selection with calendar in NewBookingPage&#10;&#10;- Introduce `Cancel` button on LoginPage with navigation logic to redirect users to the previous page or home.&#10;- Enhance NewBookingPage with a `BookingCalendar` component for date selection, including unavailable dates handling.&#10;- Add dynamic calendar visibility based on date pre-selection in NewBookingPage.&#10;- Refactor NewBookingPage to improve state management for check-in and check-out dates.">
+      <option name="closed" value="true" />
+      <created>1754241608388</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1754241608388</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Add BookingDetailPage and BookingListPage for enhanced booking management&#10;&#10;- Introduce `BookingDetailPage` with comprehensive booking and villa detail display, dynamic styles, and user-specific actions.&#10;- Add `BookingListPage` with role-based booking filtering, improved layout, and empty state handling.&#10;- Include responsive styling for both pages to enhance usability across devices.">
+      <option name="closed" value="true" />
+      <created>1754242851851</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1754242851852</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Remove `BookingDetailPage` and `BookingListPage` from tenant directory&#10;&#10;- Deleted `BookingDetailPage.tsx` and `BookingListPage.tsx` to consolidate pages into a shared structure.&#10;- Updated related logic to ensure `BookingListPage.tsx` under `common` directory supports role-based booking filtering.">
+      <option name="closed" value="true" />
+      <created>1754310671309</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1754310671309</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Replace native selects with Radix Select in VillaManagementListPage and FilterPanel; add UserContext for user management&#10;&#10;- Updated `VillaManagementListPage` to use `@radix-ui/react-select` for status and featured filters, improving dropdown styles and usability.&#10;- Enhanced `FilterPanel` with Radix Select, adding optimized styles and custom functionality for location filtering.&#10;- Added `UserContext` for managing user states and actions, such as searching, filtering by role, fetching by ID, and CRUD operations.">
+      <option name="closed" value="true" />
+      <created>1754324018170</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1754324018170</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Prevent user-initiated zoom across all devices and input scenarios&#10;&#10;- Block pinch, double-tap, keyboard, and wheel zoom actions in `main.tsx` using event listeners.&#10;- Update `index.html` with restrictive `viewport` meta tag to limit zoom capabilities.&#10;- Apply CSS rules in `layout.css` to disable zoom, touch gestures, and overscroll while keeping certain areas text-selectable.">
+      <option name="closed" value="true" />
+      <created>1754325060762</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1754325060762</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Update BookingListPage layout styles for improved responsiveness&#10;&#10;- Adjust item containers to use `flexGrow` and `minWidth` for better scaling and spacing.&#10;- Add `gap` to wrapped booking items for consistent alignment.">
+      <option name="closed" value="true" />
+      <created>1754325570793</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1754325570793</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Enhance villa pages with Radix icons, update styles, and introduce edit functionality for VillaManagementPage&#10;&#10;- Replace emoji icons with modern Radix icons in `VillaDetailsPage` and `VillaManagementPage` for consistent styling.&#10;- Add edit route and functionality to `VillaManagementPage`, enabling villa updates along with confirmation and success dialogs.&#10;- Refactor layout and spacing for several components, including `VillaDetailsPage` and `MainLayout`, for improved rendering.&#10;- Adjust context functions and hooks to support villa editing.">
+      <option name="closed" value="true" />
+      <created>1754332415485</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1754332415485</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Add base path handling for Vite config and routing&#10;&#10;- Introduce `getBasePath` and `getRouterBasePath` utility functions for base path management.&#10;- Update `vite.config.ts` with base path and custom build directory.&#10;- Configure `Router` in `App.tsx` to use the base path for proper routing.">
+      <option name="closed" value="true" />
+      <created>1754332992030</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1754332992030</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Add `AssetImage` component and unify image paths with `getAssetUrl`&#10;&#10;- Introduce `AssetImage` component to automatically handle base paths in image sources.&#10;- Replace raw image paths across pages and components with `getAssetUrl` for consistent base path handling.">
+      <option name="closed" value="true" />
+      <created>1754333755791</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1754333755791</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Add `AssetImage` component and unify image paths with `getAssetUrl`&#10;&#10;- Introduce `AssetImage` component to automatically handle base paths in image sources.&#10;- Replace raw image paths across pages and components with `getAssetUrl` for consistent base path handling.">
+      <option name="closed" value="true" />
+      <created>1754334668574</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1754334668574</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Add ProfilePage with motion animations and update Vite config, routing, and main logo&#10;&#10;- Introduce `ProfilePage` with Framer Motion animations and user information display, including logout functionality.&#10;- Update `vite.config.ts` to adjust base path and build output directory.&#10;- Replace SVG logo in `MainLayout` with a new PNG logo for consistent branding.&#10;- Add `ProfilePage` route and integrate it into `TopNavigation` for all user roles.&#10;- Update `colors.ts` by refining the primary color.">
+      <option name="closed" value="true" />
+      <created>1754335761182</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1754335761182</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Update BottomTabNavigation to include Profile tab and replace icons&#10;&#10;- Replace existing Messages tab with Profile tab for both user and admin roles.&#10;- Add `AvatarIcon` to admin Profile tab for better differentiation.">
+      <option name="closed" value="true" />
+      <created>1754336220458</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1754336220462</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Move `NewBookingPage` to common directory and add guest details form&#10;&#10;- Relocate `NewBookingPage.tsx` from `tenant` to `common` directory for shared usage across roles.&#10;- Add guest details form including name, email, and phone number for non-authenticated bookings.&#10;- Update `UserContext` to handle guest user creation when booking is made by a non-authenticated user.">
+      <option name="closed" value="true" />
+      <created>1754397131799</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1754397131799</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Add `design.ts` for reusable design tokens and refactor villa pages with improved styles&#10;&#10;- Introduce `design.ts` utility file to centralize typography, spacing, shadows, transitions, and common component styles.&#10;- Refactor `VillaDetailsPage` and `ListingsPage` to utilize new design tokens for consistent styling.&#10;- Remove inline styles and replace them with `design.ts` utilities for better maintainability and readability.">
+      <option name="closed" value="true" />
+      <created>1754410272533</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1754410272533</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Add `useScrollbarWidth` and `usePreventBodyScroll` hooks to manage layout scrolling and integrate with `FilterPanel`&#10;&#10;- Introduce `useScrollbarWidth` to calculate and store scrollbar width as a CSS variable for consistent layout adjustments.&#10;- Add `usePreventBodyScroll` hook to prevent body scroll when `FilterPanel` is open and manage padding for layout preservation.&#10;- Update `FilterPanel` to use `usePreventBodyScroll` and improve modal interaction by handling outside clicks.">
+      <option name="closed" value="true" />
+      <created>1754410969361</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1754410969361</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Add `CLAUDE.md` for development guidance and enhance ListingsPage with date selection modal&#10;&#10;- Introduce `CLAUDE.md` containing detailed project setup, architecture, commands, and design patterns for contributors.&#10;- Enhance `ListingsPage` by integrating date selection modal using Radix Dialog for selecting booking dates.&#10;- Implement unavailable date handling, dynamic date selection, and navigation to booking page based on selected villa and dates.">
+      <option name="closed" value="true" />
+      <created>1754489609110</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1754489609110</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Add `HelpSupportPage`, `NotificationsPage`, and `ReportsPage` with modular components and enhanced interactions&#10;&#10;- Introduce `HelpSupportPage` featuring categorized FAQs, category filtering, and contact options with Radix icons.&#10;- Add `NotificationsPage` allowing filtering by type or unread status, marking notifications as read, and deleting notifications.&#10;- Create `ReportsPage` with role-based access control, chart data preparation, and responsive reporting features.">
+      <option name="closed" value="true" />
+      <created>1754492603292</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1754492603292</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Move mock data from `mockData.ts` to `data.ts` for better organization">
+      <option name="closed" value="true" />
+      <created>1754717033000</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1754717033000</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/src/data/data.js" />
+      </list>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Refactor NewBookingPage to use NumericInput component for number of guests input&#10;&#10;- Replace custom number of guests input logic with reusable `NumericInput` component.&#10;- Add `NumericInput` component to streamline number input with built-in validation and styling.&#10;- Remove redundant styles and logic from `NewBookingPage`." />
+    <MESSAGE value="Integrate Radix UI Checkbox into VillaManagementPage and improve location selection&#10;&#10;- Add `@radix-ui/react-checkbox` for improved checkbox rendering and replace existing logic with Radix components.&#10;- Implement custom dropdown for location selection, including predefined location suggestions.&#10;- Refactor button attributes in `NumericInput` to use explicit `type=&quot;button&quot;` for better clarity.&#10;- Update inline styles in `VillaManagementPage` for compact and consistent layout across sections.&#10;- Update dependency in `package-lock.json` for Radix UI integration." />
+    <MESSAGE value="Refactor villa pages and components for consistent styles and enhanced pricing features&#10;&#10;- Standardize margin and spacing across villa pages (`VillaManagementListPage`, `ListingsPage`, and `VillaDetailsPage`) for uniform layout.&#10;- Update `VillaDetailsPage` pricing section with additional &quot;Half Day&quot; pricing and improved styling.&#10;- Replace inline images with styled `div` containers for improved rendering in `VillaManagementListPage`.&#10;- Extend `NumericInput` to support customizable steps and additional styles, updating related usages in villa management forms.&#10;- Add consistent grid layout for pricing fields in `VillaManagementPage`." />
+    <MESSAGE value="Enhance FilterPanel with Radix Select for location and integrate AmenitiesContext&#10;&#10;- Replace custom location input with `@radix-ui/react-select`, incorporating predefined locations and custom input functionality.&#10;- Leverage `AmenitiesContext` for dynamic amenity handling, removing redundant amenity logic.&#10;- Add state management for the location dropdown and reset location on filters clear.&#10;- Update BookingListPage image and layout styles for improved visual consistency." />
+    <MESSAGE value="Add cancel button to LoginPage and integrate date selection with calendar in NewBookingPage&#10;&#10;- Introduce `Cancel` button on LoginPage with navigation logic to redirect users to the previous page or home.&#10;- Enhance NewBookingPage with a `BookingCalendar` component for date selection, including unavailable dates handling.&#10;- Add dynamic calendar visibility based on date pre-selection in NewBookingPage.&#10;- Refactor NewBookingPage to improve state management for check-in and check-out dates." />
+    <MESSAGE value="Add BookingDetailPage and BookingListPage for enhanced booking management&#10;&#10;- Introduce `BookingDetailPage` with comprehensive booking and villa detail display, dynamic styles, and user-specific actions.&#10;- Add `BookingListPage` with role-based booking filtering, improved layout, and empty state handling.&#10;- Include responsive styling for both pages to enhance usability across devices." />
+    <MESSAGE value="Remove `BookingDetailPage` and `BookingListPage` for tenant; migrate booking management features to `common` components&#10;&#10;- Deleted `BookingDetailPage` and `BookingListPage` from tenant-specific directory due to consolidation.&#10;- Centralized booking management logic into `BookingListPage` under `common` with role-based filtering and enhanced structure.&#10;- Improved maintainability by reducing duplication and ensuring unified booking management across user roles." />
+    <MESSAGE value="Remove `BookingDetailPage` and `BookingListPage` from tenant directory&#10;&#10;- Deleted `BookingDetailPage.tsx` and `BookingListPage.tsx` to consolidate pages into a shared structure.&#10;- Updated related logic to ensure `BookingListPage.tsx` under `common` directory supports role-based booking filtering." />
+    <MESSAGE value="Replace native selects with Radix Select in VillaManagementListPage and FilterPanel; add UserContext for user management&#10;&#10;- Updated `VillaManagementListPage` to use `@radix-ui/react-select` for status and featured filters, improving dropdown styles and usability.&#10;- Enhanced `FilterPanel` with Radix Select, adding optimized styles and custom functionality for location filtering.&#10;- Added `UserContext` for managing user states and actions, such as searching, filtering by role, fetching by ID, and CRUD operations." />
+    <MESSAGE value="Prevent user-initiated zoom across all devices and input scenarios&#10;&#10;- Block pinch, double-tap, keyboard, and wheel zoom actions in `main.tsx` using event listeners.&#10;- Update `index.html` with restrictive `viewport` meta tag to limit zoom capabilities.&#10;- Apply CSS rules in `layout.css` to disable zoom, touch gestures, and overscroll while keeping certain areas text-selectable." />
+    <MESSAGE value="Update BookingListPage layout styles for improved responsiveness&#10;&#10;- Adjust item containers to use `flexGrow` and `minWidth` for better scaling and spacing.&#10;- Add `gap` to wrapped booking items for consistent alignment." />
+    <MESSAGE value="Enable villa editing with new route and dialog enhancements&#10;&#10;- Introduced `/villas/edit/:id` route for villa editing in `App.tsx`.&#10;- Enhanced `VillaManagementPage` with support for both new villa creation and editing, adding logic for loading and updating existing villas.&#10;- Added confirmation and success dialogs for villa creation and editing actions.&#10;- Updated styles and functionality in `HomeownerDashboard` and `VillaManagementListPage` for consistency." />
+    <MESSAGE value="Enhance villa pages with Radix icons, update styles, and introduce edit functionality for VillaManagementPage&#10;&#10;- Replace emoji icons with modern Radix icons in `VillaDetailsPage` and `VillaManagementPage` for consistent styling.&#10;- Add edit route and functionality to `VillaManagementPage`, enabling villa updates along with confirmation and success dialogs.&#10;- Refactor layout and spacing for several components, including `VillaDetailsPage` and `MainLayout`, for improved rendering.&#10;- Adjust context functions and hooks to support villa editing." />
+    <MESSAGE value="Add base path handling for Vite config and routing&#10;&#10;- Introduce `getBasePath` and `getRouterBasePath` utility functions for base path management.&#10;- Update `vite.config.ts` with base path and custom build directory.&#10;- Configure `Router` in `App.tsx` to use the base path for proper routing." />
+    <MESSAGE value="Update asset handling to use `getAssetUrl` across villa pages&#10;&#10;- Replace direct image path references with `getAssetUrl` utility to handle base path adjustments dynamically.&#10;- Ensure consistent asset loading on `BookingListPage`, `BookingDetailPage`, `NewBookingPage`, `HomePage`, `ListingsPage`, and more.&#10;- Add `getAssetUrl` function to `basePath.ts` for streamlined base path handling of assets." />
+    <MESSAGE value="Add `AssetImage` component and unify image paths with `getAssetUrl`&#10;&#10;- Introduce `AssetImage` component to automatically handle base paths in image sources.&#10;- Replace raw image paths across pages and components with `getAssetUrl` for consistent base path handling." />
+    <MESSAGE value="Add ProfilePage with motion animations and update Vite config, routing, and main logo&#10;&#10;- Introduce `ProfilePage` with Framer Motion animations and user information display, including logout functionality.&#10;- Update `vite.config.ts` to adjust base path and build output directory.&#10;- Replace SVG logo in `MainLayout` with a new PNG logo for consistent branding.&#10;- Add `ProfilePage` route and integrate it into `TopNavigation` for all user roles.&#10;- Update `colors.ts` by refining the primary color." />
+    <MESSAGE value="Update BottomTabNavigation to include Profile tab and replace icons&#10;&#10;- Replace existing Messages tab with Profile tab for both user and admin roles.&#10;- Add `AvatarIcon` to admin Profile tab for better differentiation." />
+    <MESSAGE value="Move `NewBookingPage` to common directory and add guest details form&#10;&#10;- Relocate `NewBookingPage.tsx` from `tenant` to `common` directory for shared usage across roles.&#10;- Add guest details form including name, email, and phone number for non-authenticated bookings.&#10;- Update `UserContext` to handle guest user creation when booking is made by a non-authenticated user." />
+    <MESSAGE value="Remove unused `AuthContext` from Villa pages and improve card hover interactions&#10;&#10;- Eliminate `AuthContext` usage from `VillaDetailsPage` and `ListingsPage` to clean up unused dependencies.&#10;- Update hover styles for villa cards in `ListingsPage` with smoother transitions and improved shadows for better visual feedback." />
+    <MESSAGE value="Add `design.ts` for reusable design tokens and refactor villa pages with improved styles&#10;&#10;- Introduce `design.ts` utility file to centralize typography, spacing, shadows, transitions, and common component styles.&#10;- Refactor `VillaDetailsPage` and `ListingsPage` to utilize new design tokens for consistent styling.&#10;- Remove inline styles and replace them with `design.ts` utilities for better maintainability and readability." />
+    <MESSAGE value="Add `useScrollbarWidth` and `usePreventBodyScroll` hooks to manage layout scrolling and integrate with `FilterPanel`&#10;&#10;- Introduce `useScrollbarWidth` to calculate and store scrollbar width as a CSS variable for consistent layout adjustments.&#10;- Add `usePreventBodyScroll` hook to prevent body scroll when `FilterPanel` is open and manage padding for layout preservation.&#10;- Update `FilterPanel` to use `usePreventBodyScroll` and improve modal interaction by handling outside clicks." />
+    <MESSAGE value="Add `CLAUDE.md` for development guidance and enhance ListingsPage with date selection modal&#10;&#10;- Introduce `CLAUDE.md` containing detailed project setup, architecture, commands, and design patterns for contributors.&#10;- Enhance `ListingsPage` by integrating date selection modal using Radix Dialog for selecting booking dates.&#10;- Implement unavailable date handling, dynamic date selection, and navigation to booking page based on selected villa and dates." />
+    <MESSAGE value="Add `HelpSupportPage`, `NotificationsPage`, and `ReportsPage` with modular components and enhanced interactions&#10;&#10;- Introduce `HelpSupportPage` featuring categorized FAQs, category filtering, and contact options with Radix icons.&#10;- Add `NotificationsPage` allowing filtering by type or unread status, marking notifications as read, and deleting notifications.&#10;- Create `ReportsPage` with role-based access control, chart data preparation, and responsive reporting features." />
+    <MESSAGE value="Move mock data from `mockData.ts` to `data.ts` for better organization" />
+    <option name="LAST_COMMIT_MESSAGE" value="Move mock data from `mockData.ts` to `data.ts` for better organization" />
+  </component>
+</project>
