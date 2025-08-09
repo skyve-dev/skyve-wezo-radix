@@ -207,6 +207,112 @@ export const updateBooking = async (req: Request, res: Response) => {
   }
 };
 
+export const approveBooking = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    
+    const booking = await prisma.booking.findUnique({
+      where: { id }
+    });
+    
+    if (!booking) {
+      return res.status(404).json({ error: 'Booking not found' });
+    }
+    
+    if (booking.status !== 'pending') {
+      return res.status(400).json({ error: 'Only pending bookings can be approved' });
+    }
+    
+    const updatedBooking = await prisma.booking.update({
+      where: { id },
+      data: { status: 'confirmed' },
+      include: {
+        villa: {
+          select: {
+            id: true,
+            name: true,
+            location: true,
+            images: true,
+          }
+        },
+        tenant: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          }
+        }
+      }
+    });
+    
+    const transformedBooking = {
+      ...updatedBooking,
+      villa: {
+        ...updatedBooking.villa,
+        images: JSON.parse(updatedBooking.villa.images),
+      }
+    };
+    
+    return res.json(transformedBooking);
+  } catch (error) {
+    console.error('Error approving booking:', error);
+    return res.status(500).json({ error: 'Failed to approve booking' });
+  }
+};
+
+export const rejectBooking = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    
+    const booking = await prisma.booking.findUnique({
+      where: { id }
+    });
+    
+    if (!booking) {
+      return res.status(404).json({ error: 'Booking not found' });
+    }
+    
+    if (booking.status !== 'pending') {
+      return res.status(400).json({ error: 'Only pending bookings can be rejected' });
+    }
+    
+    const updatedBooking = await prisma.booking.update({
+      where: { id },
+      data: { status: 'cancelled' },
+      include: {
+        villa: {
+          select: {
+            id: true,
+            name: true,
+            location: true,
+            images: true,
+          }
+        },
+        tenant: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          }
+        }
+      }
+    });
+    
+    const transformedBooking = {
+      ...updatedBooking,
+      villa: {
+        ...updatedBooking.villa,
+        images: JSON.parse(updatedBooking.villa.images),
+      }
+    };
+    
+    return res.json(transformedBooking);
+  } catch (error) {
+    console.error('Error rejecting booking:', error);
+    return res.status(500).json({ error: 'Failed to reject booking' });
+  }
+};
+
 export const deleteBooking = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;

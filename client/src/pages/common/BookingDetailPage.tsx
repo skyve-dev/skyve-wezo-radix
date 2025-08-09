@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {motion} from 'framer-motion';
 import {useNavigate, useParams} from 'react-router-dom';
 import {ArrowLeftIcon, CalendarIcon, CardStackIcon, HomeIcon, PersonIcon} from '@radix-ui/react-icons';
@@ -7,13 +7,25 @@ import {useBookings} from '../../contexts/BookingsContext';
 import {useVillas} from '../../contexts/VillasContext';
 import {colors} from '../../utils/colors';
 import { getAssetUrl } from '../../utils/basePath';
+import { BookingService } from '../../services/bookingService';
+import ConfirmationDialog from '../../components/common/ConfirmationDialog';
+import SuccessNotification from '../../components/common/SuccessNotification';
 
 const BookingDetailPage: React.FC = () => {
     const navigate = useNavigate();
     const {id} = useParams<{ id: string }>();
     const {user} = useAuth();
-    const {bookings} = useBookings();
+    const {bookings, refreshBookings} = useBookings();
     const {getVillaById} = useVillas();
+    const [isLoading, setIsLoading] = useState(false);
+    
+    // State for confirmation dialogs
+    const [showApproveConfirm, setShowApproveConfirm] = useState(false);
+    const [showRejectConfirm, setShowRejectConfirm] = useState(false);
+    
+    // State for success notifications
+    const [showSuccessNotification, setShowSuccessNotification] = useState(false);
+    const [successMessage, setSuccessMessage] = useState({ title: '', description: '' });
 
     const booking = bookings.find(b => b.id === id);
     const villa = booking ? getVillaById(booking.villaId) : null;
@@ -39,6 +51,64 @@ const BookingDetailPage: React.FC = () => {
     };
 
     const nights = calculateNights(booking.checkInDate, booking.checkOutDate);
+
+    // Handler functions for confirmation prompts
+    const handleApproveClick = () => {
+        setShowApproveConfirm(true);
+    };
+
+    const handleRejectClick = () => {
+        setShowRejectConfirm(true);
+    };
+
+    // Handler functions for actual booking actions
+    const handleApproveBooking = async () => {
+        if (!id || isLoading) return;
+        
+        try {
+            setIsLoading(true);
+            await BookingService.approveBooking(id);
+            await refreshBookings(); // Refresh the booking list
+            setShowApproveConfirm(false);
+            
+            // Show success notification
+            setSuccessMessage({
+                title: 'Booking Approved',
+                description: 'The booking has been successfully approved and the status has been updated to confirmed.'
+            });
+            setShowSuccessNotification(true);
+        } catch (error) {
+            console.error('Error approving booking:', error);
+            setShowApproveConfirm(false);
+            // Note: In a real app, you might want to show an error notification here
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleRejectBooking = async () => {
+        if (!id || isLoading) return;
+        
+        try {
+            setIsLoading(true);
+            await BookingService.rejectBooking(id);
+            await refreshBookings(); // Refresh the booking list
+            setShowRejectConfirm(false);
+            
+            // Show success notification
+            setSuccessMessage({
+                title: 'Booking Rejected',
+                description: 'The booking has been successfully rejected and the status has been updated to cancelled.'
+            });
+            setShowSuccessNotification(true);
+        } catch (error) {
+            console.error('Error rejecting booking:', error);
+            setShowRejectConfirm(false);
+            // Note: In a real app, you might want to show an error notification here
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     // Get tenant info for display in homeowner/admin views
     const getTenantName = () => {
@@ -187,6 +257,10 @@ const BookingDetailPage: React.FC = () => {
         fontSize: '16px',
         color: '#1a1a1a',
         fontWeight: '600',
+        maxWidth : '280px',
+        display:'block',
+        overflow:'hidden',
+        textOverflow : 'ellipsis'
     };
 
     const summaryRowStyle: React.CSSProperties = {
@@ -275,7 +349,9 @@ const BookingDetailPage: React.FC = () => {
             <style>
                 {`
           @media (max-width: 770px) {
-            
+            .content-grid{
+                grid-template-columns: 1fr !important;
+            }
             .villa-images {
               grid-template-columns: 2fr 1fr !important;
             }
@@ -568,34 +644,77 @@ const BookingDetailPage: React.FC = () => {
                             </motion.button>
                         )}
 
-                        {booking.status === 'pending' && user?.role === 'homeowner' && (
+                        {booking.status === 'pending' && (user?.role === 'homeowner' || user?.role === 'admin') && (
                             <>
                                 <motion.button
-                                    style={primaryButtonStyle}
-                                    whileHover={{backgroundColor: colors.primaryHover}}
-                                    whileTap={{scale: 0.98}}
+                                    style={{
+                                        ...primaryButtonStyle,
+                                        opacity: isLoading ? 0.6 : 1,
+                                        cursor: isLoading ? 'not-allowed' : 'pointer'
+                                    }}
+                                    onClick={handleApproveClick}
+                                    disabled={isLoading}
+                                    whileHover={!isLoading ? {backgroundColor: colors.primaryHover} : {}}
+                                    whileTap={!isLoading ? {scale: 0.98} : {}}
                                 >
-                                    Approve Booking
+                                    {isLoading ? 'Processing...' : 'Approve Booking'}
                                 </motion.button>
                                 <motion.button
                                     style={{
                                         ...actionButtonStyle,
                                         color: '#dc2626',
                                         borderColor: '#dc2626',
+                                        opacity: isLoading ? 0.6 : 1,
+                                        cursor: isLoading ? 'not-allowed' : 'pointer'
                                     }}
-                                    whileHover={{
+                                    onClick={handleRejectClick}
+                                    disabled={isLoading}
+                                    whileHover={!isLoading ? {
                                         backgroundColor: '#fef2f2',
                                         borderColor: '#b91c1c'
-                                    }}
-                                    whileTap={{scale: 0.98}}
+                                    } : {}}
+                                    whileTap={!isLoading ? {scale: 0.98} : {}}
                                 >
-                                    Reject Booking
+                                    {isLoading ? 'Processing...' : 'Reject Booking'}
                                 </motion.button>
                             </>
                         )}
                     </div>
                 </div>
             </div>
+
+            {/* Confirmation Dialogs */}
+            <ConfirmationDialog
+                isOpen={showApproveConfirm}
+                onClose={() => setShowApproveConfirm(false)}
+                onConfirm={handleApproveBooking}
+                title="Approve Booking"
+                description={`Are you sure you want to approve this booking? The booking status will be changed to "confirmed" and the tenant will be notified.`}
+                confirmText="Approve Booking"
+                cancelText="Cancel"
+                variant="primary"
+                isLoading={isLoading}
+            />
+
+            <ConfirmationDialog
+                isOpen={showRejectConfirm}
+                onClose={() => setShowRejectConfirm(false)}
+                onConfirm={handleRejectBooking}
+                title="Reject Booking"
+                description={`Are you sure you want to reject this booking? The booking status will be changed to "cancelled" and this action cannot be undone.`}
+                confirmText="Reject Booking"
+                cancelText="Cancel"
+                variant="danger"
+                isLoading={isLoading}
+            />
+
+            {/* Success Notification */}
+            <SuccessNotification
+                isVisible={showSuccessNotification}
+                onClose={() => setShowSuccessNotification(false)}
+                title={successMessage.title}
+                description={successMessage.description}
+            />
         </motion.div>
     );
 };

@@ -2,21 +2,16 @@ import React from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import {AnimatePresence, motion} from 'framer-motion';
 import {
-    BellIcon,
     Cross2Icon,
     ExitIcon,
-    GearIcon,
-    HomeIcon,
     IdCardIcon,
     MixerHorizontalIcon,
-    PersonIcon,
-    QuestionMarkCircledIcon,
-    CalendarIcon,
     EnterIcon,
 } from '@radix-ui/react-icons';
 import {useAuth} from '../../contexts/AuthContext';
 import {useNavigate} from 'react-router-dom';
 import {colors} from '../../utils/colors';
+import {getNavigationItems, getUserRole} from '../../config/navigationConfig';
 
 interface DrawerMenuProps {
     isOpen: boolean;
@@ -45,80 +40,20 @@ const DrawerMenu: React.FC<DrawerMenuProps> = ({isOpen, onClose}) => {
     };
 
     const getMenuItems = (): MenuItem[] => {
-        if (!isAuthenticated) {
-            // Anonymous user menu items
-            return [
-                {
-                    label: 'Explore Villas',
-                    icon: <HomeIcon/>,
-                    onClick: () => {
-                        navigate('/');
-                        onClose();
-                    },
-                },
-                {
-                    label: 'Bookings',
-                    icon: <CalendarIcon/>,
-                    onClick: () => {
-                        navigate('/bookings');
-                        onClose();
-                    },
-                },
-                {
-                    label: 'Help & Support',
-                    icon: <QuestionMarkCircledIcon/>,
-                    onClick: () => {
-                        navigate('/help');
-                        onClose();
-                    },
-                },
-            ];
-        }
+        const userRole = getUserRole(user);
+        const navigationItems = getNavigationItems(userRole, 'drawer');
+        
+        // Convert NavigationItem[] to MenuItem[]
+        const menuItems: MenuItem[] = navigationItems.map((item) => ({
+            label: item.label,
+            icon: item.icon,
+            onClick: () => {
+                navigate(item.path);
+                onClose();
+            },
+        }));
 
-        // Authenticated user menu items
-        const commonMenuItems: MenuItem[] = [
-            {
-                label: 'Bookings',
-                icon: <CalendarIcon/>,
-                onClick: () => {
-                    navigate('/bookings');
-                    onClose();
-                },
-            },
-            {
-                label: 'User Profile',
-                icon: <PersonIcon/>,
-                onClick: () => {
-                    navigate('/profile');
-                    onClose();
-                },
-            },
-            {
-                label: 'Settings',
-                icon: <GearIcon/>,
-                onClick: () => {
-                    navigate('/settings');
-                    onClose();
-                },
-            },
-            {
-                label: 'Notifications',
-                icon: <BellIcon/>,
-                onClick: () => {
-                    navigate('/notifications');
-                    onClose();
-                },
-            },
-            {
-                label: 'Help & Support',
-                icon: <QuestionMarkCircledIcon/>,
-                onClick: () => {
-                    navigate('/help');
-                    onClose();
-                },
-            },
-        ];
-
+        // Add role-specific drawer items that aren't in the main navigation config
         const roleSpecificItems: MenuItem[] = [];
 
         if (user?.role === 'tenant' || user?.role === 'homeowner') {
@@ -132,31 +67,18 @@ const DrawerMenu: React.FC<DrawerMenuProps> = ({isOpen, onClose}) => {
             });
         }
 
-        if (user?.role === 'homeowner') {
+        if (user?.role === 'admin') {
             roleSpecificItems.push({
-                label: 'Villa Management',
-                icon: <HomeIcon/>,
+                label: 'App Configuration',
+                icon: <MixerHorizontalIcon/>,
                 onClick: () => {
-                    navigate('/villa-management');
+                    navigate('/admin/config');
                     onClose();
                 },
             });
         }
 
-        if (user?.role === 'admin') {
-            roleSpecificItems.push(
-                {
-                    label: 'App Configuration',
-                    icon: <MixerHorizontalIcon/>,
-                    onClick: () => {
-                        navigate('/admin/config');
-                        onClose();
-                    },
-                }
-            );
-        }
-
-        return [...commonMenuItems, ...roleSpecificItems];
+        return [...menuItems, ...roleSpecificItems];
     };
 
     const allMenuItems = getMenuItems();

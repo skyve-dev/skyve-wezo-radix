@@ -104,6 +104,30 @@ export class BookingService {
   }
 
   /**
+   * Approve a booking (for homeowners/admins)
+   */
+  static async approveBooking(id: string): Promise<Booking> {
+    try {
+      return await api.approveBooking(id) as Booking;
+    } catch (error) {
+      console.error(`Error approving booking ${id}:`, error);
+      throw error;
+    }
+  }
+
+  /**
+   * Reject a booking (for homeowners/admins)
+   */
+  static async rejectBooking(id: string): Promise<Booking> {
+    try {
+      return await api.rejectBooking(id) as Booking;
+    } catch (error) {
+      console.error(`Error rejecting booking ${id}:`, error);
+      throw error;
+    }
+  }
+
+  /**
    * Delete a booking
    */
   static async deleteBooking(id: string): Promise<void> {

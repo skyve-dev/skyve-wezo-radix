@@ -99,7 +99,7 @@ const UserListPage: React.FC = () => {
     flex: '1',
     minWidth: '50px',
     padding: '8px',
-    backgroundColor: colors.gray200,
+    backgroundColor: colors.gray100,
     borderRadius: '8px',
     textAlign: 'center',
   };

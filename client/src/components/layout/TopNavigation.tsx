@@ -2,27 +2,13 @@ import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  BarChartIcon,
-  CalendarIcon,
-  ChatBubbleIcon,
-  DashboardIcon,
-  HomeIcon,
-  PersonIcon,
-  MagnifyingGlassIcon,
-  EnterIcon,
   HamburgerMenuIcon,
   Cross1Icon,
   ArrowLeftIcon,
-  AvatarIcon,
 } from '@radix-ui/react-icons';
 import { useAuth } from '../../contexts/AuthContext';
 import { colors } from '../../utils/colors';
-
-interface TabItem {
-  path: string;
-  label: string;
-  icon: React.ReactNode;
-}
+import { getNavigationItems, getUserRole } from '../../config/navigationConfig';
 
 const TopNavigation: React.FC = () => {
   const navigate = useNavigate();
@@ -30,57 +16,13 @@ const TopNavigation: React.FC = () => {
   const { user } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const anonymousTabs: TabItem[] = [
-    { path: '/', label: 'Explore', icon: <HomeIcon /> },
-    { path: '/listings', label: 'Listings', icon: <MagnifyingGlassIcon /> },
-    { path: '/login', label: 'Login', icon: <EnterIcon /> },
-  ];
-
-  const tenantTabs: TabItem[] = [
-    { path: '/', label: 'Explore', icon: <HomeIcon /> },
-    { path: '/listings', label: 'Listings', icon: <MagnifyingGlassIcon /> },
-    { path: '/bookings', label: 'Bookings', icon: <CalendarIcon /> },
-    { path: '/messages', label: 'Messages', icon: <ChatBubbleIcon /> },
-    { path: '/profile', label: 'Profile', icon: <PersonIcon /> },
-  ];
-
-  const homeownerTabs: TabItem[] = [
-    { path: '/dashboard', label: 'Dashboard', icon: <DashboardIcon /> },
-    { path: '/listings', label: 'Listings', icon: <MagnifyingGlassIcon /> },
-    { path: '/villa-management', label: 'My Villas', icon: <HomeIcon /> },
-    { path: '/bookings', label: 'Bookings', icon: <CalendarIcon /> },
-    { path: '/messages', label: 'Messages', icon: <ChatBubbleIcon /> },
-    { path: '/profile', label: 'Profile', icon: <PersonIcon /> },
-  ];
-
-  const adminTabs: TabItem[] = [
-    { path: '/dashboard', label: 'Dashboard', icon: <DashboardIcon /> },
-    { path: '/villas', label: 'Properties', icon: <HomeIcon /> },
-    { path: '/users', label: 'Users', icon: <PersonIcon /> },
-    { path: '/reports', label: 'Reports', icon: <BarChartIcon /> },
-    { path: '/messages', label: 'Messages', icon: <ChatBubbleIcon /> },
-    { path: '/profile', label: 'Profile', icon: <AvatarIcon /> },
-  ];
-
-  const getTabs = (): TabItem[] => {
-    if (!user) return anonymousTabs;
-    
-    switch (user.role) {
-      case 'homeowner':
-        return homeownerTabs;
-      case 'admin':
-        return adminTabs;
-      default:
-        return tenantTabs;
-    }
-  };
-
-  const tabs = getTabs();
+  const userRole = getUserRole(user);
+  const tabs = getNavigationItems(userRole, 'top');
 
   // Determine if back button should be shown
   const shouldShowBackButton = () => {
-    const noBackButtonPaths = ['/', '/listings', '/dashboard'];
-    return !noBackButtonPaths.includes(location.pathname);
+    const mainPaths = tabs.map(tab => tab.path);
+    return !mainPaths.includes(location.pathname);
   };
 
   const handleBackClick = () => {
@@ -277,7 +219,7 @@ const TopNavigation: React.FC = () => {
                         {React.cloneElement(tab.icon as React.ReactElement, {
                           width: '100%',
                           height: '100%',
-                        } as any)}
+                        } as Record<string, unknown>)}
                       </span>
                       <span>{tab.label}</span>
                     </motion.button>
@@ -332,7 +274,7 @@ const TopNavigation: React.FC = () => {
                       {React.cloneElement(tab.icon as React.ReactElement, {
                         width: '100%',
                         height: '100%',
-                      } as any)}
+                      } as Record<string, unknown>)}
                     </span>
                     <span>{tab.label}</span>
                   </div>

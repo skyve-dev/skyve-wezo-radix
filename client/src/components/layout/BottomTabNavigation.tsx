@@ -1,17 +1,11 @@
 import React from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import {motion} from 'framer-motion';
-import {BarChartIcon, CalendarIcon, ChatBubbleIcon, DashboardIcon, HomeIcon, PersonIcon, EnterIcon, AvatarIcon} from '@radix-ui/react-icons';
 import {useAuth} from '../../contexts/AuthContext';
 import {colors} from '../../utils/colors';
 import {useScrollDirection} from '../../hooks/useScrollDirection';
+import {getNavigationItems, getUserRole} from '../../config/navigationConfig';
 import '../../styles/layout.css';
-
-interface TabItem {
-  path: string;
-  label: string;
-  icon: React.ReactNode;
-}
 
 const BottomTabNavigation: React.FC = () => {
   const navigate = useNavigate();
@@ -19,49 +13,8 @@ const BottomTabNavigation: React.FC = () => {
   const { user } = useAuth();
   const { isBottomNavVisible } = useScrollDirection();
 
-  const anonymousTabs: TabItem[] = [
-    { path: '/', label: 'Explore', icon: <HomeIcon /> },
-    { path: '/bookings', label: 'Bookings', icon: <CalendarIcon /> },
-    { path: '/login', label: 'Login', icon: <EnterIcon /> },
-  ];
-
-  const tenantTabs: TabItem[] = [
-    { path: '/', label: 'Explore', icon: <HomeIcon /> },
-    { path: '/bookings', label: 'Bookings', icon: <CalendarIcon /> },
-    { path: '/messages', label: 'Messages', icon: <ChatBubbleIcon /> },
-    { path: '/profile', label: 'Profile', icon: <PersonIcon /> },
-  ];
-
-  const homeownerTabs: TabItem[] = [
-    { path: '/dashboard', label: 'Dashboard', icon: <DashboardIcon /> },
-    { path: '/bookings', label: 'Bookings', icon: <CalendarIcon /> },
-    { path: '/villa-management', label: 'My Villas', icon: <HomeIcon /> },
-    { path: '/reports', label: 'Reports', icon: <BarChartIcon /> },
-    { path: '/profile', label: 'Profile', icon: <PersonIcon /> },
-  ];
-
-  const adminTabs: TabItem[] = [
-    { path: '/dashboard', label: 'Dashboard', icon: <DashboardIcon /> },
-    { path: '/bookings', label: 'Bookings', icon: <CalendarIcon /> },
-    { path: '/users', label: 'Users', icon: <PersonIcon /> },
-    { path: '/reports', label: 'Reports', icon: <BarChartIcon /> },
-    { path: '/profile', label: 'Profile', icon: <AvatarIcon /> },
-  ];
-
-  const getTabs = (): TabItem[] => {
-    if (!user) return anonymousTabs;
-    
-    switch (user.role) {
-      case 'homeowner':
-        return homeownerTabs;
-      case 'admin':
-        return adminTabs;
-      default:
-        return tenantTabs;
-    }
-  };
-
-  const tabs = getTabs();
+  const userRole = getUserRole(user);
+  const tabs = getNavigationItems(userRole, 'bottom');
 
   const containerStyle: React.CSSProperties = {
     position: 'fixed',

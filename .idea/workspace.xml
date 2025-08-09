@@ -4,12 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55b53441-d67e-4899-8611-4e1fdaff75d6" name="Changes" comment="Update grid column styling across pages for improved responsiveness">
+    <list default="true" id="55b53441-d67e-4899-8611-4e1fdaff75d6" name="Changes" comment="Update navigation and booking functionality across pages&#10;&#10;- Replace `Listings` tab with `Bookings` in bottom navigation and drawer menu.&#10;- Update booking submission status to `pending` and include approval message.&#10;- Adjust `Dialog` title and description for booking confirmation.">
+      <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/layout/BottomTabNavigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/BottomTabNavigation.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/layout/DrawerMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/DrawerMenu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/common/NewBookingPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/common/NewBookingPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/layout/TopNavigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/TopNavigation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/admin/UserListPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/admin/UserListPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/common/BookingDetailPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/common/BookingDetailPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/services/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/services/bookingService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/bookingService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/prisma/dev.db" beforeDir="false" afterPath="$PROJECT_DIR$/server/prisma/dev.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/bookings.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/bookings.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/bookings.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/bookings.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,15 +139,7 @@
       <workItem from="1754319501348" duration="16311000" />
       <workItem from="1754394843249" duration="5267000" />
       <workItem from="1754485762184" duration="6145000" />
-      <workItem from="1754714250564" duration="14345000" />
-    </task>
-    <task id="LOCAL-00013" summary="Refactor `amenities` structure across villa pages and enhance display logic&#10;&#10;- Replace flat `amenities` array with categorized `VillaAmenities` structure in villa types and mock data.&#10;- Update VillaDetailsPage to display amenities in categorized sections with styled titles.&#10;- Use helper functions to streamline amenities processing and ensure reusability across ListingsPage and HomePage.&#10;- Adjust villa card components to normalize and display top amenities efficiently.">
-      <option name="closed" value="true" />
-      <created>1754152237667</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1754152237667</updated>
+      <workItem from="1754714250564" duration="18046000" />
     </task>
     <task id="LOCAL-00014" summary="Add &quot;Listings&quot; tab and menu item for villa navigation&#10;&#10;- Add &quot;Listings&quot; option with icon in DrawerMenu for quick access.&#10;- Include &quot;Listings&quot; tab in BottomTabNavigation for both tenants and homeowners.">
       <option name="closed" value="true" />
@@ -526,7 +525,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754751746146</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Update navigation and booking functionality across pages&#10;&#10;- Replace `Listings` tab with `Bookings` in bottom navigation and drawer menu.&#10;- Update booking submission status to `pending` and include approval message.&#10;- Adjust `Dialog` title and description for booking confirmation.">
+      <option name="closed" value="true" />
+      <created>1754752931207</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1754752931207</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -538,7 +545,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Remove `BookingDetailPage` and `BookingListPage` from tenant directory&#10;&#10;- Deleted `BookingDetailPage.tsx` and `BookingListPage.tsx` to consolidate pages into a shared structure.&#10;- Updated related logic to ensure `BookingListPage.tsx` under `common` directory supports role-based booking filtering." />
     <MESSAGE value="Replace native selects with Radix Select in VillaManagementListPage and FilterPanel; add UserContext for user management&#10;&#10;- Updated `VillaManagementListPage` to use `@radix-ui/react-select` for status and featured filters, improving dropdown styles and usability.&#10;- Enhanced `FilterPanel` with Radix Select, adding optimized styles and custom functionality for location filtering.&#10;- Added `UserContext` for managing user states and actions, such as searching, filtering by role, fetching by ID, and CRUD operations." />
     <MESSAGE value="Prevent user-initiated zoom across all devices and input scenarios&#10;&#10;- Block pinch, double-tap, keyboard, and wheel zoom actions in `main.tsx` using event listeners.&#10;- Update `index.html` with restrictive `viewport` meta tag to limit zoom capabilities.&#10;- Apply CSS rules in `layout.css` to disable zoom, touch gestures, and overscroll while keeping certain areas text-selectable." />
     <MESSAGE value="Update BookingListPage layout styles for improved responsiveness&#10;&#10;- Adjust item containers to use `flexGrow` and `minWidth` for better scaling and spacing.&#10;- Add `gap` to wrapped booking items for consistent alignment." />
@@ -563,6 +569,7 @@
     <MESSAGE value="Remove mock villa data file (`data.ts`)" />
     <MESSAGE value="Add NotificationsContext to manage user notifications and integrate it into the app" />
     <MESSAGE value="Update grid column styling across pages for improved responsiveness" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update grid column styling across pages for improved responsiveness" />
+    <MESSAGE value="Update navigation and booking functionality across pages&#10;&#10;- Replace `Listings` tab with `Bookings` in bottom navigation and drawer menu.&#10;- Update booking submission status to `pending` and include approval message.&#10;- Adjust `Dialog` title and description for booking confirmation." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update navigation and booking functionality across pages&#10;&#10;- Replace `Listings` tab with `Bookings` in bottom navigation and drawer menu.&#10;- Update booking submission status to `pending` and include approval message.&#10;- Adjust `Dialog` title and description for booking confirmation." />
   </component>
 </project>

@@ -133,6 +133,18 @@ class ApiService {
     });
   }
 
+  async approveBooking(id: string) {
+    return this.request(`/bookings/${id}/approve`, {
+      method: 'PATCH',
+    });
+  }
+
+  async rejectBooking(id: string) {
+    return this.request(`/bookings/${id}/reject`, {
+      method: 'PATCH',
+    });
+  }
+
   async deleteBooking(id: string) {
     return this.request(`/bookings/${id}`, {
       method: 'DELETE',
