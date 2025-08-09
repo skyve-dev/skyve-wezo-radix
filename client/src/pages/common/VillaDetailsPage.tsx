@@ -253,7 +253,7 @@ const VillaDetailsPage: React.FC = () => {
 
     const twoColumnLayoutStyle: React.CSSProperties = {
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(330px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
         gap: '40px',
         marginTop: '40px',
     };

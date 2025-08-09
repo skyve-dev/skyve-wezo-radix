@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55b53441-d67e-4899-8611-4e1fdaff75d6" name="Changes" comment="Remove mock villa data file (`data.ts`)">
+    <list default="true" id="55b53441-d67e-4899-8611-4e1fdaff75d6" name="Changes" comment="Add NotificationsContext to manage user notifications and integrate it into the app">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/client/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/layout/DrawerMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layout/DrawerMenu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/admin/UserListPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/admin/UserListPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/common/NotificationsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/common/NotificationsPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/common/ProfilePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/common/ProfilePage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/common/ReportsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/common/ReportsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/common/ListingsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/common/ListingsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/common/VillaDetailsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/common/VillaDetailsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/common/VillaManagementListPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/common/VillaManagementListPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/prisma/dev.db" beforeDir="false" afterPath="$PROJECT_DIR$/server/prisma/dev.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -136,15 +132,7 @@
       <workItem from="1754319501348" duration="16311000" />
       <workItem from="1754394843249" duration="5267000" />
       <workItem from="1754485762184" duration="6145000" />
-      <workItem from="1754714250564" duration="12092000" />
-    </task>
-    <task id="LOCAL-00011" summary="Add property details section to VillaDetailsPage and enhance ListingsPage villa info display&#10;&#10;- Add property details (bedrooms, beds, bathrooms, max guests) with styled icons in VillaDetailsPage.&#10;- Update ListingsPage to display bedroom and bathroom data alongside max guest capacity.&#10;- Extend villa types and mock data with new attributes for bedrooms, beds, and bathrooms.">
-      <option name="closed" value="true" />
-      <created>1754147488017</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1754147488017</updated>
+      <workItem from="1754714250564" duration="13007000" />
     </task>
     <task id="LOCAL-00012" summary="Add house rules section to VillaDetailsPage and update villa types and mock data  &#10;&#10;- Add styled house rules section with icons in `VillaDetailsPage`.  &#10;- Extend `Villa` type to include `HouseRules` and implement types for individual rules.  &#10;- Update mock data to specify house rules for all villas.  &#10;- Ensure responsive design for house rules grid and card layout.">
       <option name="closed" value="true" />
@@ -530,7 +518,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754743480984</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="Add NotificationsContext to manage user notifications and integrate it into the app">
+      <option name="closed" value="true" />
+      <created>1754750853353</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1754750853353</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -542,7 +538,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add BookingDetailPage and BookingListPage for enhanced booking management&#10;&#10;- Introduce `BookingDetailPage` with comprehensive booking and villa detail display, dynamic styles, and user-specific actions.&#10;- Add `BookingListPage` with role-based booking filtering, improved layout, and empty state handling.&#10;- Include responsive styling for both pages to enhance usability across devices." />
     <MESSAGE value="Remove `BookingDetailPage` and `BookingListPage` for tenant; migrate booking management features to `common` components&#10;&#10;- Deleted `BookingDetailPage` and `BookingListPage` from tenant-specific directory due to consolidation.&#10;- Centralized booking management logic into `BookingListPage` under `common` with role-based filtering and enhanced structure.&#10;- Improved maintainability by reducing duplication and ensuring unified booking management across user roles." />
     <MESSAGE value="Remove `BookingDetailPage` and `BookingListPage` from tenant directory&#10;&#10;- Deleted `BookingDetailPage.tsx` and `BookingListPage.tsx` to consolidate pages into a shared structure.&#10;- Updated related logic to ensure `BookingListPage.tsx` under `common` directory supports role-based booking filtering." />
     <MESSAGE value="Replace native selects with Radix Select in VillaManagementListPage and FilterPanel; add UserContext for user management&#10;&#10;- Updated `VillaManagementListPage` to use `@radix-ui/react-select` for status and featured filters, improving dropdown styles and usability.&#10;- Enhanced `FilterPanel` with Radix Select, adding optimized styles and custom functionality for location filtering.&#10;- Added `UserContext` for managing user states and actions, such as searching, filtering by role, fetching by ID, and CRUD operations." />
@@ -567,6 +562,7 @@
     <MESSAGE value="Add backend APIs, database schema, and seed data for villa booking system" />
     <MESSAGE value="Remove `data.ts` containing mock villa data to clean up unused files" />
     <MESSAGE value="Remove mock villa data file (`data.ts`)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove mock villa data file (`data.ts`)" />
+    <MESSAGE value="Add NotificationsContext to manage user notifications and integrate it into the app" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add NotificationsContext to manage user notifications and integrate it into the app" />
   </component>
 </project>

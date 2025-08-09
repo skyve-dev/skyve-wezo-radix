@@ -275,9 +275,7 @@ const BookingDetailPage: React.FC = () => {
             <style>
                 {`
           @media (max-width: 770px) {
-            .content-grid {
-              grid-template-columns: 1fr !important;
-            }
+            
             .villa-images {
               grid-template-columns: 2fr 1fr !important;
             }
