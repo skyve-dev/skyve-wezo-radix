@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55b53441-d67e-4899-8611-4e1fdaff75d6" name="Changes" comment="Add reusable components and improve navigation configuration&#10;&#10;- Implement `ConfirmationDialog` component for consistent confirmation prompts.&#10;- Create `SuccessNotification` component for user success feedback.&#10;- Refactor navigation logic with `navigationConfig` for role-based navigation. &#10;- Update `BookingDetailPage` to include confirmation dialogs and success notifications.">
+    <list default="true" id="55b53441-d67e-4899-8611-4e1fdaff75d6" name="Changes" comment="Add registration page, reports API, and reporting services&#10;&#10;- Implement `RegisterPage` component with form validation and API integration.&#10;- Add backend APIs for reporting: stats, revenue, and performance metrics.&#10;- Create `reportService` for interacting with reporting APIs.&#10;- Add `ReportsSkeleton` for loading states in reporting UI.&#10;- Define backend route and controller logic for reporting endpoints.">
+      <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/common/SuccessNotification.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/common/SuccessNotification.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/auth/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/auth/LoginPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/common/NewBookingPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/common/NewBookingPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/common/ReportsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/common/ReportsPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/services/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/prisma/dev.db" beforeDir="false" afterPath="$PROJECT_DIR$/server/prisma/dev.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/common/BookingListPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/common/BookingListPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/services/bookingService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/bookingService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/bookings.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/bookings.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,15 +132,7 @@
       <workItem from="1754319501348" duration="16311000" />
       <workItem from="1754394843249" duration="5267000" />
       <workItem from="1754485762184" duration="6145000" />
-      <workItem from="1754714250564" duration="20235000" />
-    </task>
-    <task id="LOCAL-00015" summary="Implement advanced filtering system for villa listings&#10;&#10;- Add SearchBar and FilterPanel components for dynamic filters.&#10;- Create `applyFilters` utility for filtering villas based on price, location, amenities, guests, and more.&#10;- Refactor ListingsPage state to use centralized filter logic with improved UI/UX.">
-      <option name="closed" value="true" />
-      <created>1754154471442</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1754154471442</updated>
+      <workItem from="1754714250564" duration="22821000" />
     </task>
     <task id="LOCAL-00016" summary="Enhance VillaDetailsPage amenities and house rules sections&#10;&#10;- Add `getAmenityIcon` helper to display icons alongside amenities.&#10;- Introduce styles for enhanced amenity categorization and streamlined list display.&#10;- Refactor house rules layout with consistent styling and icon alignment.&#10;- Improve overall readability and UX for both sections.">
       <option name="closed" value="true" />
@@ -530,7 +518,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754757050695</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="Add registration page, reports API, and reporting services&#10;&#10;- Implement `RegisterPage` component with form validation and API integration.&#10;- Add backend APIs for reporting: stats, revenue, and performance metrics.&#10;- Create `reportService` for interacting with reporting APIs.&#10;- Add `ReportsSkeleton` for loading states in reporting UI.&#10;- Define backend route and controller logic for reporting endpoints.">
+      <option name="closed" value="true" />
+      <created>1754759401365</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1754759401365</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -542,7 +538,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Prevent user-initiated zoom across all devices and input scenarios&#10;&#10;- Block pinch, double-tap, keyboard, and wheel zoom actions in `main.tsx` using event listeners.&#10;- Update `index.html` with restrictive `viewport` meta tag to limit zoom capabilities.&#10;- Apply CSS rules in `layout.css` to disable zoom, touch gestures, and overscroll while keeping certain areas text-selectable." />
     <MESSAGE value="Update BookingListPage layout styles for improved responsiveness&#10;&#10;- Adjust item containers to use `flexGrow` and `minWidth` for better scaling and spacing.&#10;- Add `gap` to wrapped booking items for consistent alignment." />
     <MESSAGE value="Enable villa editing with new route and dialog enhancements&#10;&#10;- Introduced `/villas/edit/:id` route for villa editing in `App.tsx`.&#10;- Enhanced `VillaManagementPage` with support for both new villa creation and editing, adding logic for loading and updating existing villas.&#10;- Added confirmation and success dialogs for villa creation and editing actions.&#10;- Updated styles and functionality in `HomeownerDashboard` and `VillaManagementListPage` for consistency." />
     <MESSAGE value="Enhance villa pages with Radix icons, update styles, and introduce edit functionality for VillaManagementPage&#10;&#10;- Replace emoji icons with modern Radix icons in `VillaDetailsPage` and `VillaManagementPage` for consistent styling.&#10;- Add edit route and functionality to `VillaManagementPage`, enabling villa updates along with confirmation and success dialogs.&#10;- Refactor layout and spacing for several components, including `VillaDetailsPage` and `MainLayout`, for improved rendering.&#10;- Adjust context functions and hooks to support villa editing." />
@@ -567,6 +562,7 @@
     <MESSAGE value="Update grid column styling across pages for improved responsiveness" />
     <MESSAGE value="Update navigation and booking functionality across pages&#10;&#10;- Replace `Listings` tab with `Bookings` in bottom navigation and drawer menu.&#10;- Update booking submission status to `pending` and include approval message.&#10;- Adjust `Dialog` title and description for booking confirmation." />
     <MESSAGE value="Add reusable components and improve navigation configuration&#10;&#10;- Implement `ConfirmationDialog` component for consistent confirmation prompts.&#10;- Create `SuccessNotification` component for user success feedback.&#10;- Refactor navigation logic with `navigationConfig` for role-based navigation. &#10;- Update `BookingDetailPage` to include confirmation dialogs and success notifications." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add reusable components and improve navigation configuration&#10;&#10;- Implement `ConfirmationDialog` component for consistent confirmation prompts.&#10;- Create `SuccessNotification` component for user success feedback.&#10;- Refactor navigation logic with `navigationConfig` for role-based navigation. &#10;- Update `BookingDetailPage` to include confirmation dialogs and success notifications." />
+    <MESSAGE value="Add registration page, reports API, and reporting services&#10;&#10;- Implement `RegisterPage` component with form validation and API integration.&#10;- Add backend APIs for reporting: stats, revenue, and performance metrics.&#10;- Create `reportService` for interacting with reporting APIs.&#10;- Add `ReportsSkeleton` for loading states in reporting UI.&#10;- Define backend route and controller logic for reporting endpoints." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add registration page, reports API, and reporting services&#10;&#10;- Implement `RegisterPage` component with form validation and API integration.&#10;- Add backend APIs for reporting: stats, revenue, and performance metrics.&#10;- Create `reportService` for interacting with reporting APIs.&#10;- Add `ReportsSkeleton` for loading states in reporting UI.&#10;- Define backend route and controller logic for reporting endpoints." />
   </component>
 </project>

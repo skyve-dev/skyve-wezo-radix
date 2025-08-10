@@ -10,9 +10,29 @@ export class BookingService {
     tenantId?: string;
     status?: string;
     paymentStatus?: string;
+    search?: string;
+    startDate?: Date;
+    endDate?: Date;
+    sortBy?: string;
+    sortOrder?: 'asc' | 'desc';
   }): Promise<Booking[]> {
     try {
-      return await api.getBookings(filters) as Booking[];
+      // Build clean filters object, omitting undefined values
+      const apiFilters: any = {};
+      
+      if (filters) {
+        if (filters.villaId) apiFilters.villaId = filters.villaId;
+        if (filters.tenantId) apiFilters.tenantId = filters.tenantId;
+        if (filters.status) apiFilters.status = filters.status;
+        if (filters.paymentStatus) apiFilters.paymentStatus = filters.paymentStatus;
+        if (filters.search) apiFilters.search = filters.search;
+        if (filters.startDate) apiFilters.startDate = filters.startDate.toISOString();
+        if (filters.endDate) apiFilters.endDate = filters.endDate.toISOString();
+        if (filters.sortBy) apiFilters.sortBy = filters.sortBy;
+        if (filters.sortOrder) apiFilters.sortOrder = filters.sortOrder;
+      }
+      
+      return await api.getBookings(apiFilters) as Booking[];
     } catch (error) {
       console.error('Error fetching bookings:', error);
       throw error;

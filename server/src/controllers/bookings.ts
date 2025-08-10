@@ -3,16 +3,67 @@ import prisma from '../services/database';
 
 export const getBookings = async (req: Request, res: Response) => {
   try {
-    const { villaId, tenantId, status, paymentStatus } = req.query;
+    const { 
+      villaId, 
+      tenantId, 
+      status, 
+      paymentStatus, 
+      search,
+      startDate,
+      endDate,
+      sortBy = 'checkInDate',
+      sortOrder = 'desc'
+    } = req.query;
     
     const where: any = {};
-    if (villaId) where.villaId = villaId;
-    if (tenantId) where.tenantId = tenantId;
-    if (status) where.status = status;
-    if (paymentStatus) where.paymentStatus = paymentStatus;
+    
+    // Basic filters - check for 'undefined' string and empty values
+    if (villaId && villaId !== 'undefined') where.villaId = villaId;
+    if (tenantId && tenantId !== 'undefined') where.tenantId = tenantId;
+    if (status && status !== 'undefined') where.status = status;
+    if (paymentStatus && paymentStatus !== 'undefined') where.paymentStatus = paymentStatus;
+    
+    // Date range filter
+    if ((startDate && startDate !== 'undefined') || (endDate && endDate !== 'undefined')) {
+      where.checkInDate = {};
+      if (startDate && startDate !== 'undefined') {
+        const parsedStartDate = new Date(startDate as string);
+        if (!isNaN(parsedStartDate.getTime())) {
+          where.checkInDate.gte = parsedStartDate;
+        }
+      }
+      if (endDate && endDate !== 'undefined') {
+        const parsedEndDate = new Date(endDate as string);
+        if (!isNaN(parsedEndDate.getTime())) {
+          where.checkInDate.lte = parsedEndDate;
+        }
+      }
+      // Remove empty checkInDate object if no valid dates
+      if (Object.keys(where.checkInDate).length === 0) {
+        delete where.checkInDate;
+      }
+    }
+    
+    // Search filter (by booking ID or tenant email)
+    if (search && search !== 'undefined' && search !== '') {
+      const searchStr = search as string;
+      where.OR = [
+        { id: { contains: searchStr } },
+        { tenant: { email: { contains: searchStr } } }
+      ];
+    }
+    
+    // Build sort object
+    const orderBy: any = {};
+    if (sortBy === 'checkInDate' || sortBy === 'checkOutDate' || sortBy === 'totalPrice' || sortBy === 'createdAt') {
+      orderBy[sortBy as string] = sortOrder === 'asc' ? 'asc' : 'desc';
+    } else {
+      orderBy.checkInDate = 'desc'; // Default sort
+    }
     
     const bookings = await prisma.booking.findMany({
       where,
+      orderBy,
       include: {
         villa: {
           select: {

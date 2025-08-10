@@ -1,54 +1,81 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {motion} from 'framer-motion';
 import {useNavigate} from 'react-router-dom';
-import {CalendarIcon, EyeOpenIcon} from '@radix-ui/react-icons';
+import {CalendarIcon, EyeOpenIcon, MagnifyingGlassIcon} from '@radix-ui/react-icons';
 import {useAuth} from '../../contexts/AuthContext';
-import {useBookings} from '../../contexts/BookingsContext';
 import {useVillas} from '../../contexts/VillasContext';
 import {colors} from '../../utils/colors';
 import { getAssetUrl } from '../../utils/basePath';
+import { BookingService } from '../../services/bookingService';
+import StatusFilter, { type StatusOption } from '../../components/common/StatusFilter';
+import DateRangeFilter, { type DateRange } from '../../components/common/DateRangeFilter';
+import BookingSearchBar from '../../components/common/BookingSearchBar';
+import type { Booking } from '../../types';
 
 const BookingListPage: React.FC = () => {
     const navigate = useNavigate();
     const {user} = useAuth();
-    const {bookings, getBookingsByTenant, getBookingsByVilla} = useBookings();
-    const {getVillaById, villas} = useVillas();
+    const {getVillaById} = useVillas();
+    
+    // State for bookings and filters
+    const [bookings, setBookings] = useState<Booking[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedStatus, setSelectedStatus] = useState<string | undefined>();
+    const [dateRange, setDateRange] = useState<DateRange>({});
+    
+    // Status filter options
+    const statusOptions: StatusOption[] = [
+        { value: 'pending', label: 'Pending', color: '#f59e0b' },
+        { value: 'confirmed', label: 'Confirmed', color: '#10b981' },
+        { value: 'cancelled', label: 'Cancelled', color: '#ef4444' },
+    ];
 
-    // Role-based filtering of bookings
-    const getUserBookings = () => {
-        if (!user) return [];
-
-        switch (user.role) {
-            case 'tenant':
-                // Show bookings created by the tenant
-                return getBookingsByTenant(user.id);
-
-            case 'homeowner': {
-                // Show bookings for villas owned by the homeowner
-                const ownedVillas = villas.filter(villa => villa.ownerId === user.id);
-                const homeownerBookings: typeof bookings = [];
-
-                ownedVillas.forEach(villa => {
-                    const villaBookings = getBookingsByVilla(villa.id);
-                    homeownerBookings.push(...villaBookings);
-                });
-
-                return homeownerBookings;
+    // Load bookings with filters
+    const loadBookings = async () => {
+        if (!user) return;
+        
+        setLoading(true);
+        try {
+            const filters: any = {
+                sortBy: 'checkInDate',
+                sortOrder: 'desc' as const,
+            };
+            
+            // Only add filters if they have values
+            if (searchTerm && searchTerm.trim()) {
+                filters.search = searchTerm;
             }
-
-            case 'admin':
-                // Show all bookings in the system
-                return bookings;
-
-            default:
-                return [];
+            if (selectedStatus) {
+                filters.status = selectedStatus;
+            }
+            if (dateRange.startDate) {
+                filters.startDate = dateRange.startDate;
+            }
+            if (dateRange.endDate) {
+                filters.endDate = dateRange.endDate;
+            }
+            
+            // Add role-based filtering
+            if (user.role === 'tenant') {
+                filters.tenantId = user.id;
+            }
+            // For homeowners, we would need to get their villa IDs first
+            // For admins, no additional filtering needed
+            
+            const fetchedBookings = await BookingService.getBookings(filters);
+            setBookings(fetchedBookings);
+        } catch (error) {
+            console.error('Failed to load bookings:', error);
+        } finally {
+            setLoading(false);
         }
     };
-
-    const userBookings = getUserBookings();
-    const sortedBookings = userBookings.sort((a, b) =>
-        new Date(b.checkInDate).getTime() - new Date(a.checkInDate).getTime()
-    );
+    
+    // Load bookings on component mount and when filters change
+    useEffect(() => {
+        loadBookings();
+    }, [user?.id, searchTerm, selectedStatus, dateRange.startDate, dateRange.endDate]);
 
     // Get page title based on role
     const getPageTitle = () => {
@@ -127,6 +154,23 @@ const BookingListPage: React.FC = () => {
         height: '80px',
         margin: '0 auto 24px',
         color: '#9ca3af',
+    };
+    
+    const filtersContainerStyle: React.CSSProperties = {
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '16px',
+        marginBottom: '24px',
+        alignItems: 'center',
+    };
+    
+    const loadingStyle: React.CSSProperties = {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '200px',
+        fontSize: '16px',
+        color: '#6b7280',
     };
 
     const emptyTitleStyle: React.CSSProperties = {
@@ -265,8 +309,36 @@ const BookingListPage: React.FC = () => {
         // In a real app, this would fetch from users context or API
         return `Tenant ID: ${tenantId}`;
     };
+    
+    // Clear all filters
+    const clearAllFilters = () => {
+        setSearchTerm('');
+        setSelectedStatus(undefined);
+        setDateRange({});
+    };
+    
+    // Check if any filters are active
+    const hasActiveFilters = searchTerm || selectedStatus || dateRange.startDate || dateRange.endDate;
 
-    if (sortedBookings.length === 0) {
+    if (loading) {
+        return (
+            <motion.div
+                style={containerStyle}
+                initial={{opacity: 0}}
+                animate={{opacity: 1}}
+                transition={{duration: 0.5}}
+            >
+                <div style={headerStyle}>
+                    <h1 style={pageHeaderStyle}>{getPageTitle()}</h1>
+                </div>
+                <div style={loadingStyle}>
+                    Loading bookings...
+                </div>
+            </motion.div>
+        );
+    }
+    
+    if (bookings.length === 0 && !hasActiveFilters) {
         return (
             <motion.div
                 style={containerStyle}
@@ -307,7 +379,7 @@ const BookingListPage: React.FC = () => {
             transition={{duration: 0.5}}
         >
             <div style={headerStyle}>
-                <h1 style={pageHeaderStyle}>{getPageTitle()} ({sortedBookings.length})</h1>
+                <h1 style={pageHeaderStyle}>{getPageTitle()} ({bookings.length})</h1>
                 {user?.role === 'tenant' && (
                     <motion.button
                         style={newBookingButtonStyle}
@@ -319,8 +391,68 @@ const BookingListPage: React.FC = () => {
                     </motion.button>
                 )}
             </div>
+            
+            {/* Filters Section */}
+            <div style={filtersContainerStyle}>
+                <BookingSearchBar
+                    value={searchTerm}
+                    onChange={setSearchTerm}
+                    placeholder="Search by email or booking ID..."
+                />
+                
+                <StatusFilter
+                    value={selectedStatus}
+                    onChange={setSelectedStatus}
+                    options={statusOptions}
+                    placeholder="All Statuses"
+                />
+                
+                <DateRangeFilter
+                    value={dateRange}
+                    onChange={setDateRange}
+                    placeholder="Any dates"
+                />
+                
+                {hasActiveFilters && (
+                    <motion.button
+                        onClick={clearAllFilters}
+                        style={{
+                            padding: '8px 16px',
+                            fontSize: '14px',
+                            fontWeight: '500',
+                            color: '#6b7280',
+                            backgroundColor: '#f3f4f6',
+                            border: 'none',
+                            borderRadius: '6px',
+                            cursor: 'pointer',
+                        }}
+                        whileHover={{ backgroundColor: '#e5e7eb' }}
+                        whileTap={{ scale: 0.98 }}
+                    >
+                        Clear All
+                    </motion.button>
+                )}
+            </div>
+            
+            {bookings.length === 0 && hasActiveFilters ? (
+                <div style={emptyStateStyle}>
+                    <MagnifyingGlassIcon style={emptyIconStyle} />
+                    <h2 style={emptyTitleStyle}>No Results Found</h2>
+                    <p style={emptyMessageStyle}>
+                        No bookings match your current filters. Try adjusting your search criteria.
+                    </p>
+                    <motion.button
+                        style={newBookingButtonStyle}
+                        onClick={clearAllFilters}
+                        whileHover={{backgroundColor: colors.primaryHover}}
+                        whileTap={{scale: 0.98}}
+                    >
+                        Clear Filters
+                    </motion.button>
+                </div>
+            ) : (
             <div style={{display: 'flex', flexWrap: 'wrap',gap:'16px'}}>
-                {sortedBookings.map((booking) => {
+                {bookings.map((booking) => {
                     const villa = getVillaById(booking.villaId);
                     const nights = calculateNights(booking.checkInDate, booking.checkOutDate);
 
@@ -416,6 +548,7 @@ const BookingListPage: React.FC = () => {
                     );
                 })}
             </div>
+            )}
         </motion.div>
     );
 };
